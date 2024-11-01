@@ -142,6 +142,7 @@
     <ClInclude Include="Library\Code\self\01_Windows\WindowSetup.h" />
     <ClInclude Include="Library\Code\self\03_SceneManager\SceneManager.h" />
     <ClInclude Include="Library\Code\self\04_GameManager\GameManager.h" />
+    <ClInclude Include="main.h" />
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h" />
     <ClInclude Include="Scene\01_TitleScene\TitleScene.h" />
     <ClInclude Include="Scene\02_GameScene\GameScene.h" />

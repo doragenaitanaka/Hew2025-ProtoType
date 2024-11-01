@@ -19,7 +19,6 @@ TestScene::TestScene()
     // クラスインスタンスの取得
     //this->p_cd3d11 = CD3D11::GetInstance();
     this->p_sceneManager = SceneManager::GetInstance();
-
 }
 /**	@brief 	デストラクタ
 *	@date	2024/05/10
@@ -34,6 +33,7 @@ TestScene::~TestScene()
 */
 void	TestScene::Initialize(void)
 {
+    //std::cout << "Initialize" << std::endl;
 }
 
 /**	@brief 	シーン全体の更新
@@ -41,6 +41,7 @@ void	TestScene::Initialize(void)
 */
 void	TestScene::Update(void)
 {
+    //std::cout << "Update" << std::endl;
 }// Update()    end
 
 /**	@brief 	シーン全体の描画

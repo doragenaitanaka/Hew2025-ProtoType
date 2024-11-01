@@ -59,7 +59,7 @@ int	GameManager::Run(_In_ HINSTANCE hInstance, _In_ int       nCmdShow)
 	
 	// ==========================================================================================================
 	
-	this->sceneManager->ChangeScene(Scene::TITLE);		// 最初のシーン
+	this->sceneManager->ChangeScene(Scene::TEST);		// 最初のシーン
 
 	// ==========================================================================================================
 	
