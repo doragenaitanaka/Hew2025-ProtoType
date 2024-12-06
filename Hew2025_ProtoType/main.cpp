@@ -1,6 +1,6 @@
 #include<Windows.h>
-#include"Library/Code/self/04_GameManager/GameManager.h"
-#include"Library/Code/self/01_Windows/WindowSetup.h"
+#include"Library/Code/self/01_GameManager/GameManager.h"
+#include"Library/Code/self/03_Windows/WindowSetup.h"
 #include"main.h"
 
 //  ウィンドウ画面を出すのに必要な情報をとる関数

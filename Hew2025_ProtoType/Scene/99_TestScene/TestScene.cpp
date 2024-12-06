@@ -3,28 +3,26 @@
 *	@date	2024/05/21
 *	@memo	マネージャーは静的メンバ変数なので取得のみ
 */
-#include<DirectXMath.h> 
-#include<time.h>
-#include<algorithm>
-
 #include"TestScene.h"
-#include"../../Library/Code/self/01_Windows/WindowSetup.h"
-#include"../../Library/Code/self/03_SceneManager/SceneManager.h"
+#include"../../Library/Code/self/03_Windows/WindowSetup.h"
+
+#include<Windows.h>
 
 /**	@brief 	コンストラクタ
 *	@date	2024/05/10
 */
 TestScene::TestScene()
 {
-    // クラスインスタンスの取得
-    //this->p_cd3d11 = CD3D11::GetInstance();
-    this->p_sceneManager = SceneManager::GetInstance();
+    std::cout << "TestScene::TestScene()" << std::endl;
+    //// クラスインスタンスの取得
+    //this->p_sceneManager = SceneManager::GetInstance();
 }
 /**	@brief 	デストラクタ
 *	@date	2024/05/10
 */
 TestScene::~TestScene()
 {
+    std::cout << "TestScene::~TestScene()" << std::endl;
     this->Finalize();
 }
 
@@ -33,7 +31,7 @@ TestScene::~TestScene()
 */
 void	TestScene::Initialize(void)
 {
-    //std::cout << "Initialize" << std::endl;
+    std::cout << "TestScene::Initialize()" << std::endl;
 }
 
 /**	@brief 	シーン全体の更新
@@ -41,7 +39,13 @@ void	TestScene::Initialize(void)
 */
 void	TestScene::Update(void)
 {
-    //std::cout << "Update" << std::endl;
+    if (GetAsyncKeyState(VK_SPACE))
+    {
+        this->p_sceneManager->ChangeScene(Scene::TEST);
+        return;
+    }
+
+    std::cout << "TestScene::Update()" << std::endl;
 }// Update()    end
 
 /**	@brief 	シーン全体の描画
@@ -49,6 +53,7 @@ void	TestScene::Update(void)
 */
 void	TestScene::Draw(void)
 {    
+    std::cout << "TestScene::Draw()" << std::endl;
 }
 
 /**	@brief 	シーン全体の終了処理
@@ -56,7 +61,8 @@ void	TestScene::Draw(void)
 */
 void	TestScene::Finalize(void)
 {
+    std::cout << "TestScene::Finalize()" << std::endl;
+
     // シングルトンインスタンス
-    if (this->p_sceneManager) { this->p_sceneManager = nullptr; }   // シーンマネージャー
     //if (this->p_cd3d11) { this->p_cd3d11 = nullptr; }               // cd3d11クラス
 }

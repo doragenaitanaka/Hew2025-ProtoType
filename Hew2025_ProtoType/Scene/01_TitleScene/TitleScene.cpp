@@ -3,14 +3,12 @@
 *	@date	2024/05/10
 */
 #include"TitleScene.h"
-#include"../../Library/Code/self/03_SceneManager/SceneManager.h"
 
 /**	@brief 	コンストラクタ
 *	@date	2024/05/10
 */
 TitleScene::TitleScene()
 {
-	this->p_sceneManager = SceneManager::GetInstance();	
     //this->p_cd3d11 = CD3D11::GetInstance();
 
 }
@@ -47,7 +45,6 @@ void	TitleScene::Draw(void)
 */
 void	TitleScene::Finalize(void)
 {
-    // マネージャー   sss
+    // マネージャー   
     //this->p_cd3d11 = nullptr;
-    this->p_sceneManager = nullptr;
 }

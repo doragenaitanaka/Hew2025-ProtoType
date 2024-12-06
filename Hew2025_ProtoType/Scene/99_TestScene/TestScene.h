@@ -8,7 +8,7 @@
 
 // インクルード
 #include"../00_BaseScene/BaseScene.h"
-#include"../../Library/Code/self/03_SceneManager/SceneManager.h"
+#include"../../Library/Code/self/02_SceneManager/SceneManager.h"
 #include<iostream>
 
 /**	@file	TestScene.h
@@ -48,6 +48,5 @@ public:
 	void	Finalize(void)override;
 
 private:
-	SceneManager* p_sceneManager;		//	シーンマネージャー
 	//CD3D11* p_cd3d11;					// d3d11クラス
 };

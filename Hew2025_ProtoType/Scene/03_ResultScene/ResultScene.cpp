@@ -10,7 +10,6 @@
 */
 ResultScene::ResultScene()
 {
-	this->p_sceneManager = SceneManager::GetInstance();
 	//this->p_cd3d11 = CD3D11::GetInstance();
 }
 /**	@brief 	デストラクタ
@@ -48,5 +47,4 @@ void	ResultScene::Finalize(void)
 {
     // マネージャー   
    // this->p_cd3d11 = nullptr;
-    this->p_sceneManager = nullptr;
 }

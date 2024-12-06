@@ -5,7 +5,6 @@
 
 #pragma once
 #include"../00_BaseScene/BaseScene.h"
-#include"../../Library/Code/self/03_SceneManager/SceneManager.h"
 #include<iostream>
 
 /**	@brief 	リザルトシーンクラス

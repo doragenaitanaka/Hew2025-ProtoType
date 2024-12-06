@@ -4,9 +4,9 @@
 *	@date	2024/05/20
 */
 
-#include"../01_Windows/WindowSetup.h"
+#include"../03_Windows/WindowSetup.h"
 //#include"../02_DirextX_11/01_Initialize/CD3D11.h"
-#include"../03_SceneManager/SceneManager.h"
+#include"../02_SceneManager/SceneManager.h"
 
 //define’è‹`
 #define	FPS (60)

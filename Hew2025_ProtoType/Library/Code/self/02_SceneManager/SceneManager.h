@@ -24,6 +24,9 @@ enum Scene
 	TAKAHASHI_TEST,
 };
 
+// 前方宣言
+class BaseScene;
+
 /**	@brief 	シーン管理クラス
 *	@date	2024/05/11
 *	@memo	シーン自体の実行、シーン遷移を管理

@@ -10,7 +10,7 @@
 #include"../../../../Scene/99_TestScene/TestScene.h"
 //#include"../02_DirextX_11/01_Initialize/CD3D11.h"
 
-#include"../01_Windows/WindowSetup.h"
+#include"../03_Windows/WindowSetup.h"
 
 #include<iostream>
 

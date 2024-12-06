@@ -5,6 +5,10 @@
 
 #pragma once
 #include<iostream>
+#include"../../Library/Code/self/02_SceneManager/SceneManager.h"
+
+// 前方宣言
+class SceneManager;
 
 /**	@brief 	シーン基底クラス
 *	@date	2024/05/10
@@ -21,7 +25,7 @@ public:
 	/**	@brief 	デストラクタ
 	*	@date	2024/05/10
 	*/
-	virtual	~BaseScene();
+	virtual ~BaseScene();
 
 	/**	@brief 	シーン全体の初期化
 	*	@date	2024/05/10
@@ -42,4 +46,7 @@ public:
 	*	@date	2024/05/10
 	*/
 	virtual	void	Finalize(void) = 0;
+
+protected:
+	SceneManager* p_sceneManager;	// シーンマネージャー
 };

@@ -128,9 +128,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Library\Code\self\01_Windows\WindowSetup.cpp" />
-    <ClCompile Include="Library\Code\self\03_SceneManager\SceneManager.cpp" />
-    <ClCompile Include="Library\Code\self\04_GameManager\GameManager.cpp" />
+    <ClCompile Include="Library\Code\self\01_GameManager\GameManager.cpp" />
+    <ClCompile Include="Library\Code\self\02_SceneManager\SceneManager.cpp" />
+    <ClCompile Include="Library\Code\self\03_Windows\WindowSetup.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp" />
     <ClCompile Include="Scene\01_TitleScene\TitleScene.cpp" />
@@ -139,9 +139,9 @@
     <ClCompile Include="Scene\99_TestScene\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Library\Code\self\01_Windows\WindowSetup.h" />
-    <ClInclude Include="Library\Code\self\03_SceneManager\SceneManager.h" />
-    <ClInclude Include="Library\Code\self\04_GameManager\GameManager.h" />
+    <ClInclude Include="Library\Code\self\01_GameManager\GameManager.h" />
+    <ClInclude Include="Library\Code\self\02_SceneManager\SceneManager.h" />
+    <ClInclude Include="Library\Code\self\03_Windows\WindowSetup.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h" />
     <ClInclude Include="Scene\01_TitleScene\TitleScene.h" />
