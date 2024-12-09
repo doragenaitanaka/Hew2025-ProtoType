@@ -48,5 +48,4 @@ public:
 	void	Finalize(void)override;
 
 private:
-	//CD3D11* p_cd3d11;					// d3d11ƒNƒ‰ƒX
 };

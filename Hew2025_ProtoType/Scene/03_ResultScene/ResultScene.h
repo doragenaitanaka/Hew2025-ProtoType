@@ -42,6 +42,4 @@ public:
 	*/
 	void	Finalize(void)override;
 private:
-	SceneManager* p_sceneManager;		//	シーンマネージャー
-	//CD3D11* p_cd3d11;					// CD3D11
 };

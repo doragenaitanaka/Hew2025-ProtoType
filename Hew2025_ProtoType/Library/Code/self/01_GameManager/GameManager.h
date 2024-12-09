@@ -5,7 +5,7 @@
 */
 
 #include"../03_Windows/WindowSetup.h"
-//#include"../02_DirextX_11/01_Initialize/CD3D11.h"
+#include"../04_DirextX_11/01_Initialize/CD3D11.h"
 #include"../02_SceneManager/SceneManager.h"
 
 //define定義
@@ -47,7 +47,7 @@ private:
 	GameManager();
 	~GameManager();
 private:
-	//CD3D11* cd3d11;							// d3d11の初期化をまとめたクラス
+	CD3D11* cd3d11;							// d3d11の初期化をまとめたクラス
 	WindowSetup* windowSetup;				// windowsの初期化をまとめたクラス
 	SceneManager* sceneManager;				// シーン管理クラ
 	

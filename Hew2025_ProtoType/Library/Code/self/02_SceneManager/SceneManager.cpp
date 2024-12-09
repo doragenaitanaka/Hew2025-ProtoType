@@ -8,9 +8,9 @@
 #include"../../../../Scene/02_GameScene/GameScene.h"
 #include"../../../../Scene/03_ResultScene/ResultScene.h"
 #include"../../../../Scene/99_TestScene/TestScene.h"
-//#include"../02_DirextX_11/01_Initialize/CD3D11.h"
 
 #include"../03_Windows/WindowSetup.h"
+#include"../04_DirextX_11/01_Initialize/CD3D11.h"
 
 #include<iostream>
 
@@ -131,24 +131,24 @@ void	SceneManager::Run(void)
 	//シーン遷移されていなければ
 	if (!this->isChangedScene)
 	{
-		//// cd3d11クラスの取得
-		//CD3D11* cd3d11 = CD3D11::GetInstance();
+		// cd3d11クラスの取得
+		CD3D11* cd3d11 = CD3D11::GetInstance();
 
-		//// 描画に必要なモノを取得
-		//ID3D11DeviceContext* context = cd3d11->GetDeviceContext();
-		//ID3D11RenderTargetView* renderTargetView = cd3d11->GetRenderTargetView();
-		//IDXGISwapChain* swapChain = cd3d11->GetSwapChain();
-		//ID3D11DepthStencilView* depthStencilView = cd3d11->GetDepthStencilView();
+		// 描画に必要なモノを取得
+		ID3D11DeviceContext* context = cd3d11->GetDeviceContext();
+		ID3D11RenderTargetView* renderTargetView = cd3d11->GetRenderTargetView();
+		IDXGISwapChain* swapChain = cd3d11->GetSwapChain();
+		ID3D11DepthStencilView* depthStencilView = cd3d11->GetDepthStencilView();
 
-		////画面クリア
-		//float clearColor[4] = { 0.0f, 0.0f, 1.0f, 1.0f }; //red,green,blue,alpha							// 画面塗りつぶし色
-		//context->OMSetRenderTargets(1, &renderTargetView, depthStencilView);								// 描画先のキャンバスと使用する深度バッファを指定する
-		//context->ClearRenderTargetView(renderTargetView, clearColor);										// 描画先キャンバスを塗りつぶす
-		//context->ClearDepthStencilView(depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);	// 深度バッファをリセットする
+		//画面クリア
+		float clearColor[4] = { 0.0f, 0.0f, 1.0f, 1.0f }; //red,green,blue,alpha							// 画面塗りつぶし色
+		context->OMSetRenderTargets(1, &renderTargetView, depthStencilView);								// 描画先のキャンバスと使用する深度バッファを指定する
+		context->ClearRenderTargetView(renderTargetView, clearColor);										// 描画先キャンバスを塗りつぶす
+		context->ClearDepthStencilView(depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);	// 深度バッファをリセットする
 
 		this->nowScene->Draw();			// 描画処理
 
-		//swapChain->Present(0, 0);		// バッファの切り替え
+		swapChain->Present(0, 0);		// バッファの切り替え
 	}
 }
 /**	@brief 	シーン遷移関数

@@ -6,6 +6,7 @@
 #pragma once
 #include<iostream>
 #include"../../Library/Code/self/02_SceneManager/SceneManager.h"
+#include"../../Library/Code/self/04_DirextX_11/01_Initialize/CD3D11.h"
 
 // 前方宣言
 class SceneManager;
@@ -49,4 +50,5 @@ public:
 
 protected:
 	SceneManager* p_sceneManager;	// シーンマネージャー
+	CD3D11* p_cd3d11;				// d3d11クラス
 };

@@ -14,8 +14,6 @@
 TestScene::TestScene()
 {
     std::cout << "TestScene::TestScene()" << std::endl;
-    //// クラスインスタンスの取得
-    //this->p_sceneManager = SceneManager::GetInstance();
 }
 /**	@brief 	デストラクタ
 *	@date	2024/05/10
@@ -62,7 +60,4 @@ void	TestScene::Draw(void)
 void	TestScene::Finalize(void)
 {
     std::cout << "TestScene::Finalize()" << std::endl;
-
-    // シングルトンインスタンス
-    //if (this->p_cd3d11) { this->p_cd3d11 = nullptr; }               // cd3d11クラス
 }

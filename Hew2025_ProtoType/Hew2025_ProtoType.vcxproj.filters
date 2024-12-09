@@ -25,6 +25,24 @@
     <Filter Include="ヘッダー ファイル\Manager">
       <UniqueIdentifier>{e131bc2f-7c9a-443f-a118-7592d81b322b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\dx">
+      <UniqueIdentifier>{7f65045b-1f91-4f46-a594-3278f8a622ee}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\dx">
+      <UniqueIdentifier>{aca3fa34-5bb0-4433-a360-6eda1f18d330}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\dx\buffer">
+      <UniqueIdentifier>{cab7508f-1328-411d-a836-e84d90dd6122}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\dx\shader">
+      <UniqueIdentifier>{419f00f5-78d9-4365-a446-60fb2ae2b4d8}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\dx\buffer">
+      <UniqueIdentifier>{2684fdd2-0508-4566-a0ab-12736d0af7fe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\dx\shader">
+      <UniqueIdentifier>{a1581e2b-c150-449a-96f9-f6ac9c749a6a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp">
@@ -52,6 +70,51 @@
       <Filter>ソース ファイル\Manager</Filter>
     </ClCompile>
     <ClCompile Include="Library\Code\self\03_Windows\WindowSetup.cpp">
+      <Filter>ソース ファイル\Manager</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\05_DepthStencil\CDepthStencil.cpp">
+      <Filter>ソース ファイル\dx</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\02_Device\CDevice.cpp">
+      <Filter>ソース ファイル\dx</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\08_InputLayout\CInputLayout.cpp">
+      <Filter>ソース ファイル\dx</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\04_RenderTargetView\CRenderTargetView.cpp">
+      <Filter>ソース ファイル\dx</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\10_Sampler\CSampler.cpp">
+      <Filter>ソース ファイル\dx</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\03_SwapChain\CSwapChain.cpp">
+      <Filter>ソース ファイル\dx</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\06_Viewport\CViewport.cpp">
+      <Filter>ソース ファイル\dx</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\07_Buffer\00_CBuffer\CBuffer.cpp">
+      <Filter>ソース ファイル\dx\buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\07_Buffer\03_CConstantBuffer\CConstantBuffer.cpp">
+      <Filter>ソース ファイル\dx\buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\07_Buffer\02_CIndexBuffer\CIndexBuffer.cpp">
+      <Filter>ソース ファイル\dx\buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\09_Shader\00_CShader\CShader.cpp">
+      <Filter>ソース ファイル\dx\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\09_Shader\02_PixelShader\CPixelShader.cpp">
+      <Filter>ソース ファイル\dx\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\09_Shader\01_CVertexShader\CVertexShader.cpp">
+      <Filter>ソース ファイル\dx\shader</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\07_Buffer\01_CVertexBuffer\CVertexBuffer.cpp">
+      <Filter>ソース ファイル\dx\buffer</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\04_DirextX_11\01_Initialize\CD3D11.cpp">
       <Filter>ソース ファイル\Manager</Filter>
     </ClCompile>
   </ItemGroup>
@@ -82,6 +145,54 @@
     </ClInclude>
     <ClInclude Include="Library\Code\self\01_GameManager\GameManager.h">
       <Filter>ヘッダー ファイル\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\02_Device\CDevice.h">
+      <Filter>ヘッダー ファイル\dx</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\05_DepthStencil\CDepthStencil.h">
+      <Filter>ヘッダー ファイル\dx</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\08_InputLayout\CInputLayout.h">
+      <Filter>ヘッダー ファイル\dx</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\04_RenderTargetView\CRenderTargetView.h">
+      <Filter>ヘッダー ファイル\dx</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\10_Sampler\CSampler.h">
+      <Filter>ヘッダー ファイル\dx</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\03_SwapChain\CSwapChain.h">
+      <Filter>ヘッダー ファイル\dx</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\06_Viewport\CViewport.h">
+      <Filter>ヘッダー ファイル\dx</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\01_Initialize\CD3D11.h">
+      <Filter>ヘッダー ファイル\Manager</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\07_Buffer\00_CBuffer\CBuffer.h">
+      <Filter>ヘッダー ファイル\dx\buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\07_Buffer\03_CConstantBuffer\CConstantBuffer.h">
+      <Filter>ヘッダー ファイル\dx\buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\07_Buffer\02_CIndexBuffer\CIndexBuffer.h">
+      <Filter>ヘッダー ファイル\dx\buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\07_Buffer\01_CVertexBuffer\CVertexBuffer.h">
+      <Filter>ヘッダー ファイル\dx\buffer</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\09_Shader\00_CShader\CShader.h">
+      <Filter>ヘッダー ファイル\dx\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\09_Shader\01_CVertexShader\CVertexShader.h">
+      <Filter>ヘッダー ファイル\dx\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\04_DirextX_11\09_Shader\02_PixelShader\CPixelShader.h">
+      <Filter>ヘッダー ファイル\dx\shader</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\SafePointers.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

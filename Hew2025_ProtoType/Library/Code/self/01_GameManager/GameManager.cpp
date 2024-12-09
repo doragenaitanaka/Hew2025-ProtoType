@@ -49,8 +49,8 @@ void    GameManager::DestroyInstance(void)
 */
 int	GameManager::Run(_In_ HINSTANCE hInstance, _In_ int       nCmdShow)
 {
-	this->windowSetup->Initialize(hInstance, nCmdShow);				// windowsの初期化
-	//this->cd3d11->Initialize(this->windowSetup->GetHWnd());		// d3d11の初期化
+	this->windowSetup->Initialize(hInstance, nCmdShow);			// windowsの初期化
+	this->cd3d11->Initialize(this->windowSetup->GetHWnd());		// d3d11の初期化
 	MSG msg = { 0 };
 
 
@@ -116,7 +116,7 @@ int	GameManager::Run(_In_ HINSTANCE hInstance, _In_ int       nCmdShow)
 		}
 	}
 	this->sceneManager->DestroyInstance();					// シーン管理クラスの削除
-	//this->cd3d11->DestroyInstance();						// CD3D11クラスの削除
+	this->cd3d11->DestroyInstance();						// CD3D11クラスの削除
 	this->windowSetup->DestroyInstance(hInstance);			// ウィンドウクラスの削除
 	return (int)msg.wParam;									// ウィンドウプロシージャに渡す
 }
@@ -139,12 +139,12 @@ GameManager::GameManager()
 {
 	// クラスインスタンスの作成
 	WindowSetup::CreateInstance();	// windows初期化クラス
-	//CD3D11::CrerateIntance();		// D3D11初期化クラス
+	CD3D11::CrerateIntance();		// D3D11初期化クラス
 	SceneManager::CreateInstance();	// シーン管理クラス
 
 	//クラスインスタンスの取得
 	this->windowSetup = WindowSetup::GetInstance();		// windows初期化クラス
-	//this->cd3d11 = CD3D11::GetInstance();				// D3D11初期化クラス
+	this->cd3d11 = CD3D11::GetInstance();				// D3D11初期化クラス
 	this->sceneManager = SceneManager::GetInstance();	// シーン管理クラス
 
 	this->isRunning = true;								// ゲームループ可動中

@@ -10,7 +10,6 @@
 */
 ResultScene::ResultScene()
 {
-	//this->p_cd3d11 = CD3D11::GetInstance();
 }
 /**	@brief 	デストラクタ
 *	@date	2024/05/10
@@ -45,6 +44,4 @@ void	ResultScene::Draw(void)
 */
 void	ResultScene::Finalize(void)
 {
-    // マネージャー   
-   // this->p_cd3d11 = nullptr;
 }
