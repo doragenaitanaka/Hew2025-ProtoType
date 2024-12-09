@@ -151,6 +151,10 @@
     <ClCompile Include="Scene\01_TitleScene\TitleScene.cpp" />
     <ClCompile Include="Scene\02_GameScene\GameScene.cpp" />
     <ClCompile Include="Scene\03_ResultScene\ResultScene.cpp" />
+    <ClCompile Include="Scene\95_Test_Ri\Test_Ri.cpp" />
+    <ClCompile Include="Scene\96_Test_Imagawa\Test_Imagawa.cpp" />
+    <ClCompile Include="Scene\97_Test_Ueda\Test_Ueda.cpp" />
+    <ClCompile Include="Scene\98_Test_Uryu\Test_Uryu.cpp" />
     <ClCompile Include="Scene\99_TestScene\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -178,6 +182,10 @@
     <ClInclude Include="Scene\01_TitleScene\TitleScene.h" />
     <ClInclude Include="Scene\02_GameScene\GameScene.h" />
     <ClInclude Include="Scene\03_ResultScene\ResultScene.h" />
+    <ClInclude Include="Scene\95_Test_Ri\Test_Ri.h" />
+    <ClInclude Include="Scene\96_Test_Imagawa\Test_Imagawa.h" />
+    <ClInclude Include="Scene\97_Test_Ueda\Test_Ueda.h" />
+    <ClInclude Include="Scene\98_Test_Uryu\Test_Uryu.h" />
     <ClInclude Include="Scene\99_TestScene\TestScene.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

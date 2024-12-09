@@ -7,6 +7,11 @@
 #include"../../../../Scene/01_TitleScene/TitleScene.h"
 #include"../../../../Scene/02_GameScene/GameScene.h"
 #include"../../../../Scene/03_ResultScene/ResultScene.h"
+
+#include"../../../../Scene/95_Test_Ri/Test_Ri.h"
+#include"../../../../Scene/96_Test_Imagawa/Test_Imagawa.h"
+#include"../../../../Scene/97_Test_Ueda/Test_Ueda.h"
+#include"../../../../Scene/98_Test_Uryu/Test_Uryu.h"
 #include"../../../../Scene/99_TestScene/TestScene.h"
 
 #include"../03_Windows/WindowSetup.h"
@@ -73,22 +78,22 @@ void	SceneManager::CreateScene(Scene sceneName)
 			this->nowScene = new	TestScene;
 			break;
 
-		//case Scene::URYU_TEST:
-		//	//cout << "TestSceneを生成" << endl;
-		//	this->nowScene = new	TestScene;
-		//	break;
-		//case Scene::UEDA_TEST:
-		//	//cout << "TestSceneを生成" << endl;
-		//	this->nowScene = new	TestScene;
-		//	break;
-		//case Scene::RI_TEST:
-		//	//cout << "TestSceneを生成" << endl;
-		//	this->nowScene = new	TestScene;
-		//	break;
-		//case Scene::IMAGAWA_TEST:
-		//	//cout << "TestSceneを生成" << endl;
-		//	this->nowScene = new	TestScene;
-		//	break;
+		case Scene::TEST_IMAGAWA:
+			//cout << "TestSceneを生成" << endl;
+			this->nowScene = new	Test_Imagawa;
+			break;
+		case Scene::TEST_UEDA:
+			//cout << "TestSceneを生成" << endl;
+			this->nowScene = new	Test_Ueda;
+			break;
+		case Scene::TEST_URYU:
+			//cout << "TestSceneを生成" << endl;
+			this->nowScene = new	Test_Uryu;
+			break;
+		case Scene::TEST_RI:
+			//cout << "TestSceneを生成" << endl;
+			this->nowScene = new	Test_Ri;
+			break;
 		//case Scene::TAKAHASHI_TEST:
 		//	//cout << "TestSceneを生成" << endl;
 		//	this->nowScene = new	TestScene;
@@ -100,7 +105,7 @@ void	SceneManager::CreateScene(Scene sceneName)
 	//シーンが生成できていなければ
 	if (!this->nowScene)
 	{
-		//cerr << "シーン生成に失敗しました" << endl;
+		std::cerr << "シーン生成に失敗しました" << std::endl;
 	}
 }
  
@@ -115,6 +120,7 @@ void	SceneManager::Run(void)
 	//シーンが無ければ
 	if (!this->nowScene)
 	{
+		std::cerr << "シーンが存在しません" << std::endl;
 	}
 
 	//まだ初期化されていなければ

@@ -66,4 +66,3 @@ private:
 
 	static	GameManager* gameManager;		// プロジェクト管理クラス
 };
-
