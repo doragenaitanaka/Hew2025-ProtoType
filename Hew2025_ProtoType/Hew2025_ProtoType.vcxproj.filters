@@ -49,6 +49,9 @@
     <Filter Include="ソース ファイル\Scene\Test">
       <UniqueIdentifier>{7066f90a-853a-4881-85d8-01acd0c494b8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ソース ファイル\other">
+      <UniqueIdentifier>{874ba13e-ddc6-4780-8211-27398e8a205b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp">
@@ -62,9 +65,6 @@
     </ClCompile>
     <ClCompile Include="Scene\02_GameScene\GameScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
-      <Filter>ソース ファイル</Filter>
     </ClCompile>
     <ClCompile Include="Library\Code\self\01_GameManager\GameManager.cpp">
       <Filter>ソース ファイル\Manager</Filter>
@@ -142,7 +142,10 @@
       <Filter>ソース ファイル\Scene\Test</Filter>
     </ClCompile>
     <ClCompile Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\other</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>ソース ファイル\other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

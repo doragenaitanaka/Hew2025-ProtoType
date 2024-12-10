@@ -34,7 +34,6 @@ void	Test_Ueda::Update(void)
         this->p_sceneManager->ChangeScene(Scene::TEST_UEDA);
         return;
     }
-    std::cout << "Test_Ueda::Update()" << std::endl;
 }
 
 /**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ

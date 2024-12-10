@@ -34,7 +34,6 @@ void	Test_Imagawa::Update(void)
         this->p_sceneManager->ChangeScene(Scene::TEST_IMAGAWA);
         return;
     }
-    std::cout << "Test_Imagawa::Update()" << std::endl;
 }
 
 /**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ

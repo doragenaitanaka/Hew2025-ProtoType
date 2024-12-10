@@ -26,7 +26,7 @@ TestScene::TestScene()
 */
 TestScene::~TestScene()
 {
-    std::cout << "TestScene::~TestScene()" << std::endl;
+    //std::cout << "TestScene::~TestScene()" << std::endl;
     this->Finalize();
 }
 

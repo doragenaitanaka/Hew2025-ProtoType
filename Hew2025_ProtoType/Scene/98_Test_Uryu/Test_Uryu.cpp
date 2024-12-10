@@ -34,7 +34,6 @@ void	Test_Uryu::Update(void)
         this->p_sceneManager->ChangeScene(Scene::TEST_URYU);
         return;
     }
-    std::cout << "Test_Uryu::Update()" << std::endl;
 }
 
 /**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ

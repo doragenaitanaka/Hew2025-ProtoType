@@ -34,7 +34,6 @@ void	Test_Ri::Update(void)
         this->p_sceneManager->ChangeScene(Scene::TEST_RI);
         return;
     }
-    std::cout << "Test_Ri::Update()" << std::endl;
 }
 
 /**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ

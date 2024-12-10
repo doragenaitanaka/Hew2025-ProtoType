@@ -4,7 +4,14 @@
 */
 #include<Windows.h>
 #include"GameManager.h"
-//public static	--------------------------------------------------------------------------------
+
+//==================最初に実行されるシーン(ここしかいじっちゃダメ！！！！！！)========================
+
+Scene GameManager::startScene = Scene::TEST;
+
+//====================================================================================================
+GameManager* GameManager::gameManager = nullptr;
+
 /**	@brief 	クラスインスタンスの生成関数
 *	@date	2024/05/20
 *	@memo	この関数を始めに実行する
@@ -51,23 +58,13 @@ int	GameManager::Run(_In_ HINSTANCE hInstance, _In_ int       nCmdShow)
 {
 	this->windowSetup->Initialize(hInstance, nCmdShow);			// windowsの初期化
 	this->cd3d11->Initialize(this->windowSetup->GetHWnd());		// d3d11の初期化
-	MSG msg = { 0 };
+	MSG msg = { 0 };	
 
-
-
-
-	// ココを変更したら最初に実行されるシーンが変更されます
-	// ココしかいじらないでね！！！！！！！！！！！！！！！！！！！！！！
-	// ==========================================================================================================
-	
-	this->sceneManager->ChangeScene(Scene::TEST);		// 最初のシーン
-
-	// ==========================================================================================================
-	
-
+	// 最初のシーンを生成
+	this->sceneManager->ChangeScene(GameManager::startScene);		
 
 	// fps固定用
-	LARGE_INTEGER	liWork;		// 作業用変数								
+	LARGE_INTEGER	liWork;	// 作業用変数								
 	QueryPerformanceFrequency(&liWork);
 	this->frequency = liWork.QuadPart;
 
@@ -135,7 +132,6 @@ void	GameManager::EndGame(void)
 		this->isRunning = false;
 	}
 }
-//private	------------------------------------------------------------------------------------
 
 GameManager::GameManager()
 {
@@ -165,6 +161,3 @@ GameManager::GameManager()
 
 GameManager::~GameManager()
 {}
-//	静的メンバ変数	---------------------------------------------------------------------------------------------------
-
-GameManager* GameManager::gameManager = nullptr;	//静的メンバ変数の初期化

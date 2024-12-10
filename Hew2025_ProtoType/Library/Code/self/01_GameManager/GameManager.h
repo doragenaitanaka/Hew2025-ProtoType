@@ -47,6 +47,8 @@ private:
 	GameManager();
 	~GameManager();
 private:
+	static Scene startScene;				// 開始シーン名
+
 	CD3D11* cd3d11;							// d3d11の初期化をまとめたクラス
 	WindowSetup* windowSetup;				// windowsの初期化をまとめたクラス
 	SceneManager* sceneManager;				// シーン管理クラ
