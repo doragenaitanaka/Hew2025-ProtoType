@@ -128,6 +128,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Library\Code\self\01_GameManager\GameManager.cpp" />
     <ClCompile Include="Library\Code\self\02_SceneManager\SceneManager.cpp" />
     <ClCompile Include="Library\Code\self\03_Windows\WindowSetup.cpp" />
@@ -146,6 +147,8 @@
     <ClCompile Include="Library\Code\self\04_DirextX_11\09_Shader\01_CVertexShader\CVertexShader.cpp" />
     <ClCompile Include="Library\Code\self\04_DirextX_11\09_Shader\02_PixelShader\CPixelShader.cpp" />
     <ClCompile Include="Library\Code\self\04_DirextX_11\10_Sampler\CSampler.cpp" />
+    <ClCompile Include="Library\Code\self\05_Collider2D\Collider2D.cpp" />
+    <ClCompile Include="Library\Code\self\10_Object\Object.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp" />
     <ClCompile Include="Scene\01_TitleScene\TitleScene.cpp" />
@@ -158,6 +161,7 @@
     <ClCompile Include="Scene\99_TestScene\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Library\Code\self\01_GameManager\GameManager.h" />
     <ClInclude Include="Library\Code\self\02_SceneManager\SceneManager.h" />
     <ClInclude Include="Library\Code\self\03_Windows\WindowSetup.h" />
@@ -176,6 +180,8 @@
     <ClInclude Include="Library\Code\self\04_DirextX_11\09_Shader\01_CVertexShader\CVertexShader.h" />
     <ClInclude Include="Library\Code\self\04_DirextX_11\09_Shader\02_PixelShader\CPixelShader.h" />
     <ClInclude Include="Library\Code\self\04_DirextX_11\10_Sampler\CSampler.h" />
+    <ClInclude Include="Library\Code\self\05_Collider2D\Collider2D.h" />
+    <ClInclude Include="Library\Code\self\10_Object\Object.h" />
     <ClInclude Include="Library\Code\self\SafePointers.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h" />

@@ -126,7 +126,7 @@ void	SceneManager::Run(void)
 	//‚Ü‚¾‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î
 	if (!this->isInitialized)
 	{	
-		this->nowScene->Initialize();	//	‰Šú‰»ˆ—
+ 		this->nowScene->Initialize();	//	‰Šú‰»ˆ—
 		this->isChangedScene = false;	//@ƒV[ƒ“‘JˆÚ‚µ‚Ä‚¢‚È‚¢
 		this->isInitialized = true;		//	‰ŠúÏ
 

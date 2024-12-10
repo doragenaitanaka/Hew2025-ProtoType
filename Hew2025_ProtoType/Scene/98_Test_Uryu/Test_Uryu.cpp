@@ -22,6 +22,7 @@ Test_Uryu::~Test_Uryu()
 */
 void	Test_Uryu::Initialize(void)
 {
+
 }
 
 /**	@brief 	シーン全体の更新
@@ -29,6 +30,12 @@ void	Test_Uryu::Initialize(void)
 */
 void	Test_Uryu::Update(void)
 {
+    if (GetAsyncKeyState(VK_SPACE))
+    {
+        this->p_sceneManager->ChangeScene(Scene::TEST_URYU);
+        return;
+    }
+    std::cout << "Test_Uryu::Update()" << std::endl;
 }
 
 /**	@brief 	シーン全体の描画

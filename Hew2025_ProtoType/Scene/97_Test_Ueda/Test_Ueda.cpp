@@ -29,6 +29,12 @@ void	Test_Ueda::Initialize(void)
 */
 void	Test_Ueda::Update(void)
 {
+    if (GetAsyncKeyState(VK_SPACE))
+    {
+        this->p_sceneManager->ChangeScene(Scene::TEST_UEDA);
+        return;
+    }
+    std::cout << "Test_Ueda::Update()" << std::endl;
 }
 
 /**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ

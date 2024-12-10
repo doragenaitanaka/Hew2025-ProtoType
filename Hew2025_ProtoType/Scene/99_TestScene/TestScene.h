@@ -8,8 +8,13 @@
 
 // インクルード
 #include"../00_BaseScene/BaseScene.h"
-#include"../../Library/Code/self/02_SceneManager/SceneManager.h"
-#include<iostream>
+#include"../../Library/Code/self/10_Object/Object.h"
+
+#include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
+#include"../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
+#include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
+#include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
+
 
 /**	@file	TestScene.h
 *	@brief 	テストシーンクラス
@@ -48,4 +53,14 @@ public:
 	void	Finalize(void)override;
 
 private:
+	Object* p_object;
+
+	//--------------------------------------------------------------------------
+	//		描画関連
+	//--------------------------------------------------------------------------	
+	CInputLayout* p_inputLayout;		//  入力レイアウト
+	CVertexShader* p_vertexShader;		//  頂点シェーダ
+	CPixelShader* p_pixelShader;		//  ピクセルシェーダ
+	CSampler* p_sampler;				// サンプラー
+	ID3D11BlendState* p_brendState;		// アルファブレンディング用ステート
 };

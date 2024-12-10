@@ -43,15 +43,18 @@
     <Filter Include="ヘッダー ファイル\dx\shader">
       <UniqueIdentifier>{a1581e2b-c150-449a-96f9-f6ac9c749a6a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Scene\Test">
+      <UniqueIdentifier>{a6f6b919-2da7-485d-8197-11bf3e8a3eb1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Test">
+      <UniqueIdentifier>{7066f90a-853a-4881-85d8-01acd0c494b8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scene\03_ResultScene\ResultScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\99_TestScene\TestScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Scene\01_TitleScene\TitleScene.cpp">
@@ -117,6 +120,30 @@
     <ClCompile Include="Library\Code\self\04_DirextX_11\01_Initialize\CD3D11.cpp">
       <Filter>ソース ファイル\Manager</Filter>
     </ClCompile>
+    <ClCompile Include="Library\Code\self\05_Collider2D\Collider2D.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\10_Object\Object.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\96_Test_Imagawa\Test_Imagawa.cpp">
+      <Filter>ソース ファイル\Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\95_Test_Ri\Test_Ri.cpp">
+      <Filter>ソース ファイル\Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\97_Test_Ueda\Test_Ueda.cpp">
+      <Filter>ソース ファイル\Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\98_Test_Uryu\Test_Uryu.cpp">
+      <Filter>ソース ファイル\Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\99_TestScene\TestScene.cpp">
+      <Filter>ソース ファイル\Scene\Test</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h">
@@ -126,12 +153,6 @@
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Scene\03_ResultScene\ResultScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\99_TestScene\TestScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\01_TitleScene\TitleScene.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="main.h">
@@ -192,6 +213,33 @@
       <Filter>ヘッダー ファイル\dx\shader</Filter>
     </ClInclude>
     <ClInclude Include="Library\Code\self\SafePointers.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\05_Collider2D\Collider2D.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\10_Object\Object.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\96_Test_Imagawa\Test_Imagawa.h">
+      <Filter>ヘッダー ファイル\Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\97_Test_Ueda\Test_Ueda.h">
+      <Filter>ヘッダー ファイル\Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\95_Test_Ri\Test_Ri.h">
+      <Filter>ヘッダー ファイル\Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\98_Test_Uryu\Test_Uryu.h">
+      <Filter>ヘッダー ファイル\Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\99_TestScene\TestScene.h">
+      <Filter>ヘッダー ファイル\Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\01_TitleScene\TitleScene.h">
+      <Filter>ヘッダー ファイル\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
