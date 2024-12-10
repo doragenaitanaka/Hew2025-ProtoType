@@ -1,27 +1,27 @@
-#pragma once
+ï»¿#pragma once
 #include"../00_CBuffer/CBuffer.h"
 
 class CIndexBuffer	:protected	CBuffer
 {
 public:
-	//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	CIndexBuffer();
-	//ƒfƒXƒgƒ‰ƒNƒ^
+	//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	~CIndexBuffer();
 
-	/**	@brief 	ƒoƒbƒtƒ@‚Ìì¬
-	*	@param	const void*	p_SysMem		‰Šú‰»ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^[
-	*	@param	UINT	byteWidth			ì¬‚·‚éƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÌƒTƒCƒY
-	*	@param	UINT	nothing = NULL		’¸“_ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ìì¬‚Å‚Íg‚í‚È‚¢
+	/**	@brief 	ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
+	*	@param	const void*	p_SysMem		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+	*	@param	UINT	byteWidth			ä½œæˆã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+	*	@param	UINT	nothing = NULL		é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã§ã¯ä½¿ã‚ãªã„
 	*	@return	HRESULT
 	*	@date	2024/05/23
 	*	@memo
 	*/
 	HRESULT	Create(const void* p_SysMem, UINT byteWidth, UINT nothing = NULL, D3D11_USAGE _usage = D3D11_USAGE_DEFAULT, UINT _cpuAccessFlags = 0)override;
 
-	/**	@brief 	“ü—ÍƒAƒZƒ“ƒuƒ‰ƒXƒe[ƒW‚É•R‚Ã‚¯‚é
-	*	@param	DXGI_FORMAT	format	ƒCƒ“ƒfƒbƒNƒX‚ÌŒ`®
-	*	@param	UINT	ofset	ƒoƒCƒg’PˆÊƒIƒtƒZƒbƒg
+	/**	@brief 	å…¥åŠ›ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã‚¹ãƒ†ãƒ¼ã‚¸ã«ç´ã¥ã‘ã‚‹
+	*	@param	DXGI_FORMAT	format	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å½¢å¼
+	*	@param	UINT	ofset	ãƒã‚¤ãƒˆå˜ä½ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 	*	@return	void
 	*	@date	2024/04/29
 	*	@memo

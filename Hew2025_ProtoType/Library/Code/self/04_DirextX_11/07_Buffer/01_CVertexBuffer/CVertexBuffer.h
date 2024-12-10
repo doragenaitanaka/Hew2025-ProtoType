@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include"../00_CBuffer/CBuffer.h"
 
 #pragma comment(lib,"d3d11.lib")
@@ -7,30 +7,30 @@
 class CVertexBuffer	:public	CBuffer
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/04/29
 	*/
 	CVertexBuffer();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/04/29
 	*/
 	~CVertexBuffer();
 
-	/**	@brief 	ƒoƒbƒtƒ@‚Ìì¬
-	*	@param	const void*	p_SysMem		‰Šú‰»ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^[
-	*	@param	UINT	byteWidth			ì¬‚·‚é’¸“_ƒoƒbƒtƒ@‚ÌƒTƒCƒY
-	*	@param	UINT	nothing = NULL		’¸“_ƒoƒbƒtƒ@‚Ìì¬‚Å‚Íg‚í‚È‚¢
+	/**	@brief 	ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
+	*	@param	const void*	p_SysMem		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+	*	@param	UINT	byteWidth			ä½œæˆã™ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+	*	@param	UINT	nothing = NULL		é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã§ã¯ä½¿ã‚ãªã„
 	*	@return	HRESULT
 	*	@date	2024/05/23
 	*	@memo	
 	*/
 	HRESULT	Create(const void* p_SysMem, UINT byteWidth, UINT nothing = NULL, D3D11_USAGE _usage = D3D11_USAGE_DEFAULT, UINT _cpuAccessFlags = 0)override;
 
-	/**	@brief 	“ü—ÍƒAƒZƒ“ƒuƒ‰ƒXƒe[ƒW‚É•R‚Ã‚¯‚é
-	*	@param	UINT	StartSlot	’¸“_ƒoƒbƒtƒ@‚Ìæ“ªƒXƒƒbƒg”Ô†
-	*	@param	UINT	NumBuffers	g—p‚·‚é’¸“_ƒoƒbƒtƒ@‚Ì‘”
-	*	@param	const	UINT*	p_stride	Še’¸“_ƒoƒbƒtƒ@‚ÌƒXƒgƒ‰ƒCƒh‚Ì”z—ñƒ|ƒCƒ“ƒ^
-	*	@param	const	UINT*	p_offset	ƒoƒbƒtƒ@‚ÌŠJnˆÊ’u‚©‚ç“Ç‚İ‚İn‚ß‚é‚Ü‚Å‚ÌƒoƒCƒg”‚Ìƒ|ƒCƒ“ƒ^
+	/**	@brief 	å…¥åŠ›ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã‚¹ãƒ†ãƒ¼ã‚¸ã«ç´ã¥ã‘ã‚‹
+	*	@param	UINT	StartSlot	é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã‚¹ãƒ­ãƒƒãƒˆç•ªå·
+	*	@param	UINT	NumBuffers	ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ç·æ•°
+	*	@param	const	UINT*	p_stride	å„é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚¹ãƒˆãƒ©ã‚¤ãƒ‰ã®é…åˆ—ãƒã‚¤ãƒ³ã‚¿
+	*	@param	const	UINT*	p_offset	ãƒãƒƒãƒ•ã‚¡ã®é–‹å§‹ä½ç½®ã‹ã‚‰èª­ã¿è¾¼ã¿å§‹ã‚ã‚‹ã¾ã§ã®ãƒã‚¤ãƒˆæ•°ã®ãƒã‚¤ãƒ³ã‚¿
 	*	@return	void
 	*	@date	2024/04/22
 	*	@memo

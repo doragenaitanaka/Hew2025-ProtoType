@@ -1,30 +1,30 @@
-#pragma once
-//D3D‰Šú‰»‚É•K—v‚È‚Ì
+ï»¿#pragma once
+//D3DåˆæœŸåŒ–ã«å¿…è¦ãªã®
 #pragma comment(lib,"d3d11.lib")
 #include <d3d11_1.h>
 
 class CD3D11_RenderTargetView
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/
 	CD3D11_RenderTargetView();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/
 	~CD3D11_RenderTargetView();
-	/**	@brief 	ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìì¬
-	*	@param	ID3D11Device* p_Device                      Direct3DƒfƒoƒCƒX
-	*   @param  IDXGISwapChain* p_SwapChain                 ƒXƒƒbƒvƒ`ƒF[ƒ“
+	/**	@brief 	ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
+	*	@param	ID3D11Device* p_Device                      Direct3Dãƒ‡ãƒã‚¤ã‚¹
+	*   @param  IDXGISwapChain* p_SwapChain                 ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³
 	*	@return HRESULT
 	*	@date 2024/03/29
 	*/
 	HRESULT    Create(ID3D11Device* p_Device, IDXGISwapChain* p_SwapChain);
-	/**	@brief 	‰ğ•úˆ—
+	/**	@brief 	è§£æ”¾å‡¦ç†
 	*	@date 2024/03/29
 	*/
 	void    Release();
 public:
-	ID3D11RenderTargetView* m_pRenderTargetView;    //ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[
+	ID3D11RenderTargetView* m_pRenderTargetView;    //ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼
 };

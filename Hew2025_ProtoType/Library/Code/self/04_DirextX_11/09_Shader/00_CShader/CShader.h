@@ -1,34 +1,34 @@
-#pragma once
-#include <d3dcompiler.h>				// ƒVƒF[ƒ_ƒRƒ“ƒpƒCƒ‹ü‚è‚Ì‹@”\‚ğƒCƒ“ƒNƒ‹[ƒh
-#pragma comment(lib, "d3dcompiler.lib")	// ƒVƒF[ƒ_ƒRƒ“ƒpƒCƒ‹—p‚ÌÃ“Iƒ‰ƒCƒuƒ‰ƒŠ‚ğƒŠƒ“ƒN
-//D3D‚É•K—v‚È‚Ì
+ï»¿#pragma once
+#include <d3dcompiler.h>				// ã‚·ã‚§ãƒ¼ãƒ€ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å‘¨ã‚Šã®æ©Ÿèƒ½ã‚’ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
+#pragma comment(lib, "d3dcompiler.lib")	// ã‚·ã‚§ãƒ¼ãƒ€ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ç”¨ã®é™çš„ãƒ©ã‚¤ãƒ–ãƒ©ãƒªã‚’ãƒªãƒ³ã‚¯
+//D3Dã«å¿…è¦ãªã®
 #pragma comment(lib,"d3d11.lib")
 #include <d3d11_1.h>
 #include"../../01_Initialize/CD3D11.h"
 
-//ƒVƒF[ƒ_ƒtƒ@ƒCƒ‹‚ÌƒIƒ“ƒ‰ƒCƒ“ƒRƒ“ƒpƒCƒ‹‚ğ‚·‚éİŒv
-//ƒIƒtƒ‰ƒCƒ“‚Å‚à‚Å‚«‚é‚æ‚¤‚É‚µ‚æ‚¤‚Æv‚Á‚½‚çƒtƒ@ƒCƒ‹“Ç‚İ‚ñ‚¾‚Ì‚ğ“ü‚ê‚éˆ×‚ÌSetCompileFileŠÖ”“I‚È‚ÌcH
+//ã‚·ã‚§ãƒ¼ãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚ªãƒ³ãƒ©ã‚¤ãƒ³ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚’ã™ã‚‹è¨­è¨ˆ
+//ã‚ªãƒ•ãƒ©ã‚¤ãƒ³ã§ã‚‚ã§ãã‚‹ã‚ˆã†ã«ã—ã‚ˆã†ã¨æ€ã£ãŸã‚‰ãƒ•ã‚¡ã‚¤ãƒ«èª­ã¿è¾¼ã‚“ã ã®ã‚’å…¥ã‚Œã‚‹ç‚ºã®SetCompileFileé–¢æ•°çš„ãªã®â€¦ï¼Ÿ
 
 class CShader
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/04/24
 	*/
 	CShader();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/04/24
 	*/
 	~CShader();
 
-	/**	@brief 	ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹‚ÌƒRƒ“ƒpƒCƒ‹
-	*	@param	LPCWSTR	fileName				ƒtƒ@ƒCƒ‹‚Ì–¼‘O
-	*	@param	D3D_SHADER_MACRO* p_defines		ƒVƒF[ƒ_[ƒ}ƒNƒ‚ğ’è‹`‚·‚éD3D_SHADER_MACRO\‘¢‘Ì‚Ì”z—ñ‚Ö‚ÌƒIƒvƒVƒ‡ƒiƒ‹‚Èƒ|ƒCƒ“ƒ^[
-	*	@param	ID3DInclude* p_nclude			ƒRƒ“ƒpƒCƒ‰‚ªƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹‚Ìˆ—‚Ég—p‚·‚éƒ|ƒCƒ“ƒ^[
-	*	@param	LPCSTR	p_entrypoint			ƒVƒF[ƒ_[‚ÌÀs‚ªŠJn‚³‚ê‚éƒVƒF[ƒ_[ƒGƒ“ƒgƒŠƒ|ƒCƒ“ƒg–¼
-	*	@param	LPCSTR	p_target				ƒRƒ“ƒpƒCƒ‹‘ÎÛ‚ÌƒVƒF[ƒ_[ƒ^[ƒQƒbƒg‚Ü‚½‚ÍƒVƒF[ƒ_[‹@”\‚ÌƒZƒbƒg‚ğw’è
-	* 	@param	UINT	flags_1					ƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‹ƒIƒvƒVƒ‡ƒ“‚Ì‘g‚İ‡‚í‚¹
-	* 	@param	UINT	flags_2					Œø‰ÊƒRƒ“ƒpƒCƒ‹ƒIƒvƒVƒ‡ƒ“‚Ì‘g‚İ‡‚í‚¹
+	/**	@brief 	ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
+	*	@param	LPCWSTR	fileName				ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰
+	*	@param	D3D_SHADER_MACRO* p_defines		ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¯ãƒ­ã‚’å®šç¾©ã™ã‚‹D3D_SHADER_MACROæ§‹é€ ä½“ã®é…åˆ—ã¸ã®ã‚ªãƒ—ã‚·ãƒ§ãƒŠãƒ«ãªãƒã‚¤ãƒ³ã‚¿ãƒ¼
+	*	@param	ID3DInclude* p_nclude			ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ãŒã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®å‡¦ç†ã«ä½¿ç”¨ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+	*	@param	LPCSTR	p_entrypoint			ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å®Ÿè¡ŒãŒé–‹å§‹ã•ã‚Œã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¨ãƒ³ãƒˆãƒªãƒã‚¤ãƒ³ãƒˆå
+	*	@param	LPCSTR	p_target				ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å¯¾è±¡ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¾ãŸã¯ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æ©Ÿèƒ½ã®ã‚»ãƒƒãƒˆã‚’æŒ‡å®š
+	* 	@param	UINT	flags_1					ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®çµ„ã¿åˆã‚ã›
+	* 	@param	UINT	flags_2					åŠ¹æœã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®çµ„ã¿åˆã‚ã›
 	*	@return	HRESULT
 	*	@date	2024/04/24
 	*/
@@ -41,30 +41,30 @@ public:
 		UINT	flags_1,
 		UINT	flags_2
 	);
-	/**	@brief 	ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹‚Ìæ“¾
-	*	@return	ID3DBlob*	ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹
+	/**	@brief 	ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®å–å¾—
+	*	@return	ID3DBlob*	ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
 	*	@date	2024/04/24
 	*/
 	ID3DBlob* GetShaderFile(void);
 
-	/**	@brief 	‰ğ•úˆ—
+	/**	@brief 	è§£æ”¾å‡¦ç†
 	*	@date	2024/04/24
 	*/
 	virtual	void	Release(void);
-	/**	@brief 	ƒVƒF[ƒ_[‚Ìì¬
-	*	@param	ID3D11ClassLinkage* p_classLinkage	ƒNƒ‰ƒXƒŠƒ“ƒP[ƒWƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^[
+	/**	@brief 	ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆ
+	*	@param	ID3D11ClassLinkage* p_classLinkage	ã‚¯ãƒ©ã‚¹ãƒªãƒ³ã‚±ãƒ¼ã‚¸ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
 	*	@return	HRESULT
 	*	@date	2024/04/24
 	*/
 	virtual	HRESULT	Create(ID3D11ClassLinkage* p_classLinkage) = 0;
-	/**	@brief 	ƒVƒF[ƒ_[‚ÌƒZƒbƒg
-	*	@param	ID3D11ClassInstance* const* pp_classInstances	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX”z—ñ‚Ìƒ|ƒCƒ“ƒ^
-	*	@param	UINT	numClassInstances	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX”z—ñ‚Ì”
+	/**	@brief 	ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆ
+	*	@param	ID3D11ClassInstance* const* pp_classInstances	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹é…åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+	*	@param	UINT	numClassInstances	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹é…åˆ—ã®æ•°
 	*	@date	2024/04/24
 	*/
 	virtual	void	SetShader(ID3D11ClassInstance* const* pp_classInstances, UINT	numClassInstances) = 0;
 private:
-	ID3DBlob* p_blob;	//ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹
+	ID3DBlob* p_blob;	//ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
 protected:
-	CD3D11* cd3d11;         //CD3D11ƒNƒ‰ƒX
+	CD3D11* cd3d11;         //CD3D11ã‚¯ãƒ©ã‚¹
 };

@@ -1,14 +1,14 @@
-/**	@file 	SceneManager.h
-*	@brief 	ƒV[ƒ“ŠÇ—ƒNƒ‰ƒX
+ï»¿/**	@file 	SceneManager.h
+*	@brief 	ã‚·ãƒ¼ãƒ³ç®¡ç†ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/11
 */
 
 #pragma once
-//ƒV[ƒ“ƒNƒ‰ƒX
+//ã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 #include"../../../../Scene/00_BaseScene/BaseScene.h"
 #include<iostream>
 
-//ƒV[ƒ“–¼
+//ã‚·ãƒ¼ãƒ³å
 enum Scene
 {
 	TITLE,
@@ -24,65 +24,65 @@ enum Scene
 	//TEST_TAKAHASHI,
 };
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class BaseScene;
 
-/**	@brief 	ƒV[ƒ“ŠÇ—ƒNƒ‰ƒX
+/**	@brief 	ã‚·ãƒ¼ãƒ³ç®¡ç†ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/11
-*	@memo	ƒV[ƒ“©‘Ì‚ÌÀsAƒV[ƒ“‘JˆÚ‚ğŠÇ—
-*	@memo	¡‰ñ‚Í”ñ“¯Šúˆ—‚ğ‘z’è‚µ‚È‚¢‚Ì‚ÅŠÇ—‚·‚éƒ|ƒCƒ“ƒ^‚Í1‚Â
-*	@memo	ƒVƒ“ƒOƒ‹ƒgƒ“ƒpƒ^[ƒ“AsceneManager‚ğŠeƒtƒ@ƒCƒ‹‚ÅŒÄ‚Ño‚µ‚Äg—p‚·‚é
+*	@memo	ã‚·ãƒ¼ãƒ³è‡ªä½“ã®å®Ÿè¡Œã€ã‚·ãƒ¼ãƒ³é·ç§»ã‚’ç®¡ç†
+*	@memo	ä»Šå›ã¯éåŒæœŸå‡¦ç†ã‚’æƒ³å®šã—ãªã„ã®ã§ç®¡ç†ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ã¯1ã¤
+*	@memo	ã‚·ãƒ³ã‚°ãƒ«ãƒˆãƒ³ãƒ‘ã‚¿ãƒ¼ãƒ³ã€sceneManagerã‚’å„ãƒ•ã‚¡ã‚¤ãƒ«ã§å‘¼ã³å‡ºã—ã¦ä½¿ç”¨ã™ã‚‹
 */
 class SceneManager
 {
 private:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/05/11
-	*	@memo	ŠO‚Å‚Ì¶¬‚ğ–h‚®
+	*	@memo	å¤–ã§ã®ç”Ÿæˆã‚’é˜²ã
 	*/
 	SceneManager();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/05/11
 	*/
 	~SceneManager();
-	/**	@brief 	ƒV[ƒ“‚Ì¶¬
-	*	@param	Scene	sceneName	Ÿ‚ÌƒV[ƒ“–¼
+	/**	@brief 	ã‚·ãƒ¼ãƒ³ã®ç”Ÿæˆ
+	*	@param	Scene	sceneName	æ¬¡ã®ã‚·ãƒ¼ãƒ³å
 	*	@date	2024/05/11
-	*	@memo	”ñ“¯Šú‚Ì‚Í‚±‚±‚ğ–ß‚è’lBaseScene*‚É‚µ‚Ä•¡”ŒÂì‚ê‚é‚æ‚¤‚É‚·‚é—\’è‚Í–¢’èIIIII
+	*	@memo	éåŒæœŸã®æ™‚ã¯ã“ã“ã‚’æˆ»ã‚Šå€¤BaseScene*ã«ã—ã¦è¤‡æ•°å€‹ä½œã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹äºˆå®šã¯æœªå®šï¼ï¼ï¼ï¼ï¼
 	*/
 	void	CreateScene(Scene sceneName);
 
 public:
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌÀsŠÖ”
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®å®Ÿè¡Œé–¢æ•°
 	*	@date	2024/05/11
-	*	@memo	ƒV[ƒ“‘S‘Ì‚Ìˆ—‚Ì—¬‚ê(‰Šú‰»AXVA•`‰æ)‚ğ‚±‚±‚É‘‚­
+	*	@memo	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®å‡¦ç†ã®æµã‚Œ(åˆæœŸåŒ–ã€æ›´æ–°ã€æç”»)ã‚’ã“ã“ã«æ›¸ã
 	*/
 	void	Run(void);
-	/**	@brief 	ƒV[ƒ“‘JˆÚŠÖ”
-	*	@param	Scene	sceneName	Ÿ‚ÌƒV[ƒ“–¼
+	/**	@brief 	ã‚·ãƒ¼ãƒ³é·ç§»é–¢æ•°
+	*	@param	Scene	sceneName	æ¬¡ã®ã‚·ãƒ¼ãƒ³å
 	*	@date	2024/05/11
 	*/
 	void	ChangeScene(Scene	sceneName);
 
-	/**	@brief 	ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚Ì¶¬
+	/**	@brief 	ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ç”Ÿæˆ
 	*	@date	2024/05/11
-	*	@memo	‚±‚ÌŠÖ”‚ğn‚ß‚ÉÀs‚·‚é
+	*	@memo	ã“ã®é–¢æ•°ã‚’å§‹ã‚ã«å®Ÿè¡Œã™ã‚‹
 	*/
 	static	void	CreateInstance(void);
-	/**	@brief 	ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚Ìíœ
+	/**	@brief 	ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å‰Šé™¤
 	*	@date	2024/05/11
 	*/
 	static	void	DestroyInstance(void);
-	/**	@brief 	ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚Ìæ“¾
-	*	@return	SceneManager*	ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[
+	/**	@brief 	ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å–å¾—
+	*	@return	SceneManager*	ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 	*	@date	2024/05/11
-	*	@memo	‚±‚ÌŠÖ”‚ğg‚Á‚ÄŠeƒtƒ@ƒCƒ‹‚Å¶¬ÏƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚ğæ“¾‚·‚é
+	*	@memo	ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦å„ãƒ•ã‚¡ã‚¤ãƒ«ã§ç”Ÿæˆæ¸ˆã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’å–å¾—ã™ã‚‹
 	*/
 	static	SceneManager* GetInstance(void);
 	
 private:
-	bool	isInitialized;					//true:‰Šú‰»‚µ‚½
-	bool	isChangedScene;					//true:ƒV[ƒ“‘JˆÚ‚ªs‚í‚ê‚½
-	BaseScene* nowScene;					//Œ»İ‚ÌƒV[ƒ“‚ÌƒAƒhƒŒƒX‚ğ•Û‚·‚é
-	static	SceneManager* sceneManager;		//ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[
+	bool	isInitialized;					//true:åˆæœŸåŒ–ã—ãŸ
+	bool	isChangedScene;					//true:ã‚·ãƒ¼ãƒ³é·ç§»ãŒè¡Œã‚ã‚ŒãŸ
+	BaseScene* nowScene;					//ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’ä¿æŒã™ã‚‹
+	static	SceneManager* sceneManager;		//ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 };

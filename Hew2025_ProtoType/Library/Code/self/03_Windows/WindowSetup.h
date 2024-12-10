@@ -1,16 +1,16 @@
-#pragma once
+ï»¿#pragma once
 #include <windows.h>	
 
-#define CLASS_NAME   L"DirectX11 Template"	// ƒEƒCƒ“ƒhƒEƒNƒ‰ƒX‚Ì–¼‘O
-#define WINDOW_NAME  L"windows create test"	// ƒEƒBƒ“ƒhƒE‚Ì–¼‘O
+#define CLASS_NAME   L"DirectX11 Template"	// ã‚¦ã‚¤ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®åå‰
+#define WINDOW_NAME  L"windows create test"	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åå‰
 
 #define	SCREEN_WIDTH	(640)
 #define	SCREEN_HEIGHT	(480)
 
-//uI—¹‚µ‚Ü‚·‚©Hv‚Ì‰æ–Êo‚·‚â‚Â
+//ã€Œçµ‚äº†ã—ã¾ã™ã‹ï¼Ÿã€ã®ç”»é¢å‡ºã™ã‚„ã¤
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
 
-//ƒEƒBƒ“ƒhƒE‚Ì‰Šú”wŒiF
+//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸèƒŒæ™¯è‰²
 enum BackColorBrush
 {
 	WHITE	=	WHITE_BRUSH,	//0
@@ -22,77 +22,77 @@ enum BackColorBrush
 	HOLLOW=HOLLOW_BRUSH,        //=NULL_BRUSH
 };
 
-//ƒEƒBƒ“ƒhƒE•\¦‚É•K—v‚È‚à‚Ì‚ğ‚Ü‚Æ‚ß‚½ƒNƒ‰ƒX
+//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦è¡¨ç¤ºã«å¿…è¦ãªã‚‚ã®ã‚’ã¾ã¨ã‚ãŸã‚¯ãƒ©ã‚¹
 class WindowSetup
 {
 public:
-	/**	@brief 	windowsƒNƒ‰ƒX‚Ì¶¬
+	/**	@brief 	windowsã‚¯ãƒ©ã‚¹ã®ç”Ÿæˆ
 	*	@date	2024/05/14
-	*	@memo	‚±‚ÌŠÖ”‚ğn‚ß‚ÉÀs‚·‚é
+	*	@memo	ã“ã®é–¢æ•°ã‚’å§‹ã‚ã«å®Ÿè¡Œã™ã‚‹
 	*/
 	static	void	CreateInstance(void);
-	/**	@brief 	windowsƒNƒ‰ƒX‚Ìæ“¾
-	*	@return	WindowSetup*	windowsƒNƒ‰ƒX
+	/**	@brief 	windowsã‚¯ãƒ©ã‚¹ã®å–å¾—
+	*	@return	WindowSetup*	windowsã‚¯ãƒ©ã‚¹
 	*	@date	2024/05/14
-	*	@memo	‚±‚ÌŠÖ”‚ğg‚Á‚ÄŠeƒtƒ@ƒCƒ‹‚Å¶¬ÏwindowsƒNƒ‰ƒX‚ğæ“¾‚·‚é
+	*	@memo	ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦å„ãƒ•ã‚¡ã‚¤ãƒ«ã§ç”Ÿæˆæ¸ˆwindowsã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹
 	*/
 	static	WindowSetup* GetInstance(void);
-	/**	@brief	‘S‘Ì‚Ì‰Šú‰»
-	*	@param	_In_ HINSTANCE hInstance		Œ»İ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒnƒ“ƒhƒ‹
-	*	@param	BackColorBrush      backColor	ƒEƒBƒ“ƒhƒE‚Ì”wŒiF
-	*	@param	 _In_ int       nCmdShow		ƒEƒBƒ“ƒhƒE‚ª•\¦‚³‚ê‚é‚Ìó‘Ô
+	/**	@brief	å…¨ä½“ã®åˆæœŸåŒ–
+	*	@param	_In_ HINSTANCE hInstance		ç¾åœ¨ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+	*	@param	BackColorBrush      backColor	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®èƒŒæ™¯è‰²
+	*	@param	 _In_ int       nCmdShow		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒè¡¨ç¤ºã•ã‚Œã‚‹æ™‚ã®çŠ¶æ…‹
 	*	@date	2024/05/14
 	*/
 	int	Initialize(_In_ HINSTANCE hInstance, _In_ int       nCmdShow);
-	/**	@brief 	windowsƒNƒ‰ƒX‚Ìíœ
-	*	@param	_In_ HINSTANCE	hInstance		Œ»İ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒnƒ“ƒhƒ‹
+	/**	@brief 	windowsã‚¯ãƒ©ã‚¹ã®å‰Šé™¤
+	*	@param	_In_ HINSTANCE	hInstance		ç¾åœ¨ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
 	*	@date	2024/05/14
 	*/
 	void	DestroyInstance(HINSTANCE hInstance);
-	/**	@brief	ƒnƒ“ƒhƒ‹‚ğæ“¾
-	*	@return	HWND	windowsƒnƒ“ƒhƒ‹
+	/**	@brief	ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
+	*	@return	HWND	windowsãƒãƒ³ãƒ‰ãƒ«
 	*	@date	2024/05/14
 	*/
 	HWND	GetHWnd(void);
 private:	
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/
 	WindowSetup();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/
 	~WindowSetup();
-	/**	@brief 	ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX‚Ì“o˜^ŠÖ”
-	*	@param	_In_ HINSTANCE	hInstance		Œ»İ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒnƒ“ƒhƒ‹
-	*	@param	BackColorBrush      backColor	ƒEƒBƒ“ƒhƒE‚Ì”wŒiF
+	/**	@brief 	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²é–¢æ•°
+	*	@param	_In_ HINSTANCE	hInstance		ç¾åœ¨ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+	*	@param	BackColorBrush      backColor	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®èƒŒæ™¯è‰²
 	*	@return
 	*	@date 2024/03/29
-	*	@memo	ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX‚Ì’è‹`A“o˜^‚ğs‚¤
+	*	@memo	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®å®šç¾©ã€ç™»éŒ²ã‚’è¡Œã†
 	*/
 	int	RegisterWindowClass(_In_ HINSTANCE hInstance);
-	/**	@brief 	ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX‚Ì“o˜^‚ğ‰ğœ‚·‚éŠÖ”
-	*	@param	_In_ HINSTANCE	hInstance		Œ»İ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒnƒ“ƒhƒ‹
+	/**	@brief 	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²ã‚’è§£é™¤ã™ã‚‹é–¢æ•°
+	*	@param	_In_ HINSTANCE	hInstance		ç¾åœ¨ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
 	*	@return
 	*	@date 2024/05/14
 	*/
 	void	UnregisterWindowClass(_In_ HINSTANCE hInstance);
-	/**	@brief 	ƒEƒBƒ“ƒhƒE‚Ìì¬
+	/**	@brief 	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½œæˆ
 	*	@return
 	*	@date 2024/03/29
 	*/
 	int	CreateWindowScreen(void);
 
-	/**	@brief 	ƒEƒBƒ“ƒhƒE‚Ì•\¦AXV
-	*	@param	_In_ int			nCmdShow	ƒEƒBƒ“ƒhƒE‚ª•\¦‚³‚ê‚é‚Ìó‘Ô
+	/**	@brief 	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºã€æ›´æ–°
+	*	@param	_In_ int			nCmdShow	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒè¡¨ç¤ºã•ã‚Œã‚‹æ™‚ã®çŠ¶æ…‹
 	*	@return
 	*	@date 2024/05/15
 	*/
 	int	ShowWindowScreen(_In_ int       nCmdShow);
 private:
-	WNDCLASSEX wcex;	//windows‚ÉŠÖ‚·‚éî•ñ
-	HWND hWnd;			//windowƒnƒ“ƒhƒ‹
-	bool	isInit;		//true:wcex‚ğ‰Šú‰»‚µ‚½
+	WNDCLASSEX wcex;	//windowsã«é–¢ã™ã‚‹æƒ…å ±
+	HWND hWnd;			//windowãƒãƒ³ãƒ‰ãƒ«
+	bool	isInit;		//true:wcexã‚’åˆæœŸåŒ–ã—ãŸ
 
 	static	WindowSetup* appWindow;	
 };

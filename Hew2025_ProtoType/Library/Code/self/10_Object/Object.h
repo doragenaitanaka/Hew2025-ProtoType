@@ -1,28 +1,28 @@
-#pragma once
+ï»¿#pragma once
 #include"../04_DirextX_11/07_Buffer/01_CVertexBuffer/CVertexBuffer.h"
 #include"../04_DirextX_11/07_Buffer/03_CConstantBuffer/CConstantBuffer.h"
 #include"../05_Collider2D/Collider2D.h"
 
-#include<DirectXMath.h> //  DirectX::XMFLOAT3‚É•K—v
+#include<DirectXMath.h> //  DirectX::XMFLOAT3ã«å¿…è¦
 
-// ’è”ƒoƒbƒtƒ@‚Ì’†g
+// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ä¸­èº«
 struct ConstBuffer
 {
-	DirectX::XMMATRIX   matrixWorld;	// ƒ[ƒ‹ƒh•ÏŠ·s—ñ
-	DirectX::XMMATRIX   matrixProj;		// ƒvƒƒWƒFƒNƒVƒ‡ƒ“•ÏŠ·s—ñ 
-	DirectX::XMMATRIX   matrixTex;		// UVÀ•WˆÚ“®s—ñ 
-	DirectX::XMFLOAT4	color;			// ’¸“_ƒJƒ‰[s—ñ
+	DirectX::XMMATRIX   matrixWorld;	// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›è¡Œåˆ—
+	DirectX::XMMATRIX   matrixProj;		// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³å¤‰æ›è¡Œåˆ— 
+	DirectX::XMMATRIX   matrixTex;		// UVåº§æ¨™ç§»å‹•è¡Œåˆ— 
+	DirectX::XMFLOAT4	color;			// é ‚ç‚¹ã‚«ãƒ©ãƒ¼è¡Œåˆ—
 };
 
-// \‘¢‘Ì‚Ì’è‹`
-// ’¸“_ƒf[ƒ^‚ğ•\‚·\‘¢‘Ì
+// æ§‹é€ ä½“ã®å®šç¾©
+// é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ã‚’è¡¨ã™æ§‹é€ ä½“
 struct Vertex
 {
-	// ’¸“_‚ÌˆÊ’uÀ•W
+	// é ‚ç‚¹ã®ä½ç½®åº§æ¨™
 	float x, y, z;
-	//ƒJƒ‰[’l
+	//ã‚«ãƒ©ãƒ¼å€¤
 	float	r, g, b, a;
-	//ƒeƒNƒXƒ`ƒƒÀ•W(UVÀ•W)
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£åº§æ¨™(UVåº§æ¨™)
 	float	u, v;
 };
 
@@ -31,42 +31,42 @@ class Object
 public:
 	Object();
 	virtual~Object();
-	/**	@brief 	ƒIƒuƒWƒFƒNƒg‚Ì‰Šú‰»
-	*	@param	const wchar_t* _p_fileName ƒtƒ@ƒCƒ‹ƒpƒX
-	*	@param	int	_splitX = 1		ƒ^ƒe‚É‰½•ªŠ„‚·‚é‚Ì‚©
-	*	@param	int	_splitY = 1		ƒˆƒR‚É‰½•ªŠ„‚·‚é‚Ì‚©
-	*	@param	int	_changeFrame = 1	‰½ƒtƒŒ[ƒ€‚ÅØ‚è‘Ö‚¦‚é‚©
-	*	@param	float	_moveUPos = 0.0f	Ø‚è‘Ö‚í‚é‚²‚Æ‚É“®‚­ƒeƒNƒXƒ`ƒƒUÀ•W‚ÌˆÚ“®—Ê
+	/**	@brief 	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–
+	*	@param	const wchar_t* _p_fileName ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+	*	@param	int	_splitX = 1		ã‚¿ãƒ†ã«ä½•åˆ†å‰²ã™ã‚‹ã®ã‹
+	*	@param	int	_splitY = 1		ãƒ¨ã‚³ã«ä½•åˆ†å‰²ã™ã‚‹ã®ã‹
+	*	@param	int	_changeFrame = 1	ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ã§åˆ‡ã‚Šæ›¿ãˆã‚‹ã‹
+	*	@param	float	_moveUPos = 0.0f	åˆ‡ã‚Šæ›¿ã‚ã‚‹ã”ã¨ã«å‹•ããƒ†ã‚¯ã‚¹ãƒãƒ£Uåº§æ¨™ã®ç§»å‹•é‡
 	*	@return	HRESULT
 	*	@date	2024/06/06
 	*/
 	virtual HRESULT	Init(const wchar_t* _p_fileName, int	_splitX = 1, int	_splitY = 1, int	_changeFrame = 1, float	_moveUPos = 0.0f);
 
-	/**	@brief 	ƒIƒuƒWƒFƒNƒg‚ÌXV
+	/**	@brief 	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ›´æ–°
 	*	@date	2024/06/12
 	*/
 	virtual void	Update(void);
 
-	/**	@brief 	ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌXV
+	/**	@brief 	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ›´æ–°
 	*	@date	2024/06/12
 	*/
 	void	AnimUpdate(void);
 
-	/**	@brief	’è”ƒoƒbƒtƒ@‚ÌXV
+	/**	@brief	å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 	*	@date	2024/06/12
 	*/
 	void	ConstantBufferUpdate(void);
 
-	/**	@brief 	•`‰æŠÖ”
+	/**	@brief 	æç”»é–¢æ•°
 	*	@date	2024/05/23
 	*/
 	virtual void	Draw();
-	/**	@brief 	I—¹ˆ—
+	/**	@brief 	çµ‚äº†å‡¦ç†
 	*	@date  	2024/05/23
 	*/
 	virtual void	UnInit(void);
 
-	/**	@brief 	À•W‚ğİ’è
+	/**	@brief 	åº§æ¨™ã‚’è¨­å®š
 	*	@param	float x
 	*	@param	float y
 	*	@param	float z
@@ -74,19 +74,19 @@ public:
 	*/
 	void	SetPos(float x, float y, float z);
 
-	/**	@brief 	À•W‚ğæ“¾
+	/**	@brief 	åº§æ¨™ã‚’å–å¾—
 	*	@retuen		DirectX::XMFLOAT3
 	*	@date	2024/09/19
 	*/
 	DirectX::XMFLOAT3	GetPos(void);
 
-	/**	@brief 	ƒTƒCƒY‚ğæ“¾
+	/**	@brief 	ã‚µã‚¤ã‚ºã‚’å–å¾—
 	*	@retuen		DirectX::XMFLOAT3
 	*	@date	2024/09/19
 	*/
 	DirectX::XMFLOAT3	GetSize(void);
 
-	/**	@brief 	‘å‚«‚³‚ğİ’è
+	/**	@brief 	å¤§ãã•ã‚’è¨­å®š
 	*	@param	float x
 	*	@param	float y
 	*	@param	float z
@@ -94,98 +94,98 @@ public:
 	*/
 	void	SetSize(float x, float y, float z);
 
-	/**	@brief 	Šp“x‚ğİ’è
+	/**	@brief 	è§’åº¦ã‚’è¨­å®š
 	*	@param	float angle
 	*	@date	2024/05/30
 	*/
 	void	SetAngle(float angle);
 
-	/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚ÌƒˆƒR‚ÌUÀ•W‚ğİ’è
+	/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ¨ã‚³ã®Uåº§æ¨™ã‚’è¨­å®š
 	*	@param	int	numU
 	*	@date	2024/06/06
 	*/
 	void	SetTextureNumU(float	numU);
 
-	/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚Ìƒ^ƒe‚ÌVÀ•W‚ğİ’è
+	/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¿ãƒ†ã®Våº§æ¨™ã‚’è¨­å®š
 	*	@param	int	numV
 	*	@date	2024/06/06
 	*/
 	void	SetTextureNumV(float	numV);
 
-	/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚ÌƒˆƒR‚ÌUÀ•W‚ğæ“¾
+	/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ¨ã‚³ã®Uåº§æ¨™ã‚’å–å¾—
 	*	@return	int	numU
 	*	@date	2024/06/07
 	*/
 	float	GetTextureNumU(void);
 
-	/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚Ìƒ^ƒe‚ÌVÀ•W‚ğæ“¾
+	/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¿ãƒ†ã®Våº§æ¨™ã‚’å–å¾—
 	*	@return	int	numV
 	*	@date	2024/06/07
 	*/
 	float	GetTextureNumV(void);
 
-	/**	@brief 	ƒRƒ‰ƒCƒ_[‚Ìæ“¾
-	*	@return	Collider2D&		ƒRƒ‰ƒCƒ_[2D
+	/**	@brief 	ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã®å–å¾—
+	*	@return	Collider2D&		ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼2D
 	*	@date	2024/06/12
 	*/
 	Collider2D&	GetCollider2D(void);
 
-	/**	@brief 	ƒeƒNƒXƒ`ƒƒ‚ğƒZƒbƒg
-	*	@param	DirectX::XMFLOAT4	_color	’¸“_ƒJƒ‰[
+	/**	@brief 	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆ
+	*	@param	DirectX::XMFLOAT4	_color	é ‚ç‚¹ã‚«ãƒ©ãƒ¼
 	*	@date	2024/06/12
 	*/
 	void	SetTexture(ID3D11ShaderResourceView* _p_texture);
 
-	/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚Ì’¸“_À•W‚ğİ’è
-	*	@param	DirectX::XMFLOAT4	_color	’¸“_ƒJƒ‰[
+	/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é ‚ç‚¹åº§æ¨™ã‚’è¨­å®š
+	*	@param	DirectX::XMFLOAT4	_color	é ‚ç‚¹ã‚«ãƒ©ãƒ¼
 	*	@date	2024/06/12
 	*/
 	void	SetColor(DirectX::XMFLOAT4	_color);
 
-	/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚Ì“§–¾“x‚ğİ’è
-	*	@param	float	_color	“§–¾“xiƒAƒ‹ƒtƒ@’lj
+	/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é€æ˜åº¦ã‚’è¨­å®š
+	*	@param	float	_color	é€æ˜åº¦ï¼ˆã‚¢ãƒ«ãƒ•ã‚¡å€¤ï¼‰
 	*	@date	2024/06/12
 	*/
 	void	SetAlpha(float	_color);
 
 private:
-	/**	@brief 	ƒeƒNƒXƒ`ƒƒ‚Ì“Ç‚İ‚İŠÖ”
-	*	@param	const wchar_t* fileName ƒtƒ@ƒCƒ‹ƒpƒX
-	*	@return	ID3D11ShaderResourceView*	ƒeƒNƒXƒ`ƒƒ
+	/**	@brief 	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®èª­ã¿è¾¼ã¿é–¢æ•°
+	*	@param	const wchar_t* fileName ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+	*	@return	ID3D11ShaderResourceView*	ãƒ†ã‚¯ã‚¹ãƒãƒ£
 	*	@date	2024/09/17
 	*/
 	static ID3D11ShaderResourceView* LoadTexture(const wchar_t* fileName);
 protected:
-	// •\¦ƒeƒNƒXƒ`ƒƒ‚Ì’¸“_À•W
+	// è¡¨ç¤ºãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é ‚ç‚¹åº§æ¨™
 	Vertex	vertexList[4]
 	{
-		{ -0.5f, 0.5f, 0.5f,	1.0f,1.0f,1.0f,1.0f,	0.0f,0.0f},	// 0”Ô–Ú‚Ì’¸“_À•W@{ x, y, z }{ r, g, b, a}{ u, v}
-		{ 0.5f, 0.5f, 0.5f,		1.0f,1.0f,1.0f,1.0f,	1.0f,0.0f},	// 1”Ô–Ú‚Ì’¸“_À•W
-		{ -0.5f, -0.5f, 0.5f,	1.0f,1.0f,1.0f,1.0f,	0.0f,1.0f},	// 2”Ô–Ú‚Ì’¸“_À•W
-		{ 0.5f, -0.5f, 0.5f ,	1.0f,1.0f,1.0f,1.0f,	1.0f,1.0f},	// 1”Ô–Ú‚Ì’¸“_À•W
+		{ -0.5f, 0.5f, 0.5f,	1.0f,1.0f,1.0f,1.0f,	0.0f,0.0f},	// 0ç•ªç›®ã®é ‚ç‚¹åº§æ¨™ã€€{ x, y, z }{ r, g, b, a}{ u, v}
+		{ 0.5f, 0.5f, 0.5f,		1.0f,1.0f,1.0f,1.0f,	1.0f,0.0f},	// 1ç•ªç›®ã®é ‚ç‚¹åº§æ¨™
+		{ -0.5f, -0.5f, 0.5f,	1.0f,1.0f,1.0f,1.0f,	0.0f,1.0f},	// 2ç•ªç›®ã®é ‚ç‚¹åº§æ¨™
+		{ 0.5f, -0.5f, 0.5f ,	1.0f,1.0f,1.0f,1.0f,	1.0f,1.0f},	// 1ç•ªç›®ã®é ‚ç‚¹åº§æ¨™
 	}; 
-	DirectX::XMFLOAT3	pos;						// À•W
-	float	angle;									// Šp“x
+	DirectX::XMFLOAT3	pos;						// åº§æ¨™
+	float	angle;									// è§’åº¦
 
-	DirectX::XMFLOAT3	size;						// ‘å‚«‚³
-	DirectX::XMFLOAT4	color;						// ’¸“_ƒJƒ‰[
+	DirectX::XMFLOAT3	size;						// å¤§ãã•
+	DirectX::XMFLOAT4	color;						// é ‚ç‚¹ã‚«ãƒ©ãƒ¼
 
-	Collider2D* p_coll;	// “–‚½‚è”»’è
+	Collider2D* p_coll;	// å½“ãŸã‚Šåˆ¤å®š
 
-	// ƒeƒNƒXƒ`ƒƒ‚ğ‰½•ªŠ„‚·‚é‚Ì‚©
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½•åˆ†å‰²ã™ã‚‹ã®ã‹
 	int	splitX;
 	int	splitY;
-	// ¶ã‚©‚ç‰½’i–Ú‚ğØ‚è”²‚¢‚Ä•\¦‚·‚é‚Ì‚©
+	// å·¦ä¸Šã‹ã‚‰ä½•æ®µç›®ã‚’åˆ‡ã‚ŠæŠœã„ã¦è¡¨ç¤ºã™ã‚‹ã®ã‹
 	float	numU;
 	float	numV;
 
-	int	frameCount;									// ƒAƒjƒ[ƒVƒ‡ƒ“—pƒJƒEƒ“ƒg•Ï”
-	int	changeFrame;								// Ø‚è‘Ö‚¦ƒtƒŒ[ƒ€”
-	float	moveUPos;								// UÀ•W‚ÌˆÚ“®—Ê
+	int	frameCount;									// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ç”¨ã‚«ã‚¦ãƒ³ãƒˆå¤‰æ•°
+	int	changeFrame;								// åˆ‡ã‚Šæ›¿ãˆãƒ•ãƒ¬ãƒ¼ãƒ æ•°
+	float	moveUPos;								// Uåº§æ¨™ã®ç§»å‹•é‡
 
-	bool	isSwitched;								// ƒAƒjƒ[ƒVƒ‡ƒ“‡”ÔØ‚è‘Ö‚¦ƒtƒ‰ƒO
+	bool	isSwitched;								// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³é †ç•ªåˆ‡ã‚Šæ›¿ãˆãƒ•ãƒ©ã‚°
 
-	CConstantBuffer* p_constantBuffer;				// ’è”ƒoƒbƒtƒ@
-	CVertexBuffer* p_vertexBuffer;					// ’¸“_ƒoƒbƒtƒ@
-	ID3D11ShaderResourceView* p_textureView;		// ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX
+	CConstantBuffer* p_constantBuffer;				// å®šæ•°ãƒãƒƒãƒ•ã‚¡
+	CVertexBuffer* p_vertexBuffer;					// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
+	ID3D11ShaderResourceView* p_textureView;		// ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹
 };

@@ -1,29 +1,29 @@
-#pragma once
-//D3D‰Šú‰»‚É•K—v‚È‚Ì
+ï»¿#pragma once
+//D3DåˆæœŸåŒ–ã«å¿…è¦ãªã®
 #pragma comment(lib,"d3d11.lib")
 #include <d3d11_1.h>
 
 class CD3D11_Device
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/
 	CD3D11_Device();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/
 	~CD3D11_Device();
-	/**	@brief 	ƒOƒ‰ƒtƒBƒbƒNƒfƒoƒCƒX‚Ì‰Šú‰»
+	/**	@brief 	ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒã‚¤ã‚¹ã®åˆæœŸåŒ–
 	*	@return HRESULT
 	*	@date 2024/03/29
 	*/
 	HRESULT    Create(void);
-	/**	@brief 	‰ğ•úˆ—
+	/**	@brief 	è§£æ”¾å‡¦ç†
 	*	@date 2024/03/29
 	*/
 	void    Release();
 public:
-	ID3D11Device* m_pDevice;                        //Direct3DƒfƒoƒCƒX
-	ID3D11DeviceContext* m_pImmediateContext;       //ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg
+	ID3D11Device* m_pDevice;                        //Direct3Dãƒ‡ãƒã‚¤ã‚¹
+	ID3D11DeviceContext* m_pImmediateContext;       //ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
 };

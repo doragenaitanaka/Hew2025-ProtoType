@@ -1,5 +1,5 @@
-/**	@file 	CSampler.h
-*	@brief 	ƒTƒ“ƒvƒ‰[ƒNƒ‰ƒX
+ï»¿/**	@file 	CSampler.h
+*	@brief 	ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/30
 */
 #pragma once
@@ -12,7 +12,7 @@ class CSampler
 public:
 	CSampler();
 	~CSampler();
-	/**	@brief 	ƒTƒ“ƒvƒ‰[‚Ìì¬
+	/**	@brief 	ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã®ä½œæˆ
 	*	@param	D3D11_FILTER filter
 	*	@param	D3D11_TEXTURE_ADDRESS_MODE	addressU
 	*	@param	D3D11_TEXTURE_ADDRESS_MODE	addressV
@@ -24,22 +24,22 @@ public:
 		D3D11_TEXTURE_ADDRESS_MODE	addressU,
 		D3D11_TEXTURE_ADDRESS_MODE	addressV,
 		D3D11_TEXTURE_ADDRESS_MODE	addressW);
-	/**	@brief 	ƒTƒ“ƒvƒ‰[‚ğ’¸“_ƒVƒF[ƒ_‚É“n‚·
-	*	@param	UINT StartSlot		ƒTƒ“ƒvƒ‰[‚ÌƒCƒ“ƒfƒbƒNƒX(ƒfƒoƒCƒX‚Ì”z—ñ‚Ì‚Ç‚±‚É’u‚­‚Ì‚©)w’è
-	*	@param	UINT NumSamplers	”z—ñ“à‚Åg‚¤ƒTƒ“ƒvƒ‰[”(ƒfƒoƒCƒX‚Ì”z—ñ‚Å‚Ç‚Ì‚­‚ç‚¢‚Ì‘å‚«‚³‚È‚Ì‚©)
+	/**	@brief 	ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã«æ¸¡ã™
+	*	@param	UINT StartSlot		ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(ãƒ‡ãƒã‚¤ã‚¹ã®é…åˆ—ã®ã©ã“ã«ç½®ãã®ã‹)æŒ‡å®š
+	*	@param	UINT NumSamplers	é…åˆ—å†…ã§ä½¿ã†ã‚µãƒ³ãƒ—ãƒ©ãƒ¼æ•°(ãƒ‡ãƒã‚¤ã‚¹ã®é…åˆ—ã§ã©ã®ãã‚‰ã„ã®å¤§ãã•ãªã®ã‹)
 	*	@date 2024/05/30
 	*/
 	void	SetSamplerVS(UINT StartSlot, UINT NumSamplers);
-	/**	@brief 	ƒTƒ“ƒvƒ‰[‚ğƒsƒNƒZƒ‹ƒVƒF[ƒ_‚É“n‚·
-	*	@param	UINT StartSlot		ƒTƒ“ƒvƒ‰[‚ÌƒCƒ“ƒfƒbƒNƒX(ƒfƒoƒCƒX‚Ì”z—ñ‚Ì‚Ç‚±‚É’u‚­‚Ì‚©)w’è
-	*	@param	UINT NumSamplers	”z—ñ“à‚Åg‚¤ƒTƒ“ƒvƒ‰[”(ƒfƒoƒCƒX‚Ì”z—ñ‚Å‚Ç‚Ì‚­‚ç‚¢‚Ì‘å‚«‚³‚È‚Ì‚©)
+	/**	@brief 	ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ã«æ¸¡ã™
+	*	@param	UINT StartSlot		ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(ãƒ‡ãƒã‚¤ã‚¹ã®é…åˆ—ã®ã©ã“ã«ç½®ãã®ã‹)æŒ‡å®š
+	*	@param	UINT NumSamplers	é…åˆ—å†…ã§ä½¿ã†ã‚µãƒ³ãƒ—ãƒ©ãƒ¼æ•°(ãƒ‡ãƒã‚¤ã‚¹ã®é…åˆ—ã§ã©ã®ãã‚‰ã„ã®å¤§ãã•ãªã®ã‹)
 	*	@date 2024/05/30
 	*/
 	void	SetSamplerPS(UINT StartSlot, UINT NumSamplers);
-	/**	@brief 	ƒƒ‚ƒŠ‚Ì‰ğ•úˆ—
+	/**	@brief 	ãƒ¡ãƒ¢ãƒªã®è§£æ”¾å‡¦ç†
 	*	@date 2024/05/30
 	*/
 	void	Release(void);
 private:
-	ID3D11SamplerState* p_samplerState;	// ƒTƒ“ƒvƒ‰[î•ñ
+	ID3D11SamplerState* p_samplerState;	// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼æƒ…å ±
 };

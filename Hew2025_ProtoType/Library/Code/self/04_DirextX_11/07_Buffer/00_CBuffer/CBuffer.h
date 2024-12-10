@@ -1,5 +1,5 @@
-#pragma once
-//D3D‚É•K—v‚È‚Ì
+ï»¿#pragma once
+//D3Dã«å¿…è¦ãªã®
 #pragma comment(lib,"d3d11.lib")
 #include <d3d11_1.h>
 #include"../../01_Initialize/CD3D11.h"
@@ -7,37 +7,37 @@
 class CBuffer
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/04/29
 	*/
 	CBuffer();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/04/29
 	*/
 	~CBuffer();
 
-	/**	@brief 	ƒoƒbƒtƒ@‚Ìì¬
-	*	@param	const void*	p_SysMem		‰Šú‰»ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^[
+	/**	@brief 	ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
+	*	@param	const void*	p_SysMem		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
 	*	@param	UINT
 	*	@param	UINT
 	*	@return	HRESULT
 	*	@date	2024/05/23
-	*	@memo	‘æ“ñˆø”A‘æOˆø”‚ÍŒp³æ‚É‚æ‚Á‚Ä–ğŠ„‚ª•Ï‚í‚é‚Ì‚Å•Ï”–¼Œˆ‚ß‚È‚¢‚Å‚¨‚­
+	*	@memo	ç¬¬äºŒå¼•æ•°ã€ç¬¬ä¸‰å¼•æ•°ã¯ç¶™æ‰¿å…ˆã«ã‚ˆã£ã¦å½¹å‰²ãŒå¤‰ã‚ã‚‹ã®ã§å¤‰æ•°åæ±ºã‚ãªã„ã§ãŠã
 	*/
 	virtual	HRESULT	Create(const void* p_SysMem, UINT, UINT, D3D11_USAGE _usage = D3D11_USAGE_DEFAULT, UINT _cpuAccessFlags = 0) = 0;
 
-	/**	@brief 	ƒoƒbƒtƒ@î•ñ‚Ìƒ|ƒCƒ“ƒ^ƒAƒhƒŒƒX‚ğ•Ô‚·
+	/**	@brief 	ãƒãƒƒãƒ•ã‚¡æƒ…å ±ã®ãƒã‚¤ãƒ³ã‚¿ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’è¿”ã™
 	*	@return	ID3D11Buffer**
 	*	@date	2024/04/29
 	*/
 	ID3D11Buffer** GetBuffer(void);
 
-	/**	@brief 	‰ğ•úˆ—
+	/**	@brief 	è§£æ”¾å‡¦ç†
 	*	@date	2024/04/29
 	*/
 	void	Release(void);
 
 protected:
-	ID3D11Buffer* p_buffer;	//ƒoƒbƒtƒ@
-	CD3D11* cd3d11;         //CD3D11ƒNƒ‰ƒX
+	ID3D11Buffer* p_buffer;	//ãƒãƒƒãƒ•ã‚¡
+	CD3D11* cd3d11;         //CD3D11ã‚¯ãƒ©ã‚¹
 };

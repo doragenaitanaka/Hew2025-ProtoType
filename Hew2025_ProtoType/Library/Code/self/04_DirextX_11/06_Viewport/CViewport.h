@@ -1,33 +1,33 @@
-#pragma once
-//D3D‰Šú‰»‚É•K—v‚È‚Ì
+ï»¿#pragma once
+//D3DåˆæœŸåŒ–ã«å¿…è¦ãªã®
 #pragma comment(lib,"d3d11.lib")
 #include <d3d11_1.h>
 
 class CD3D11_Viewport
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/
 	CD3D11_Viewport();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/
 	~CD3D11_Viewport();
 
-	/**	@brief 	ƒrƒ…[ƒ|[ƒg‚Ìİ’è
-	*	@param	ID3D11DeviceContext* p_ImmediateContext     ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg
-	*   @param  IDXGISwapChain* p_SwapChain                 ƒXƒƒbƒvƒ`ƒF[ƒ“
+	/**	@brief 	ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
+	*	@param	ID3D11DeviceContext* p_ImmediateContext     ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+	*   @param  IDXGISwapChain* p_SwapChain                 ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³
 	*	@return HRESULT
 	*	@date 2024/03/29
 	*/
 	void    Create(ID3D11DeviceContext* p_ImmediateContext, IDXGISwapChain* pSwapChain);
 
-	/**	@brief 	‰ğ•úˆ—
+	/**	@brief 	è§£æ”¾å‡¦ç†
 	*	@date 2024/03/29
 	*/
 	void    Release();
 public:
-	D3D11_VIEWPORT viewport;	//ƒrƒ…[ƒ|[ƒg
-	//ˆê’U1‰æ–Ê‘z’è
+	D3D11_VIEWPORT viewport;	//ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆ
+	//ä¸€æ—¦1ç”»é¢æƒ³å®š
 };

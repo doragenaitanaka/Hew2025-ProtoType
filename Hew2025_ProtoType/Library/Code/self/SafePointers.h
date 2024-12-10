@@ -1,3 +1,3 @@
-#pragma once
-// Direct3D‰ð•ú‚ÌŠÈ—ª‰»ƒ}ƒNƒ
+ï»¿#pragma once
+// Direct3Dè§£æ”¾ã®ç°¡ç•¥åŒ–ãƒžã‚¯ãƒ­
 #define SAFE_RELEASE(pointer) { if( nullptr != pointer ) { pointer->Release(); pointer = nullptr; } }

@@ -1,47 +1,47 @@
-/**	@file 	Test_Ri.h
-*	@brief 	—›—p‚ÌƒeƒXƒgƒV[ƒ“ƒNƒ‰ƒX
+ï»¿/**	@file 	Test_Ri.h
+*	@brief 	æç”¨ã®ãƒ†ã‚¹ãƒˆã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/21
-*	@memo	ƒ}ƒl[ƒWƒƒ[‚ÍÃ“Iƒƒ“ƒo•Ï”‚È‚Ì‚Åæ“¾‚Ì‚İ
+*	@memo	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã¯é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°ãªã®ã§å–å¾—ã®ã¿
 */
 #pragma once
 
-// ƒCƒ“ƒNƒ‹[ƒh
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #include"../00_BaseScene/BaseScene.h"
 #include"../../Library/Code/self/02_SceneManager/SceneManager.h"
 #include<iostream>
 
 /**	@file	Test_Ri.h
-*	@brief 	—›—p‚ÌƒeƒXƒgƒV[ƒ“ƒNƒ‰ƒX
+*	@brief 	æç”¨ã®ãƒ†ã‚¹ãƒˆã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/21
-*	@memo	Šî’êƒNƒ‰ƒX‚Ìƒˆ‰¼‘zŠÖ”‚ğŒp³‚µ‚Ä‚¢‚é— •t‚¯(Œë‚Á‚½Œp³“®ì‚ğ–h‚®‚½‚ß)‚ÉŒp³‚µ‚½ƒƒ“ƒoŠÖ”‚Éoverridew’èq‚ğg—p‚µ‚Ä‚¢‚é
+*	@memo	åŸºåº•ã‚¯ãƒ©ã‚¹ã®ç´”ç²‹ä»®æƒ³é–¢æ•°ã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹è£ä»˜ã‘(èª¤ã£ãŸç¶™æ‰¿å‹•ä½œã‚’é˜²ããŸã‚)ã«ç¶™æ‰¿ã—ãŸãƒ¡ãƒ³ãƒé–¢æ•°ã«overrideæŒ‡å®šå­ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹
 */
 class Test_Ri :public BaseScene
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	* @date 2024/05/21
 	*/
 	Test_Ri();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/05/21
 	*/
 	~Test_Ri()override;
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì‰Šú‰»
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®åˆæœŸåŒ–
 	*	@date 2024/05/21
 	*/
 	void	Initialize(void)override;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌXV
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æ›´æ–°
 	*	@date 2024/05/21
 	*/
 	void	Update(void)override;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æç”»
 	*	@date 2024/05/21
 	*/
 	void	Draw(void)override;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌI—¹ˆ—
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®çµ‚äº†å‡¦ç†
 	*	@date 2024/05/21
 	*/
 	void	Finalize(void)override;

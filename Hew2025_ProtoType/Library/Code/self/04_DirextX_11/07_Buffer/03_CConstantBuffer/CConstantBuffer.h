@@ -1,38 +1,38 @@
-#pragma once
+ï»¿#pragma once
 #include"../00_CBuffer/CBuffer.h"
 #pragma comment(lib,"d3d11.lib")
 #include <d3d11_1.h>
-#include<DirectXMath.h> //  DirectX::XMFLOAT3‚É•K—v
+#include<DirectXMath.h> //  DirectX::XMFLOAT3ã«å¿…è¦
 using   namespace DirectX;
 
 class CConstantBuffer :public	CBuffer
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/05/24
 	*/
 	CConstantBuffer();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/05/24
 	*/
 	~CConstantBuffer();
 
-	/**	@brief 	ƒoƒbƒtƒ@‚Ìì¬
-	*	@param	const void*	p_SysMem		‰Šú‰»ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^[
-	*	@param	UINT	byteWidth			//ƒRƒ“ƒXƒ^ƒ“ƒgƒoƒbƒtƒ@‚ÌƒTƒCƒY
-	*	@param	UINT	nothing = NULL		//ƒRƒ“ƒXƒ^ƒ“ƒgƒoƒbƒtƒ@‚Ìì¬‚Å‚Íg‚í‚È‚¢
+	/**	@brief 	ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
+	*	@param	const void*	p_SysMem		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+	*	@param	UINT	byteWidth			//ã‚³ãƒ³ã‚¹ã‚¿ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+	*	@param	UINT	nothing = NULL		//ã‚³ãƒ³ã‚¹ã‚¿ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã§ã¯ä½¿ã‚ãªã„
 	*	@return	HRESULT
 	*	@date	2024/05/24
 	*/
 	HRESULT	Create(const void* p_SysMem, UINT	byteWidth, UINT	nothing = NULL, D3D11_USAGE _usage = D3D11_USAGE_DEFAULT, UINT _cpuAccessFlags = 0)override;
 
-	/**	@brief 	ƒoƒbƒtƒ@‚ÌXV
-	*	@param	_In_  const void* pSrcData ”½‰fƒf[ƒ^
+	/**	@brief 	ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
+	*	@param	_In_  const void* pSrcData åæ˜ ãƒ‡ãƒ¼ã‚¿
 	*	@date	2024/05/24
 	*/
 	void	Update(_In_  const void* pSrcData);
 
-	/**	@brief	g—p‚·‚éƒRƒ“ƒXƒ^ƒ“ƒgƒoƒbƒtƒ@‚ğİ’è
+	/**	@brief	ä½¿ç”¨ã™ã‚‹ã‚³ãƒ³ã‚¹ã‚¿ãƒ³ãƒˆãƒãƒƒãƒ•ã‚¡ã‚’è¨­å®š
 	*	@date	2024/05/24
 	*/
 	void	SetConstantBuffer(void);

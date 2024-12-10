@@ -1,34 +1,34 @@
-#pragma once
-//D3D‰Šú‰»‚É•K—v‚È‚Ì
+ï»¿#pragma once
+//D3DåˆæœŸåŒ–ã«å¿…è¦ãªã®
 #pragma comment(lib,"d3d11.lib")
 #include <d3d11_1.h>
 
 class CD3D11_SwapChain
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/
 	CD3D11_SwapChain();
 
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/
 	~CD3D11_SwapChain();
 
-	/**	@brief 	ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìì¬
-	*	@param	ID3D11Device* p_Device Direct3DƒfƒoƒCƒX
-	*   @param  HWND hwnd              windowsƒnƒ“ƒhƒ‹
+	/**	@brief 	ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
+	*	@param	ID3D11Device* p_Device Direct3Dãƒ‡ãƒã‚¤ã‚¹
+	*   @param  HWND hwnd              windowsãƒãƒ³ãƒ‰ãƒ«
 	*	@return HRESULT
 	*	@date 2024/03/29
 	*/
 	virtual	HRESULT    Create(HWND hwnd, ID3D11Device* m_pDevice);
-	/**	@brief 	‰ğ•úˆ—
+	/**	@brief 	è§£æ”¾å‡¦ç†
 	*	@date 2024/03/29
 	*/
 	void    Release();
 public:
-	IDXGISwapChain* m_pSwapChain;                   //ƒXƒƒbƒvƒ`ƒF[ƒ“
-	IDXGIFactory* pFactory;                         //DXGIƒtƒ@ƒNƒgƒŠ
+	IDXGISwapChain* m_pSwapChain;                   //ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³
+	IDXGIFactory* pFactory;                         //DXGIãƒ•ã‚¡ã‚¯ãƒˆãƒª
 };
 

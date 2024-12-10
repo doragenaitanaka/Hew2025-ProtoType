@@ -1,5 +1,5 @@
-#pragma once
-//D3D‰Šú‰»‚É•K—v‚È‚Ì
+ï»¿#pragma once
+//D3DåˆæœŸåŒ–ã«å¿…è¦ãªã®
 #pragma comment(lib,"d3d11.lib")
 
 #include"../02_Device/CDevice.h"
@@ -10,62 +10,62 @@
 
 class CD3D11 {
 public:
-    /**	@brief 	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬
+    /**	@brief 	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç”Ÿæˆ
     *	@date	2024/05/16
-    *	@memo	‚±‚ÌŠÖ”‚ğn‚ß‚ÉÀs‚·‚é
+    *	@memo	ã“ã®é–¢æ•°ã‚’å§‹ã‚ã«å®Ÿè¡Œã™ã‚‹
     */
     static  void    CrerateIntance(void);
 
-    /**	@brief 	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX‚Ìæ“¾
-    *	@return	CD3D11*	CD3D11ƒNƒ‰ƒX
+    /**	@brief 	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å–å¾—
+    *	@return	CD3D11*	CD3D11ã‚¯ãƒ©ã‚¹
     *	@date	2024/05/14
-    *	@memo	‚±‚ÌŠÖ”‚ğg‚Á‚ÄŠeƒtƒ@ƒCƒ‹‚Å¶¬ÏCD3D11ƒNƒ‰ƒX‚ğæ“¾‚·‚é
+    *	@memo	ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦å„ãƒ•ã‚¡ã‚¤ãƒ«ã§ç”Ÿæˆæ¸ˆCD3D11ã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹
     */
     static	CD3D11* GetInstance(void);
-    /**	@brief 	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX‚Ìíœ
-    *	@return	CD3D11*	CD3D11ƒNƒ‰ƒX
+    /**	@brief 	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å‰Šé™¤
+    *	@return	CD3D11*	CD3D11ã‚¯ãƒ©ã‚¹
     *	@date	2024/05/14
     */
     void    DestroyInstance(void);
-    /**	@brief 	D3D11‚Ì‰Šú‰»
-    *   @param  HWND hwnd   windousƒnƒ“ƒhƒ‹
+    /**	@brief 	D3D11ã®åˆæœŸåŒ–
+    *   @param  HWND hwnd   windousãƒãƒ³ãƒ‰ãƒ«
     *   @return HRESULT
     *	@date	2024/05/18
     */
     HRESULT Initialize(HWND hwnd);
-    /**	@brief 	‘S‘Ì‚Ì‰ğ•ú
+    /**	@brief 	å…¨ä½“ã®è§£æ”¾
     *	@date	2024/05/14
     */
     void    Release();
-    //ƒQƒbƒ^[ŠÖ”------------------------------------------------------------------------------
+    //ã‚²ãƒƒã‚¿ãƒ¼é–¢æ•°------------------------------------------------------------------------------
 
-    /**	@brief 	Direct3DƒfƒoƒCƒX‚Ìæ“¾
+    /**	@brief 	Direct3Dãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
     *	@return	CD3D11_Device*
     *	@date	2024/05/16
     */
     ID3D11Device* GetDevice(void);
-    /**	@brief  ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+    /**	@brief  ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
     *	@return	CD3D11_Device*
     *	@date	2024/05/16
     */
     ID3D11DeviceContext* GetDeviceContext(void);
 
-    /**	@brief 	ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìæ“¾
+    /**	@brief 	ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®å–å¾—
     *	@return	CD3D11_SwapChain*
     *	@date	2024/05/16
     */
     IDXGISwapChain* GetSwapChain(void);
-    /**	@brief 	ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìæ“¾
+    /**	@brief 	ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®å–å¾—
     *	@return	ID3D11RenderTargetView*
     *	@date	2024/05/16
     */
     ID3D11RenderTargetView* GetRenderTargetView(void);
-    /**	@brief 	ƒrƒ…[ƒ|[ƒg‚Ìæ“¾
+    /**	@brief 	ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®å–å¾—
     *	@return	D3D11_VIEWPORT
     *	@date	2024/05/16
     */
     D3D11_VIEWPORT* GetViewport(void);
-    /**	@brief 	[“xƒXƒeƒ“ƒVƒ‹‚Ìæ“¾
+    /**	@brief 	æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã®å–å¾—
     *	@return	ID3D11DepthStencilView
     *	@date	2024/05/16
     */
@@ -76,11 +76,11 @@ private:
     ~CD3D11();
 
 private:
-    CD3D11_Device  deviceSetup;                        //ƒOƒ‰ƒtƒBƒbƒNƒfƒoƒCƒX‚Ìİ’è
-    CD3D11_SwapChain   swapChainSetup;                 //ƒXƒƒbƒvƒ`ƒFƒCƒ“ƒZƒbƒgƒAƒbƒv‚Ìİ’è
-    CD3D11_RenderTargetView  renderTargetViewSetup;    //ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[ƒZƒbƒgƒAƒbƒv‚Ìİ’è
-    CD3D11_Viewport    viewportSetup;                  //ƒrƒ…[ƒ|[ƒg‚Ìİ’è
-    CD3D11_DepthStencil    depthStencilSetup;          //[“xƒXƒeƒ“ƒVƒ‹‚Ìİ’è
+    CD3D11_Device  deviceSetup;                        //ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒã‚¤ã‚¹ã®è¨­å®š
+    CD3D11_SwapChain   swapChainSetup;                 //ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã®è¨­å®š
+    CD3D11_RenderTargetView  renderTargetViewSetup;    //ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã‚»ãƒƒãƒˆã‚¢ãƒƒãƒ—ã®è¨­å®š
+    CD3D11_Viewport    viewportSetup;                  //ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
+    CD3D11_DepthStencil    depthStencilSetup;          //æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã®è¨­å®š
 
     static  CD3D11* cd3d11;
 };

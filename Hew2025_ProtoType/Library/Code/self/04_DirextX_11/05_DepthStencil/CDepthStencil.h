@@ -1,33 +1,33 @@
-#pragma once
-//D3D‰Šú‰»‚É•K—v‚È‚Ì
+ï»¿#pragma once
+//D3DåˆæœŸåŒ–ã«å¿…è¦ãªã®
 #pragma comment(lib,"d3d11.lib")
 #include <d3d11_1.h>
 
 class CD3D11_DepthStencil
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/	
 	CD3D11_DepthStencil();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/03/29
 	*/
 	~CD3D11_DepthStencil();
-	/**	@brief 	[“xƒXƒeƒ“ƒVƒ‹‚Ì‰Šú‰»
-	*	@param	ID3D11Device* p_Device                      Direct3DƒfƒoƒCƒX
-	*	@param	ID3D11DeviceContext* p_ImmediateContext     ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg
-	*   @param  IDXGISwapChain* p_SwapChain                 ƒXƒƒbƒvƒ`ƒF[ƒ“
-	*   @param  ID3D11RenderTargetView* m_pRenderTargetView ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[s
+	/**	@brief 	æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã®åˆæœŸåŒ–
+	*	@param	ID3D11Device* p_Device                      Direct3Dãƒ‡ãƒã‚¤ã‚¹
+	*	@param	ID3D11DeviceContext* p_ImmediateContext     ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+	*   @param  IDXGISwapChain* p_SwapChain                 ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³
+	*   @param  ID3D11RenderTargetView* m_pRenderTargetView ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼s
 	*	@return HRESULT
 	*	@date 2024/03/29
 	*/
 	HRESULT    Create(ID3D11Device* p_Device, ID3D11DeviceContext* p_ImmediateContext, IDXGISwapChain* p_SwapChain, ID3D11RenderTargetView* m_pRenderTargetView);
-	/**	@brief 	‰ğ•úˆ—
+	/**	@brief 	è§£æ”¾å‡¦ç†
 	*	@date 2024/03/29
 	*/
 	void    Release();
 public:
-	ID3D11DepthStencilView* p_DepthStencilView;	//[“xƒXƒeƒ“ƒVƒ‹ƒrƒ…[
+	ID3D11DepthStencilView* p_DepthStencilView;	//æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ“ãƒ¥ãƒ¼
 };
 

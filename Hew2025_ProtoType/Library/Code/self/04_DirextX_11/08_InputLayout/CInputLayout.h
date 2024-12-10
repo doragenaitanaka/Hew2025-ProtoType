@@ -1,5 +1,5 @@
-#pragma once
-//D3D‚É•K—v‚È‚Ì
+ï»¿#pragma once
+//D3Dã«å¿…è¦ãªã®
 #pragma comment(lib,"d3d11.lib")
 #include <d3d11_1.h>
 #include"../01_Initialize/CD3D11.h"
@@ -7,34 +7,34 @@
 class CInputLayout
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/04/23
 	*/
 	CInputLayout();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/04/23
 	*/
 	~CInputLayout();
 
-	/**	@brief 	“ü—ÍƒŒƒCƒAƒEƒg‚Ìì¬
-	*	@param	D3D11_INPUT_ELEMENT_DESC*	layout		’¸“_ƒf[ƒ^ƒ|ƒCƒ“ƒ^
-	*	@param	UINT numElements	—v‘f”ƒTƒCƒY
-	*	@param	ID3DBlob*	p_vsBlob	ƒVƒF[ƒ_ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^
+	/**	@brief 	å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®ä½œæˆ
+	*	@param	D3D11_INPUT_ELEMENT_DESC*	layout		é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+	*	@param	UINT numElements	è¦ç´ æ•°ã‚µã‚¤ã‚º
+	*	@param	ID3DBlob*	p_vsBlob	ã‚·ã‚§ãƒ¼ãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
 	*	@return	HRESULT
 	*	@date	2024/04/23
 	*/
 	HRESULT	Create(D3D11_INPUT_ELEMENT_DESC* p_layout, UINT numElements, ID3DBlob* p_vsBlob);
 
-	/**	@brief 	“ü—ÍƒAƒZƒ“ƒuƒ‰‚É•R‚Ã‚¯
+	/**	@brief 	å…¥åŠ›ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã«ç´ã¥ã‘
 	*	@date	2024/04/23
 	*/
 	void	SetInputLayout(void);
 
-	/**	@brief 	‰ğ•úˆ—
+	/**	@brief 	è§£æ”¾å‡¦ç†
 	*	@date	2024/04/23
 	*/
 	void	Release(void);
 private:
-	ID3D11InputLayout* p_inputLayout;	//“ü—ÍƒŒƒCƒAƒEƒg
+	ID3D11InputLayout* p_inputLayout;	//å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
 	CD3D11* cd3d11;
 };

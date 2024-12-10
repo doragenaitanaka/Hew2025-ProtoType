@@ -1,5 +1,5 @@
-/**	@file 	BaseScene.h
-*	@brief 	ƒV[ƒ“Šî’êƒNƒ‰ƒX
+ï»¿/**	@file 	BaseScene.h
+*	@brief 	ã‚·ãƒ¼ãƒ³åŸºåº•ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/10
 */
 
@@ -8,47 +8,47 @@
 #include"../../Library/Code/self/02_SceneManager/SceneManager.h"
 #include"../../Library/Code/self/04_DirextX_11/01_Initialize/CD3D11.h"
 
-// ‘O•ûéŒ¾
+// å‰æ–¹å®£è¨€
 class SceneManager;
 
-/**	@brief 	ƒV[ƒ“Šî’êƒNƒ‰ƒX
+/**	@brief 	ã‚·ãƒ¼ãƒ³åŸºåº•ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/10
-*	@memo	’ŠÛƒNƒ‰ƒX‚È‚Ì‚ÅƒRƒ“ƒXƒgƒ‰ƒNƒ^ˆÈƒˆ‰¼‘zŠÖ”‚É‚µ‚Ä‚¢‚é
+*	@memo	æŠ½è±¡ã‚¯ãƒ©ã‚¹ãªã®ã§ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿ä»¥ç´”ç²‹ä»®æƒ³é–¢æ•°ã«ã—ã¦ã„ã‚‹
 */
 class BaseScene
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/05/10
 	*/
 	BaseScene();
 	
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/05/10
 	*/
 	virtual ~BaseScene();
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì‰Šú‰»
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®åˆæœŸåŒ–
 	*	@date	2024/05/10
 	*/
 	virtual	void	Initialize(void) = 0;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌXV
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æ›´æ–°
 	*	@date	2024/05/10
 	*/
 	virtual	void	Update(void) = 0;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æç”»
 	*	@date	2024/05/10
 	*/
 	virtual	void	Draw(void) = 0;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌI—¹ˆ—
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®çµ‚äº†å‡¦ç†
 	*	@date	2024/05/10
 	*/
 	virtual	void	Finalize(void) = 0;
 
 protected:
-	SceneManager* p_sceneManager;	// ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[
-	CD3D11* p_cd3d11;				// d3d11ƒNƒ‰ƒX
+	SceneManager* p_sceneManager;	// ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
+	CD3D11* p_cd3d11;				// d3d11ã‚¯ãƒ©ã‚¹
 };

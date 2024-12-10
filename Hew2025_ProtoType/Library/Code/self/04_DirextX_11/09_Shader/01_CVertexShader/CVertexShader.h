@@ -1,41 +1,41 @@
-#pragma once
+ï»¿#pragma once
 #include"../00_CShader/CShader.h"
-//D3D‚É•K—v‚È‚Ì
+//D3Dã«å¿…è¦ãªã®
 #pragma comment(lib,"d3d11.lib")
 #include <d3d11_1.h>
 
 class CVertexShader :public	CShader
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/04/24
 	*/
 	CVertexShader();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date	2024/04/24
 	*/
 	~CVertexShader();
 
-	/**	@brief 	’¸“_ƒVƒF[ƒ_[‚Ìì¬
-	*	@param	ID3D11ClassLinkage* p_classLinkage	ƒNƒ‰ƒXƒŠƒ“ƒP[ƒWƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^[
+	/**	@brief 	é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆ
+	*	@param	ID3D11ClassLinkage* p_classLinkage	ã‚¯ãƒ©ã‚¹ãƒªãƒ³ã‚±ãƒ¼ã‚¸ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
 	*	@return	HRESULT
 	*	@date	2024/04/24
 	*/
 	HRESULT	Create(ID3D11ClassLinkage* p_classLinkage);
 
-	/**	@brief 	’¸“_ƒVƒF[ƒ_[‚ÌƒZƒbƒg
-	*	@param	ID3D11ClassInstance* const* pp_classInstances	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX”z—ñ‚Ìƒ|ƒCƒ“ƒ^
-	*	@param	UINT	numClassInstances	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX”z—ñ‚Ì”
+	/**	@brief 	é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆ
+	*	@param	ID3D11ClassInstance* const* pp_classInstances	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹é…åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+	*	@param	UINT	numClassInstances	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹é…åˆ—ã®æ•°
 	*	@date	2024/04/24
 	*/
 	void	SetShader(ID3D11ClassInstance* const* pp_classInstances, UINT	numClassInstances);
 
 
-	/**	@brief 	’¸“_ƒVƒF[ƒ_[‚Ì‰ğ•ú
+	/**	@brief 	é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®è§£æ”¾
 	*	@date	2024/04/24
 	*/
 	void	Release(void);
 private:
-	ID3D11VertexShader* p_vertexShader;	//’¸“_ƒoƒbƒtƒ@
+	ID3D11VertexShader* p_vertexShader;	//é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡
 };
 

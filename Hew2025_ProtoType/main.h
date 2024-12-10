@@ -1,13 +1,13 @@
-#pragma once
-// ƒfƒoƒbƒO—pƒRƒ“ƒ\[ƒ‹ƒEƒBƒ“ƒhƒE‚ğ•\¦
+ï»¿#pragma once
+// ãƒ‡ãƒãƒƒã‚°ç”¨ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤º
 #define	DEBUG
 
 #ifdef DEBUG
-#include <cstdlib> // systemŠÖ”‚ğg—p‚·‚é‚½‚ß‚É•K—v
+#include <cstdlib> // systemé–¢æ•°ã‚’ä½¿ç”¨ã™ã‚‹ãŸã‚ã«å¿…è¦
 #include<iostream>
 #endif // DEBUG
 
-/**	@brief 	ƒRƒ“ƒ\[ƒ‹ƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+/**	@brief 	ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
 *	@date	2024/11/02
 */
 int InitConsole();

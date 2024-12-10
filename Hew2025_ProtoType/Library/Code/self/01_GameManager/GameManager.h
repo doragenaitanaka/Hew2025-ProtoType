@@ -1,6 +1,6 @@
-#pragma once
+ï»¿#pragma once
 /**	@file 	GameManager.h
-*	@brief 	ƒvƒƒWƒFƒNƒg‘S‘Ì‚ÌŠÇ—ƒNƒ‰ƒX
+*	@brief 	ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆå…¨ä½“ã®ç®¡ç†ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/20
 */
 
@@ -8,63 +8,63 @@
 #include"../04_DirextX_11/01_Initialize/CD3D11.h"
 #include"../02_SceneManager/SceneManager.h"
 
-//define’è‹`
+//defineå®šç¾©
 #define	FPS (60)
 
 class GameManager
 {
 public:
-	/**	@brief 	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬ŠÖ”
+	/**	@brief 	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç”Ÿæˆé–¢æ•°
 	*	@date	2024/05/20
-	*	@memo	‚±‚ÌŠÖ”‚ğn‚ß‚ÉÀs‚·‚é
+	*	@memo	ã“ã®é–¢æ•°ã‚’å§‹ã‚ã«å®Ÿè¡Œã™ã‚‹
 	*/
 	static	void	CreateInstance(void);
-	/**	@brief 	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX‚Ìæ“¾ŠÖ”
-	*	@return	CD3D11*	CD3D11ƒNƒ‰ƒX
+	/**	@brief 	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å–å¾—é–¢æ•°
+	*	@return	CD3D11*	CD3D11ã‚¯ãƒ©ã‚¹
 	*	@date	2024/05/20
-	*	@memo	‚±‚ÌŠÖ”‚ğg‚Á‚ÄŠeƒtƒ@ƒCƒ‹‚Å¶¬ÏCD3D11ƒNƒ‰ƒX‚ğæ“¾‚·‚é
+	*	@memo	ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦å„ãƒ•ã‚¡ã‚¤ãƒ«ã§ç”Ÿæˆæ¸ˆCD3D11ã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹
 	*/
 	static	GameManager* GetInstance(void);
-	/**	@brief 	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX‚ÌíœŠÖ”
-	*	@return	CD3D11*	CD3D11ƒNƒ‰ƒX
+	/**	@brief 	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å‰Šé™¤é–¢æ•°
+	*	@return	CD3D11*	CD3D11ã‚¯ãƒ©ã‚¹
 	*	@date	2024/05/20
 	*/
 	void    DestroyInstance(void);
-	/**	@brief 	ƒvƒƒWƒFƒNƒg‘S‘Ì‚ÌÀsŠÖ”
-	*	@param	_In_ HINSTANCE hInstance		Œ»İ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒnƒ“ƒhƒ‹
-	*	@param	BackColorBrush      backColor	ƒEƒBƒ“ƒhƒE‚Ì”wŒiF
-	*	@param	 _In_ int       nCmdShow		ƒEƒBƒ“ƒhƒE‚ª•\¦‚³‚ê‚é‚Ìó‘Ô
-	*	@param	int	ƒvƒƒV[ƒWƒƒ‚ÉƒƒbƒZ[ƒW‚ğ•Ô‚·
+	/**	@brief 	ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆå…¨ä½“ã®å®Ÿè¡Œé–¢æ•°
+	*	@param	_In_ HINSTANCE hInstance		ç¾åœ¨ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+	*	@param	BackColorBrush      backColor	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®èƒŒæ™¯è‰²
+	*	@param	 _In_ int       nCmdShow		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒè¡¨ç¤ºã•ã‚Œã‚‹æ™‚ã®çŠ¶æ…‹
+	*	@param	int	ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã«ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’è¿”ã™
 	*	@date	2024/05/20
 	*/
 	int	Run(_In_ HINSTANCE hInstance, _In_ int       nCmdShow);
-	/**	@brief 	ƒvƒƒWƒFƒNƒg‚ğI—¹‚·‚éŠÖ”
+	/**	@brief 	ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆã‚’çµ‚äº†ã™ã‚‹é–¢æ•°
 	*	@date	2024/05/20
-	*	@memo	ƒQ[ƒ€ƒ‹[ƒv‰Â“®ƒtƒ‰ƒO‚ğfalse‚É‚·‚é
+	*	@memo	ã‚²ãƒ¼ãƒ ãƒ«ãƒ¼ãƒ—å¯å‹•ãƒ•ãƒ©ã‚°ã‚’falseã«ã™ã‚‹
 	*/
 	void	EndGame(void);
 private:
 	GameManager();
 	~GameManager();
 private:
-	static Scene startScene;				// ŠJnƒV[ƒ“–¼
+	static Scene startScene;				// é–‹å§‹ã‚·ãƒ¼ãƒ³å
 
-	CD3D11* cd3d11;							// d3d11‚Ì‰Šú‰»‚ğ‚Ü‚Æ‚ß‚½ƒNƒ‰ƒX
-	WindowSetup* windowSetup;				// windows‚Ì‰Šú‰»‚ğ‚Ü‚Æ‚ß‚½ƒNƒ‰ƒX
-	SceneManager* sceneManager;				// ƒV[ƒ“ŠÇ—ƒNƒ‰
+	CD3D11* cd3d11;							// d3d11ã®åˆæœŸåŒ–ã‚’ã¾ã¨ã‚ãŸã‚¯ãƒ©ã‚¹
+	WindowSetup* windowSetup;				// windowsã®åˆæœŸåŒ–ã‚’ã¾ã¨ã‚ãŸã‚¯ãƒ©ã‚¹
+	SceneManager* sceneManager;				// ã‚·ãƒ¼ãƒ³ç®¡ç†ã‚¯ãƒ©
 	
-	bool	isRunning;						// true:ƒQ[ƒ€ƒ‹[ƒvÀs’†
+	bool	isRunning;						// true:ã‚²ãƒ¼ãƒ ãƒ«ãƒ¼ãƒ—å®Ÿè¡Œä¸­
 
-	// FPSŒv‘ª—p•Ï”
+	// FPSè¨ˆæ¸¬ç”¨å¤‰æ•°
 	int	fpsCounter;		
-	long	long	oldTick;				// ‘O‰ñŒv‘ª‚ÌŠÔ
-	long	long	nowTick;				// ¡‰ñŒv‘ª‚ÌŠÔ
+	long	long	oldTick;				// å‰å›è¨ˆæ¸¬æ™‚ã®æ™‚é–“
+	long	long	nowTick;				// ä»Šå›è¨ˆæ¸¬æ™‚ã®æ™‚é–“
 
-	// FPSŒÅ’è—pŠÖ”
-	long	long	frequency;				// ‚Ç‚ê‚­‚ç‚¢×‚©‚­ŠÔ‚ğƒJƒEƒ“ƒg‚Å‚«‚é‚©
-	// ŠÔ(’PˆÊFƒJƒEƒ“ƒg)
-	long	long	oldCount;				// ‘O‰ñŒv‘ª‚ÌŠÔ
-	long	long	nowCount;				// ¡‰ñŒv‘ª‚ÌŠÔ
+	// FPSå›ºå®šç”¨é–¢æ•°
+	long	long	frequency;				// ã©ã‚Œãã‚‰ã„ç´°ã‹ãæ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆã§ãã‚‹ã‹
+	// æ™‚é–“(å˜ä½ï¼šã‚«ã‚¦ãƒ³ãƒˆ)
+	long	long	oldCount;				// å‰å›è¨ˆæ¸¬æ™‚ã®æ™‚é–“
+	long	long	nowCount;				// ä»Šå›è¨ˆæ¸¬æ™‚ã®æ™‚é–“
 
-	static	GameManager* gameManager;		// ƒvƒƒWƒFƒNƒgŠÇ—ƒNƒ‰ƒX
+	static	GameManager* gameManager;		// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ãƒˆç®¡ç†ã‚¯ãƒ©ã‚¹
 };

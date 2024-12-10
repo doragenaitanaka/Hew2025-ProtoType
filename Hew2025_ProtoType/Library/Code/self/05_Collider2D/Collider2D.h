@@ -1,7 +1,7 @@
-#pragma once
-#include<DirectXMath.h> //  DirectX::XMFLOAT3‚É•K—v
+ï»¿#pragma once
+#include<DirectXMath.h> //  DirectX::XMFLOAT3ã«å¿…è¦
 
-// lŠpŒ`
+// å››è§’å½¢
 class Collider2D
 {
 public:
@@ -9,16 +9,16 @@ public:
 	Collider2D(DirectX::XMFLOAT3& _pos, DirectX::XMFLOAT3& _size);
 	~Collider2D();
 
-	// ƒQƒbƒ^[ƒZƒbƒ^[
+	// ã‚²ãƒƒã‚¿ãƒ¼ã‚»ãƒƒã‚¿ãƒ¼
 	void SetPos(DirectX::XMFLOAT3& _pos);	
 	void SetSize(DirectX::XMFLOAT3& _size);
 	DirectX::XMFLOAT3 GetPos(void);
 	DirectX::XMFLOAT3 GetSize(void);
 
-	// “–‚½‚è”»’è
+	// å½“ãŸã‚Šåˆ¤å®š
 	static bool OnCollisionSquare(Collider2D& _passive, Collider2D& _collision);
 
 private:
-	DirectX::XMFLOAT3 pos;	// À•W
-	DirectX::XMFLOAT3 size;	// “–‚½‚è”»’è‚Ì‘å‚«‚³
+	DirectX::XMFLOAT3 pos;	// åº§æ¨™
+	DirectX::XMFLOAT3 size;	// å½“ãŸã‚Šåˆ¤å®šã®å¤§ãã•
 };
