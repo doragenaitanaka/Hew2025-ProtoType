@@ -1,25 +1,25 @@
-/**	@file 	BaseScene.cpp
-*	@brief 	ƒV[ƒ“Šî’êƒNƒ‰ƒX
+ï»¿/**	@file 	BaseScene.cpp
+*	@brief 	ã‚·ãƒ¼ãƒ³åŸºåº•ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/10
 */
 
 #include"BaseScene.h"
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 BaseScene::BaseScene() :p_sceneManager(nullptr), p_cd3d11(nullptr)
 {
-	// ƒ}ƒl[ƒWƒƒ[‚ÌŽæ“¾
+	// ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å–å¾—
 	if (!this->p_sceneManager) { this->p_sceneManager = SceneManager::GetInstance(); }
 	if (!this->p_cd3d11) { this->p_cd3d11 = CD3D11::GetInstance(); }
 	//std::cout << "BaseScene::BaseScene()" << std::endl;
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 BaseScene::~BaseScene()
 {
-	// ƒ}ƒl[ƒWƒƒ[‚ÌŽQÆ‚ð‚È‚­‚·
+	// ãƒžãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å‚ç…§ã‚’ãªãã™
 	if (this->p_sceneManager) { this->p_sceneManager = nullptr; }  
 	if (this->p_cd3d11) { this->p_cd3d11 = nullptr; }
 	//std::cout << "BaseScene::~BaseScene()" << std::endl;

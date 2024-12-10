@@ -1,53 +1,53 @@
-#include"CIndexBuffer.h"
+ï»¿#include"CIndexBuffer.h"
 #include"../../01_Initialize/CD3D11.h"
 #pragma comment(lib,"d3d11.lib")
 #include <d3d11_1.h>
 
-//ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+//ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CIndexBuffer::CIndexBuffer()
 {
 }
-//ƒfƒXƒgƒ‰ƒNƒ^
+//ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 CIndexBuffer::~CIndexBuffer()
 {
 	this->Release();
 }
-/**	@brief 	ƒoƒbƒtƒ@‚Ìì¬
-*	@param	const void*	p_SysMem		‰Šú‰»ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^[
-*	@param	UINT	byteWidth			ì¬‚·‚éƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ÌƒoƒCƒgƒTƒCƒY
-*	@param	UINT	nothing = NULL		’¸“_ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ìì¬‚Å‚Íg‚í‚È‚¢
+/**	@brief 	ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
+*	@param	const void*	p_SysMem		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+*	@param	UINT	byteWidth			ä½œæˆã™ã‚‹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+*	@param	UINT	nothing = NULL		é ‚ç‚¹ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã§ã¯ä½¿ã‚ãªã„
 *	@return	HRESULT
 *	@date	2024/05/23
 *	@memo
 */
 HRESULT	CIndexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing, D3D11_USAGE _usage, UINT _cpuAccessFlags)
 {
-	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ìİ’è
+	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®è¨­å®š
 	D3D11_BUFFER_DESC ibDesc = {};
-	ibDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;	    //  ƒfƒoƒCƒX‚ÉƒoƒCƒ“ƒh‚·‚é‚Æ‚«‚Ìí—Ş(’¸“_ƒoƒbƒtƒ@AƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@A’è”ƒoƒbƒtƒ@‚È‚Ç)
-	ibDesc.Usage = _usage;							//  ì¬‚·‚éƒoƒbƒtƒ@‚Ìg—p–@
-	ibDesc.ByteWidth = byteWidth;					//  ì¬‚·‚éƒoƒbƒtƒ@‚ÌƒoƒCƒgƒTƒCƒY
-	ibDesc.MiscFlags = 0;							//  ‚»‚Ì‘¼‚Ìƒtƒ‰ƒO
-	ibDesc.StructureByteStride = 0;		            //  \‘¢‰»ƒoƒbƒtƒ@‚Ìê‡A‚»‚Ì\‘¢‘Ì‚ÌƒTƒCƒY
+	ibDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;	    //  ãƒ‡ãƒã‚¤ã‚¹ã«ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ã¨ãã®ç¨®é¡(é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã€å®šæ•°ãƒãƒƒãƒ•ã‚¡ãªã©)
+	ibDesc.Usage = _usage;							//  ä½œæˆã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ä½¿ç”¨æ³•
+	ibDesc.ByteWidth = byteWidth;					//  ä½œæˆã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+	ibDesc.MiscFlags = 0;							//  ãã®ä»–ã®ãƒ•ãƒ©ã‚°
+	ibDesc.StructureByteStride = 0;		            //  æ§‹é€ åŒ–ãƒãƒƒãƒ•ã‚¡ã®å ´åˆã€ãã®æ§‹é€ ä½“ã®ã‚µã‚¤ã‚º
 	ibDesc.CPUAccessFlags = _cpuAccessFlags;
 
 
-	//ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ª–³‚¯‚ê‚Î
+	//ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãŒç„¡ã‘ã‚Œã°
 	if (!this->p_buffer)
 	{
-		//CD3D11ƒNƒ‰ƒX‚Ìæ“¾
+		//CD3D11ã‚¯ãƒ©ã‚¹ã®å–å¾—
 		if (!this->cd3d11)
 		{
 			this->cd3d11 = CD3D11::GetInstance();
 		}
-		//‘‚«‚Şƒf[ƒ^
-		D3D11_SUBRESOURCE_DATA initData = { p_SysMem, 0, 0 };	//	1DƒŠƒ\[ƒX‚Ì‰Šú‰»‚Í2,3ŒÂ–Ú‚Ì‚â‚Âg‚í‚È‚¢i0‚ğ‚¢‚ê‚éj
+		//æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿
+		D3D11_SUBRESOURCE_DATA initData = { p_SysMem, 0, 0 };	//	1Dãƒªã‚½ãƒ¼ã‚¹ã®åˆæœŸåŒ–æ™‚ã¯2,3å€‹ç›®ã®ã‚„ã¤ä½¿ã‚ãªã„ï¼ˆ0ã‚’ã„ã‚Œã‚‹ï¼‰
 		HRESULT	hr;
-		ID3D11Device* device = this->cd3d11->GetDevice();				//	ƒfƒoƒCƒX‚Ìæ“¾
-		hr = device->CreateBuffer(&ibDesc, &initData, &this->p_buffer);	// ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚Ìì¬
+		ID3D11Device* device = this->cd3d11->GetDevice();				//	ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
+		hr = device->CreateBuffer(&ibDesc, &initData, &this->p_buffer);	// ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 		if (FAILED(hr))
 		{
-			//ƒƒ‚ƒŠ‚Ì‰ğ•ú
+			//ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 			if (this->p_buffer)
 			{
 				this->Release();
@@ -58,21 +58,21 @@ HRESULT	CIndexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing,
 	return	S_OK;
 }
 
-/**	@brief 	“ü—ÍƒAƒZƒ“ƒuƒ‰ƒXƒe[ƒW‚É•R‚Ã‚¯‚é
-*	@param	DXGI_FORMAT	format	ƒCƒ“ƒfƒbƒNƒX‚ÌŒ`®
-*	@param	UINT	ofset	ƒoƒCƒg’PˆÊƒIƒtƒZƒbƒg
+/**	@brief 	å…¥åŠ›ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã‚¹ãƒ†ãƒ¼ã‚¸ã«ç´ã¥ã‘ã‚‹
+*	@param	DXGI_FORMAT	format	ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ã®å½¢å¼
+*	@param	UINT	ofset	ãƒã‚¤ãƒˆå˜ä½ã‚ªãƒ•ã‚»ãƒƒãƒˆ
 *	@return	void
 *	@date	2024/04/29
 *	@memo
 */
 void	CIndexBuffer::SetIndexBuffer(DXGI_FORMAT	format, UINT	ofset)
 {
-	//ƒoƒbƒtƒ@î•ñƒ|ƒCƒ“ƒ^‚ÌƒAƒhƒŒƒX‚ğæ“¾
+	//ãƒãƒƒãƒ•ã‚¡æƒ…å ±ãƒã‚¤ãƒ³ã‚¿ã®ã‚¢ãƒ‰ãƒ¬ã‚¹ã‚’å–å¾—
 	ID3D11Buffer** p_indexBuffer = this->GetBuffer();
-	//ƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@‚ª‚ ‚é‚Æ‚«
+	//ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ãŒã‚ã‚‹ã¨ã
 	if (this->p_buffer)
 	{
-		ID3D11DeviceContext* deviceContext = this->cd3d11->GetDeviceContext();	//ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚ğæ“¾
-		deviceContext->IASetIndexBuffer(this->p_buffer, format, ofset);			//“ü—ÍƒAƒZƒ“ƒuƒ‰ƒXƒe[ƒW‚É•R‚Ã‚¯
+		ID3D11DeviceContext* deviceContext = this->cd3d11->GetDeviceContext();	//ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å–å¾—
+		deviceContext->IASetIndexBuffer(this->p_buffer, format, ofset);			//å…¥åŠ›ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã‚¹ãƒ†ãƒ¼ã‚¸ã«ç´ã¥ã‘
 	}
 }

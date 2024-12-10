@@ -1,6 +1,6 @@
-#include"CDepthStencil.h"
+ï»¿#include"CDepthStencil.h"
 #include"../../SafePointers.h"
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 CD3D11_DepthStencil::CD3D11_DepthStencil()
@@ -8,80 +8,80 @@ CD3D11_DepthStencil::CD3D11_DepthStencil()
     this->p_DepthStencilView = nullptr;
 }
 
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 CD3D11_DepthStencil::~CD3D11_DepthStencil()
 {
     this->Release();
 }
-/**	@brief 	[“xƒXƒeƒ“ƒVƒ‹‚Ì‰Šú‰»
-*	@param	ID3D11Device* p_Device                      Direct3DƒfƒoƒCƒX
-*	@param	ID3D11DeviceContext* p_ImmediateContext     ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg
-*   @param  IDXGISwapChain* p_SwapChain                 ƒXƒƒbƒvƒ`ƒF[ƒ“
-*   @param  ID3D11RenderTargetView* m_pRenderTargetView ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[s
+/**	@brief 	æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã®åˆæœŸåŒ–
+*	@param	ID3D11Device* p_Device                      Direct3Dãƒ‡ãƒã‚¤ã‚¹
+*	@param	ID3D11DeviceContext* p_ImmediateContext     ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+*   @param  IDXGISwapChain* p_SwapChain                 ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³
+*   @param  ID3D11RenderTargetView* m_pRenderTargetView ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼s
 *	@return HRESULT
 *	@date 2024/03/29
 */
 HRESULT    CD3D11_DepthStencil::Create(ID3D11Device* p_Device, ID3D11DeviceContext* p_ImmediateContext, IDXGISwapChain* p_SwapChain, ID3D11RenderTargetView* m_pRenderTargetView)
 {
-    // ì¬‚·‚éƒeƒNƒXƒ`ƒƒ
+    // ä½œæˆã™ã‚‹ãƒ†ã‚¯ã‚¹ãƒãƒ£
     D3D11_TEXTURE2D_DESC descDepth;
     ZeroMemory(&descDepth, sizeof(descDepth));
     
-    ID3D11Texture2D* p_depthStencilBufer = nullptr; // [“xƒXƒeƒ“ƒVƒ‹ƒoƒbƒtƒ@
+    ID3D11Texture2D* p_depthStencilBufer = nullptr; // æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒãƒƒãƒ•ã‚¡
 
-    // ƒoƒbƒNƒoƒbƒtƒ@‚Ìæ“¾
+    // ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
     ID3D11Texture2D* p_backBuffer = nullptr;        
     p_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&p_backBuffer);
 
-    // ƒoƒbƒNƒoƒbƒtƒ@‚©‚ç‰ğ‘œ“x‚ğæ“¾
+    // ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰è§£åƒåº¦ã‚’å–å¾—
     D3D11_TEXTURE2D_DESC buckBufferDesc;
     p_backBuffer->GetDesc(&buckBufferDesc);
 
-    // ƒeƒNƒXƒ`ƒƒƒŠƒ\[ƒX‚Ì‰Šú‰»
-    descDepth.Width = buckBufferDesc.Width;             // ƒoƒbƒNƒoƒbƒtƒ@‚Æ“¯‚¶•
-    descDepth.Height = buckBufferDesc.Height;           // ƒoƒbƒNƒoƒbƒtƒ@‚Æ“¯‚¶‚‚³
-    descDepth.MipLevels = 1;                            // ƒ~ƒbƒvƒ}ƒbƒvƒŒƒxƒ‹‚Í1
-    descDepth.ArraySize = 1;                            // ƒeƒNƒXƒ`ƒƒ”z—ñ‚ÌƒTƒCƒY‚Í1
-    descDepth.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;   // [“x’l‚É24bit‚ÌfloatŒ^‚ğAƒXƒeƒ“ƒVƒ‹’l‚É8ƒrƒbƒg‚Ìuint‚ğŠm•Û
-    descDepth.SampleDesc.Count = 1;                     // ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒO‚Íg—p‚µ‚È‚¢
-    descDepth.SampleDesc.Quality = 0;                   // ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒO‚Ì•i¿‚ÍÅ’á
-    descDepth.Usage = D3D11_USAGE_DEFAULT;              // GPU‚ª“Ç‚İ‘‚«‚·‚é
-    descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;     // [“xƒXƒeƒ“ƒVƒ‹ƒ^[ƒQƒbƒg‚Æ‚µ‚ÄƒoƒCƒ“ƒh
-    descDepth.CPUAccessFlags = 0;                       // CPU‚©‚ç‚ÍƒAƒNƒZƒX‚µ‚È‚¢
-    descDepth.MiscFlags = 0;                            // ‚»‚Ì‘¼‚Ìƒtƒ‰ƒO‚Íİ’è‚µ‚È‚¢
+    // ãƒ†ã‚¯ã‚¹ãƒãƒ£ãƒªã‚½ãƒ¼ã‚¹ã®åˆæœŸåŒ–
+    descDepth.Width = buckBufferDesc.Width;             // ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã¨åŒã˜å¹…
+    descDepth.Height = buckBufferDesc.Height;           // ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã¨åŒã˜é«˜ã•
+    descDepth.MipLevels = 1;                            // ãƒŸãƒƒãƒ—ãƒãƒƒãƒ—ãƒ¬ãƒ™ãƒ«ã¯1
+    descDepth.ArraySize = 1;                            // ãƒ†ã‚¯ã‚¹ãƒãƒ£é…åˆ—ã®ã‚µã‚¤ã‚ºã¯1
+    descDepth.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;   // æ·±åº¦å€¤ã«24bitã®floatå‹ã‚’ã€ã‚¹ãƒ†ãƒ³ã‚·ãƒ«å€¤ã«8ãƒ“ãƒƒãƒˆã®uintã‚’ç¢ºä¿
+    descDepth.SampleDesc.Count = 1;                     // ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã¯ä½¿ç”¨ã—ãªã„
+    descDepth.SampleDesc.Quality = 0;                   // ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã®å“è³ªã¯æœ€ä½
+    descDepth.Usage = D3D11_USAGE_DEFAULT;              // GPUãŒèª­ã¿æ›¸ãã™ã‚‹
+    descDepth.BindFlags = D3D11_BIND_DEPTH_STENCIL;     // æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¨ã—ã¦ãƒã‚¤ãƒ³ãƒ‰
+    descDepth.CPUAccessFlags = 0;                       // CPUã‹ã‚‰ã¯ã‚¢ã‚¯ã‚»ã‚¹ã—ãªã„
+    descDepth.MiscFlags = 0;                            // ãã®ä»–ã®ãƒ•ãƒ©ã‚°ã¯è¨­å®šã—ãªã„
     
-    SAFE_RELEASE(p_backBuffer);         // •K—v‚È‚­‚È‚Á‚½‚Ì‚Å‰ğ•ú
+    SAFE_RELEASE(p_backBuffer);         // å¿…è¦ãªããªã£ãŸã®ã§è§£æ”¾
 
     HRESULT hr;
-    hr = p_Device->CreateTexture2D(&descDepth, nullptr, &p_depthStencilBufer);  // [“xƒXƒeƒ“ƒVƒ‹ƒoƒbƒtƒ@‚ÌƒeƒNƒXƒ`ƒƒ‚ğì¬    
-    if (FAILED(hr)) { return hr; }                                              // ¬Œ÷‚µ‚½‚©ƒ`ƒFƒbƒN
+    hr = p_Device->CreateTexture2D(&descDepth, nullptr, &p_depthStencilBufer);  // æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒãƒƒãƒ•ã‚¡ã®ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ä½œæˆ    
+    if (FAILED(hr)) { return hr; }                                              // æˆåŠŸã—ãŸã‹ãƒã‚§ãƒƒã‚¯
 
-    // ì¬‚·‚éƒrƒ…[‚Ìƒ^ƒCƒv‚ğw’è
+    // ä½œæˆã™ã‚‹ãƒ“ãƒ¥ãƒ¼ã®ã‚¿ã‚¤ãƒ—ã‚’æŒ‡å®š
     D3D11_DEPTH_STENCIL_VIEW_DESC dsDesc;
     ZeroMemory(&dsDesc, sizeof(dsDesc));
     dsDesc.Format = descDepth.Format;
     dsDesc.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
     dsDesc.Texture2D.MipSlice = 0;
 
-    // [“xƒXƒeƒ“ƒVƒ‹ƒrƒ…[‚ğì¬
+    // æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ“ãƒ¥ãƒ¼ã‚’ä½œæˆ
     hr = p_Device->CreateDepthStencilView(p_depthStencilBufer, &dsDesc, &this->p_DepthStencilView);
    
-    if (FAILED(hr)) { return hr; }      // ¬Œ÷‚µ‚½‚©ƒ`ƒFƒbƒN
-    SAFE_RELEASE(p_depthStencilBufer);  // [“xƒXƒeƒ“ƒVƒ‹ƒoƒbƒtƒ@‚Ì‰ğ•ú
+    if (FAILED(hr)) { return hr; }      // æˆåŠŸã—ãŸã‹ãƒã‚§ãƒƒã‚¯
+    SAFE_RELEASE(p_depthStencilBufer);  // æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒãƒƒãƒ•ã‚¡ã®è§£æ”¾
 
-    // ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒg‚ÉƒZƒbƒg
+    // ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã«ã‚»ãƒƒãƒˆ
     p_ImmediateContext->OMSetRenderTargets(1, &m_pRenderTargetView, this->p_DepthStencilView);
-    // ƒNƒŠƒA‚µ‚Ä‚¨‚­
+    // ã‚¯ãƒªã‚¢ã—ã¦ãŠã
     float clearColor[4] = { 0.0f, 0.0f, 1.0f, 1.0f }; // red, green, blue, alpha
     p_ImmediateContext->ClearRenderTargetView(m_pRenderTargetView, clearColor);
     p_ImmediateContext->ClearDepthStencilView(this->p_DepthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);
 
-    return S_OK;    // ¬Œ÷‚ğ•Ô‚·
+    return S_OK;    // æˆåŠŸã‚’è¿”ã™
 }
 
-/**	@brief 	‰ğ•úˆ—
+/**	@brief 	è§£æ”¾å‡¦ç†
 *	@date 2024/03/29
 */
 void   CD3D11_DepthStencil::Release()

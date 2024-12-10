@@ -1,30 +1,30 @@
-/**	@file	Test_Imagawa.cpp
-*	@brief 	¡ì—p‚ÌƒQ[ƒ€ƒV[ƒ“ƒNƒ‰ƒX
+ï»¿/**	@file	Test_Imagawa.cpp
+*	@brief 	ä»Šå·ç”¨ã®ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/10
 */
 #include"Test_Imagawa.h"
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 Test_Imagawa::Test_Imagawa()
 {
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 Test_Imagawa::~Test_Imagawa()
 {
 	this->Finalize();
 }
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì‰Šú‰»
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®åˆæœŸåŒ–
 *	@date	2024/05/10
 */
 void	Test_Imagawa::Initialize(void)
 {
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌXV
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æ›´æ–°
 *	@date	2024/05/10
 */
 void	Test_Imagawa::Update(void)
@@ -36,14 +36,14 @@ void	Test_Imagawa::Update(void)
     }
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æç”»
 *	@date	2024/05/10
 */
 void	Test_Imagawa::Draw(void)
 {
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌI—¹ˆ—
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®çµ‚äº†å‡¦ç†
 *	@date	2024/05/10
 */
 void	Test_Imagawa::Finalize(void)

@@ -1,12 +1,12 @@
-#include"CViewport.h"
+ï»¿#include"CViewport.h"
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 CD3D11_Viewport::CD3D11_Viewport()
 {
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 CD3D11_Viewport::~CD3D11_Viewport()
@@ -14,23 +14,23 @@ CD3D11_Viewport::~CD3D11_Viewport()
 	this->Release();
 }
 
-/**	@brief 	ƒrƒ…[ƒ|[ƒg‚Ìİ’è
-*	@param	ID3D11DeviceContext* p_ImmediateContext     ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg
-*   @param  IDXGISwapChain* p_SwapChain                 ƒXƒƒbƒvƒ`ƒF[ƒ“
+/**	@brief 	ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
+*	@param	ID3D11DeviceContext* p_ImmediateContext     ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆ
+*   @param  IDXGISwapChain* p_SwapChain                 ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³
 *	@return HRESULT
 *	@date 2024/03/29
 */
 void    CD3D11_Viewport::Create(ID3D11DeviceContext* p_ImmediateContext, IDXGISwapChain* pSwapChain)
 {
-	// ƒoƒbƒNƒoƒbƒtƒ@‚Ìæ“¾
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®å–å¾—
 	ID3D11Texture2D* backBuffer = NULL;
 	pSwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (void**)&backBuffer);
 
-	// ƒoƒbƒNƒoƒbƒtƒ@‚©‚ç‰ğ‘œ“x‚ğæ“¾
+	// ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã‹ã‚‰è§£åƒåº¦ã‚’å–å¾—
 	D3D11_TEXTURE2D_DESC	buckBufferDesc;
 	backBuffer->GetDesc(&buckBufferDesc);
 
-	// ƒrƒ…[ƒ|[ƒg‚Ì‰Šú‰»
+	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®åˆæœŸåŒ–
 	this->viewport.TopLeftX = 0;
 	this->viewport.TopLeftY = 0;
 	this->viewport.Width = buckBufferDesc.Width;
@@ -38,11 +38,11 @@ void    CD3D11_Viewport::Create(ID3D11DeviceContext* p_ImmediateContext, IDXGISw
 	this->viewport.MinDepth = 0.0f;
 	this->viewport.MaxDepth = 1.0f;
 
-	backBuffer->Release();									// •K—v‚È‚­‚È‚Á‚½‚Ì‚Å‰ğ•ú
-	p_ImmediateContext->RSSetViewports(1, &this->viewport);	// ƒrƒ…[ƒ|[ƒg‚ğİ’è
+	backBuffer->Release();									// å¿…è¦ãªããªã£ãŸã®ã§è§£æ”¾
+	p_ImmediateContext->RSSetViewports(1, &this->viewport);	// ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã‚’è¨­å®š
 }
 
-/**	@brief 	‰ğ•úˆ—
+/**	@brief 	è§£æ”¾å‡¦ç†
 *	@date 2024/03/29
 */
 void   CD3D11_Viewport::Release()

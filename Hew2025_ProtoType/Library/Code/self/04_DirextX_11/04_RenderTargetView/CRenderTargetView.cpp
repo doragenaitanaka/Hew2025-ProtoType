@@ -1,23 +1,23 @@
-#include"CRenderTargetView.h"
+ï»¿#include"CRenderTargetView.h"
 #include"../../SafePointers.h"
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 CD3D11_RenderTargetView::CD3D11_RenderTargetView()
 {
 	this->m_pRenderTargetView = nullptr;
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 CD3D11_RenderTargetView::~CD3D11_RenderTargetView()
 {
     this->Release();
 }
-/**	@brief 	ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìì¬
-*	@param	ID3D11Device* p_Device                      Direct3DƒfƒoƒCƒX
-*   @param  IDXGISwapChain* p_SwapChain                 ƒXƒƒbƒvƒ`ƒF[ƒ“
+/**	@brief 	ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
+*	@param	ID3D11Device* p_Device                      Direct3Dãƒ‡ãƒã‚¤ã‚¹
+*   @param  IDXGISwapChain* p_SwapChain                 ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³
 *	@return HRESULT
 *	@date 2024/03/29
 */
@@ -26,17 +26,17 @@ HRESULT    CD3D11_RenderTargetView::Create(ID3D11Device* p_Device, IDXGISwapChai
     HRESULT  hr;
 
     
-    ID3D11Texture2D* pBackBuffer;                                                       //  ƒoƒbƒNƒoƒbƒtƒ@
-    hr = p_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);   //  ƒXƒƒbƒvƒ`ƒF[ƒ“‚ÌÅ‰‚ÌƒoƒbƒNƒoƒbƒtƒ@(0”Ô–Ú)‚ğæ“¾‚µ‚Ä‚¢‚é 
-    if (FAILED(hr)) { return hr; }                                                      //  æ“¾‚Å‚«‚½‚©ƒ`ƒFƒbƒN
+    ID3D11Texture2D* pBackBuffer;                                                       //  ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡
+    hr = p_SwapChain->GetBuffer(0, __uuidof(ID3D11Texture2D), (LPVOID*)&pBackBuffer);   //  ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³ã®æœ€åˆã®ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡(0ç•ªç›®)ã‚’å–å¾—ã—ã¦ã„ã‚‹ 
+    if (FAILED(hr)) { return hr; }                                                      //  å–å¾—ã§ããŸã‹ãƒã‚§ãƒƒã‚¯
 
     
-    hr = p_Device->CreateRenderTargetView(pBackBuffer, NULL, &this->m_pRenderTargetView);   //ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìì¬(ƒoƒbƒtƒ@‚ÌF‚ğ‰Šú‰»)  
-    SAFE_RELEASE(pBackBuffer);                                                              //  ƒoƒbƒNƒoƒbƒtƒ@‚Í‚à‚¤g‚í‚È‚¢‚Ì‚Å‰ğ•ú‚·‚é
-    if (FAILED(hr)) { return hr; }                                                          //  ì¬o—ˆ‚½‚©ƒ`ƒFƒbƒN
+    hr = p_Device->CreateRenderTargetView(pBackBuffer, NULL, &this->m_pRenderTargetView);   //ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ(ãƒãƒƒãƒ•ã‚¡ã®è‰²ã‚’åˆæœŸåŒ–)  
+    SAFE_RELEASE(pBackBuffer);                                                              //  ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã¯ã‚‚ã†ä½¿ã‚ãªã„ã®ã§è§£æ”¾ã™ã‚‹
+    if (FAILED(hr)) { return hr; }                                                          //  ä½œæˆå‡ºæ¥ãŸã‹ãƒã‚§ãƒƒã‚¯
     return hr;
 }
-/**	@brief 	‰ğ•úˆ—
+/**	@brief 	è§£æ”¾å‡¦ç†
 *	@date 2024/03/29
 */
 void    CD3D11_RenderTargetView::Release()

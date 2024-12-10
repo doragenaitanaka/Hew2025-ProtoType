@@ -1,11 +1,11 @@
-#include"CSwapChain.h"
+ï»¿#include"CSwapChain.h"
 #include<atltypes.h>
 #include"../../SafePointers.h"
-//CreateDXGIFactory ŠÖ”‚ğg‚¤‚Ì‚É•K—v
+//CreateDXGIFactory é–¢æ•°ã‚’ä½¿ã†ã®ã«å¿…è¦
 #include<dxgi.h>
 #pragma comment(lib, "dxgi.lib")
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 CD3D11_SwapChain::CD3D11_SwapChain()
@@ -13,7 +13,7 @@ CD3D11_SwapChain::CD3D11_SwapChain()
     this->m_pSwapChain = nullptr;
     this->pFactory = nullptr;
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 CD3D11_SwapChain::~CD3D11_SwapChain()
@@ -21,9 +21,9 @@ CD3D11_SwapChain::~CD3D11_SwapChain()
     this->Release();
 }
 
-/**	@brief 	ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìì¬
-*	@param	ID3D11Device* p_Device Direct3DƒfƒoƒCƒX
-*   @param  HWND hwnd              windowsƒnƒ“ƒhƒ‹
+/**	@brief 	ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
+*	@param	ID3D11Device* p_Device Direct3Dãƒ‡ãƒã‚¤ã‚¹
+*   @param  HWND hwnd              windowsãƒãƒ³ãƒ‰ãƒ«
 *	@return HRESULT
 *	@date 2024/03/29
 */
@@ -31,49 +31,49 @@ HRESULT    CD3D11_SwapChain::Create(HWND hwnd, ID3D11Device* m_pDevice)
 {
     HRESULT  hr;
 
-    //ƒXƒƒbƒvƒ`ƒF[ƒ“‚Ìİ’è
+    //ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³ã®è¨­å®š
     CRect                rect;
     DXGI_SWAP_CHAIN_DESC scDesc;
 
-    //w’è‚ÌƒEƒBƒ“ƒhƒE‚Ì’†g‚ğ‘S‚Ä‰Šú‰»
+    //æŒ‡å®šã®ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä¸­èº«ã‚’å…¨ã¦åˆæœŸåŒ–
     ::GetClientRect(hwnd, &rect);
     ::ZeroMemory(&scDesc, sizeof(scDesc));
 
-    //ƒoƒbƒNƒoƒbƒtƒ@‚Ì•\¦ƒ‚[ƒh
+    //ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®è¡¨ç¤ºãƒ¢ãƒ¼ãƒ‰
     scDesc.BufferDesc.Width = rect.Width();
     scDesc.BufferDesc.Height = rect.Height();
     scDesc.BufferDesc.Format = DXGI_FORMAT_R8G8B8A8_UNORM;
-    //ƒ}ƒ‹ƒ`ƒTƒ“ƒvƒŠƒ“ƒO‚Ìƒpƒ‰ƒ[ƒ^
+    //ãƒãƒ«ãƒã‚µãƒ³ãƒ—ãƒªãƒ³ã‚°ã®ãƒ‘ãƒ©ãƒ¡ãƒ¼ã‚¿
     scDesc.SampleDesc.Count = 1;
     scDesc.SampleDesc.Quality = 0;
 
-    scDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;      // V‚µ‚¢ƒtƒŒ[ƒ€‚ª•`‰æ‚³‚ê‚é‚½‚Ñ‚ÉA‘O‚ÌƒtƒŒ[ƒ€ƒoƒbƒtƒ@‚Ì“à—e‚ª”jŠü‚³‚ê‚é
+    scDesc.SwapEffect = DXGI_SWAP_EFFECT_FLIP_DISCARD;      // æ–°ã—ã„ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæç”»ã•ã‚Œã‚‹ãŸã³ã«ã€å‰ã®ãƒ•ãƒ¬ãƒ¼ãƒ ãƒãƒƒãƒ•ã‚¡ã®å†…å®¹ãŒç ´æ£„ã•ã‚Œã‚‹
     scDesc.BufferDesc.RefreshRate.Numerator = 60;
     scDesc.BufferDesc.RefreshRate.Denominator = 1;
-    scDesc.BufferCount = 2;                                 //ƒXƒƒbƒvƒ`ƒF[ƒ““à‚Ìƒoƒbƒtƒ@‚Ì”
-    scDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;   //ƒoƒbƒNƒoƒbƒtƒ@‚Ìg—p•û–@
-    scDesc.OutputWindow = hwnd;                             //o—Í‚·‚éƒEƒBƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹
-    scDesc.Windowed = TRUE;                                 //ƒEƒBƒ“ƒhƒEƒ‚[ƒh‚©‚Ç‚¤‚©
+    scDesc.BufferCount = 2;                                 //ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³å†…ã®ãƒãƒƒãƒ•ã‚¡ã®æ•°
+    scDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;   //ãƒãƒƒã‚¯ãƒãƒƒãƒ•ã‚¡ã®ä½¿ç”¨æ–¹æ³•
+    scDesc.OutputWindow = hwnd;                             //å‡ºåŠ›ã™ã‚‹ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«
+    scDesc.Windowed = TRUE;                                 //ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ¢ãƒ¼ãƒ‰ã‹ã©ã†ã‹
 
-    //DXGIƒtƒ@ƒNƒgƒŠƒIƒuƒWƒFƒNƒg‚Ìì¬
-    //ŒÃ‚¢H
+    //DXGIãƒ•ã‚¡ã‚¯ãƒˆãƒªã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½œæˆ
+    //å¤ã„ï¼Ÿ
     hr = CreateDXGIFactory(__uuidof(IDXGIFactory), (void**)&this->pFactory);
-    //¬Œ÷‚µ‚½‚©ƒ`ƒFƒbƒN
+    //æˆåŠŸã—ãŸã‹ãƒã‚§ãƒƒã‚¯
     if (FAILED(hr)) { return hr; }
 
-    //ƒXƒƒbƒvƒ`ƒF[ƒ“‚Ì‰Šú‰»
-    //11.1ˆÈ~‚Å‚ÍIDXGIFactory2::CreateSwapChainForHwnd‚ª‚¢‚¢‚Á‚Û‚¢‚ª
-    //¡‚Í11.0‚È‚Ì‚Å‚±‚ê‚Ås‚­
-    hr = this->pFactory->CreateSwapChain(m_pDevice,         //ƒXƒƒbƒvƒ`ƒF[ƒ“‚ğì¬‚·‚éDirect3DƒfƒoƒCƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^[
-        &scDesc,                                            //ƒXƒƒbƒvƒ`ƒF[ƒ“‚Ìİ’è‚ğŠÜ‚ŞDXGI_SWAP_CHAIN_DESC\‘¢‘Ì‚Ö‚Ìƒ|ƒCƒ“ƒ^[
-        &this->m_pSwapChain);                               //ì¬‚³‚ê‚½ƒXƒƒbƒvƒ`ƒF[ƒ“‚ÌƒCƒ“ƒ^[ƒtƒF[ƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^[‚ğó‚¯æ‚é•Ï”‚Ö‚Ìƒ|ƒCƒ“ƒ^[
+    //ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³ã®åˆæœŸåŒ–
+    //11.1ä»¥é™ã§ã¯IDXGIFactory2::CreateSwapChainForHwndãŒã„ã„ã£ã½ã„ãŒ
+    //ä»Šã¯11.0ãªã®ã§ã“ã‚Œã§è¡Œã
+    hr = this->pFactory->CreateSwapChain(m_pDevice,         //ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³ã‚’ä½œæˆã™ã‚‹Direct3Dãƒ‡ãƒã‚¤ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+        &scDesc,                                            //ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³ã®è¨­å®šã‚’å«ã‚€DXGI_SWAP_CHAIN_DESCæ§‹é€ ä½“ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+        &this->m_pSwapChain);                               //ä½œæˆã•ã‚ŒãŸã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³ã®ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ãƒ¼ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼ã‚’å—ã‘å–ã‚‹å¤‰æ•°ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
 
-    //¬Œ÷‚µ‚½‚©ƒ`ƒFƒbƒN
+    //æˆåŠŸã—ãŸã‹ãƒã‚§ãƒƒã‚¯
     if (FAILED(hr)) { return hr; }
     return hr;
 }
 
-/**	@brief 	‰ğ•úˆ—
+/**	@brief 	è§£æ”¾å‡¦ç†
 *	@date 2024/03/29
 */
 void    CD3D11_SwapChain::Release()

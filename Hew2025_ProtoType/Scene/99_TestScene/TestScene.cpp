@@ -1,14 +1,14 @@
-/**	@file	TestScene.cpp
-*	@brief 	ƒeƒXƒgƒV[ƒ“ƒNƒ‰ƒX
+ï»¿/**	@file	TestScene.cpp
+*	@brief 	ãƒ†ã‚¹ãƒˆã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/21
-*	@memo	ƒ}ƒl[ƒWƒƒ[‚ÍÃ“Iƒƒ“ƒo•Ï”‚È‚Ì‚Åæ“¾‚Ì‚İ
+*	@memo	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã¯é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°ãªã®ã§å–å¾—ã®ã¿
 */
 #include"TestScene.h"
 #include"../../Library/Code/self/03_Windows/WindowSetup.h"
 
 #include<Windows.h>
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 TestScene::TestScene()
@@ -21,7 +21,7 @@ TestScene::TestScene()
     this->p_sampler = nullptr;
     this->p_brendState = nullptr;
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 TestScene::~TestScene()
@@ -30,41 +30,41 @@ TestScene::~TestScene()
     this->Finalize();
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì‰Šú‰»
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®åˆæœŸåŒ–
 *	@date	2024/05/10
 */
 void	TestScene::Initialize(void)
 {
     if (!this->p_object) { this->p_object = new Object; }
 
-    if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // ’¸“_ƒVƒF[ƒ_
-    if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ƒsƒNƒZƒ‹ƒVƒF[ƒ_
-    if (!this->p_inputLayout) { this->p_inputLayout = new CInputLayout; }               // “ü—ÍƒŒƒCƒAƒEƒg
-    if (!this->p_sampler) { this->p_sampler = new CSampler; }                           // ƒTƒ“ƒvƒ‰[
+    if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
+    if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
+    if (!this->p_inputLayout) { this->p_inputLayout = new CInputLayout; }               // å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
+    if (!this->p_sampler) { this->p_sampler = new CSampler; }                           // ã‚µãƒ³ãƒ—ãƒ©ãƒ¼
 
-    // ƒIƒuƒWƒFƒNƒg
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     this->p_object->Init(L"Asset/block.png");
 
 
     //--------------------------------------------------------------------------
-    //		•`‰æŠÖ˜A‚Ì‰Šú‰»
+    //		æç”»é–¢é€£ã®åˆæœŸåŒ–
     //--------------------------------------------------------------------------	
 
     HRESULT hr;
-    // ƒVƒF[ƒ_
+    // ã‚·ã‚§ãƒ¼ãƒ€
     {
-        // ’¸“_ƒVƒF[ƒ_ƒRƒ“ƒpƒCƒ‹
+        // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
         hr = this->p_vertexShader->CompileFromFile(
-            L"Shader/VertexShader.hlsl",            // g—p‚µ‚½‚¢ƒVƒF[ƒ_ƒtƒ@ƒCƒ‹ƒpƒX
+            L"Shader/VertexShader.hlsl",            // ä½¿ç”¨ã—ãŸã„ã‚·ã‚§ãƒ¼ãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
             NULL,
             NULL,
-            "vs_main",                              // ƒVƒF[ƒ_ƒtƒ@ƒCƒ‹“à‚Å‘‚¢‚Ä‚¢‚éƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
-            "vs_5_0",                               // ƒVƒF[ƒ_‚Ìƒo[ƒWƒ‡ƒ“
+            "vs_main",                              // ã‚·ã‚§ãƒ¼ãƒ€ãƒ•ã‚¡ã‚¤ãƒ«å†…ã§æ›¸ã„ã¦ã„ã‚‹ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
+            "vs_5_0",                               // ã‚·ã‚§ãƒ¼ãƒ€ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
             0,
             0
         );
 
-        //  ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹ƒRƒ“ƒpƒCƒ‹
+        //  ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
         hr = this->p_pixelShader->CompileFromFile(
             L"Shader/PixelShader.hlsl",
             NULL,
@@ -75,36 +75,36 @@ void	TestScene::Initialize(void)
             0
         );
 
-        //  ƒVƒF[ƒ_‚Ì¶¬
-        hr = this->p_vertexShader->Create(NULL);     //  ’¸“_ƒVƒF[ƒ_
-        hr = this->p_pixelShader->Create(NULL);      //  ƒsƒNƒZƒ‹ƒVƒF[ƒ_
+        //  ã‚·ã‚§ãƒ¼ãƒ€ã®ç”Ÿæˆ
+        hr = this->p_vertexShader->Create(NULL);     //  é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
+        hr = this->p_pixelShader->Create(NULL);      //  ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
     }
 
-    // ƒCƒ“ƒvƒbƒgƒŒƒCƒAƒEƒgì¬
+    // ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆä½œæˆ
     D3D11_INPUT_ELEMENT_DESC layout[]
     {
-        // ˆÊ’uÀ•W‚ª‚ ‚é‚Æ‚¢‚¤‚±‚Æ‚ğ“`‚¦‚é
+        // ä½ç½®åº§æ¨™ãŒã‚ã‚‹ã¨ã„ã†ã“ã¨ã‚’ä¼ãˆã‚‹
         { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT,    0,                            0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        // Fî•ñ‚ª‚ ‚é‚Æ‚¢‚¤‚±‚Æ‚ğ“`‚¦‚é
+        // è‰²æƒ…å ±ãŒã‚ã‚‹ã¨ã„ã†ã“ã¨ã‚’ä¼ãˆã‚‹
         { "COLOR",    0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        //UVÀ•W(uv)
+        //UVåº§æ¨™(uv)
         {"TEX",0,DXGI_FORMAT_R32G32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
     };
 
-    // “ü—ÍƒŒƒCƒAƒEƒg‚Ìì¬
-    unsigned int numElements = ARRAYSIZE(layout);                           // ƒŒƒCƒAƒEƒg‚ÌƒTƒCƒY
-    ID3DBlob* p_vsBlob = this->p_vertexShader->GetShaderFile();             // ’¸“_ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹‚Ìæ“¾
+    // å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®ä½œæˆ
+    unsigned int numElements = ARRAYSIZE(layout);                           // ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®ã‚µã‚¤ã‚º
+    ID3DBlob* p_vsBlob = this->p_vertexShader->GetShaderFile();             // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®å–å¾—
     hr = this->p_inputLayout->Create(layout, numElements, p_vsBlob);       
 
-    // ƒTƒ“ƒvƒ‰[‚ğì¬
+    // ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’ä½œæˆ
     hr = this->p_sampler->Create(D3D11_FILTER_MIN_MAG_MIP_LINEAR,
         D3D11_TEXTURE_ADDRESS_CLAMP,
         D3D11_TEXTURE_ADDRESS_CLAMP,
         D3D11_TEXTURE_ADDRESS_CLAMP);
     if (FAILED(hr)) { return; }
 
-    // ƒuƒŒƒ“ƒhƒXƒe[ƒg‚Ìì¬
-    // ¨“§‰ßˆ—‚â‰ÁZ‡¬‚ğ‰Â”\‚É‚·‚éF‚Ì‡¬•û–@
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã®ä½œæˆ
+    // â†’é€éå‡¦ç†ã‚„åŠ ç®—åˆæˆã‚’å¯èƒ½ã«ã™ã‚‹è‰²ã®åˆæˆæ–¹æ³•
     {
         D3D11_BLEND_DESC    brendState;
 
@@ -126,12 +126,12 @@ void	TestScene::Initialize(void)
             hr = p_device->CreateBlendState(&brendState, &this->p_brendState);
             if (FAILED(hr)) { return; }
         }
-        // [“xƒeƒXƒg‚ğ–³Œø‚É‚·‚é
+        // æ·±åº¦ãƒ†ã‚¹ãƒˆã‚’ç„¡åŠ¹ã«ã™ã‚‹
         ID3D11DepthStencilState* p_dSState;
         CD3D11_DEPTH_STENCIL_DESC   dsDesc;
         ZeroMemory(&dsDesc, sizeof(dsDesc));
 
-        dsDesc.DepthEnable = FALSE;     // [“xƒeƒXƒg‚ğ–³Œø‚Éİ’è
+        dsDesc.DepthEnable = FALSE;     // æ·±åº¦ãƒ†ã‚¹ãƒˆã‚’ç„¡åŠ¹ã«è¨­å®š
         dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
         dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
         if (p_device)
@@ -139,7 +139,7 @@ void	TestScene::Initialize(void)
             hr = p_device->CreateDepthStencilState(&dsDesc, &p_dSState);
             if (FAILED(hr)) { return; }
 
-            // ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+            // ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
             ID3D11DeviceContext* p_deviceContext = this->p_cd3d11->GetDeviceContext();
             if (p_deviceContext)
             {
@@ -149,89 +149,89 @@ void	TestScene::Initialize(void)
     }
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌXV
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æ›´æ–°
 *	@date	2024/05/10
 */
 void	TestScene::Update(void)
 {
     if (GetAsyncKeyState(VK_SPACE))
     {
-        // ƒV[ƒ“‘JˆÚ
-        this->p_sceneManager->ChangeScene(Scene::TEST); // ˆê’UÄ“Ç‚İ‚İ‚É‚µ‚Ä‚¢‚é
+        // ã‚·ãƒ¼ãƒ³é·ç§»
+        this->p_sceneManager->ChangeScene(Scene::TEST); // ä¸€æ—¦å†èª­ã¿è¾¼ã¿ã«ã—ã¦ã„ã‚‹
         return;
     }
 
-    // ƒIƒuƒWƒFƒNƒg‚ÌXV
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ›´æ–°
     this->p_object->Update();
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æç”»
 *	@date	2024/05/10
 */
 void	TestScene::Draw(void)
 {    
 
     //--------------------------------------------------------------------------
-    //		•`‰æŠÖ˜A(‚»‚ñ‚È•p”É‚É•Ï‚¦‚é‚±‚Æ‚Í‚È‚¢‚Æv‚¤)
+    //		æç”»é–¢é€£(ãã‚“ãªé »ç¹ã«å¤‰ãˆã‚‹ã“ã¨ã¯ãªã„ã¨æ€ã†)
     //--------------------------------------------------------------------------	
 
-    // •`‰æİ’è—p‚ÉƒfƒoƒCƒX‚È‚Ç‚ğæ“¾
+    // æç”»è¨­å®šç”¨ã«ãƒ‡ãƒã‚¤ã‚¹ãªã©ã‚’å–å¾—
     CD3D11* cd3d11 = CD3D11::GetInstance();
     ID3D11DeviceContext* deviceContext = cd3d11->GetDeviceContext();
     ID3D11DepthStencilView* depthStencilView = cd3d11->GetDepthStencilView();
     ID3D11RenderTargetView* renderTargetView = cd3d11->GetRenderTargetView();
     D3D11_VIEWPORT* viewport = cd3d11->GetViewport();
 
-    // “ü—ÍƒŒƒCƒAƒEƒg‚Ìİ’è
+    // å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®è¨­å®š
     this->p_inputLayout->SetInputLayout();
     deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
-    // ƒVƒF[ƒ_‚ğƒZƒbƒg
+    // ã‚·ã‚§ãƒ¼ãƒ€ã‚’ã‚»ãƒƒãƒˆ
     this->p_vertexShader->SetShader(0, 0);
     this->p_pixelShader->SetShader(0, 0);
 
-    // ƒTƒ“ƒvƒ‰[‚ğƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚É“n‚·
+    // ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«æ¸¡ã™
     this->p_sampler->SetSamplerPS(0, 1);
 
-    // ƒuƒŒƒ“ƒhƒXƒe[ƒg‚ğƒZƒbƒg
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
     deviceContext->OMSetBlendState(this->p_brendState, NULL, 0xfffffffff);
 
     //--------------------------------------------------------------------------
-    //		ƒIƒuƒWƒFƒNƒg‚Ì•`‰æ
+    //		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»
     //--------------------------------------------------------------------------	
     this->p_object->Draw();
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌI—¹ˆ—
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®çµ‚äº†å‡¦ç†
 *	@date	2024/05/10
 */
 void	TestScene::Finalize(void)
 {
-    // ’¸“_ƒVƒF[ƒ_
+    // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
     if (this->p_vertexShader) {
         delete   this->p_vertexShader;
         this->p_vertexShader = nullptr;
     }
 
-    // ƒsƒNƒZƒ‹ƒVƒF[ƒ_
+    // ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
     if (this->p_pixelShader) {
         delete    this->p_pixelShader;
         this->p_pixelShader = nullptr;
     }
 
-    // “ü—ÍƒŒƒCƒAƒEƒg
+    // å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
     if (this->p_inputLayout) {
         delete    this->p_inputLayout;
         this->p_inputLayout = nullptr;
     }
 
-    // ƒTƒ“ƒvƒ‰[
+    // ã‚µãƒ³ãƒ—ãƒ©ãƒ¼
     if (this->p_sampler) {
         delete  this->p_sampler;
         this->p_sampler = nullptr;
     }
 
-    // ƒuƒŒƒ“ƒhƒXƒe[ƒg
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆ
     if (this->p_brendState) {
         this->p_brendState->Release();
     }

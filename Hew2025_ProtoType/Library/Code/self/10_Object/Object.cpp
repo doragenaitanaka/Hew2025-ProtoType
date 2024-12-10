@@ -1,6 +1,6 @@
-/**	@brief 	’¸“_ƒoƒbƒtƒ@‚Ìì¬ŠÖ”
+ï»¿/**	@brief 	é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆé–¢æ•°
 *	@date	2024/05/23
-*	@memo	extern ‚Å Direxc3D.h‚©‚çƒfƒoƒCƒXAƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚ğQÆ‚µ‚Ä‚¢‚é
+*	@memo	extern ã§ Direxc3D.hã‹ã‚‰ãƒ‡ãƒã‚¤ã‚¹ã€ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã‚’å‚ç…§ã—ã¦ã„ã‚‹
 */
 
 #include"Object.h"
@@ -8,7 +8,7 @@
 #include"../../self/04_DirextX_11/01_Initialize/CD3D11.h"
 #include"../../self/SafePointers.h"
 
-#include".././03_Windows/WindowSetup.h"	// ƒXƒNƒŠ[ƒ“‚Ì‘å‚«‚³–á‚¤@(‚±‚±‚ÉƒTƒCƒY’u‚­‚×‚«‚Å‚È‚¢‚Ì‚©‚à)
+#include".././03_Windows/WindowSetup.h"	// ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã®å¤§ãã•è²°ã†ã€€(ã“ã“ã«ã‚µã‚¤ã‚ºç½®ãã¹ãã§ãªã„ã®ã‹ã‚‚)
 
 Object::Object()
 {
@@ -41,50 +41,50 @@ Object::~Object()
 {
 	this->UnInit();
 }
-/**	@brief 	ƒIƒuƒWƒFƒNƒg‚Ì‰Šú‰»
-*	@param	const wchar_t* _p_fileName ƒtƒ@ƒCƒ‹ƒpƒX
-*	@param	int	_splitX = 1		ƒ^ƒe‚É‰½•ªŠ„‚·‚é‚Ì‚©
-*	@param	int	_splitY = 1		ƒˆƒR‚É‰½•ªŠ„‚·‚é‚Ì‚©
-*	@param	int	_changeFrame = 1	‰½ƒtƒŒ[ƒ€‚ÅØ‚è‘Ö‚¦‚é‚©
-*	@param	float	_moveUPos = 0.0f	Ø‚è‘Ö‚í‚é‚²‚Æ‚É“®‚­ƒeƒNƒXƒ`ƒƒUÀ•W‚ÌˆÚ“®—Ê
+/**	@brief 	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åˆæœŸåŒ–
+*	@param	const wchar_t* _p_fileName ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+*	@param	int	_splitX = 1		ã‚¿ãƒ†ã«ä½•åˆ†å‰²ã™ã‚‹ã®ã‹
+*	@param	int	_splitY = 1		ãƒ¨ã‚³ã«ä½•åˆ†å‰²ã™ã‚‹ã®ã‹
+*	@param	int	_changeFrame = 1	ä½•ãƒ•ãƒ¬ãƒ¼ãƒ ã§åˆ‡ã‚Šæ›¿ãˆã‚‹ã‹
+*	@param	float	_moveUPos = 0.0f	åˆ‡ã‚Šæ›¿ã‚ã‚‹ã”ã¨ã«å‹•ããƒ†ã‚¯ã‚¹ãƒãƒ£Uåº§æ¨™ã®ç§»å‹•é‡
 *	@return	HRESULT
 *	@date	2024/06/06
 */
 HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_changeFrame , float	_moveUPos)
 {
-	// ƒIƒuƒWƒFƒNƒg‚ÌÀ•W‚ÉˆÊ’u‚ğ‡‚í‚¹‚é
+	// ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åº§æ¨™ã«ä½ç½®ã‚’åˆã‚ã›ã‚‹
 	this->p_coll = new Collider2D(this->pos, this->size);
 
-	// •ªŠ„”‚É‰‚¶‚ÄUVÀ•W‚ğŒˆ‚ß‚é
+	// åˆ†å‰²æ•°ã«å¿œã˜ã¦UVåº§æ¨™ã‚’æ±ºã‚ã‚‹
 	this->splitX = _splitX;
 	this->splitY = _splitY;
 
-	// ‰f‚·ƒeƒNƒXƒ`ƒƒ‚Ì”ÍˆÍ‚ğŒˆ‚ß‚é
+	// æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ç¯„å›²ã‚’æ±ºã‚ã‚‹
 	this->vertexList[1].u = 1.0f / this->splitX;
 	this->vertexList[2].v = 1.0f / this->splitY;
 	this->vertexList[3].u = 1.0f / this->splitX;
 	this->vertexList[3].v = 1.0f / this->splitY;
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌØ‚è‘Ö‚¦‘¬“x‚ÆˆÚ“®—Ê‚ğİ’è
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®åˆ‡ã‚Šæ›¿ãˆé€Ÿåº¦ã¨ç§»å‹•é‡ã‚’è¨­å®š
 	this->changeFrame = _changeFrame;
 	this->moveUPos = _moveUPos;
 
 	HRESULT hr;
-	// ’è”ƒoƒbƒtƒ@‚Ìì¬
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 	if (!this->p_constantBuffer)
 	{
 		this->p_constantBuffer = new	CConstantBuffer;
 		hr = this->p_constantBuffer->Create(NULL, sizeof(ConstBuffer));
 	}
 
-	// ’¸“_ƒoƒbƒtƒ@‚Ìì¬
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 	if (!this->p_vertexBuffer)
 	{
 		this->p_vertexBuffer = new  CVertexBuffer;
 		hr = this->p_vertexBuffer->Create(this->vertexList, sizeof(this->vertexList) * 4);
 	}
 
-	// ƒeƒNƒXƒ`ƒƒ“Ç‚İ‚İ
+	// ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
 	if (!this->p_textureView)
 	{
 		this->p_textureView = this->LoadTexture(_p_fileName);
@@ -92,37 +92,37 @@ HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 	return	hr;
 }
 
-/**	@brief 	ƒIƒuƒWƒFƒNƒg‚ÌXV
+/**	@brief 	ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ›´æ–°
 *	@date	2024/06/12
 */
 void	Object::Update(void)
 {
-	// ¡‰ñ‚Í“–‚½‚è”»’è‚Í‚¸‚Á‚ÆƒIƒuƒWƒFƒNƒg‚Æ“¯‚¶À•W
+	// ä»Šå›ã¯å½“ãŸã‚Šåˆ¤å®šã¯ãšã£ã¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨åŒã˜åº§æ¨™
 	this->p_coll->SetPos(this->pos);
 
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌXV
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ›´æ–°
 	//this->AnimUpdate();
 
-	// ’è”ƒoƒbƒtƒ@‚ÌXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 	this->ConstantBufferUpdate();
 }
 
-/**	@brief 	ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌXV
+/**	@brief 	ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ›´æ–°
 *	@date	2024/06/12
 */
 void	Object::AnimUpdate(void)
 {
-	// ƒAƒjƒ[ƒVƒ‡ƒ“‚ÌXV
+	// ã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®æ›´æ–°
 	this->frameCount = (this->frameCount + 1) % this->changeFrame;
-	// Ø‚è‘Ö‚¦‚éƒtƒŒ[ƒ€‚ª—ˆ‚½‚ç
+	// åˆ‡ã‚Šæ›¿ãˆã‚‹ãƒ•ãƒ¬ãƒ¼ãƒ ãŒæ¥ãŸã‚‰
 	if (this->frameCount == 0)
 	{
 		if (!this->isSwitched)
 		{
-			// UÀ•W‚ğˆÚ“®
+			// Uåº§æ¨™ã‚’ç§»å‹•
 			this->numU += this->moveUPos;
 
-			// ÅŒã‚Ü‚Å“®‚©‚¹‚½‚çŒ³‚É–ß‚·
+			// æœ€å¾Œã¾ã§å‹•ã‹ã›ãŸã‚‰å…ƒã«æˆ»ã™
 			if (this->numU >= this->splitX)
 			{
 				this->isSwitched = true;
@@ -131,10 +131,10 @@ void	Object::AnimUpdate(void)
 		}
 		if (this->isSwitched)
 		{
-			// UÀ•W‚ğˆÚ“®  
+			// Uåº§æ¨™ã‚’ç§»å‹•  
 			this->numU -= this->moveUPos;
 
-			// ÅŒã‚Ü‚Å“®‚©‚¹‚½‚çŒ³‚É–ß‚·
+			// æœ€å¾Œã¾ã§å‹•ã‹ã›ãŸã‚‰å…ƒã«æˆ»ã™
 			if (this->numU <= 0)
 			{
 				this->isSwitched = false;
@@ -144,40 +144,40 @@ void	Object::AnimUpdate(void)
 	}
 }
 
-/**	@brief	’è”ƒoƒbƒtƒ@‚ÌXV
+/**	@brief	å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 *	@date	2024/06/12
 */
 void	Object::ConstantBufferUpdate(void)
 {
-	// ’è”ƒoƒbƒtƒ@‚ğXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã‚’æ›´æ–°
 	ConstBuffer	cb;
-	// ƒvƒƒWƒFƒNƒVƒ‡ƒ“•ÏŠ·À•W‚Ìì¬
-	// ‰æ–Ê‚Ì‘å‚«‚³Šî€‚ğƒXƒNƒŠ[ƒ“‚Æ“¯‚¶‚É‚·‚é
+	// ãƒ—ãƒ­ã‚¸ã‚§ã‚¯ã‚·ãƒ§ãƒ³å¤‰æ›åº§æ¨™ã®ä½œæˆ
+	// ç”»é¢ã®å¤§ãã•åŸºæº–ã‚’ã‚¹ã‚¯ãƒªãƒ¼ãƒ³ã¨åŒã˜ã«ã™ã‚‹
 	cb.matrixProj = DirectX::XMMatrixOrthographicLH(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 3.0f);
 	cb.matrixProj = DirectX::XMMatrixTranspose(cb.matrixProj);
 
-	// ƒ[ƒ‹ƒh•ÏŠ·s—ñ‚Ìì¬
-	// ¨ƒIƒuƒWƒFƒNƒg‚ÌˆÊ’uA‘å‚«‚³AŒü‚«‚ğw’è
-	cb.matrixWorld = DirectX::XMMatrixScaling(this->size.x, this->size.y, this->size.z);	// ‘å‚«‚³
-	float   radianAngle = DirectX::XMConvertToRadians(this->angle);							// ƒ‰ƒWƒAƒ“‚É•ÏŠ·
-	cb.matrixWorld *= DirectX::XMMatrixRotationZ(radianAngle);								// Œü‚«‚ğw’è
+	// ãƒ¯ãƒ¼ãƒ«ãƒ‰å¤‰æ›è¡Œåˆ—ã®ä½œæˆ
+	// â†’ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ä½ç½®ã€å¤§ãã•ã€å‘ãã‚’æŒ‡å®š
+	cb.matrixWorld = DirectX::XMMatrixScaling(this->size.x, this->size.y, this->size.z);	// å¤§ãã•
+	float   radianAngle = DirectX::XMConvertToRadians(this->angle);							// ãƒ©ã‚¸ã‚¢ãƒ³ã«å¤‰æ›
+	cb.matrixWorld *= DirectX::XMMatrixRotationZ(radianAngle);								// å‘ãã‚’æŒ‡å®š
 	cb.matrixWorld *= DirectX::XMMatrixTranslation(this->pos.x, this->pos.y, this->pos.z);
 	cb.matrixWorld = DirectX::XMMatrixTranspose(cb.matrixWorld);
 
-	// UVƒAƒjƒ[ƒVƒ‡ƒ“‚Ìs—ñì¬
+	// UVã‚¢ãƒ‹ãƒ¡ãƒ¼ã‚·ãƒ§ãƒ³ã®è¡Œåˆ—ä½œæˆ
 	float	u = (float)this->numU / this->splitX;
 	float	v = (float)this->numV / this->splitY;
 	cb.matrixTex = DirectX::XMMatrixTranslation(u, v, 0.0f);
 	cb.matrixTex = DirectX::XMMatrixTranspose(cb.matrixTex);
 
-	// ’¸“_ƒJƒ‰[s—ñ‚Ìì¬
+	// é ‚ç‚¹ã‚«ãƒ©ãƒ¼è¡Œåˆ—ã®ä½œæˆ
 	cb.color = this->color;
 
-	// ’è”ƒoƒbƒtƒ@‚ÌXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 	this->p_constantBuffer->Update(&cb);
 }
 
-/**	@brief 	•`‰æŠÖ”
+/**	@brief 	æç”»é–¢æ•°
 *	@param	UINT strides
 *	@date	2024/05/23
 */
@@ -185,17 +185,17 @@ void	Object::Draw()
 {
 	UINT offsets = 0;
 	UINT strides = sizeof(Vertex);
-	this->p_vertexBuffer->SetVertexBuffer(0, 1, &strides, &offsets);	// ’¸“_ƒoƒbƒtƒ@‚ğIA‚É“n‚·
+	this->p_vertexBuffer->SetVertexBuffer(0, 1, &strides, &offsets);	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚’IAã«æ¸¡ã™
 
-	//ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+	//ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
 	CD3D11* cd3d11 = CD3D11::GetInstance();
 	ID3D11DeviceContext* p_deviceContext = cd3d11->GetDeviceContext();
-	p_deviceContext->PSSetShaderResources(0, 1, &this->p_textureView);	// ƒeƒNƒXƒ`ƒƒ‚ğƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚É“n‚·
+	p_deviceContext->PSSetShaderResources(0, 1, &this->p_textureView);	// ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«æ¸¡ã™
 
-	// ƒVƒF[ƒ_‚É“n‚·
+	// ã‚·ã‚§ãƒ¼ãƒ€ã«æ¸¡ã™
 	this->p_constantBuffer->SetConstantBuffer();
 
-	p_deviceContext->Draw(4, 0); // •`‰æ–½—ß
+	p_deviceContext->Draw(4, 0); // æç”»å‘½ä»¤
 }
 void	Object::UnInit(void)
 {
@@ -209,7 +209,7 @@ void	Object::UnInit(void)
 	SAFE_RELEASE(this->p_constantBuffer);
 }
 
-/**	@brief 	À•W‚ğİ’è
+/**	@brief 	åº§æ¨™ã‚’è¨­å®š
 *	@param	float x
 *	@param	float y
 *	@param	float z
@@ -221,13 +221,13 @@ void	Object::SetPos(float x, float y, float z)
 	this->pos.y = y;
 	this->pos.z = z;
 
-	// ¡‰ñ‚Í“–‚½‚è”»’è‚Í‚¸‚Á‚ÆƒIƒuƒWƒFƒNƒg‚Æ“¯‚¶À•W
+	// ä»Šå›ã¯å½“ãŸã‚Šåˆ¤å®šã¯ãšã£ã¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¨åŒã˜åº§æ¨™
 	this->p_coll->SetPos(this->pos);
 
-	// ’è”ƒoƒbƒtƒ@‚ÌXV
+	// å®šæ•°ãƒãƒƒãƒ•ã‚¡ã®æ›´æ–°
 	this->ConstantBufferUpdate();
 }
-/**	@brief 	À•W‚ğİ’è
+/**	@brief 	åº§æ¨™ã‚’è¨­å®š
 *	@retuen		DirectX::XMFLOAT3
 *	@date	2024/09/19
 */
@@ -236,7 +236,7 @@ DirectX::XMFLOAT3	Object::GetPos(void)
 	return this->pos;
 }
 
-/**	@brief 	ƒTƒCƒY‚ğİ’è
+/**	@brief 	ã‚µã‚¤ã‚ºã‚’è¨­å®š
 *	@retuen		DirectX::XMFLOAT3
 *	@date	2024/09/19
 */
@@ -245,8 +245,8 @@ DirectX::XMFLOAT3	Object::GetSize(void)
 	return this->size;
 }
 
-/**	@brief 	ƒRƒ‰ƒCƒ_[‚Ìæ“¾
-*	@return	Collider2D&		ƒRƒ‰ƒCƒ_[2D
+/**	@brief 	ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼ã®å–å¾—
+*	@return	Collider2D&		ã‚³ãƒ©ã‚¤ãƒ€ãƒ¼2D
 *	@date	2024/06/12
 */
 Collider2D& Object::GetCollider2D(void)
@@ -254,7 +254,7 @@ Collider2D& Object::GetCollider2D(void)
 	return *this->p_coll;
 }
 
-/**	@brief 	‘å‚«‚³‚ğİ’è
+/**	@brief 	å¤§ãã•ã‚’è¨­å®š
 *	@param	float x
 *	@param	float y
 *	@param	float z
@@ -266,11 +266,11 @@ void	Object::SetSize(float x, float y, float z)
 	this->size.y = y;
 	this->size.z = z;
 
-	// “–‚½‚è”»’è‚àXV
+	// å½“ãŸã‚Šåˆ¤å®šã‚‚æ›´æ–°
 	this->p_coll->SetSize(this->size);
 }
 
-/**	@brief 	Šp“x‚ğİ’è
+/**	@brief 	è§’åº¦ã‚’è¨­å®š
 *	@param	float angle
 *	@date	2024/05/30
 */
@@ -279,8 +279,8 @@ void	Object::SetAngle(float angle)
 	this->angle = angle;
 }
 
-/**	@brief 	ƒeƒNƒXƒ`ƒƒ‚ğƒZƒbƒg
-*	@param	ID3D11ShaderResourceView* _p_texture	ƒeƒNƒXƒ`ƒƒ
+/**	@brief 	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ã‚»ãƒƒãƒˆ
+*	@param	ID3D11ShaderResourceView* _p_texture	ãƒ†ã‚¯ã‚¹ãƒãƒ£
 *	@date	2024/09/17
 */
 void	Object::SetTexture(ID3D11ShaderResourceView* _p_texture)
@@ -288,7 +288,7 @@ void	Object::SetTexture(ID3D11ShaderResourceView* _p_texture)
 	this->p_textureView = _p_texture;
 }
 
-/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚ÌƒˆƒR‚ÌêŠ‚ğİ’è
+/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ¨ã‚³ã®å ´æ‰€ã‚’è¨­å®š
 *	@param	int	numU
 *	@date	2024/06/06
 */
@@ -297,7 +297,7 @@ void	Object::SetTextureNumU(float	numU)
 	this->numU = numU;
 }
 
-/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚Ìƒ^ƒe‚ÌêŠ‚ğİ’è
+/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¿ãƒ†ã®å ´æ‰€ã‚’è¨­å®š
 *	@param	int	numV
 *	@date	2024/06/06
 */
@@ -306,7 +306,7 @@ void	Object::SetTextureNumV(float	numV)
 	this->numV = numV;
 }
 
-/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚ÌƒˆƒR‚ÌUÀ•W‚ğæ“¾
+/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ãƒ¨ã‚³ã®Uåº§æ¨™ã‚’å–å¾—
 *	@return	int	numU
 *	@date	2024/06/07
 */
@@ -315,7 +315,7 @@ float	Object::GetTextureNumU(void)
 	return	this->numU;
 }
 
-/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚Ìƒ^ƒe‚ÌVÀ•W‚ğæ“¾
+/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®ã‚¿ãƒ†ã®Våº§æ¨™ã‚’å–å¾—
 *	@return	int	numV
 *	@date	2024/06/07
 */
@@ -324,8 +324,8 @@ float	Object::GetTextureNumV(void)
 	return	this->numV;
 }
 
-/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚Ì’¸“_À•W‚ğİ’è
-*	@param	DirectX::XMFLOAT4	_color	’¸“_ƒJƒ‰[
+/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é ‚ç‚¹åº§æ¨™ã‚’è¨­å®š
+*	@param	DirectX::XMFLOAT4	_color	é ‚ç‚¹ã‚«ãƒ©ãƒ¼
 *	@date	2024/06/12
 */
 void	Object::SetColor(DirectX::XMFLOAT4	_color)
@@ -333,8 +333,8 @@ void	Object::SetColor(DirectX::XMFLOAT4	_color)
 	this->color = _color;
 }
 
-/**	@brief 	‰f‚·ƒeƒNƒXƒ`ƒƒ‚Ì“§–¾“x‚ğİ’è
-*	@param	float	_color	“§–¾“xiƒAƒ‹ƒtƒ@’lj
+/**	@brief 	æ˜ ã™ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®é€æ˜åº¦ã‚’è¨­å®š
+*	@param	float	_color	é€æ˜åº¦ï¼ˆã‚¢ãƒ«ãƒ•ã‚¡å€¤ï¼‰
 *	@date	2024/06/12
 */
 void	Object::SetAlpha(float	_color)
@@ -342,22 +342,22 @@ void	Object::SetAlpha(float	_color)
 	this->color.w = _color;
 }
 
-/**	@brief 	ƒeƒNƒXƒ`ƒƒ‚Ì“Ç‚İ‚İŠÖ”
-*	@param	const wchar_t* fileName ƒtƒ@ƒCƒ‹ƒpƒX
-*	@return	ID3D11ShaderResourceView*	ƒeƒNƒXƒ`ƒƒ
+/**	@brief 	ãƒ†ã‚¯ã‚¹ãƒãƒ£ã®èª­ã¿è¾¼ã¿é–¢æ•°
+*	@param	const wchar_t* fileName ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
+*	@return	ID3D11ShaderResourceView*	ãƒ†ã‚¯ã‚¹ãƒãƒ£
 *	@date	2024/09/17
 */
 ID3D11ShaderResourceView* Object::LoadTexture(const wchar_t* fileName)
 {
 	HRESULT hr;
 	ID3D11ShaderResourceView* p_texture = nullptr;
-	//ƒfƒoƒCƒX‚Ìæ“¾
+	//ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
 	CD3D11* cd3d11 = CD3D11::GetInstance();
 	ID3D11Device* p_device = cd3d11->GetDevice();
-	//ƒeƒNƒXƒ`ƒƒ“Ç‚İ‚İ
+	//ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿
 	hr = CreateWICTextureFromFile(p_device, fileName, NULL, &p_texture);
 	if (FAILED(hr)) {
-		MessageBoxA(NULL, "ƒeƒNƒXƒ`ƒƒ“Ç‚İ‚İ¸”s", "error", MB_ICONERROR | MB_OK);
+		MessageBoxA(NULL, "ãƒ†ã‚¯ã‚¹ãƒãƒ£èª­ã¿è¾¼ã¿å¤±æ•—", "error", MB_ICONERROR | MB_OK);
 		return nullptr;
 	}
 	return p_texture;

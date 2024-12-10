@@ -1,6 +1,6 @@
-#include"CBuffer.h"
+ï»¿#include"CBuffer.h"
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/04/29
 */
 CBuffer::CBuffer()
@@ -8,19 +8,19 @@ CBuffer::CBuffer()
 	this->cd3d11 = CD3D11::GetInstance();
 	this->p_buffer = nullptr;
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/04/29
 */
 CBuffer::~CBuffer()
 {
 	this->Release();
 }
-/**	@brief 	‰ğ•úˆ—
+/**	@brief 	è§£æ”¾å‡¦ç†
 *	@date	2024/04/29
 */
 void	CBuffer::Release(void)
 {
-	//ì¬Ï‚Ì‚Æ‚«
+	//ä½œæˆæ¸ˆã®ã¨ã
 	if (this->p_buffer)
 	{
 		this->p_buffer->Release();
@@ -29,7 +29,7 @@ void	CBuffer::Release(void)
 	this->cd3d11 = nullptr;
 }
 
-/**	@brief 	ƒoƒbƒtƒ@î•ñ‚Ìƒ|ƒCƒ“ƒ^‚ğ•Ô‚·
+/**	@brief 	ãƒãƒƒãƒ•ã‚¡æƒ…å ±ã®ãƒã‚¤ãƒ³ã‚¿ã‚’è¿”ã™
 *	@return	ID3D11Buffer**
 *	@date	2024/04/29
 */

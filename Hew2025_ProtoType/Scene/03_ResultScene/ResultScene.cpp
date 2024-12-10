@@ -1,45 +1,45 @@
-/**	@file	ResultScene.cpp
-*	@brief 	ƒŠƒUƒ‹ƒgƒV[ƒ“ƒNƒ‰ƒX
+ï»¿/**	@file	ResultScene.cpp
+*	@brief 	ãƒªã‚¶ãƒ«ãƒˆã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/10
 */
 
 #include"ResultScene.h"
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 ResultScene::ResultScene()
 {
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 ResultScene::~ResultScene()
 {
 	this->Finalize();
 }
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì‰Šú‰»
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®åˆæœŸåŒ–
 *	@date	2024/05/10
 */
 void	ResultScene::Initialize(void)
 {
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌXV
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æ›´æ–°
 *	@date	2024/05/10
 */
 void	ResultScene::Update(void)
 {
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æç”»
 *	@date	2024/05/10
 */
 void	ResultScene::Draw(void)
 {
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌI—¹ˆ—
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®çµ‚äº†å‡¦ç†
 *	@date	2024/05/10
 */
 void	ResultScene::Finalize(void)

@@ -1,14 +1,14 @@
-#include"CInputLayout.h"
+ï»¿#include"CInputLayout.h"
 #include"../../SafePointers.h"
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/04/23
 */
 CInputLayout::CInputLayout()
 {
     this->p_inputLayout = NULL;
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/04/23
 */
 CInputLayout::~CInputLayout()
@@ -16,10 +16,10 @@ CInputLayout::~CInputLayout()
 	this->Release();
 }
 
-/**	@brief 	“ü—ÍƒŒƒCƒAƒEƒg‚Ìì¬
-*	@param	D3D11_INPUT_ELEMENT_DESC*	layout	’¸“_ƒf[ƒ^ƒ|ƒCƒ“ƒ^
-*	@param	UINT numElements	                —v‘f”ƒTƒCƒY
-*	@param	ID3DBlob*	p_vsBlob	            ƒVƒF[ƒ_ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^
+/**	@brief 	å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®ä½œæˆ
+*	@param	D3D11_INPUT_ELEMENT_DESC*	layout	é ‚ç‚¹ãƒ‡ãƒ¼ã‚¿ãƒã‚¤ãƒ³ã‚¿
+*	@param	UINT numElements	                è¦ç´ æ•°ã‚µã‚¤ã‚º
+*	@param	ID3DBlob*	p_vsBlob	            ã‚·ã‚§ãƒ¼ãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿
 *	@return	HRESULT
 *	@date	2024/04/23
 */
@@ -27,26 +27,26 @@ HRESULT	CInputLayout::Create(D3D11_INPUT_ELEMENT_DESC*	p_layout, UINT numElement
 {
     if (!this->p_inputLayout)
     {
-        // ’¸“_ƒVƒF[ƒ_[‚ÌƒoƒCƒgƒR[ƒh‚ğæ“¾
+        // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒã‚¤ãƒˆã‚³ãƒ¼ãƒ‰ã‚’å–å¾—
         LPVOID pShaderBytecode = p_vsBlob->GetBufferPointer();
         SIZE_T bytecodeLength = p_vsBlob->GetBufferSize();
 
 
         HRESULT hr;
-        //CD3D11ƒNƒ‰ƒX‚Ìæ“¾
+        //CD3D11ã‚¯ãƒ©ã‚¹ã®å–å¾—
         if (!this->cd3d11)
         {
             this->cd3d11 = CD3D11::GetInstance();
         }
-        //ƒfƒoƒCƒX‚Ìæ“¾
+        //ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
         ID3D11Device* device = cd3d11->GetDevice();
-        // “ü—ÍƒŒƒCƒAƒEƒg‚Ìì¬
+        // å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®ä½œæˆ
         hr = device->CreateInputLayout(
-            p_layout,               //“ü—Í—v‘f‹Lqq‚Ì”z—ñ‚Ö‚Ìƒ|ƒCƒ“ƒ^[
-            numElements,            //”z—ñ“à‚Ì—v‘f‚Ì”
-            pShaderBytecode,        //ƒRƒ“ƒpƒCƒ‹‚³‚ê‚½ƒVƒF[ƒ_[‚ÌƒoƒCƒgƒR[ƒh‚Ö‚Ìƒ|ƒCƒ“ƒ^[
-            bytecodeLength,         //ƒRƒ“ƒpƒCƒ‹‚³‚ê‚½ƒVƒF[ƒ_[‚ÌƒoƒCƒgƒR[ƒh‚ÌƒTƒCƒY
-            &this->p_inputLayout    //ì¬‚³‚ê‚½“ü—ÍƒŒƒCƒAƒEƒgƒIƒuƒWƒFƒNƒg‚Ö‚Ìƒ|ƒCƒ“ƒ^[‚ğó‚¯æ‚é‚½‚ß‚Ì“ñdƒ|ƒCƒ“ƒ^[
+            p_layout,               //å…¥åŠ›è¦ç´ è¨˜è¿°å­ã®é…åˆ—ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+            numElements,            //é…åˆ—å†…ã®è¦ç´ ã®æ•°
+            pShaderBytecode,        //ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚ŒãŸã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒã‚¤ãƒˆã‚³ãƒ¼ãƒ‰ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+            bytecodeLength,         //ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚ŒãŸã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ãƒã‚¤ãƒˆã‚³ãƒ¼ãƒ‰ã®ã‚µã‚¤ã‚º
+            &this->p_inputLayout    //ä½œæˆã•ã‚ŒãŸå…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼ã‚’å—ã‘å–ã‚‹ãŸã‚ã®äºŒé‡ãƒã‚¤ãƒ³ã‚¿ãƒ¼
         );
         if (FAILED(hr))
         {
@@ -57,7 +57,7 @@ HRESULT	CInputLayout::Create(D3D11_INPUT_ELEMENT_DESC*	p_layout, UINT numElement
     return  S_OK;
 }
 
-/**	@brief 	“ü—ÍƒAƒZƒ“ƒuƒ‰‚É•R‚Ã‚¯
+/**	@brief 	å…¥åŠ›ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã«ç´ã¥ã‘
 *	@date	2024/04/23
 */
 void	CInputLayout::SetInputLayout(void)
@@ -66,13 +66,13 @@ void	CInputLayout::SetInputLayout(void)
     {
         if (this->cd3d11)
         {
-            ID3D11DeviceContext* context = cd3d11->GetDeviceContext();	//	ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾		
-            context->IASetInputLayout(this->p_inputLayout);             //  “ü—ÍƒŒƒCƒAƒEƒg‚Ìİ’è
+            ID3D11DeviceContext* context = cd3d11->GetDeviceContext();	//	ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—		
+            context->IASetInputLayout(this->p_inputLayout);             //  å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®è¨­å®š
         }
     }
 }
 
-/**	@brief 	‰ğ•úˆ—
+/**	@brief 	è§£æ”¾å‡¦ç†
 *	@date	2024/04/23
 */
 void	CInputLayout::Release(void)

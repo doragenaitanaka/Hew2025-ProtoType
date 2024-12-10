@@ -1,44 +1,44 @@
-/**	@file	GameScene.cpp
-*	@brief 	ƒQ[ƒ€ƒV[ƒ“ƒNƒ‰ƒX
+ï»¿/**	@file	GameScene.cpp
+*	@brief 	ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/10
 */
 #include"GameScene.h"
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 GameScene::GameScene()
 {
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 GameScene::~GameScene()
 {
 	this->Finalize();
 }
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì‰Šú‰»
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®åˆæœŸåŒ–
 *	@date	2024/05/10
 */
 void	GameScene::Initialize(void)
 {
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌXV
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æ›´æ–°
 *	@date	2024/05/10
 */
 void	GameScene::Update(void)
 {
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æç”»
 *	@date	2024/05/10
 */
 void	GameScene::Draw(void)
 {
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌI—¹ˆ—
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®çµ‚äº†å‡¦ç†
 *	@date	2024/05/10
 */
 void	GameScene::Finalize(void)

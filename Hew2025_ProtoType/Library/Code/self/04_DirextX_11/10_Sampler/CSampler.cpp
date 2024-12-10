@@ -1,4 +1,4 @@
-#include"CSampler.h"
+ï»¿#include"CSampler.h"
 #include"../01_Initialize/CD3D11.h"
 CSampler::CSampler()
 {
@@ -10,21 +10,21 @@ CSampler::~CSampler()
     this->Release();
 }
 
-/**	@brief 	ƒTƒ“ƒvƒ‰[‚Ìì¬
+/**	@brief 	ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã®ä½œæˆ
 *	@param	D3D11_FILTER filter
 *	@param	D3D11_TEXTURE_ADDRESS_MODE	addressU
 *	@param	D3D11_TEXTURE_ADDRESS_MODE	addressV
 *	@param	D3D11_TEXTURE_ADDRESS_MODE	addressW
 *	@return HRESULT
 *	@date 2024/05/30
-*   @memo   ƒeƒNƒXƒ`ƒƒ‚ğƒ|ƒŠƒSƒ“‚É“\‚é‚Æ‚«‚ÉAŠg‘åk¬‚³‚ê‚éÛ‚ÌƒAƒ‹ƒSƒŠƒYƒ€
+*   @memo   ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒãƒªã‚´ãƒ³ã«è²¼ã‚‹ã¨ãã«ã€æ‹¡å¤§ç¸®å°ã•ã‚Œã‚‹éš›ã®ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ 
 */
 HRESULT	CSampler::Create(D3D11_FILTER filter,
 	D3D11_TEXTURE_ADDRESS_MODE	addressU,
 	D3D11_TEXTURE_ADDRESS_MODE	addressV,
 	D3D11_TEXTURE_ADDRESS_MODE	addressW)
 {
-    // ¨ƒeƒNƒXƒ`ƒƒ‚ğƒ|ƒŠƒSƒ“‚É“\‚é‚Æ‚«‚ÉAŠg‘åk¬‚³‚ê‚éÛ‚ÌƒAƒ‹ƒSƒŠƒYƒ€
+    // â†’ãƒ†ã‚¯ã‚¹ãƒãƒ£ã‚’ãƒãƒªã‚´ãƒ³ã«è²¼ã‚‹ã¨ãã«ã€æ‹¡å¤§ç¸®å°ã•ã‚Œã‚‹éš›ã®ã‚¢ãƒ«ã‚´ãƒªã‚ºãƒ 
     D3D11_SAMPLER_DESC	smpDesc;
     ::ZeroMemory(&smpDesc, sizeof(D3D11_SAMPLER_DESC));
     smpDesc.Filter = filter;
@@ -32,50 +32,50 @@ HRESULT	CSampler::Create(D3D11_FILTER filter,
     smpDesc.AddressV = addressV;
     smpDesc.AddressW = addressW;
 
-    // ƒfƒoƒCƒX‚Ìæ“¾
+    // ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
     CD3D11* p_cd3d11 = CD3D11::GetInstance();
     ID3D11Device* p_device = p_cd3d11->GetDevice();    
-    // ƒTƒ“ƒvƒ‰[‚ğì¬
+    // ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’ä½œæˆ
     HRESULT hr;
     hr = p_device->CreateSamplerState(&smpDesc, &this->p_samplerState);
     if (FAILED(hr)) { return  hr; }
     return  hr;
 }
-/**	@brief 	ƒTƒ“ƒvƒ‰[‚ğ’¸“_ƒVƒF[ƒ_‚É“n‚·
-*	@param	UINT StartSlot		ƒTƒ“ƒvƒ‰[‚ÌƒCƒ“ƒfƒbƒNƒX(ƒfƒoƒCƒX‚Ì”z—ñ‚Ì‚Ç‚±‚É’u‚­‚Ì‚©)w’è
-*	@param	UINT NumSamplers	”z—ñ“à‚Åg‚¤ƒTƒ“ƒvƒ‰[”(ƒfƒoƒCƒX‚Ì”z—ñ‚Å‚Ç‚Ì‚­‚ç‚¢‚Ì‘å‚«‚³‚È‚Ì‚©)
+/**	@brief 	ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã«æ¸¡ã™
+*	@param	UINT StartSlot		ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(ãƒ‡ãƒã‚¤ã‚¹ã®é…åˆ—ã®ã©ã“ã«ç½®ãã®ã‹)æŒ‡å®š
+*	@param	UINT NumSamplers	é…åˆ—å†…ã§ä½¿ã†ã‚µãƒ³ãƒ—ãƒ©ãƒ¼æ•°(ãƒ‡ãƒã‚¤ã‚¹ã®é…åˆ—ã§ã©ã®ãã‚‰ã„ã®å¤§ãã•ãªã®ã‹)
 *	@date 2024/05/30
 */
 void	CSampler::SetSamplerVS(UINT StartSlot, UINT NumSamplers)
 {
-    // –³‚¯‚ê‚Î–ß‚é
+    // ç„¡ã‘ã‚Œã°æˆ»ã‚‹
     if (!this->p_samplerState) { return; }
 
-    // ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+    // ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
     CD3D11* p_cd3d11 = CD3D11::GetInstance();
     ID3D11DeviceContext* p_deviceContext = p_cd3d11->GetDeviceContext();
-    // ƒTƒ“ƒvƒ‰[‚ğ’¸“_ƒVƒF[ƒ_‚ÉƒZƒbƒg
+    // ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã«ã‚»ãƒƒãƒˆ
     p_deviceContext->VSSetSamplers(StartSlot, NumSamplers, &this->p_samplerState);
 }
 
-/**	@brief 	ƒTƒ“ƒvƒ‰[‚ğƒsƒNƒZƒ‹ƒVƒF[ƒ_‚É“n‚·
-*	@param	UINT StartSlot		ƒTƒ“ƒvƒ‰[‚ÌƒCƒ“ƒfƒbƒNƒX(ƒfƒoƒCƒX‚Ì”z—ñ‚Ì‚Ç‚±‚É’u‚­‚Ì‚©)w’è
-*	@param	UINT NumSamplers	”z—ñ“à‚Åg‚¤ƒTƒ“ƒvƒ‰[”(ƒfƒoƒCƒX‚Ì”z—ñ‚Å‚Ç‚Ì‚­‚ç‚¢‚Ì‘å‚«‚³‚È‚Ì‚©)
+/**	@brief 	ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ã«æ¸¡ã™
+*	@param	UINT StartSlot		ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã®ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹(ãƒ‡ãƒã‚¤ã‚¹ã®é…åˆ—ã®ã©ã“ã«ç½®ãã®ã‹)æŒ‡å®š
+*	@param	UINT NumSamplers	é…åˆ—å†…ã§ä½¿ã†ã‚µãƒ³ãƒ—ãƒ©ãƒ¼æ•°(ãƒ‡ãƒã‚¤ã‚¹ã®é…åˆ—ã§ã©ã®ãã‚‰ã„ã®å¤§ãã•ãªã®ã‹)
 *	@date 2024/05/30
 */
 void	CSampler::SetSamplerPS(UINT StartSlot, UINT NumSamplers)
 {
-    // –³‚¯‚ê‚Î–ß‚é
+    // ç„¡ã‘ã‚Œã°æˆ»ã‚‹
     if (!this->p_samplerState) { return; }
 
-    // ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+    // ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
     CD3D11* p_cd3d11 = CD3D11::GetInstance();
     ID3D11DeviceContext* p_deviceContext = p_cd3d11->GetDeviceContext();
-    // ƒTƒ“ƒvƒ‰[‚ğƒsƒNƒZƒ‹ƒVƒF[ƒ_‚ÉƒZƒbƒg
+    // ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ã«ã‚»ãƒƒãƒˆ
     p_deviceContext->PSSetSamplers(StartSlot, NumSamplers, &this->p_samplerState);
 }
 
-/**	@brief 	ƒƒ‚ƒŠ‚Ì‰ğ•úˆ—
+/**	@brief 	ãƒ¡ãƒ¢ãƒªã®è§£æ”¾å‡¦ç†
 *	@date 2024/05/30
 */
 void	CSampler::Release(void)

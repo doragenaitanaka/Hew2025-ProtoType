@@ -1,23 +1,23 @@
-#include"WindowSetup.h"
+ï»¿#include"WindowSetup.h"
 #include"../SafePointers.h"
 //	public (static)----------------------------------------------------------------------------------------------
 
-/**	@brief 	windowsƒNƒ‰ƒX‚Ì¶¬
+/**	@brief 	windowsã‚¯ãƒ©ã‚¹ã®ç”Ÿæˆ
 *	@date	2024/05/14
-*	@memo	‚±‚ÌŠÖ”‚ğn‚ß‚ÉÀs‚·‚é
+*	@memo	ã“ã®é–¢æ•°ã‚’å§‹ã‚ã«å®Ÿè¡Œã™ã‚‹
 */
 void	WindowSetup::CreateInstance(void)
 {
-	//¶¬‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎwindowsƒNƒ‰ƒX‚ğ¶¬‚·‚é
+	//ç”Ÿæˆã•ã‚Œã¦ã„ãªã‘ã‚Œã°windowsã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹
 	if (!WindowSetup::appWindow)
 	{
 		WindowSetup::appWindow = new	WindowSetup;
 	}
 }
-/**	@brief 	windowsƒNƒ‰ƒX‚Ìæ“¾
-*	@return	WindowSetup*	windowsƒNƒ‰ƒX
+/**	@brief 	windowsã‚¯ãƒ©ã‚¹ã®å–å¾—
+*	@return	WindowSetup*	windowsã‚¯ãƒ©ã‚¹
 *	@date	2024/05/14
-*	@memo	‚±‚ÌŠÖ”‚ğg‚Á‚ÄŠeƒtƒ@ƒCƒ‹‚Å¶¬ÏwindowsƒNƒ‰ƒX‚ğæ“¾‚·‚é
+*	@memo	ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦å„ãƒ•ã‚¡ã‚¤ãƒ«ã§ç”Ÿæˆæ¸ˆwindowsã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹
 */
 WindowSetup* WindowSetup::GetInstance(void)
 {
@@ -25,10 +25,10 @@ WindowSetup* WindowSetup::GetInstance(void)
 }
 //	public -----------------------------------------------------------------------------------------------
 
-/**	@brief	‘S‘Ì‚Ì‰Šú‰»
-*	@param	_In_ HINSTANCE hInstance		Œ»İ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒnƒ“ƒhƒ‹
-*	@param	BackColorBrush      backColor	ƒEƒBƒ“ƒhƒE‚Ì”wŒiF
-*	@param	 _In_ int       nCmdShow		ƒEƒBƒ“ƒhƒE‚ª•\¦‚³‚ê‚é‚Ìó‘Ô
+/**	@brief	å…¨ä½“ã®åˆæœŸåŒ–
+*	@param	_In_ HINSTANCE hInstance		ç¾åœ¨ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+*	@param	BackColorBrush      backColor	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®èƒŒæ™¯è‰²
+*	@param	 _In_ int       nCmdShow		ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒè¡¨ç¤ºã•ã‚Œã‚‹æ™‚ã®çŠ¶æ…‹
 *	@date	2024/05/14
 */
 int	WindowSetup::Initialize(_In_ HINSTANCE hInstance, _In_ int       nCmdShow)
@@ -40,22 +40,22 @@ int	WindowSetup::Initialize(_In_ HINSTANCE hInstance, _In_ int       nCmdShow)
 
 	return	er;
 }
-/**	@brief 	windowsƒNƒ‰ƒX‚Ìíœ
-*	@param	_In_ HINSTANCE	hInstance		Œ»İ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒnƒ“ƒhƒ‹
+/**	@brief 	windowsã‚¯ãƒ©ã‚¹ã®å‰Šé™¤
+*	@param	_In_ HINSTANCE	hInstance		ç¾åœ¨ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
 *	@date	2024/05/14
 */
 void	WindowSetup::DestroyInstance(_In_ HINSTANCE hInstance)
 {
-	//‘¶İ‚µ‚Ä‚¢‚½‚ç
+	//å­˜åœ¨ã—ã¦ã„ãŸã‚‰
 	if (WindowSetup::appWindow)
 	{
-		this->UnregisterWindowClass(hInstance);	//ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX‚Ì“o˜^‰ğœ
+		this->UnregisterWindowClass(hInstance);	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²è§£é™¤
 		delete	WindowSetup::appWindow;
 		WindowSetup::appWindow = nullptr;
 	}
 }
-/**	@brief	ƒnƒ“ƒhƒ‹‚ğæ“¾
-*	@return	HWND	windowsƒnƒ“ƒhƒ‹
+/**	@brief	ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
+*	@return	HWND	windowsãƒãƒ³ãƒ‰ãƒ«
 *	@date	2024/05/14
 */
 HWND	WindowSetup::GetHWnd(void)
@@ -63,53 +63,53 @@ HWND	WindowSetup::GetHWnd(void)
 	return	this->hWnd;
 }
 //	private ----------------------------------------------------------------------------------------------
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 WindowSetup::WindowSetup()
 {
-	isInit = false;		//true:wcex‚ğ‰Šú‰»‚µ‚½
+	isInit = false;		//true:wcexã‚’åˆæœŸåŒ–ã—ãŸ
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 WindowSetup::~WindowSetup()
 {}
-/**	@brief 	ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX‚Ì“o˜^ŠÖ”
-*	@param	_In_ HINSTANCE	hInstance		Œ»İ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒnƒ“ƒhƒ‹
-*	@param	BackColorBrush      backColor	ƒEƒBƒ“ƒhƒE‚Ì”wŒiF
+/**	@brief 	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²é–¢æ•°
+*	@param	_In_ HINSTANCE	hInstance		ç¾åœ¨ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+*	@param	BackColorBrush      backColor	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®èƒŒæ™¯è‰²
 *	@return
 *	@date 2024/03/29
-*	@memo	ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX‚Ì’è‹`A“o˜^‚ğs‚¤
+*	@memo	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®å®šç¾©ã€ç™»éŒ²ã‚’è¡Œã†
 */
 int	WindowSetup::RegisterWindowClass(_In_ HINSTANCE hInstance)
 {
-	//ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX
-	this->wcex.cbSize = sizeof(WNDCLASSEX);		//\‘¢‘Ì‚ÌƒTƒCƒY
-	this->wcex.style = CS_CLASSDC;				//ƒNƒ‰ƒXƒXƒ^ƒCƒ‹
-	this->wcex.lpfnWndProc = WndProc;			//ƒEƒBƒ“ƒhƒEƒvƒƒV[ƒWƒƒ‚Ö‚Ìƒ|ƒCƒ“ƒ^[
-	this->wcex.cbClsExtra = 0L;					//ƒNƒ‰ƒXƒf[ƒ^\‘¢‘Ì‚ÌŒã‚ÉŠ„‚è“–‚Ä‚é’Ç‰Á‚ÌƒoƒCƒg”
-	this->wcex.cbWndExtra = 0L;					//ƒEƒBƒ“ƒhƒEƒCƒ“ƒXƒ^ƒ“ƒX‚ÌŒã‚ÉŠ„‚è“–‚Ä‚é’Ç‰Á‚ÌƒoƒCƒg”
-	this->wcex.hInstance = hInstance;			//ƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìƒnƒ“ƒhƒ‹
-	this->wcex.hIcon = NULL;					//ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX‚ÌƒAƒCƒRƒ“‚Ö‚Ìƒnƒ“ƒhƒ‹
-	this->wcex.hCursor = NULL;					//ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX‚ÌƒJ[ƒ\ƒ‹‚Ö‚Ìƒnƒ“ƒhƒ‹
-	this->wcex.hbrBackground = (HBRUSH)GetStockObject(BackColorBrush::DKGRAY);	// ƒEƒBƒ“ƒhƒE‚Ì”wŒiƒuƒ‰ƒV‚Ö‚Ìƒnƒ“ƒhƒ‹
-	this->wcex.lpszMenuName = NULL;				//ƒƒjƒ…[ƒŠƒ\[ƒX‚Ì–¼‘O
-	this->wcex.lpszClassName = CLASS_NAME;		//ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX‚Ì–¼‘O
-	this->wcex.hIconSm = NULL;					//¬‚³‚¢ƒAƒCƒRƒ“‚Ö‚Ìƒnƒ“ƒhƒ‹
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹
+	this->wcex.cbSize = sizeof(WNDCLASSEX);		//æ§‹é€ ä½“ã®ã‚µã‚¤ã‚º
+	this->wcex.style = CS_CLASSDC;				//ã‚¯ãƒ©ã‚¹ã‚¹ã‚¿ã‚¤ãƒ«
+	this->wcex.lpfnWndProc = WndProc;			//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+	this->wcex.cbClsExtra = 0L;					//ã‚¯ãƒ©ã‚¹ãƒ‡ãƒ¼ã‚¿æ§‹é€ ä½“ã®å¾Œã«å‰²ã‚Šå½“ã¦ã‚‹è¿½åŠ ã®ãƒã‚¤ãƒˆæ•°
+	this->wcex.cbWndExtra = 0L;					//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å¾Œã«å‰²ã‚Šå½“ã¦ã‚‹è¿½åŠ ã®ãƒã‚¤ãƒˆæ•°
+	this->wcex.hInstance = hInstance;			//ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ãƒãƒ³ãƒ‰ãƒ«
+	this->wcex.hIcon = NULL;					//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®ã‚¢ã‚¤ã‚³ãƒ³ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+	this->wcex.hCursor = NULL;					//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®ã‚«ãƒ¼ã‚½ãƒ«ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+	this->wcex.hbrBackground = (HBRUSH)GetStockObject(BackColorBrush::DKGRAY);	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®èƒŒæ™¯ãƒ–ãƒ©ã‚·ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
+	this->wcex.lpszMenuName = NULL;				//ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãƒªã‚½ãƒ¼ã‚¹ã®åå‰
+	this->wcex.lpszClassName = CLASS_NAME;		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®åå‰
+	this->wcex.hIconSm = NULL;					//å°ã•ã„ã‚¢ã‚¤ã‚³ãƒ³ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
 
-	//RegisterClassExŠÖ”‚É“n‚¹‚½‚©ƒ`ƒFƒbƒN
+	//RegisterClassExé–¢æ•°ã«æ¸¡ã›ãŸã‹ãƒã‚§ãƒƒã‚¯
 	if (!RegisterClassEx(&this->wcex))
 	{
 		return	E_FAIL;
 	}
-	//‰Šú‰»‚µ‚½
+	//åˆæœŸåŒ–ã—ãŸ
 	isInit = true;
 
 	return	S_OK;
 }
-/**	@brief 	ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX‚Ì“o˜^‚ğ‰ğœ‚·‚éŠÖ”
-*	@param	_In_ HINSTANCE	hInstance		Œ»İ‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“ƒCƒ“ƒXƒ^ƒ“ƒX‚Ö‚Ìƒnƒ“ƒhƒ‹
+/**	@brief 	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹ã®ç™»éŒ²ã‚’è§£é™¤ã™ã‚‹é–¢æ•°
+*	@param	_In_ HINSTANCE	hInstance		ç¾åœ¨ã®ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã¸ã®ãƒãƒ³ãƒ‰ãƒ«
 *	@return
 *	@date 2024/05/14
 */
@@ -120,77 +120,77 @@ void	WindowSetup::UnregisterWindowClass(_In_ HINSTANCE hInstance)
 		UnregisterClass(CLASS_NAME, hInstance);
 	}
 }
-/**	@brief 	ƒEƒBƒ“ƒhƒE‚Ìì¬
+/**	@brief 	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ä½œæˆ
 *	@return
 *	@date 2024/03/29
 */
 int	WindowSetup::CreateWindowScreen(void)
 {
-	//‰Šú‰»‚µ‚½‚Ì‚İÀs‚·‚é
+	//åˆæœŸåŒ–ã—ãŸæ™‚ã®ã¿å®Ÿè¡Œã™ã‚‹
 	if (isInit)
 	{
-		//windowsƒnƒ“ƒhƒ‹‚ğæ“¾
+		//windowsãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—
 		this->hWnd = CreateWindowEx(
-			WS_EX_OVERLAPPEDWINDOW,		//Šg’£ƒEƒBƒ“ƒhƒEƒXƒ^ƒCƒ‹
-			this->wcex.lpszClassName,	//ƒEƒBƒ“ƒhƒEƒNƒ‰ƒX–¼
-			WINDOW_NAME,				//ƒEƒBƒ“ƒhƒE‚Ìƒ^ƒCƒgƒ‹ƒo[‚É•\¦‚³‚ê‚é–¼‘O
-			WS_OVERLAPPEDWINDOW,		//ƒEƒBƒ“ƒhƒEƒXƒ^ƒCƒ‹(“®ì‚âŒ©‚½–Ú‚ÉŠÖ‚·‚éƒIƒvƒVƒ‡ƒ“)
-			CW_USEDEFAULT,				//ƒEƒBƒ“ƒhƒE‚Ì¶ã‹÷‚ÌXÀ•W
-			CW_USEDEFAULT,				//ƒEƒBƒ“ƒhƒE‚Ì¶ã‹÷‚ÌYÀ•W
-			SCREEN_WIDTH,						//ƒEƒBƒ“ƒhƒE‚Ì•
-			SCREEN_HEIGHT,					//ƒEƒBƒ“ƒhƒE‚Ì‚‚³
-			NULL,						//eƒEƒBƒ“ƒhƒE‚Ìƒnƒ“ƒhƒ‹(“Æ—§‚µ‚½ƒEƒBƒ“ƒhƒE‚Ìê‡‚Í NULL)
-			NULL,						//ƒEƒBƒ“ƒhƒE‚ªg—p‚·‚éƒƒjƒ…[‚Ìƒnƒ“ƒhƒ‹,qƒEƒBƒ“ƒhƒE‚ÌID(ƒƒjƒ…[‚ª‚È‚¢ê‡‚Í NULL)
-			this->wcex.hInstance,		//ƒEƒBƒ“ƒhƒE‚ğì¬‚·‚éƒvƒƒOƒ‰ƒ€‚ÌƒCƒ“ƒXƒ^ƒ“ƒXƒnƒ“ƒhƒ‹
-			NULL						//ƒEƒBƒ“ƒhƒEì¬‚ÉƒEƒBƒ“ƒhƒEƒvƒƒV[ƒWƒƒ‚É“n‚³‚ê‚é’Ç‰Áƒf[ƒ^
+			WS_EX_OVERLAPPEDWINDOW,		//æ‹¡å¼µã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«
+			this->wcex.lpszClassName,	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¯ãƒ©ã‚¹å
+			WINDOW_NAME,				//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¿ã‚¤ãƒˆãƒ«ãƒãƒ¼ã«è¡¨ç¤ºã•ã‚Œã‚‹åå‰
+			WS_OVERLAPPEDWINDOW,		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚¹ã‚¿ã‚¤ãƒ«(å‹•ä½œã‚„è¦‹ãŸç›®ã«é–¢ã™ã‚‹ã‚ªãƒ—ã‚·ãƒ§ãƒ³)
+			CW_USEDEFAULT,				//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å·¦ä¸Šéš…ã®Xåº§æ¨™
+			CW_USEDEFAULT,				//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å·¦ä¸Šéš…ã®Yåº§æ¨™
+			SCREEN_WIDTH,						//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å¹…
+			SCREEN_HEIGHT,					//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®é«˜ã•
+			NULL,						//è¦ªã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ãƒãƒ³ãƒ‰ãƒ«(ç‹¬ç«‹ã—ãŸã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®å ´åˆã¯ NULL)
+			NULL,						//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒä½¿ç”¨ã™ã‚‹ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã®ãƒãƒ³ãƒ‰ãƒ«,å­ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ID(ãƒ¡ãƒ‹ãƒ¥ãƒ¼ãŒãªã„å ´åˆã¯ NULL)
+			this->wcex.hInstance,		//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’ä½œæˆã™ã‚‹ãƒ—ãƒ­ã‚°ãƒ©ãƒ ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ãƒãƒ³ãƒ‰ãƒ«
+			NULL						//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ä½œæˆæ™‚ã«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã«æ¸¡ã•ã‚Œã‚‹è¿½åŠ ãƒ‡ãƒ¼ã‚¿
 		);
 
-		// ƒEƒBƒ“ƒhƒE‚ÌƒTƒCƒY‚ğ‰æ–Ê‚Ì‘å‚«‚³ + ˜g‚Ì‘¾‚³‚ÉC³
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚µã‚¤ã‚ºã‚’ç”»é¢ã®å¤§ãã• + æ ã®å¤ªã•ã«ä¿®æ­£
 		RECT	rc1, rc2;
-		GetWindowRect(this->hWnd, &rc1);	// ƒEƒBƒ“ƒhƒE‚Ì’ZŒa—Ìˆæ‚ğæ“¾
-		GetClientRect(this->hWnd, &rc2);	// ƒNƒ‰ƒCƒAƒ“ƒg‚Ì’ZŒa—Ìˆæ‚ğæ“¾
+		GetWindowRect(this->hWnd, &rc1);	// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®çŸ­å¾„é ˜åŸŸã‚’å–å¾—
+		GetClientRect(this->hWnd, &rc2);	// ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆã®çŸ­å¾„é ˜åŸŸã‚’å–å¾—
 
-		// ƒEƒBƒ“ƒhƒEƒTƒCƒY
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚º
 		int	sx = SCREEN_WIDTH;
 		int	sy = SCREEN_HEIGHT;
 
-		// ˜g•ª‚Ì‘å‚«‚³‚ğ‰ÁZ
+		// æ åˆ†ã®å¤§ãã•ã‚’åŠ ç®—
 		sx += ((rc1.right - rc1.left) - (rc2.right- rc2.left));
 		sy += ((rc1.bottom - rc1.top) - (rc2.bottom - rc2.top));
 
-		// ƒEƒBƒ“ƒhƒEƒTƒCƒY‚ğ•ÏX
+		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚µã‚¤ã‚ºã‚’å¤‰æ›´
 		SetWindowPos(this->hWnd, NULL, 0, 0, sx, sy, (SWP_NOZORDER | SWP_NOOWNERZORDER | SWP_NOMOVE));
 	}
-	//ƒnƒ“ƒhƒ‹‚ª‚¿‚á‚ñ‚Ææ“¾‚Å‚«‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	//ãƒãƒ³ãƒ‰ãƒ«ãŒã¡ã‚ƒã‚“ã¨å–å¾—ã§ãã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if (!this->hWnd) {
 		return E_FAIL;
 	}
 	return S_OK;
 }
-/**	@brief 	ƒEƒBƒ“ƒhƒE‚Ì•\¦AXV
-*	@param	_In_ int			nCmdShow	ƒEƒBƒ“ƒhƒE‚ª•\¦‚³‚ê‚é‚Ìó‘Ô
+/**	@brief 	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®è¡¨ç¤ºã€æ›´æ–°
+*	@param	_In_ int			nCmdShow	ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒè¡¨ç¤ºã•ã‚Œã‚‹æ™‚ã®çŠ¶æ…‹
 *	@return
 *	@date 2024/05/15
 */
 int	WindowSetup::ShowWindowScreen(_In_ int       nCmdShow)
 {
-	//ƒnƒ“ƒhƒ‹‚ğæ“¾‚µ‚Ä‚¢‚é‚©ƒ`ƒFƒbƒN
+	//ãƒãƒ³ãƒ‰ãƒ«ã‚’å–å¾—ã—ã¦ã„ã‚‹ã‹ãƒã‚§ãƒƒã‚¯
 	if (!this->hWnd) {
 		return E_FAIL;
 	}
-	//ƒEƒBƒ“ƒhƒE‚ğ•\¦
-	ShowWindow(this->hWnd, nCmdShow);	//–ß‚è’l 0:•\¦‚³‚ê‚Ä‚¢‚½@1:”ñ•\¦‚¾‚Á‚½
-	//ƒEƒBƒ“ƒhƒE‚ÌƒNƒ‰ƒCƒAƒ“ƒg—Ìˆæ‚ğXV
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã‚’è¡¨ç¤º
+	ShowWindow(this->hWnd, nCmdShow);	//æˆ»ã‚Šå€¤ 0:è¡¨ç¤ºã•ã‚Œã¦ã„ãŸã€€1:éè¡¨ç¤ºã ã£ãŸ
+	//ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®ã‚¯ãƒ©ã‚¤ã‚¢ãƒ³ãƒˆé ˜åŸŸã‚’æ›´æ–°
 	UpdateWindow(this->hWnd);
 	return S_OK;
 }
-//	Ã“Iƒƒ“ƒo•Ï”	---------------------------------------------------------------------------------------------------
+//	é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°	---------------------------------------------------------------------------------------------------
 
-WindowSetup* WindowSetup::appWindow = nullptr;	//Ã“Iƒƒ“ƒo•Ï”‚Ì‰Šú‰»
+WindowSetup* WindowSetup::appWindow = nullptr;	//é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°ã®åˆæœŸåŒ–
 
-//	‚»‚Ì‘¼ŠÖ”	-------------------------------------------------------------------------------------------------------
+//	ãã®ä»–é–¢æ•°	-------------------------------------------------------------------------------------------------------
 
-//uI—¹‚µ‚Ü‚·‚©Hv‚Ì‰æ–Êo‚·‚â‚Â
+//ã€Œçµ‚äº†ã—ã¾ã™ã‹ï¼Ÿã€ã®ç”»é¢å‡ºã™ã‚„ã¤
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 {
 	switch (message)
@@ -199,23 +199,23 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
 		PostQuitMessage(0);
 		break;
 	case WM_KEYDOWN:
-		//wParam@‚ªƒL[“ü—Í‘—‚é‚â‚Â
+		//wParamã€€ãŒã‚­ãƒ¼å…¥åŠ›é€ã‚‹ã‚„ã¤
 		if (wParam == VK_ESCAPE)
-		{													//ƒƒbƒZ[ƒWƒ{ƒbƒNƒX‚ÌuokvuƒLƒƒƒ“ƒZƒ‹v
-			if (MessageBox(hWnd, L"I—¹", L"I—¹‚µ‚Ü‚·‚©H", MB_OKCANCEL) == IDOK)
-				PostQuitMessage(0);	//ƒƒbƒZ[ƒWI—¹‘—‚é
+		{													//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ãƒœãƒƒã‚¯ã‚¹ã®ã€Œokã€ã€Œã‚­ãƒ£ãƒ³ã‚»ãƒ«ã€
+			if (MessageBox(hWnd, L"çµ‚äº†", L"çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ", MB_OKCANCEL) == IDOK)
+				PostQuitMessage(0);	//ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸çµ‚äº†é€ã‚‹
 		}
 		break;
-	case WM_CLOSE:  // uxvƒ{ƒ^ƒ“‚ª‰Ÿ‚³‚ê‚½‚ç
+	case WM_CLOSE:  // ã€Œxã€ãƒœã‚¿ãƒ³ãŒæŠ¼ã•ã‚ŒãŸã‚‰
 	{
-		int res = MessageBoxA(NULL, "I—¹‚µ‚Ü‚·‚©H", "Šm”F", MB_OKCANCEL);
+		int res = MessageBoxA(NULL, "çµ‚äº†ã—ã¾ã™ã‹ï¼Ÿ", "ç¢ºèª", MB_OKCANCEL);
 		if (res == IDOK) {
-			DestroyWindow(hWnd);  // uWM_DESTROYvƒƒbƒZ[ƒW‚ğ‘—‚é
+			DestroyWindow(hWnd);  // ã€ŒWM_DESTROYã€ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã‚’é€ã‚‹
 		}
 	}
 	break;
 	default:
-		// ó‚¯æ‚Á‚½ƒƒbƒZ[ƒW‚É‘Î‚µ‚ÄƒfƒtƒHƒ‹ƒg‚Ìˆ—‚ğÀs
+		// å—ã‘å–ã£ãŸãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã«å¯¾ã—ã¦ãƒ‡ãƒ•ã‚©ãƒ«ãƒˆã®å‡¦ç†ã‚’å®Ÿè¡Œ
 		return DefWindowProc(hWnd, message, wParam, lParam);
 	}
 

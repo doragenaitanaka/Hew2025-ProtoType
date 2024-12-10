@@ -1,13 +1,13 @@
-#include"CVertexBuffer.h"
+ï»¿#include"CVertexBuffer.h"
 #include"../../01_Initialize/CD3D11.h"
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/04/29
 */
 CVertexBuffer::CVertexBuffer()
 {
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/04/29
 */
 CVertexBuffer::~CVertexBuffer()
@@ -15,38 +15,38 @@ CVertexBuffer::~CVertexBuffer()
 	this->Release();
 }
 
-/**	@brief 	ƒoƒbƒtƒ@‚Ìì¬
-*	@param	const void*	p_SysMem		‰Šú‰»ƒf[ƒ^‚Ö‚Ìƒ|ƒCƒ“ƒ^[
-*	@param	UINT	byteWidth			//’¸“_ƒoƒbƒtƒ@‚ÌƒTƒCƒY
-*	@param	UINT	nothing = NULL		//’¸“_ƒoƒbƒtƒ@‚Ìì¬‚Å‚Íg‚í‚È‚¢
+/**	@brief 	ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
+*	@param	const void*	p_SysMem		åˆæœŸåŒ–ãƒ‡ãƒ¼ã‚¿ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+*	@param	UINT	byteWidth			//é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚µã‚¤ã‚º
+*	@param	UINT	nothing = NULL		//é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆã§ã¯ä½¿ã‚ãªã„
 *	@return	HRESULT
 *	@date	2024/05/23
 *	@memo
 */
 HRESULT	CVertexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing, D3D11_USAGE _usage, UINT _cpuAccessFlags)
 {
-	// ’¸“_ƒoƒbƒtƒ@‚Ìİ’è
+	// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®è¨­å®š
 	D3D11_BUFFER_DESC vbDesc = {};
-	vbDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	//  ƒfƒoƒCƒX‚ÉƒoƒCƒ“ƒh‚·‚é‚Æ‚«‚Ìí—Ş(’¸“_ƒoƒbƒtƒ@AƒCƒ“ƒfƒbƒNƒXƒoƒbƒtƒ@A’è”ƒoƒbƒtƒ@‚È‚Ç)
-	vbDesc.Usage = _usage;							//  ì¬‚·‚éƒoƒbƒtƒ@‚Ìg—p–@
-	vbDesc.ByteWidth = byteWidth;				    //  ì¬‚·‚éƒoƒbƒtƒ@‚ÌƒoƒCƒgƒTƒCƒY
-	vbDesc.MiscFlags = 0;							//  ‚»‚Ì‘¼‚Ìƒtƒ‰ƒO
-	vbDesc.StructureByteStride = 0;					//  \‘¢‰»ƒoƒbƒtƒ@‚Ìê‡A‚»‚Ì\‘¢‘Ì‚ÌƒTƒCƒY
+	vbDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	//  ãƒ‡ãƒã‚¤ã‚¹ã«ãƒã‚¤ãƒ³ãƒ‰ã™ã‚‹ã¨ãã®ç¨®é¡(é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã€ã‚¤ãƒ³ãƒ‡ãƒƒã‚¯ã‚¹ãƒãƒƒãƒ•ã‚¡ã€å®šæ•°ãƒãƒƒãƒ•ã‚¡ãªã©)
+	vbDesc.Usage = _usage;							//  ä½œæˆã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ä½¿ç”¨æ³•
+	vbDesc.ByteWidth = byteWidth;				    //  ä½œæˆã™ã‚‹ãƒãƒƒãƒ•ã‚¡ã®ãƒã‚¤ãƒˆã‚µã‚¤ã‚º
+	vbDesc.MiscFlags = 0;							//  ãã®ä»–ã®ãƒ•ãƒ©ã‚°
+	vbDesc.StructureByteStride = 0;					//  æ§‹é€ åŒ–ãƒãƒƒãƒ•ã‚¡ã®å ´åˆã€ãã®æ§‹é€ ä½“ã®ã‚µã‚¤ã‚º
 	vbDesc.CPUAccessFlags = _cpuAccessFlags;
 
-	//’¸“_ƒoƒbƒtƒ@‚ª‚È‚¯‚ê‚Î
+	//é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ãŒãªã‘ã‚Œã°
 	if (!this->p_buffer)
 	{
-		//‘‚«‚Şƒf[ƒ^
-		D3D11_SUBRESOURCE_DATA initData = { p_SysMem, 0, 0 };	//1DƒŠƒ\[ƒX‚Ì‰Šú‰»‚Í2,3ŒÂ–Ú‚Ì‚â‚Âg‚í‚È‚¢i0‚ğ‚¢‚ê‚éj
-		//ƒfƒoƒCƒX‚Ìæ“¾
+		//æ›¸ãè¾¼ã‚€ãƒ‡ãƒ¼ã‚¿
+		D3D11_SUBRESOURCE_DATA initData = { p_SysMem, 0, 0 };	//1Dãƒªã‚½ãƒ¼ã‚¹ã®åˆæœŸåŒ–æ™‚ã¯2,3å€‹ç›®ã®ã‚„ã¤ä½¿ã‚ãªã„ï¼ˆ0ã‚’ã„ã‚Œã‚‹ï¼‰
+		//ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
 		ID3D11Device* device = this->cd3d11->GetDevice();
-		// ’¸“_ƒoƒbƒtƒ@‚Ìì¬
+		// é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ä½œæˆ
 		HRESULT	hr;
 		hr = device->CreateBuffer(&vbDesc, &initData, &this->p_buffer);
 		if (FAILED(hr))
 		{
-			//ƒƒ‚ƒŠ‚Ì‰ğ•ú
+			//ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 			if (this->p_buffer)
 			{
 				this->Release();
@@ -57,23 +57,23 @@ HRESULT	CVertexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing
 	return  S_OK;
 }
 
-/**	@brief 	“ü—ÍƒAƒZƒ“ƒuƒ‰ƒXƒe[ƒW‚É•R‚Ã‚¯‚é
-*	@param	UINT	StartSlot	’¸“_ƒoƒbƒtƒ@‚Ìæ“ªƒXƒƒbƒg”Ô†
-*	@param	UINT	NumBuffers	g—p‚·‚é’¸“_ƒoƒbƒtƒ@‚Ì‘”
-*	@param	const	UINT*	p_stride	Še’¸“_ƒoƒbƒtƒ@‚ÌƒXƒgƒ‰ƒCƒh‚Ì”z—ñƒ|ƒCƒ“ƒ^
-*	@param	const	UINT*	p_offset	ƒoƒbƒtƒ@‚ÌŠJnˆÊ’u‚©‚ç“Ç‚İ‚İn‚ß‚é‚Ü‚Å‚ÌƒoƒCƒg”‚Ìƒ|ƒCƒ“ƒ^
+/**	@brief 	å…¥åŠ›ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã‚¹ãƒ†ãƒ¼ã‚¸ã«ç´ã¥ã‘ã‚‹
+*	@param	UINT	StartSlot	é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®å…ˆé ­ã‚¹ãƒ­ãƒƒãƒˆç•ªå·
+*	@param	UINT	NumBuffers	ä½¿ç”¨ã™ã‚‹é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ç·æ•°
+*	@param	const	UINT*	p_stride	å„é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã®ã‚¹ãƒˆãƒ©ã‚¤ãƒ‰ã®é…åˆ—ãƒã‚¤ãƒ³ã‚¿
+*	@param	const	UINT*	p_offset	ãƒãƒƒãƒ•ã‚¡ã®é–‹å§‹ä½ç½®ã‹ã‚‰èª­ã¿è¾¼ã¿å§‹ã‚ã‚‹ã¾ã§ã®ãƒã‚¤ãƒˆæ•°ã®ãƒã‚¤ãƒ³ã‚¿
 *	@return	void
 *	@date	2024/04/29
 */
 void	CVertexBuffer::SetVertexBuffer(UINT	StartSlot, UINT	NumBuffers, const UINT* p_stride, const	UINT* p_offset)
 {
-	//’¸“_ƒoƒbƒtƒ@‚ ‚é‚Æ‚«
+	//é ‚ç‚¹ãƒãƒƒãƒ•ã‚¡ã‚ã‚‹ã¨ã
 	if (this->p_buffer)
 	{
 		if (this->cd3d11)
 		{
-			ID3D11DeviceContext* context = cd3d11->GetDeviceContext();									//	ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾		
-			context->IASetVertexBuffers(StartSlot, NumBuffers, &this->p_buffer, p_stride, p_offset);	//	“ü—ÍƒAƒZƒ“ƒuƒ‰ƒXƒe[ƒW‚É•R‚Ã‚¯
+			ID3D11DeviceContext* context = cd3d11->GetDeviceContext();									//	ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—		
+			context->IASetVertexBuffers(StartSlot, NumBuffers, &this->p_buffer, p_stride, p_offset);	//	å…¥åŠ›ã‚¢ã‚»ãƒ³ãƒ–ãƒ©ã‚¹ãƒ†ãƒ¼ã‚¸ã«ç´ã¥ã‘
 		}
 	}
 }

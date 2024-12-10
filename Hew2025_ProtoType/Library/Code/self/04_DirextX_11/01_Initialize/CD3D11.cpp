@@ -1,22 +1,22 @@
-#include"CD3D11.h"
+ï»¿#include"CD3D11.h"
 #include"../../SafePointers.h"
 
 //	private	---------------------------------------------------------------------------------------------------
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 CD3D11::CD3D11()
 {}
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date 2024/03/29
 */
 CD3D11::~CD3D11()
 {
-    //‰ğ•úˆ—
+    //è§£æ”¾å‡¦ç†
     this->Release();
 }
-/**	@brief 	‘S‘Ì‚Ì‰ğ•ú
+/**	@brief 	å…¨ä½“ã®è§£æ”¾
 *	@date	2024/05/14
 */
 void CD3D11::Release()
@@ -30,42 +30,42 @@ void CD3D11::Release()
 
 //	static(public)	---------------------------------------------------------------------------------------------------
 
-/**	@brief 	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬
+/**	@brief 	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç”Ÿæˆ
 *	@date	2024/05/16
-*	@memo	‚±‚ÌŠÖ”‚ğn‚ß‚ÉÀs‚·‚é
+*	@memo	ã“ã®é–¢æ•°ã‚’å§‹ã‚ã«å®Ÿè¡Œã™ã‚‹
 */
 void   CD3D11::CrerateIntance(void)
 {
-    //¶¬‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎCD3D11ƒNƒ‰ƒX‚ğ¶¬‚·‚é
+    //ç”Ÿæˆã•ã‚Œã¦ã„ãªã‘ã‚Œã°CD3D11ã‚¯ãƒ©ã‚¹ã‚’ç”Ÿæˆã™ã‚‹
     if (!CD3D11::cd3d11)
     {
         CD3D11::cd3d11 = new	CD3D11;
     }
 }
 
-/**	@brief 	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX‚Ìæ“¾
-*	@return	CD3D11*	CD3D11ƒNƒ‰ƒX
+/**	@brief 	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å–å¾—
+*	@return	CD3D11*	CD3D11ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/16
-*	@memo	‚±‚ÌŠÖ”‚ğg‚Á‚ÄŠeƒtƒ@ƒCƒ‹‚Å¶¬ÏCD3D11ƒNƒ‰ƒX‚ğæ“¾‚·‚é
+*	@memo	ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦å„ãƒ•ã‚¡ã‚¤ãƒ«ã§ç”Ÿæˆæ¸ˆCD3D11ã‚¯ãƒ©ã‚¹ã‚’å–å¾—ã™ã‚‹
 */
 CD3D11* CD3D11::GetInstance(void)
 {
     return  CD3D11::cd3d11;
 }
-/**	@brief 	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX‚Ìíœ
+/**	@brief 	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å‰Šé™¤
 *	@date	2024/05/16
 */
 void    CD3D11::DestroyInstance(void)
 {
-    //‘¶İ‚µ‚Ä‚¢‚½‚ç
+    //å­˜åœ¨ã—ã¦ã„ãŸã‚‰
     if (CD3D11::cd3d11)
     {
         delete  CD3D11::cd3d11;
         CD3D11::cd3d11 = nullptr;
     }
 }
-/**	@brief 	D3D11‚Ì‰Šú‰»
-*   @param  HWND hwnd   windousƒnƒ“ƒhƒ‹
+/**	@brief 	D3D11ã®åˆæœŸåŒ–
+*   @param  HWND hwnd   windousãƒãƒ³ãƒ‰ãƒ«
 *   @return HRESULT
 *	@date	2024/05/18
 */
@@ -73,28 +73,28 @@ HRESULT CD3D11::Initialize(HWND hwnd)
 {
     HRESULT  hr;
 
-    //ƒOƒ‰ƒtƒBƒbƒNƒfƒoƒCƒX‚Ì‰Šú‰»
+    //ã‚°ãƒ©ãƒ•ã‚£ãƒƒã‚¯ãƒ‡ãƒã‚¤ã‚¹ã®åˆæœŸåŒ–
     hr = this->deviceSetup.Create();
     if (FAILED(hr)) { return hr; }
 
-    //ƒXƒƒbƒvƒ`ƒF[ƒ“‚Ìì¬
+    //ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ãƒ¼ãƒ³ã®ä½œæˆ
     hr = this->swapChainSetup.Create(hwnd, this->deviceSetup.m_pDevice);
     if (FAILED(hr)) { return hr; }
 
-    //ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìì¬
+    //ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
     hr = this->renderTargetViewSetup.Create(this->deviceSetup.m_pDevice, this->swapChainSetup.m_pSwapChain);
     if (FAILED(hr)) { return hr; }
 
-    //[“xƒXƒeƒ“ƒVƒ‹ƒrƒ…[‚Ìì¬
+    //æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ãƒ“ãƒ¥ãƒ¼ã®ä½œæˆ
     hr = this->depthStencilSetup.Create(this->deviceSetup.m_pDevice, this->deviceSetup.m_pImmediateContext, this->swapChainSetup.m_pSwapChain, this->renderTargetViewSetup.m_pRenderTargetView);
     if (FAILED(hr)) { return hr; }
 
-    //ƒrƒ…[ƒ|[ƒg‚Ìİ’è
+    //ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®è¨­å®š
     this->viewportSetup.Create(this->deviceSetup.m_pImmediateContext, this->swapChainSetup.m_pSwapChain);
     return  hr;
 }
-//ƒQƒbƒ^[-----------------------------------------------------------------------------------------------------------------
-/**	@brief 	Direct3DƒfƒoƒCƒX‚Ìæ“¾
+//ã‚²ãƒƒã‚¿ãƒ¼-----------------------------------------------------------------------------------------------------------------
+/**	@brief 	Direct3Dãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
 *	@return	CD3D11_Device*
 *	@date	2024/05/16
 */
@@ -102,7 +102,7 @@ ID3D11Device* CD3D11::GetDevice(void)
 {
     return  this->deviceSetup.m_pDevice;
 }
-/**	@brief  ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+/**	@brief  ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
 *	@return	CD3D11_Device*
 *	@date	2024/05/16
 */
@@ -111,7 +111,7 @@ ID3D11DeviceContext* CD3D11::GetDeviceContext(void)
     return  this->deviceSetup.m_pImmediateContext;
 }
 
-/**	@brief 	ƒXƒƒbƒvƒ`ƒFƒCƒ“‚Ìæ“¾
+/**	@brief 	ã‚¹ãƒ¯ãƒƒãƒ—ãƒã‚§ã‚¤ãƒ³ã®å–å¾—
 *	@return	CD3D11_SwapChain*
 *	@date	2024/05/16
 */
@@ -119,7 +119,7 @@ IDXGISwapChain* CD3D11::GetSwapChain(void)
 {
     return  this->swapChainSetup.m_pSwapChain;
 }
-/**	@brief 	ƒŒƒ“ƒ_[ƒ^[ƒQƒbƒgƒrƒ…[‚Ìæ“¾
+/**	@brief 	ãƒ¬ãƒ³ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆãƒ“ãƒ¥ãƒ¼ã®å–å¾—
 *	@return	ID3D11RenderTargetView*
 *	@date	2024/05/16
 */
@@ -127,7 +127,7 @@ ID3D11RenderTargetView* CD3D11::GetRenderTargetView(void)
 {
     return  this->renderTargetViewSetup.m_pRenderTargetView;
 }
-/**	@brief 	ƒrƒ…[ƒ|[ƒg‚Ìæ“¾
+/**	@brief 	ãƒ“ãƒ¥ãƒ¼ãƒãƒ¼ãƒˆã®å–å¾—
 *	@return	D3D11_VIEWPORT
 *	@date	2024/05/16
 */
@@ -135,7 +135,7 @@ D3D11_VIEWPORT* CD3D11::GetViewport(void)
 {   
     return  &this->viewportSetup.viewport;
 }
-/**	@brief 	[“xƒXƒeƒ“ƒVƒ‹‚Ìæ“¾
+/**	@brief 	æ·±åº¦ã‚¹ãƒ†ãƒ³ã‚·ãƒ«ã®å–å¾—
 *	@return	ID3D11DepthStencilView*
 *	@date	2024/05/16
 */
@@ -143,6 +143,6 @@ ID3D11DepthStencilView* CD3D11::GetDepthStencilView(void)
 {
     return this->depthStencilSetup.p_DepthStencilView;
 }
-//	Ã“Iƒƒ“ƒo•Ï”	---------------------------------------------------------------------------------------------------
+//	é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°	---------------------------------------------------------------------------------------------------
 
-CD3D11* CD3D11::cd3d11 = nullptr;	//Ã“Iƒƒ“ƒo•Ï”‚Ì‰Šú‰»
+CD3D11* CD3D11::cd3d11 = nullptr;	//é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°ã®åˆæœŸåŒ–

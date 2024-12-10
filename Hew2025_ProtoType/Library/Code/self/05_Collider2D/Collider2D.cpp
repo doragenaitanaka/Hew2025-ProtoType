@@ -1,4 +1,4 @@
-#include"Collider2D.h"
+ï»¿#include"Collider2D.h"
 
 Collider2D::Collider2D():pos(DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f)),size(DirectX::XMFLOAT3(1.0f, 1.0f, 0.0f))
 {}
@@ -18,7 +18,7 @@ void Collider2D::SetPos(DirectX::XMFLOAT3& _pos)
 }
 void Collider2D::SetSize(DirectX::XMFLOAT3& _size)
 {
-	//“–‚½‚è”»’è‚Ì‘å‚«‚³
+	//å½“ãŸã‚Šåˆ¤å®šã®å¤§ãã•
 	this->size.x = _size.x / 2.0f;
 	this->size.y = _size.y / 2.0f;
 	this->size.z = _size.z / 2.0f;
@@ -32,24 +32,24 @@ DirectX::XMFLOAT3 Collider2D::GetSize(void)
 	return this->size;
 }
 
-// “–‚½‚è”»’è
+// å½“ãŸã‚Šåˆ¤å®š
 bool Collider2D::OnCollisionSquare(Collider2D& _passive, Collider2D& _collision) 
 {
-	DirectX::XMFLOAT3	collDetection = {};	//passive‚ÆcollisionŠÔ‚Ì“–‚½‚è”»’è‹——£‚ğ“ü‚ê‚é
-	DirectX::XMFLOAT3 distance = {};		//passive‚ÆcollisionŠÔ‚Ì‹——£‚ğ“ü‚ê‚é
+	DirectX::XMFLOAT3	collDetection = {};	//passiveã¨collisioné–“ã®å½“ãŸã‚Šåˆ¤å®šè·é›¢ã‚’å…¥ã‚Œã‚‹
+	DirectX::XMFLOAT3 distance = {};		//passiveã¨collisioné–“ã®è·é›¢ã‚’å…¥ã‚Œã‚‹
 
-	// passive‚ÆcollisionŠÔ‚Ì‹——£i’†S“_‚©‚ç’†S“_‚Ü‚Åj‚ğx,y,z‚»‚ê‚¼‚ê‹‚ß‚é
+	// passiveã¨collisioné–“ã®è·é›¢ï¼ˆä¸­å¿ƒç‚¹ã‹ã‚‰ä¸­å¿ƒç‚¹ã¾ã§ï¼‰ã‚’x,y,zãã‚Œãã‚Œæ±‚ã‚ã‚‹
   	distance.x = fabsf(_passive.pos.x - _collision.pos.x);		//x
 	distance.y = fabsf(_passive.pos.y - _collision.pos.y);		//y
 	distance.z = fabsf(_passive.pos.z - _collision.pos.z);		//z
 
-	// passive‚Æcollision‚Ì“–‚½‚è”»’è‹——£‚ğx,y‚»‚ê‚¼‚ê‹‚ß‚é
+	// passiveã¨collisionã®å½“ãŸã‚Šåˆ¤å®šè·é›¢ã‚’x,yãã‚Œãã‚Œæ±‚ã‚ã‚‹
 	collDetection.x = _passive.size.x + _collision.size.x;	//x
 	collDetection.y = _passive.size.y + _collision.size.y;	//y
 	collDetection.z = _passive.size.z + _collision.size.z;	//z
 
-	// ’†S“_‚©‚ç’†S“_‚Ü‚Å‚Ì‹——£‚ª‚»‚ê‚¼‚ê“–‚½‚è”»’è‹——£‚æ‚è¬‚³‚©‚Á‚½‚ç
-	// “–‚½‚Á‚Ä‚¢‚é
+	// ä¸­å¿ƒç‚¹ã‹ã‚‰ä¸­å¿ƒç‚¹ã¾ã§ã®è·é›¢ãŒãã‚Œãã‚Œå½“ãŸã‚Šåˆ¤å®šè·é›¢ã‚ˆã‚Šå°ã•ã‹ã£ãŸã‚‰
+	// å½“ãŸã£ã¦ã„ã‚‹
 	if (collDetection.x >= distance.x && collDetection.y >= distance.y && collDetection.z >= distance.z)
 	{
 		return true;

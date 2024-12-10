@@ -1,5 +1,5 @@
-/**	@file 	SceneManager.cpp
-*	@brief 	ƒV[ƒ“ŠÇ—ƒNƒ‰ƒX
+ï»¿/**	@file 	SceneManager.cpp
+*	@brief 	ã‚·ãƒ¼ãƒ³ç®¡ç†ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/11
 */
 
@@ -19,28 +19,28 @@
 
 #include<iostream>
 
-//Ã“Iƒƒ“ƒo•Ï”‚Ì‰Šú‰»
+//é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°ã®åˆæœŸåŒ–
 SceneManager* SceneManager::sceneManager = nullptr;
 
 //	private----------------------------------------------------------------------------------------------
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/11
-*	@memo	ŠO‚Å‚Ì¶¬‚ğ–h‚®
+*	@memo	å¤–ã§ã®ç”Ÿæˆã‚’é˜²ã
 */
 SceneManager::SceneManager()
 {
-	this->isInitialized = false;	//‰Šú‰»‚µ‚Ä‚¢‚È‚¢ó‘Ô‚É‚µ‚Ä‚¨‚­
-	this->isChangedScene = false;	//ƒV[ƒ“‘JˆÚ‚µ‚Ä‚¢‚È‚¢ó‘Ô‚É‚µ‚Ä‚¨‚­
+	this->isInitialized = false;	//åˆæœŸåŒ–ã—ã¦ã„ãªã„çŠ¶æ…‹ã«ã—ã¦ãŠã
+	this->isChangedScene = false;	//ã‚·ãƒ¼ãƒ³é·ç§»ã—ã¦ã„ãªã„çŠ¶æ…‹ã«ã—ã¦ãŠã
 	this->nowScene = nullptr;
 }
 
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/11
 */
 SceneManager::~SceneManager()
 {
-	//Œ»İ‚ÌƒV[ƒ“‚Ì‰ğ•ú
+	//ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³ã®è§£æ”¾
 	if (this->nowScene)
 	{
 		delete	this->nowScene;
@@ -48,162 +48,162 @@ SceneManager::~SceneManager()
 	}
 }
 
-/**	@brief 	ƒV[ƒ“‚Ì¶¬
-*	@param	Scene	sceneName	Ÿ‚ÌƒV[ƒ“–¼
+/**	@brief 	ã‚·ãƒ¼ãƒ³ã®ç”Ÿæˆ
+*	@param	Scene	sceneName	æ¬¡ã®ã‚·ãƒ¼ãƒ³å
 *	@date	2024/05/11
-*	@memo	”ñ“¯Šú‚Ì‚Í‚±‚±‚ğ–ß‚è’lBaseScene*‚É‚µ‚Ä•¡”ŒÂì‚ê‚é‚æ‚¤‚É‚·‚é—\’è‚Í–¢’èIIIII
+*	@memo	éåŒæœŸã®æ™‚ã¯ã“ã“ã‚’æˆ»ã‚Šå€¤BaseScene*ã«ã—ã¦è¤‡æ•°å€‹ä½œã‚Œã‚‹ã‚ˆã†ã«ã™ã‚‹äºˆå®šã¯æœªå®šï¼ï¼ï¼ï¼ï¼
 */
 void	SceneManager::CreateScene(Scene sceneName)
 {
-	//Œ»İ‚ÌƒV[ƒ“‚ª‰ğ•ú‚³‚ê‚Ä‚¢‚ê‚Î
+	//ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³ãŒè§£æ”¾ã•ã‚Œã¦ã„ã‚Œã°
 	if (!this->nowScene) 
 	{
-		//ˆø”‚É‡‚í‚¹‚ÄƒV[ƒ“‚ğ¶¬‚·‚é
+		//å¼•æ•°ã«åˆã‚ã›ã¦ã‚·ãƒ¼ãƒ³ã‚’ç”Ÿæˆã™ã‚‹
 		switch (sceneName)
 		{
 		case Scene::TITLE:
-			//cout << "TitleScene‚ğ¶¬" << endl;
+			//cout << "TitleSceneã‚’ç”Ÿæˆ" << endl;
 			this->nowScene = new	TitleScene;
 			break;
 		case Scene::GAME:
-			//cout << "GameScene‚ğ¶¬" << endl;
+			//cout << "GameSceneã‚’ç”Ÿæˆ" << endl;
 			this->nowScene = new	GameScene;
 			break;
 		case Scene::RESULT:
-			//cout << "ResultScene‚ğ¶¬" << endl;
+			//cout << "ResultSceneã‚’ç”Ÿæˆ" << endl;
 			this->nowScene = new	ResultScene;
 			break;
 		case Scene::TEST:
-			//cout << "TestScene‚ğ¶¬" << endl;
+			//cout << "TestSceneã‚’ç”Ÿæˆ" << endl;
 			this->nowScene = new	TestScene;
 			break;
 
 		case Scene::TEST_IMAGAWA:
-			//cout << "TestScene‚ğ¶¬" << endl;
+			//cout << "TestSceneã‚’ç”Ÿæˆ" << endl;
 			this->nowScene = new	Test_Imagawa;
 			break;
 		case Scene::TEST_UEDA:
-			//cout << "TestScene‚ğ¶¬" << endl;
+			//cout << "TestSceneã‚’ç”Ÿæˆ" << endl;
 			this->nowScene = new	Test_Ueda;
 			break;
 		case Scene::TEST_URYU:
-			//cout << "TestScene‚ğ¶¬" << endl;
+			//cout << "TestSceneã‚’ç”Ÿæˆ" << endl;
 			this->nowScene = new	Test_Uryu;
 			break;
 		case Scene::TEST_RI:
-			//cout << "TestScene‚ğ¶¬" << endl;
+			//cout << "TestSceneã‚’ç”Ÿæˆ" << endl;
 			this->nowScene = new	Test_Ri;
 			break;
 		//case Scene::TAKAHASHI_TEST:
-		//	//cout << "TestScene‚ğ¶¬" << endl;
+		//	//cout << "TestSceneã‚’ç”Ÿæˆ" << endl;
 		//	this->nowScene = new	TestScene;
 		//	break;
 		default:
 			break;
 		}
 	}
-	//ƒV[ƒ“‚ª¶¬‚Å‚«‚Ä‚¢‚È‚¯‚ê‚Î
+	//ã‚·ãƒ¼ãƒ³ãŒç”Ÿæˆã§ãã¦ã„ãªã‘ã‚Œã°
 	if (!this->nowScene)
 	{
-		std::cerr << "ƒV[ƒ“¶¬‚É¸”s‚µ‚Ü‚µ‚½" << std::endl;
+		std::cerr << "ã‚·ãƒ¼ãƒ³ç”Ÿæˆã«å¤±æ•—ã—ã¾ã—ãŸ" << std::endl;
 	}
 }
  
 //	public----------------------------------------------------------------------------------------------
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌÀsŠÖ”
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®å®Ÿè¡Œé–¢æ•°
 *	@date	2024/05/11
-*	@memo	ƒV[ƒ“‘S‘Ì‚Ìˆ—‚Ì—¬‚ê(‰Šú‰»AXVA•`‰æ)‚ğ‚±‚±‚É‘‚­
+*	@memo	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®å‡¦ç†ã®æµã‚Œ(åˆæœŸåŒ–ã€æ›´æ–°ã€æç”»)ã‚’ã“ã“ã«æ›¸ã
 */
 void	SceneManager::Run(void)
 {
-	//ƒV[ƒ“‚ª–³‚¯‚ê‚Î
+	//ã‚·ãƒ¼ãƒ³ãŒç„¡ã‘ã‚Œã°
 	if (!this->nowScene)
 	{
-		std::cerr << "ƒV[ƒ“‚ª‘¶İ‚µ‚Ü‚¹‚ñ" << std::endl;
+		std::cerr << "ã‚·ãƒ¼ãƒ³ãŒå­˜åœ¨ã—ã¾ã›ã‚“" << std::endl;
 	}
 
-	//‚Ü‚¾‰Šú‰»‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î
+	//ã¾ã åˆæœŸåŒ–ã•ã‚Œã¦ã„ãªã‘ã‚Œã°
 	if (!this->isInitialized)
 	{	
- 		this->nowScene->Initialize();	//	‰Šú‰»ˆ—
-		this->isChangedScene = false;	//@ƒV[ƒ“‘JˆÚ‚µ‚Ä‚¢‚È‚¢
-		this->isInitialized = true;		//	‰ŠúÏ
+ 		this->nowScene->Initialize();	//	åˆæœŸåŒ–å‡¦ç†
+		this->isChangedScene = false;	//ã€€ã‚·ãƒ¼ãƒ³é·ç§»ã—ã¦ã„ãªã„
+		this->isInitialized = true;		//	åˆæœŸæ¸ˆ
 
 	}
 
-	this->nowScene->Update();			//	XVˆ—
+	this->nowScene->Update();			//	æ›´æ–°å‡¦ç†
 
-	//ƒV[ƒ“‘JˆÚ‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Î
+	//ã‚·ãƒ¼ãƒ³é·ç§»ã•ã‚Œã¦ã„ãªã‘ã‚Œã°
 	if (!this->isChangedScene)
 	{
-		// cd3d11ƒNƒ‰ƒX‚Ìæ“¾
+		// cd3d11ã‚¯ãƒ©ã‚¹ã®å–å¾—
 		CD3D11* cd3d11 = CD3D11::GetInstance();
 
-		// •`‰æ‚É•K—v‚Èƒ‚ƒm‚ğæ“¾
+		// æç”»ã«å¿…è¦ãªãƒ¢ãƒã‚’å–å¾—
 		ID3D11DeviceContext* context = cd3d11->GetDeviceContext();
 		ID3D11RenderTargetView* renderTargetView = cd3d11->GetRenderTargetView();
 		IDXGISwapChain* swapChain = cd3d11->GetSwapChain();
 		ID3D11DepthStencilView* depthStencilView = cd3d11->GetDepthStencilView();
 
-		//‰æ–ÊƒNƒŠƒA
-		float clearColor[4] = { 0.0f, 0.0f, 1.0f, 1.0f }; //red,green,blue,alpha							// ‰æ–Ê“h‚è‚Â‚Ô‚µF
-		context->OMSetRenderTargets(1, &renderTargetView, depthStencilView);								// •`‰ææ‚ÌƒLƒƒƒ“ƒoƒX‚Æg—p‚·‚é[“xƒoƒbƒtƒ@‚ğw’è‚·‚é
-		context->ClearRenderTargetView(renderTargetView, clearColor);										// •`‰ææƒLƒƒƒ“ƒoƒX‚ğ“h‚è‚Â‚Ô‚·
-		context->ClearDepthStencilView(depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);	// [“xƒoƒbƒtƒ@‚ğƒŠƒZƒbƒg‚·‚é
+		//ç”»é¢ã‚¯ãƒªã‚¢
+		float clearColor[4] = { 0.0f, 0.0f, 1.0f, 1.0f }; //red,green,blue,alpha							// ç”»é¢å¡—ã‚Šã¤ã¶ã—è‰²
+		context->OMSetRenderTargets(1, &renderTargetView, depthStencilView);								// æç”»å…ˆã®ã‚­ãƒ£ãƒ³ãƒã‚¹ã¨ä½¿ç”¨ã™ã‚‹æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚’æŒ‡å®šã™ã‚‹
+		context->ClearRenderTargetView(renderTargetView, clearColor);										// æç”»å…ˆã‚­ãƒ£ãƒ³ãƒã‚¹ã‚’å¡—ã‚Šã¤ã¶ã™
+		context->ClearDepthStencilView(depthStencilView, D3D11_CLEAR_DEPTH | D3D11_CLEAR_STENCIL, 1.0f, 0);	// æ·±åº¦ãƒãƒƒãƒ•ã‚¡ã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
 
-		this->nowScene->Draw();			// •`‰æˆ—
+		this->nowScene->Draw();			// æç”»å‡¦ç†
 
-		swapChain->Present(0, 0);		// ƒoƒbƒtƒ@‚ÌØ‚è‘Ö‚¦
+		swapChain->Present(0, 0);		// ãƒãƒƒãƒ•ã‚¡ã®åˆ‡ã‚Šæ›¿ãˆ
 	}
 }
-/**	@brief 	ƒV[ƒ“‘JˆÚŠÖ”
-*	@param	Scene	sceneName	Ÿ‚ÌƒV[ƒ“–¼
+/**	@brief 	ã‚·ãƒ¼ãƒ³é·ç§»é–¢æ•°
+*	@param	Scene	sceneName	æ¬¡ã®ã‚·ãƒ¼ãƒ³å
 *	@date	2024/05/11
 */
 void	SceneManager::ChangeScene(Scene	sceneName)
 {
-	if (this->nowScene)					//	Œ»İ‚ÌƒV[ƒ“‚Ìƒƒ‚ƒŠ‚ğ‰ğ•ú
+	if (this->nowScene)					//	ç¾åœ¨ã®ã‚·ãƒ¼ãƒ³ã®ãƒ¡ãƒ¢ãƒªã‚’è§£æ”¾
 	{
 		delete	this->nowScene;
 		this->nowScene = nullptr;
 	}
-	this->CreateScene(sceneName);		//	Ÿ‚ÌƒV[ƒ“¶¬
+	this->CreateScene(sceneName);		//	æ¬¡ã®ã‚·ãƒ¼ãƒ³ç”Ÿæˆ
 
-	this->isInitialized = false;		//	‰Šú‰»ƒtƒ‰ƒOƒŠƒZƒbƒg
-	this->isChangedScene = true;		//@ƒV[ƒ“‘JˆÚ‚µ‚½
+	this->isInitialized = false;		//	åˆæœŸåŒ–ãƒ•ãƒ©ã‚°ãƒªã‚»ãƒƒãƒˆ
+	this->isChangedScene = true;		//ã€€ã‚·ãƒ¼ãƒ³é·ç§»ã—ãŸ
 }
 //	public (static)----------------------------------------------------------------------------------------------
 
-/**	@brief 	ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚Ì¶¬
+/**	@brief 	ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®ç”Ÿæˆ
 *	@date	2024/05/11
-*	@memo	‚±‚ÌŠÖ”‚ğn‚ß‚ÉÀs‚·‚é
+*	@memo	ã“ã®é–¢æ•°ã‚’å§‹ã‚ã«å®Ÿè¡Œã™ã‚‹
 */
 void	SceneManager::CreateInstance(void)
 {
-	//¶¬‚³‚ê‚Ä‚¢‚È‚¯‚ê‚ÎƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚ğ¶¬‚·‚é
+	//ç”Ÿæˆã•ã‚Œã¦ã„ãªã‘ã‚Œã°ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ç”Ÿæˆã™ã‚‹
 	if (!SceneManager::sceneManager)
 	{
-		//cout << "ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚ğ¶¬‚µ‚Ü‚·" << endl;
+		//cout << "ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’ç”Ÿæˆã—ã¾ã™" << endl;
 		SceneManager::sceneManager = new	SceneManager;
 	}
 }
-/**	@brief 	ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚Ìíœ
+/**	@brief 	ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å‰Šé™¤
 *	@date	2024/05/11
 */
 void	SceneManager::DestroyInstance(void)
 {
 	if (SceneManager::sceneManager)
 	{
-		//cout << "ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚ğÁ‹‚µ‚Ü‚·" << endl;
+		//cout << "ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’æ¶ˆå»ã—ã¾ã™" << endl;
 		delete	SceneManager::sceneManager;
 		SceneManager::sceneManager = nullptr;
 	}
 }
-/**	@brief 	ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚Ìæ“¾
-*	@return	SceneManager*	ƒV[ƒ“ƒ}ƒl[ƒWƒƒ[
+/**	@brief 	ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã®å–å¾—
+*	@return	SceneManager*	ã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼
 *	@date	2024/05/11
-*	@memo	‚±‚ÌŠÖ”‚ğg‚Á‚ÄŠeƒtƒ@ƒCƒ‹‚Å¶¬ÏƒV[ƒ“ƒ}ƒl[ƒWƒƒ[‚ğæ“¾‚·‚é
+*	@memo	ã“ã®é–¢æ•°ã‚’ä½¿ã£ã¦å„ãƒ•ã‚¡ã‚¤ãƒ«ã§ç”Ÿæˆæ¸ˆã‚·ãƒ¼ãƒ³ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã‚’å–å¾—ã™ã‚‹
 */
 SceneManager* SceneManager::GetInstance(void)
 {
