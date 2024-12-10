@@ -22,7 +22,6 @@ Test_Uryu::~Test_Uryu()
 */
 void	Test_Uryu::Initialize(void)
 {
-
 }
 
 /**	@brief 	シーン全体の更新

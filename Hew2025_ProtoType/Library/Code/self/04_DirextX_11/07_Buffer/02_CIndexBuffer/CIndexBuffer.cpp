@@ -20,16 +20,16 @@ CIndexBuffer::~CIndexBuffer()
 *	@date	2024/05/23
 *	@memo
 */
-HRESULT	CIndexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing)
+HRESULT	CIndexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing, D3D11_USAGE _usage, UINT _cpuAccessFlags)
 {
 	// インデックスバッファの設定
 	D3D11_BUFFER_DESC ibDesc = {};
 	ibDesc.BindFlags = D3D11_BIND_INDEX_BUFFER;	    //  デバイスにバインドするときの種類(頂点バッファ、インデックスバッファ、定数バッファなど)
-	ibDesc.Usage = D3D11_USAGE_DEFAULT;				//  作成するバッファの使用法
+	ibDesc.Usage = _usage;							//  作成するバッファの使用法
 	ibDesc.ByteWidth = byteWidth;					//  作成するバッファのバイトサイズ
 	ibDesc.MiscFlags = 0;							//  その他のフラグ
 	ibDesc.StructureByteStride = 0;		            //  構造化バッファの場合、その構造体のサイズ
-	ibDesc.CPUAccessFlags = 0;
+	ibDesc.CPUAccessFlags = _cpuAccessFlags;
 
 
 	//インデックスバッファが無ければ

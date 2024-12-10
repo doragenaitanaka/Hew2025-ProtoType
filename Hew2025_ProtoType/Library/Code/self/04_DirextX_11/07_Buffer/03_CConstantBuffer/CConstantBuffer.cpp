@@ -21,16 +21,16 @@ CConstantBuffer::~CConstantBuffer()
 *	@return	HRESULT
 *	@date	2024/05/24
 */
-HRESULT	CConstantBuffer::Create(const void* p_SysMem, UINT	byteWidth, UINT	nothing )
+HRESULT	CConstantBuffer::Create(const void* p_SysMem, UINT	byteWidth, UINT	nothing , D3D11_USAGE _usage , UINT _cpuAccessFlags )
 {
     //バッファの作成
     D3D11_BUFFER_DESC cbDesc;
     cbDesc.ByteWidth = byteWidth;
-    cbDesc.Usage = D3D11_USAGE_DEFAULT;
+    cbDesc.Usage = _usage;
     cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
     cbDesc.CPUAccessFlags = 0;
     cbDesc.MiscFlags = 0;
-    cbDesc.StructureByteStride = 0;
+    cbDesc.StructureByteStride = _cpuAccessFlags;
 
     //バッファ情報を取得
     ID3D11Buffer** p_vertexBuffer = this->GetBuffer();

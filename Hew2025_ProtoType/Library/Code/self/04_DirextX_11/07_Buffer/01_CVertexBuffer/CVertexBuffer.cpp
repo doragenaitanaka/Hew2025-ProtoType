@@ -23,16 +23,16 @@ CVertexBuffer::~CVertexBuffer()
 *	@date	2024/05/23
 *	@memo
 */
-HRESULT	CVertexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing)
+HRESULT	CVertexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing, D3D11_USAGE _usage, UINT _cpuAccessFlags)
 {
 	// 頂点バッファの設定
 	D3D11_BUFFER_DESC vbDesc = {};
 	vbDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	//  デバイスにバインドするときの種類(頂点バッファ、インデックスバッファ、定数バッファなど)
-	vbDesc.Usage = D3D11_USAGE_DEFAULT;				//  作成するバッファの使用法
+	vbDesc.Usage = _usage;							//  作成するバッファの使用法
 	vbDesc.ByteWidth = byteWidth;				    //  作成するバッファのバイトサイズ
 	vbDesc.MiscFlags = 0;							//  その他のフラグ
 	vbDesc.StructureByteStride = 0;					//  構造化バッファの場合、その構造体のサイズ
-	vbDesc.CPUAccessFlags = 0;
+	vbDesc.CPUAccessFlags = _cpuAccessFlags;
 
 	//頂点バッファがなければ
 	if (!this->p_buffer)

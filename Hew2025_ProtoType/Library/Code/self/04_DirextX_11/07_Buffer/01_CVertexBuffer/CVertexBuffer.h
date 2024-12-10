@@ -24,7 +24,7 @@ public:
 	*	@date	2024/05/23
 	*	@memo	
 	*/
-	HRESULT	Create(const void* p_SysMem, UINT byteWidth, UINT nothing = NULL)override;
+	HRESULT	Create(const void* p_SysMem, UINT byteWidth, UINT nothing = NULL, D3D11_USAGE _usage = D3D11_USAGE_DEFAULT, UINT _cpuAccessFlags = 0)override;
 
 	/**	@brief 	入力アセンブラステージに紐づける
 	*	@param	UINT	StartSlot	頂点バッファの先頭スロット番号

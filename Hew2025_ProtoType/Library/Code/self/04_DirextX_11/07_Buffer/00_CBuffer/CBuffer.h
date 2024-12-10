@@ -24,7 +24,7 @@ public:
 	*	@date	2024/05/23
 	*	@memo	第二引数、第三引数は継承先によって役割が変わるので変数名決めないでおく
 	*/
-	virtual	HRESULT	Create(const void* p_SysMem, UINT, UINT) = 0;
+	virtual	HRESULT	Create(const void* p_SysMem, UINT, UINT, D3D11_USAGE _usage = D3D11_USAGE_DEFAULT, UINT _cpuAccessFlags = 0) = 0;
 
 	/**	@brief 	バッファ情報のポインタアドレスを返す
 	*	@return	ID3D11Buffer**

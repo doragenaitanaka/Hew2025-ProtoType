@@ -24,7 +24,7 @@ public:
 	*	@return	HRESULT
 	*	@date	2024/05/24
 	*/
-	HRESULT	Create(const void* p_SysMem, UINT	byteWidth, UINT	nothing = NULL)override;
+	HRESULT	Create(const void* p_SysMem, UINT	byteWidth, UINT	nothing = NULL, D3D11_USAGE _usage = D3D11_USAGE_DEFAULT, UINT _cpuAccessFlags = 0)override;
 
 	/**	@brief 	バッファの更新
 	*	@param	_In_  const void* pSrcData 反映データ
