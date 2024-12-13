@@ -1,6 +1,5 @@
 ﻿#pragma once
 #include<DirectXMath.h> //  DirectX::XMFLOAT3に必要
-
 // 四角形
 class Collider2D
 {
@@ -17,6 +16,13 @@ public:
 
 	// 当たり判定
 	static bool OnCollisionSquare(Collider2D& _passive, Collider2D& _collision);
+
+	static bool circleCircle(float, float, float, float, float, float);
+
+	static bool circleRect(float, float, float, float, float, float, float);
+
+	static bool rectRect(float, float, float, float, float, float, float, float);
+
 
 private:
 	DirectX::XMFLOAT3 pos;	// 座標
