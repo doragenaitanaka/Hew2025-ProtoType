@@ -8,6 +8,7 @@
 #include"../../../../Scene/02_GameScene/GameScene.h"
 #include"../../../../Scene/03_ResultScene/ResultScene.h"
 
+#include"../../../../Scene/94_Test_Otani/Test_Otani.h"
 #include"../../../../Scene/95_Test_Ri/Test_Ri.h"
 #include"../../../../Scene/96_Test_Imagawa/Test_Imagawa.h"
 #include"../../../../Scene/97_Test_Ueda/Test_Ueda.h"
@@ -93,6 +94,10 @@ void	SceneManager::CreateScene(Scene sceneName)
 		case Scene::TEST_RI:
 			//cout << "TestSceneを生成" << endl;
 			this->nowScene = new	Test_Ri;
+			break;	
+		case Scene::TEST_OTANI:
+			//cout << "TestSceneを生成" << endl;
+			this->nowScene = new	Test_Otani;
 			break;
 		//case Scene::TAKAHASHI_TEST:
 		//	//cout << "TestSceneを生成" << endl;

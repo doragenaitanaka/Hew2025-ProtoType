@@ -21,6 +21,7 @@ enum Scene
 	TEST_UEDA,
 	TEST_URYU,
 	TEST_RI,
+	TEST_OTANI,
 	//TEST_TAKAHASHI,
 };
 
