@@ -150,6 +150,9 @@
     <ClCompile Include="Library\Code\self\Uryu_Collision\Colision.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\94_Test_Otani\Test_Otani.cpp">
+      <Filter>ソース ファイル\Scene\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h">
@@ -250,6 +253,9 @@
     </ClInclude>
     <ClInclude Include="Library\Code\self\Uryu_Collision\Collision.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\94_Test_Otani\Test_Otani.h">
+      <Filter>ヘッダー ファイル\Scene\Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

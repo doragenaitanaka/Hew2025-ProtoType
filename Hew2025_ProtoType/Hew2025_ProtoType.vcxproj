@@ -155,6 +155,7 @@
     <ClCompile Include="Scene\01_TitleScene\TitleScene.cpp" />
     <ClCompile Include="Scene\02_GameScene\GameScene.cpp" />
     <ClCompile Include="Scene\03_ResultScene\ResultScene.cpp" />
+    <ClCompile Include="Scene\94_Test_Otani\Test_Otani.cpp" />
     <ClCompile Include="Scene\95_Test_Ri\Test_Ri.cpp" />
     <ClCompile Include="Scene\96_Test_Imagawa\Test_Imagawa.cpp" />
     <ClCompile Include="Scene\97_Test_Ueda\Test_Ueda.cpp" />
@@ -190,6 +191,7 @@
     <ClInclude Include="Scene\01_TitleScene\TitleScene.h" />
     <ClInclude Include="Scene\02_GameScene\GameScene.h" />
     <ClInclude Include="Scene\03_ResultScene\ResultScene.h" />
+    <ClInclude Include="Scene\94_Test_Otani\Test_Otani.h" />
     <ClInclude Include="Scene\95_Test_Ri\Test_Ri.h" />
     <ClInclude Include="Scene\96_Test_Imagawa\Test_Imagawa.h" />
     <ClInclude Include="Scene\97_Test_Ueda\Test_Ueda.h" />
