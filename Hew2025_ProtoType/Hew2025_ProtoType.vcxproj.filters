@@ -147,6 +147,9 @@
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル\other</Filter>
     </ClCompile>
+    <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h">
@@ -243,6 +246,9 @@
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\imagawa_Input\input.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

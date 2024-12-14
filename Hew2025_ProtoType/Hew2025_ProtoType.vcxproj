@@ -149,6 +149,7 @@
     <ClCompile Include="Library\Code\self\04_DirextX_11\10_Sampler\CSampler.cpp" />
     <ClCompile Include="Library\Code\self\05_Collider2D\Collider2D.cpp" />
     <ClCompile Include="Library\Code\self\10_Object\Object.cpp" />
+    <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp" />
     <ClCompile Include="Scene\01_TitleScene\TitleScene.cpp" />
@@ -182,6 +183,7 @@
     <ClInclude Include="Library\Code\self\04_DirextX_11\10_Sampler\CSampler.h" />
     <ClInclude Include="Library\Code\self\05_Collider2D\Collider2D.h" />
     <ClInclude Include="Library\Code\self\10_Object\Object.h" />
+    <ClInclude Include="Library\Code\self\imagawa_Input\input.h" />
     <ClInclude Include="Library\Code\self\SafePointers.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h" />
