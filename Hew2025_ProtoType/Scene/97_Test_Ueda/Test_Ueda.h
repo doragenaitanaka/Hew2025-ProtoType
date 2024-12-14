@@ -9,6 +9,8 @@
 #include"../00_BaseScene/BaseScene.h"
 #include"../../Library/Code/self/02_SceneManager/SceneManager.h"
 #include<iostream>
+#include"../../Sound/sound.h"
+
 
 /**	@file	Test_Ueda.h
 *	@brief 	植田用のテストシーンクラス
@@ -47,4 +49,5 @@ public:
 	void	Finalize(void)override;
 
 private:
+	
 };

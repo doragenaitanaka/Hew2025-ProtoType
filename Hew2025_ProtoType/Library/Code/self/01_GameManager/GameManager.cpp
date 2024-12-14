@@ -7,7 +7,7 @@
 
 //==================最初に実行されるシーン(ここしかいじっちゃダメ！！！！！！)========================
 
-Scene GameManager::startScene = Scene::TEST;
+Scene GameManager::startScene = Scene::TEST_UEDA;
 
 //====================================================================================================
 GameManager* GameManager::gameManager = nullptr;

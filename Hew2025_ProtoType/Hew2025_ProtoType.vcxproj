@@ -159,6 +159,7 @@
     <ClCompile Include="Scene\97_Test_Ueda\Test_Ueda.cpp" />
     <ClCompile Include="Scene\98_Test_Uryu\Test_Uryu.cpp" />
     <ClCompile Include="Scene\99_TestScene\TestScene.cpp" />
+    <ClCompile Include="Sound\sound.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.h" />
@@ -193,6 +194,7 @@
     <ClInclude Include="Scene\97_Test_Ueda\Test_Ueda.h" />
     <ClInclude Include="Scene\98_Test_Uryu\Test_Uryu.h" />
     <ClInclude Include="Scene\99_TestScene\TestScene.h" />
+    <ClInclude Include="Sound\sound.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
