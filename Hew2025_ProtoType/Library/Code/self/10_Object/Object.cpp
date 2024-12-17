@@ -53,7 +53,7 @@ Object::~Object()
 HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_changeFrame , float	_moveUPos)
 {
 	// オブジェクトの座標に位置を合わせる
-	this->p_coll = new Collider2D(this->pos, this->size);
+	this->p_coll = new BoxCollider();
 
 	// 分割数に応じてUV座標を決める
 	this->splitX = _splitX;
@@ -97,8 +97,6 @@ HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 */
 void	Object::Update(void)
 {
-	// 今回は当たり判定はずっとオブジェクトと同じ座標
-	this->p_coll->SetPos(this->pos);
 
 	// アニメーションの更新
 	//this->AnimUpdate();
@@ -222,7 +220,7 @@ void	Object::SetPos(float x, float y, float z)
 	this->pos.z = z;
 
 	// 今回は当たり判定はずっとオブジェクトと同じ座標
-	this->p_coll->SetPos(this->pos);
+	this->p_coll->SetPosition(this->pos);
 
 	// 定数バッファの更新
 	this->ConstantBufferUpdate();
@@ -245,14 +243,6 @@ DirectX::XMFLOAT3	Object::GetSize(void)
 	return this->size;
 }
 
-/**	@brief 	コライダーの取得
-*	@return	Collider2D&		コライダー2D
-*	@date	2024/06/12
-*/
-Collider2D& Object::GetCollider2D(void)
-{
-	return *this->p_coll;
-}
 
 /**	@brief 	大きさを設定
 *	@param	float x
@@ -266,9 +256,8 @@ void	Object::SetSize(float x, float y, float z)
 	this->size.y = y;
 	this->size.z = z;
 
-	// 当たり判定も更新
-	this->p_coll->SetSize(this->size);
 }
+
 
 /**	@brief 	角度を設定
 *	@param	float angle

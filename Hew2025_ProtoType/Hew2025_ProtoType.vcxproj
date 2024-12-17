@@ -128,6 +128,9 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BaseCollider.cpp" />
+    <ClCompile Include="BoxCollider.cpp" />
+    <ClCompile Include="CircleCollider.cpp" />
     <ClCompile Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Library\Code\self\01_GameManager\GameManager.cpp" />
     <ClCompile Include="Library\Code\self\02_SceneManager\SceneManager.cpp" />
@@ -163,6 +166,9 @@
     <ClCompile Include="Scene\99_TestScene\TestScene.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="BaseCollider.h" />
+    <ClInclude Include="BoxCollider.h" />
+    <ClInclude Include="CircleCollider.h" />
     <ClInclude Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Library\Code\self\01_GameManager\GameManager.h" />
     <ClInclude Include="Library\Code\self\02_SceneManager\SceneManager.h" />

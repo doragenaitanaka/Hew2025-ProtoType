@@ -1,7 +1,11 @@
 ﻿#pragma once
 #include"../04_DirextX_11/07_Buffer/01_CVertexBuffer/CVertexBuffer.h"
 #include"../04_DirextX_11/07_Buffer/03_CConstantBuffer/CConstantBuffer.h"
-#include"../05_Collider2D/Collider2D.h"
+
+#include "../../../../BaseCollider.h"
+#include "../../../../BoxCollider.h"
+#include "../../../../CircleCollider.h"
+
 
 #include<DirectXMath.h> //  DirectX::XMFLOAT3に必要
 
@@ -128,7 +132,7 @@ public:
 	*	@return	Collider2D&		コライダー2D
 	*	@date	2024/06/12
 	*/
-	Collider2D&	GetCollider2D(void);
+	BaseCollider&	GetCollider2D(void);
 
 	/**	@brief 	テクスチャをセット
 	*	@param	DirectX::XMFLOAT4	_color	頂点カラー
@@ -164,13 +168,14 @@ protected:
 		{ -0.5f, -0.5f, 0.5f,	1.0f,1.0f,1.0f,1.0f,	0.0f,1.0f},	// 2番目の頂点座標
 		{ 0.5f, -0.5f, 0.5f ,	1.0f,1.0f,1.0f,1.0f,	1.0f,1.0f},	// 1番目の頂点座標
 	}; 
-	DirectX::XMFLOAT3	pos;						// 座標
+	DirectX::XMFLOAT3	pos = {1.0f, 1.0f, 1.0f};	// 座標
 	float	angle;									// 角度
 
-	DirectX::XMFLOAT3	size;						// 大きさ
+	DirectX::XMFLOAT3	size = { 1.0f, 1.0f, 1.0f };// 大きさ
 	DirectX::XMFLOAT4	color;						// 頂点カラー
 
-	Collider2D* p_coll;	// 当たり判定
+	BaseCollider* p_coll;
+
 
 	// テクスチャを何分割するのか
 	int	splitX;
