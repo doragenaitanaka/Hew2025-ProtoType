@@ -1,11 +1,11 @@
-/**	@file 	Test_Otani.h
-*	@brief 	‘å’J—p‚ÌƒeƒXƒgƒV[ƒ“ƒNƒ‰ƒX
+ï»¿/**	@file 	Test_Otani.h
+*	@brief 	å¤§è°·ç”¨ã®ãƒ†ã‚¹ãƒˆã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/12/14
-*	@memo	ƒ}ƒl[ƒWƒƒ[‚ÍÃ“Iƒƒ“ƒo•Ï”‚È‚Ì‚Åæ“¾‚Ì‚İ
+*	@memo	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã¯é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°ãªã®ã§å–å¾—ã®ã¿
 */
 #pragma once
 
-// ƒCƒ“ƒNƒ‹[ƒh
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #include"../00_BaseScene/BaseScene.h"
 #include"../../Library/Code/self/02_SceneManager/SceneManager.h"
 #include"../../Library/Code/self/10_Object/Object.h"
@@ -16,62 +16,62 @@
 #include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
 
 /**	@file	Test_Otani.h
-*	@brief 	A“c—p‚ÌƒeƒXƒgƒV[ƒ“ƒNƒ‰ƒX
+*	@brief 	æ¤ç”°ç”¨ã®ãƒ†ã‚¹ãƒˆã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/21
-*	@memo	Šî’êƒNƒ‰ƒX‚Ìƒˆ‰¼‘zŠÖ”‚ğŒp³‚µ‚Ä‚¢‚é— •t‚¯(Œë‚Á‚½Œp³“®ì‚ğ–h‚®‚½‚ß)‚ÉŒp³‚µ‚½ƒƒ“ƒoŠÖ”‚Éoverridew’èq‚ğg—p‚µ‚Ä‚¢‚é
+*	@memo	åŸºåº•ã‚¯ãƒ©ã‚¹ã®ç´”ç²‹ä»®æƒ³é–¢æ•°ã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹è£ä»˜ã‘(èª¤ã£ãŸç¶™æ‰¿å‹•ä½œã‚’é˜²ããŸã‚)ã«ç¶™æ‰¿ã—ãŸãƒ¡ãƒ³ãƒé–¢æ•°ã«overrideæŒ‡å®šå­ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹
 */
 class Test_Otani :public BaseScene
 {
 public:
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	* @date 2024/05/21
 	*/
 	Test_Otani();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/05/21
 	*/
 	~Test_Otani()override;
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì‰Šú‰»
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®åˆæœŸåŒ–
 	*	@date 2024/05/21
 	*/
 	void	Initialize(void)override;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌXV
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æ›´æ–°
 	*	@date 2024/05/21
 	*/
 	void	Update(void)override;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æç”»
 	*	@date 2024/05/21
 	*/
 	void	Draw(void)override;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌI—¹ˆ—
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®çµ‚äº†å‡¦ç†
 	*	@date 2024/05/21
 	*/
 	void	Finalize(void)override;
 
-	//ƒeƒXƒg—p‚ÌÀ•W•Ï”
+	//ãƒ†ã‚¹ãƒˆç”¨ã®åº§æ¨™å¤‰æ•°
 	XMFLOAT2 TestPos = { -200.0f, 0.0f };
 	XMFLOAT2 TestPos2 = { 200.0f, 0.0f };
-	//ƒTƒCƒY
+	//ã‚µã‚¤ã‚º
 	XMFLOAT2 TestSize = { 100.0f,100.0f };
 	XMFLOAT2 TestSize2 = { 100.0f,100.0f };
 
 private:
 	Object* p_TestObject;
-	/** @brief “ñ‚Â–Ú‚ÌƒIƒuƒWƒFƒNƒg—p
+	/** @brief äºŒã¤ç›®ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆç”¨
 	*   @date  2024/12/11
 	*/
 	Object* p_TestObject2;
 
 
 	//--------------------------------------------------------------------------
-	//		•`‰æŠÖ˜A
+	//		æç”»é–¢é€£
 	//--------------------------------------------------------------------------	
-	CInputLayout* p_inputLayout;		//  “ü—ÍƒŒƒCƒAƒEƒg
-	CVertexShader* p_vertexShader;		//  ’¸“_ƒVƒF[ƒ_
-	CPixelShader* p_pixelShader;		//  ƒsƒNƒZƒ‹ƒVƒF[ƒ_
-	CSampler* p_sampler;				// ƒTƒ“ƒvƒ‰[
-	ID3D11BlendState* p_brendState;		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒfƒBƒ“ƒO—pƒXƒe[ƒg
+	CInputLayout* p_inputLayout;		//  å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
+	CVertexShader* p_vertexShader;		//  é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
+	CPixelShader* p_pixelShader;		//  ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
+	CSampler* p_sampler;				// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼
+	ID3D11BlendState* p_brendState;		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ç”¨ã‚¹ãƒ†ãƒ¼ãƒˆ
 };

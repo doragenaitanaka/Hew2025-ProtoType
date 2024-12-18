@@ -1,11 +1,11 @@
-/**	@file 	Test_Imagawa.h
-*	@brief 	¡ì—p‚ÌƒeƒXƒgƒV[ƒ“ƒNƒ‰ƒX
+ï»¿/**	@file 	Test_Imagawa.h
+*	@brief 	ä»Šå·ç”¨ã®ãƒ†ã‚¹ãƒˆã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/21
-*	@memo	ƒ}ƒl[ƒWƒƒ[‚ÍÃ“Iƒƒ“ƒo•Ï”‚È‚Ì‚Åæ“¾‚Ì‚İ
+*	@memo	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã¯é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°ãªã®ã§å–å¾—ã®ã¿
 */
 #pragma once
 
-// ƒCƒ“ƒNƒ‹[ƒh
+// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #include"../00_BaseScene/BaseScene.h"
 #include"../../Library/Code/self/02_SceneManager/SceneManager.h"
 #include"../../Library/Code/self/10_Object/Object.h"
@@ -19,45 +19,45 @@
 
 
 /**	@file	Test_Imagawa.h
-*	@brief 	¡ì—p‚ÌƒeƒXƒgƒV[ƒ“ƒNƒ‰ƒX
+*	@brief 	ä»Šå·ç”¨ã®ãƒ†ã‚¹ãƒˆã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/05/21
-*	@memo	Šî’êƒNƒ‰ƒX‚Ìƒˆ‰¼‘zŠÖ”‚ğŒp³‚µ‚Ä‚¢‚é— •t‚¯(Œë‚Á‚½Œp³“®ì‚ğ–h‚®‚½‚ß)‚ÉŒp³‚µ‚½ƒƒ“ƒoŠÖ”‚Éoverridew’èq‚ğg—p‚µ‚Ä‚¢‚é
+*	@memo	åŸºåº•ã‚¯ãƒ©ã‚¹ã®ç´”ç²‹ä»®æƒ³é–¢æ•°ã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹è£ä»˜ã‘(èª¤ã£ãŸç¶™æ‰¿å‹•ä½œã‚’é˜²ããŸã‚)ã«ç¶™æ‰¿ã—ãŸãƒ¡ãƒ³ãƒé–¢æ•°ã«overrideæŒ‡å®šå­ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹
 */
 class Test_Imagawa :public BaseScene
 {
 public:
 
-	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	* @date 2024/05/21
 	*/
 	Test_Imagawa();
-	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 	*	@date 2024/05/21
 	*/
 	~Test_Imagawa()override;
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì‰Šú‰»
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®åˆæœŸåŒ–
 	*	@date 2024/05/21
 	*/
 	void	Initialize(void)override;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌXV
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æ›´æ–°
 	*	@date 2024/05/21
 	*/
 	void	Update(void)override;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æç”»
 	*	@date 2024/05/21
 	*/
 	void	Draw(void)override;
 
-	/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌI—¹ˆ—
+	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®çµ‚äº†å‡¦ç†
 	*	@date 2024/05/21
 	*/
 	void	Finalize(void)override;
 
-	/** @brief@U“®‚ÌÚ×İ’è@
-	*   @memo@flameFU“®‚·‚é’·‚³@
-	*   @memo@powerFU“®‚Ì‹­‚³
+	/** @briefã€€æŒ¯å‹•ã®è©³ç´°è¨­å®šã€€
+	*   @memoã€€flameï¼šæŒ¯å‹•ã™ã‚‹é•·ã•ã€€
+	*   @memoã€€powerï¼šæŒ¯å‹•ã®å¼·ã•
 	*/
 	int flame = 0;
 	float power = 0;
@@ -67,11 +67,11 @@ private:
 	Object* p_object;
 
 	//--------------------------------------------------------------------------
-	//		•`‰æŠÖ˜A
+	//		æç”»é–¢é€£
 	//--------------------------------------------------------------------------	
-	CInputLayout* p_inputLayout;		//  “ü—ÍƒŒƒCƒAƒEƒg
-	CVertexShader* p_vertexShader;		//  ’¸“_ƒVƒF[ƒ_
-	CPixelShader* p_pixelShader;		//  ƒsƒNƒZƒ‹ƒVƒF[ƒ_
-	CSampler* p_sampler;				// ƒTƒ“ƒvƒ‰[
-	ID3D11BlendState* p_brendState;		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒfƒBƒ“ƒO—pƒXƒe[ƒg
+	CInputLayout* p_inputLayout;		//  å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
+	CVertexShader* p_vertexShader;		//  é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
+	CPixelShader* p_pixelShader;		//  ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
+	CSampler* p_sampler;				// ã‚µãƒ³ãƒ—ãƒ©ãƒ¼
+	ID3D11BlendState* p_brendState;		// ã‚¢ãƒ«ãƒ•ã‚¡ãƒ–ãƒ¬ãƒ³ãƒ‡ã‚£ãƒ³ã‚°ç”¨ã‚¹ãƒ†ãƒ¼ãƒˆ
 };

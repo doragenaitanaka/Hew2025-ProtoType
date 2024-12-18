@@ -1,4 +1,4 @@
-#include<Windows.h>
+ï»¿#include<Windows.h>
 #include"Library/Code/self/01_GameManager/GameManager.h"
 #include"Library/Code/self/03_Windows/WindowSetup.h"
 #include"main.h"
@@ -6,46 +6,46 @@
 // ===========================================================================
 // 
 // 
-//                  ‚±‚Ìƒtƒ@ƒCƒ‹‚Íâ‘Î‚ÉG‚é‚ÈIIIIIII
+//                  ã“ã®ãƒ•ã‚¡ã‚¤ãƒ«ã¯çµ¶å¯¾ã«è§¦ã‚‹ãªï¼ï¼ï¼ï¼ï¼ï¼ï¼
 // 
 // 
 // ===========================================================================
 
 
-//  ƒEƒBƒ“ƒhƒE‰æ–Ê‚ğo‚·‚Ì‚É•K—v‚Èî•ñ‚ğ‚Æ‚éŠÖ”
+//  ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ç”»é¢ã‚’å‡ºã™ã®ã«å¿…è¦ãªæƒ…å ±ã‚’ã¨ã‚‹é–¢æ•°
 int APIENTRY wWinMain(
-	_In_ HINSTANCE hInstance,			//  ƒAƒvƒŠ‚Ìî•ñ‚ğŠi”[‚µ‚½ƒƒ‚ƒŠ—Ìˆæƒ|ƒCƒ“ƒ^(Às‚·‚éŠeƒAƒvƒŠAOS‚Ìƒnƒ“ƒhƒ‹)
-	_In_opt_ HINSTANCE hPrevInstance,	//  ¡‚Íg‚í‚ê‚Ä‚¢‚È‚¢‚Ì‚Ånull‚ª“ü‚é
-	_In_ LPWSTR    lpCmdLine,			//  ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‹N“®‚ÉƒRƒ}ƒ“ƒhƒ‰ƒCƒ“‚Åw’è‚³‚ê‚½ˆø”‚ª“ü‚é
-	_In_ int       nCmdShow)			//  •\¦•û–@,ƒEƒBƒ“ƒhƒE‚ª•\¦‚³‚ê‚é‚Ìó‘Ô
+	_In_ HINSTANCE hInstance,			//  ã‚¢ãƒ—ãƒªã®æƒ…å ±ã‚’æ ¼ç´ã—ãŸãƒ¡ãƒ¢ãƒªé ˜åŸŸãƒã‚¤ãƒ³ã‚¿(å®Ÿè¡Œã™ã‚‹å„ã‚¢ãƒ—ãƒªã€OSã®ãƒãƒ³ãƒ‰ãƒ«)
+	_In_opt_ HINSTANCE hPrevInstance,	//  ä»Šã¯ä½¿ã‚ã‚Œã¦ã„ãªã„ã®ã§nullãŒå…¥ã‚‹
+	_In_ LPWSTR    lpCmdLine,			//  ã‚¢ãƒ—ãƒªã‚±ãƒ¼ã‚·ãƒ§ãƒ³èµ·å‹•æ™‚ã«ã‚³ãƒãƒ³ãƒ‰ãƒ©ã‚¤ãƒ³ã§æŒ‡å®šã•ã‚ŒãŸå¼•æ•°ãŒå…¥ã‚‹
+	_In_ int       nCmdShow)			//  è¡¨ç¤ºæ–¹æ³•,ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãŒè¡¨ç¤ºã•ã‚Œã‚‹æ™‚ã®çŠ¶æ…‹
 {
 #ifdef DEBUG
-    // ƒRƒ“ƒ\[ƒ‹ƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+    // ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
     if (InitConsole() != 0) {
         return 1; 
     }
 #endif // DEBUG
 
-    GameManager::CreateInstance();							// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ì¶¬
-    GameManager* gameManager = GameManager::GetInstance();	// ƒCƒ“ƒXƒ^ƒ“ƒX‚Ìæ“¾
+    GameManager::CreateInstance();							// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®ç”Ÿæˆ
+    GameManager* gameManager = GameManager::GetInstance();	// ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã®å–å¾—
     int msg = 0;
 
     msg = gameManager->Run(hInstance, nCmdShow);
-    return msg;		// ƒEƒBƒ“ƒhƒEƒvƒƒV[ƒWƒƒ‚É“n‚·
+    return msg;		// ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ãƒ—ãƒ­ã‚·ãƒ¼ã‚¸ãƒ£ã«æ¸¡ã™
 }
 
-/**	@brief 	ƒRƒ“ƒ\[ƒ‹ƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+/**	@brief 	ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
 *	@date	2024/11/02
 */
 int InitConsole()
 {
-    // ƒRƒ“ƒ\[ƒ‹ƒEƒBƒ“ƒhƒE‚Ì‰Šú‰»
+    // ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ã‚¦ã‚£ãƒ³ãƒ‰ã‚¦ã®åˆæœŸåŒ–
     if (!AllocConsole()) {
         MessageBox(NULL, L"Failed to allocate console.", L"Error", MB_OK | MB_ICONERROR);
         return 1;
     }
 
-    // std“üo—Í‚ÌƒŠƒ_ƒCƒŒƒNƒgæ‚ğƒRƒ“ƒ\[ƒ‹‰æ–Ê‚É‚·‚é
+    // stdå…¥å‡ºåŠ›ã®ãƒªãƒ€ã‚¤ãƒ¬ã‚¯ãƒˆå…ˆã‚’ã‚³ãƒ³ã‚½ãƒ¼ãƒ«ç”»é¢ã«ã™ã‚‹
     FILE* fp = nullptr;
     errno_t err = freopen_s(&fp, "CONOUT$", "w", stdout);
     if (err != 0) {
@@ -63,9 +63,9 @@ int InitConsole()
         return 1;
     }
 
-    // •W€“üo—ÍƒXƒgƒŠ[ƒ€‚Ì“¯Šú‚ğ—LŒø
+    // æ¨™æº–å…¥å‡ºåŠ›ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®åŒæœŸã‚’æœ‰åŠ¹
     std::ios::sync_with_stdio();
-    // •W€ƒXƒgƒŠ[ƒ€‚ÌƒNƒŠƒA
+    // æ¨™æº–ã‚¹ãƒˆãƒªãƒ¼ãƒ ã®ã‚¯ãƒªã‚¢
     std::cout.clear();
     std::clog.clear();
     std::cerr.clear();
@@ -75,7 +75,7 @@ int InitConsole()
     std::wcerr.clear();
     std::wcin.clear();
 
-    // ƒtƒ@ƒCƒ‹ƒ|ƒCƒ“ƒ^‚ğ•Â‚¶‚é
+    // ãƒ•ã‚¡ã‚¤ãƒ«ãƒã‚¤ãƒ³ã‚¿ã‚’é–‰ã˜ã‚‹
     if (fp)fclose(fp);
     fp = nullptr;
 }

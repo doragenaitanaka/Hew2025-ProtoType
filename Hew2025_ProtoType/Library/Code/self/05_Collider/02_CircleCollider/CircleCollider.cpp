@@ -1,6 +1,6 @@
-#include "CircleCollider.h"
+ï»¿#include "CircleCollider.h"
 
-/**	@brief  ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief  ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/12/16
 */
 CircleCollider::CircleCollider(DirectX::XMFLOAT3 _pos, float _radius) :BaseCollider(_pos)
@@ -9,7 +9,7 @@ CircleCollider::CircleCollider(DirectX::XMFLOAT3 _pos, float _radius) :BaseColli
 }
 
 
-/**	@brief  ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief  ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/12/16
 */
 CircleCollider::~CircleCollider()
@@ -18,10 +18,10 @@ CircleCollider::~CircleCollider()
 }
 
 
-/**	@brief  ƒTƒCƒY‚Ì•ÏX
+/**	@brief  ã‚µã‚¤ã‚ºã®å¤‰æ›´
 *	@date	2024/12/15
-*	@param XMFLOAT3 _size •ÏX‚µ‚½‚¢ƒTƒCƒY‚Ì’l
-*	@return	bool size ÚG‚µ‚Ä‚¢‚é‚©
+*	@param XMFLOAT3 _size å¤‰æ›´ã—ãŸã„ã‚µã‚¤ã‚ºã®å€¤
+*	@return	bool size æ¥è§¦ã—ã¦ã„ã‚‹ã‹
 */
 void CircleCollider::SetRadius(float _raduis)
 {
@@ -29,23 +29,23 @@ void CircleCollider::SetRadius(float _raduis)
 }
 
 
-/**	@brief  ƒTƒCƒY‚Ìæ“¾
+/**	@brief  ã‚µã‚¤ã‚ºã®å–å¾—
 *	@date	2024/12/16
-*	@return	XMFLOAT3 size Object‚ÌƒTƒCƒY
+*	@return	XMFLOAT3 size Objectã®ã‚µã‚¤ã‚º
 */
 float CircleCollider::GetRadius(void)
 {
     return this->radius;
 }
 
-/**	@brief  ‰~“¯m‚Ì“–‚½‚è”»’è
+/**	@brief  å††åŒå£«ã®å½“ãŸã‚Šåˆ¤å®š
 *	@date	2024/12/16
-*	@param BaseCollider& _other ÚG”»’è‚ğæ‚é‘ÎÛƒIƒuƒWƒFƒNƒg
-*	@return	bool idk ÚG‚µ‚Ä‚¢‚é‚©
+*	@param BaseCollider& _other æ¥è§¦åˆ¤å®šã‚’å–ã‚‹å¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+*	@return	bool idk æ¥è§¦ã—ã¦ã„ã‚‹ã‹
 */
 bool CircleCollider::CheckCollisionCircle(BaseCollider& _other)
 {
-    // ‰~“¯m‚Ì“–‚½‚è”»’è
+    // å††åŒå£«ã®å½“ãŸã‚Šåˆ¤å®š
     CircleCollider& otherCircle = static_cast<CircleCollider&>(_other);
 
     DirectX::XMFLOAT3 otherPos = otherCircle.GetPosition();
@@ -58,15 +58,16 @@ bool CircleCollider::CheckCollisionCircle(BaseCollider& _other)
     return distance <= (radius + otherRadius);
 }
 
-/**	@brief  ‹éŒ`‚Æ‰~‚Ì“–‚½‚è”»’è
+/**	@brief  çŸ©å½¢ã¨å††ã®å½“ãŸã‚Šåˆ¤å®š
 *	@date	2024/12/16
-*	@param BaseCollider& _other ÚG”»’è‚ğæ‚é‘ÎÛƒIƒuƒWƒFƒNƒg
-*	@return	bool idk ÚG‚µ‚Ä‚¢‚é‚©
+*	@param BaseCollider& _other æ¥è§¦åˆ¤å®šã‚’å–ã‚‹å¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+*	@return	bool idk æ¥è§¦ã—ã¦ã„ã‚‹ã‹
 */
 bool CircleCollider::CheckCollisionRectangle(BaseCollider& _other)
 {
-    // ‰~‚Æ‹éŒ`‚Ì“–‚½‚è”»’è (‹tŒü‚«)
+    // å††ã¨çŸ©å½¢ã®å½“ãŸã‚Šåˆ¤å®š (é€†å‘ã)
     BoxCollider& otherBox = static_cast<BoxCollider&>(_other);
     return otherBox.CheckCollisionCircle(*this);
 }
+
 

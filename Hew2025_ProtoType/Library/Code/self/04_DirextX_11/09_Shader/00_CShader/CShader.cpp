@@ -1,7 +1,7 @@
-#include"CShader.h"
+ï»¿#include"CShader.h"
 #include"../../../SafePointers.h"
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/04/24
 */
 CShader::CShader()
@@ -9,7 +9,7 @@ CShader::CShader()
 	this->p_blob = nullptr;
 	this->cd3d11 = nullptr;
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/04/24
 */
 CShader::~CShader()
@@ -17,14 +17,14 @@ CShader::~CShader()
 	this->Release();
 }
 
-/**	@brief 	ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹‚ÌƒRƒ“ƒpƒCƒ‹
-*	@param	LPCWSTR	fileName				ƒtƒ@ƒCƒ‹‚Ì–¼‘O
-*	@param	D3D_SHADER_MACRO* p_defines		ƒVƒF[ƒ_[ƒ}ƒNƒ‚ğ’è‹`‚·‚éD3D_SHADER_MACRO\‘¢‘Ì‚Ì”z—ñ‚Ö‚ÌƒIƒvƒVƒ‡ƒiƒ‹‚Èƒ|ƒCƒ“ƒ^[
-*	@param	ID3DInclude* p_nclude			ƒRƒ“ƒpƒCƒ‰‚ªƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹‚Ìˆ—‚Ég—p‚·‚éƒ|ƒCƒ“ƒ^[
-*	@param	LPCSTR	p_entrypoint			ƒVƒF[ƒ_[‚ÌÀs‚ªŠJn‚³‚ê‚éƒVƒF[ƒ_[ƒGƒ“ƒgƒŠƒ|ƒCƒ“ƒg–¼
-*	@param	LPCSTR	p_target				ƒRƒ“ƒpƒCƒ‹‘ÎÛ‚ÌƒVƒF[ƒ_[ƒ^[ƒQƒbƒg‚Ü‚½‚ÍƒVƒF[ƒ_[‹@”\‚ÌƒZƒbƒg‚ğw’è
-* 	@param	UINT	flags_1					ƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‹ƒIƒvƒVƒ‡ƒ“‚Ì‘g‚İ‡‚í‚¹
-* 	@param	UINT	flags_2					Œø‰ÊƒRƒ“ƒpƒCƒ‹ƒIƒvƒVƒ‡ƒ“‚Ì‘g‚İ‡‚í‚¹
+/**	@brief 	ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
+*	@param	LPCWSTR	fileName				ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰
+*	@param	D3D_SHADER_MACRO* p_defines		ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¯ãƒ­ã‚’å®šç¾©ã™ã‚‹D3D_SHADER_MACROæ§‹é€ ä½“ã®é…åˆ—ã¸ã®ã‚ªãƒ—ã‚·ãƒ§ãƒŠãƒ«ãªãƒã‚¤ãƒ³ã‚¿ãƒ¼
+*	@param	ID3DInclude* p_nclude			ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ãŒã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®å‡¦ç†ã«ä½¿ç”¨ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+*	@param	LPCSTR	p_entrypoint			ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å®Ÿè¡ŒãŒé–‹å§‹ã•ã‚Œã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¨ãƒ³ãƒˆãƒªãƒã‚¤ãƒ³ãƒˆå
+*	@param	LPCSTR	p_target				ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å¯¾è±¡ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¾ãŸã¯ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æ©Ÿèƒ½ã®ã‚»ãƒƒãƒˆã‚’æŒ‡å®š
+* 	@param	UINT	flags_1					ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®çµ„ã¿åˆã‚ã›
+* 	@param	UINT	flags_2					åŠ¹æœã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®çµ„ã¿åˆã‚ã›
 *	@return	HRESULT
 *	@date	2024/04/24
 */
@@ -42,23 +42,23 @@ HRESULT	CShader::CompileFromFile(
 	{
 		HRESULT hr;
 		ID3DBlob* p_errorMsg;
-		//ƒRƒ“ƒpƒCƒ‹
+		//ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
 		hr = D3DCompileFromFile(
-			fileName,                   //ƒtƒ@ƒCƒ‹‚Ì–¼‘O
-			p_defines,                  //ƒVƒF[ƒ_[ƒ}ƒNƒ‚ğ’è‹`‚·‚éD3D_SHADER_MACRO\‘¢‘Ì‚Ì”z—ñ‚Ö‚ÌƒIƒvƒVƒ‡ƒiƒ‹‚Èƒ|ƒCƒ“ƒ^[
-			p_nclude,                   //ƒRƒ“ƒpƒCƒ‰‚ªƒCƒ“ƒNƒ‹[ƒhƒtƒ@ƒCƒ‹‚Ìˆ—‚Ég—p‚·‚éƒ|ƒCƒ“ƒ^[
-			p_entrypoint,               //ƒVƒF[ƒ_[‚ÌÀs‚ªŠJn‚³‚ê‚éƒVƒF[ƒ_[ƒGƒ“ƒgƒŠƒ|ƒCƒ“ƒg–¼
-			p_target,                   //ƒRƒ“ƒpƒCƒ‹‘ÎÛ‚ÌƒVƒF[ƒ_[ƒ^[ƒQƒbƒg‚Ü‚½‚ÍƒVƒF[ƒ_[‹@”\‚ÌƒZƒbƒg‚ğw’è
-			flags_1,                    //ƒVƒF[ƒ_[ƒRƒ“ƒpƒCƒ‹ƒIƒvƒVƒ‡ƒ“‚Ì‘g‚İ‡‚í‚¹
-			flags_2,                    //Œø‰ÊƒRƒ“ƒpƒCƒ‹ƒIƒvƒVƒ‡ƒ“‚Ì‘g‚İ‡‚í‚¹
-			&this->p_blob,              //ƒRƒ“ƒpƒCƒ‹Ï‚İƒR[ƒh‚Ö‚ÌƒAƒNƒZƒX‚Ég—p‚Å‚«‚éƒ|ƒCƒ“ƒ^[ƒAƒhƒŒƒX
-			&p_errorMsg                 //ƒRƒ“ƒpƒCƒ‰ƒGƒ‰[ƒƒbƒZ[ƒW‚Ö‚ÌƒAƒNƒZƒX‚Ég—p
+			fileName,                   //ãƒ•ã‚¡ã‚¤ãƒ«ã®åå‰
+			p_defines,                  //ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒã‚¯ãƒ­ã‚’å®šç¾©ã™ã‚‹D3D_SHADER_MACROæ§‹é€ ä½“ã®é…åˆ—ã¸ã®ã‚ªãƒ—ã‚·ãƒ§ãƒŠãƒ«ãªãƒã‚¤ãƒ³ã‚¿ãƒ¼
+			p_nclude,                   //ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ãŒã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰ãƒ•ã‚¡ã‚¤ãƒ«ã®å‡¦ç†ã«ä½¿ç”¨ã™ã‚‹ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+			p_entrypoint,               //ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®å®Ÿè¡ŒãŒé–‹å§‹ã•ã‚Œã‚‹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¨ãƒ³ãƒˆãƒªãƒã‚¤ãƒ³ãƒˆå
+			p_target,                   //ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«å¯¾è±¡ã®ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚¿ãƒ¼ã‚²ãƒƒãƒˆã¾ãŸã¯ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼æ©Ÿèƒ½ã®ã‚»ãƒƒãƒˆã‚’æŒ‡å®š
+			flags_1,                    //ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®çµ„ã¿åˆã‚ã›
+			flags_2,                    //åŠ¹æœã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã‚ªãƒ—ã‚·ãƒ§ãƒ³ã®çµ„ã¿åˆã‚ã›
+			&this->p_blob,              //ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«æ¸ˆã¿ã‚³ãƒ¼ãƒ‰ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã«ä½¿ç”¨ã§ãã‚‹ãƒã‚¤ãƒ³ã‚¿ãƒ¼ã‚¢ãƒ‰ãƒ¬ã‚¹
+			&p_errorMsg                 //ã‚³ãƒ³ãƒ‘ã‚¤ãƒ©ã‚¨ãƒ©ãƒ¼ãƒ¡ãƒƒã‚»ãƒ¼ã‚¸ã¸ã®ã‚¢ã‚¯ã‚»ã‚¹ã«ä½¿ç”¨
 		);
 		if (FAILED(hr))
 		{
-			// ƒVƒF[ƒ_‚ÌƒGƒ‰[“à—e‚ğ•\¦
+			// ã‚·ã‚§ãƒ¼ãƒ€ã®ã‚¨ãƒ©ãƒ¼å†…å®¹ã‚’è¡¨ç¤º
 			MessageBox(NULL, (wchar_t*)p_errorMsg->GetBufferPointer(), L"Compile Error", MB_OK);
-			//ƒƒ‚ƒŠ‚Ì‰ğ•ú
+			//ãƒ¡ãƒ¢ãƒªã®è§£æ”¾
 			SAFE_RELEASE(this->p_blob);
 			SAFE_RELEASE(p_errorMsg);
 		}
@@ -67,8 +67,8 @@ HRESULT	CShader::CompileFromFile(
 	return  S_OK;
 }
 
-/**	@brief 	ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹‚Ìæ“¾
-*	@return	ID3DBlob*	ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹
+/**	@brief 	ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®å–å¾—
+*	@return	ID3DBlob*	ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«
 *	@date	2024/04/24
 */
 ID3DBlob* CShader::GetShaderFile(void)
@@ -76,7 +76,7 @@ ID3DBlob* CShader::GetShaderFile(void)
 	return	this->p_blob;
 }
 
-/**	@brief 	‰ğ•úˆ—
+/**	@brief 	è§£æ”¾å‡¦ç†
 *	@date	2024/04/24
 */
 void	CShader::Release(void)

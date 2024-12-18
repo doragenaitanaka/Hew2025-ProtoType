@@ -1,16 +1,16 @@
-/**	@file	Test_Otani.cpp
-*	@brief 	‘å’J—p‚ÌƒQ[ƒ€ƒV[ƒ“ƒNƒ‰ƒX
+ï»¿/**	@file	Test_Otani.cpp
+*	@brief 	å¤§è°·ç”¨ã®ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/12/14
 */
 #include"Test_Otani.h"
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 Test_Otani::Test_Otani()
 {
     this->p_TestObject = nullptr;
-    /** @brief “ñ‚Â–Ú‚ÌƒIƒuƒWƒFƒNƒg‚ðo‚·—p
+    /** @brief äºŒã¤ç›®ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’å‡ºã™ç”¨
     *   @date 2024/12/11
     */
     this->p_TestObject2 = nullptr;
@@ -21,14 +21,14 @@ Test_Otani::Test_Otani()
     this->p_sampler = nullptr;
     this->p_brendState = nullptr;
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/05/10
 */
 Test_Otani::~Test_Otani()
 {
     this->Finalize();
 }
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì‰Šú‰»
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®åˆæœŸåŒ–
 *	@date	2024/05/10
 */
 void	Test_Otani::Initialize(void)
@@ -36,35 +36,35 @@ void	Test_Otani::Initialize(void)
     if (!this->p_TestObject) { this->p_TestObject = new Object; }
     if (!this->p_TestObject2) { this->p_TestObject2 = new Object; }
 
-    if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // ’¸“_ƒVƒF[ƒ_
-    if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ƒsƒNƒZƒ‹ƒVƒF[ƒ_
-    if (!this->p_inputLayout) { this->p_inputLayout = new CInputLayout; }               // “ü—ÍƒŒƒCƒAƒEƒg
-    if (!this->p_sampler) { this->p_sampler = new CSampler; }                           // ƒTƒ“ƒvƒ‰[
+    if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
+    if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
+    if (!this->p_inputLayout) { this->p_inputLayout = new CInputLayout; }               // å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
+    if (!this->p_sampler) { this->p_sampler = new CSampler; }                           // ã‚µãƒ³ãƒ—ãƒ©ãƒ¼
 
-    // ƒIƒuƒWƒFƒNƒg
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     this->p_TestObject->Init(L"Asset/block.png");
     this->p_TestObject2->Init(L"Asset/block.png");
 
 
     //--------------------------------------------------------------------------
-    //		•`‰æŠÖ˜A‚Ì‰Šú‰»
+    //		æç”»é–¢é€£ã®åˆæœŸåŒ–
     //--------------------------------------------------------------------------	
 
     HRESULT hr;
-    // ƒVƒF[ƒ_
+    // ã‚·ã‚§ãƒ¼ãƒ€
     {
-        // ’¸“_ƒVƒF[ƒ_ƒRƒ“ƒpƒCƒ‹
+        // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
         hr = this->p_vertexShader->CompileFromFile(
-            L"Shader/VertexShader.hlsl",            // Žg—p‚µ‚½‚¢ƒVƒF[ƒ_ƒtƒ@ƒCƒ‹ƒpƒX
+            L"Shader/VertexShader.hlsl",            // ä½¿ç”¨ã—ãŸã„ã‚·ã‚§ãƒ¼ãƒ€ãƒ•ã‚¡ã‚¤ãƒ«ãƒ‘ã‚¹
             NULL,
             NULL,
-            "vs_main",                              // ƒVƒF[ƒ_ƒtƒ@ƒCƒ‹“à‚Å‘‚¢‚Ä‚¢‚éƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
-            "vs_5_0",                               // ƒVƒF[ƒ_‚Ìƒo[ƒWƒ‡ƒ“
+            "vs_main",                              // ã‚·ã‚§ãƒ¼ãƒ€ãƒ•ã‚¡ã‚¤ãƒ«å†…ã§æ›¸ã„ã¦ã„ã‚‹ã‚¨ãƒ³ãƒˆãƒªãƒ¼ãƒã‚¤ãƒ³ãƒˆ
+            "vs_5_0",                               // ã‚·ã‚§ãƒ¼ãƒ€ã®ãƒãƒ¼ã‚¸ãƒ§ãƒ³
             0,
             0
         );
 
-        //  ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹ƒRƒ“ƒpƒCƒ‹
+        //  ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«
         hr = this->p_pixelShader->CompileFromFile(
             L"Shader/PixelShader.hlsl",
             NULL,
@@ -75,36 +75,36 @@ void	Test_Otani::Initialize(void)
             0
         );
 
-        //  ƒVƒF[ƒ_‚Ì¶¬
-        hr = this->p_vertexShader->Create(NULL);     //  ’¸“_ƒVƒF[ƒ_
-        hr = this->p_pixelShader->Create(NULL);      //  ƒsƒNƒZƒ‹ƒVƒF[ƒ_
+        //  ã‚·ã‚§ãƒ¼ãƒ€ã®ç”Ÿæˆ
+        hr = this->p_vertexShader->Create(NULL);     //  é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
+        hr = this->p_pixelShader->Create(NULL);      //  ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
     }
 
-    // ƒCƒ“ƒvƒbƒgƒŒƒCƒAƒEƒgì¬
+    // ã‚¤ãƒ³ãƒ—ãƒƒãƒˆãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆä½œæˆ
     D3D11_INPUT_ELEMENT_DESC layout[]
     {
-        // ˆÊ’uÀ•W‚ª‚ ‚é‚Æ‚¢‚¤‚±‚Æ‚ð“`‚¦‚é
+        // ä½ç½®åº§æ¨™ãŒã‚ã‚‹ã¨ã„ã†ã“ã¨ã‚’ä¼ãˆã‚‹
         { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT,    0,                            0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        // Fî•ñ‚ª‚ ‚é‚Æ‚¢‚¤‚±‚Æ‚ð“`‚¦‚é
+        // è‰²æƒ…å ±ãŒã‚ã‚‹ã¨ã„ã†ã“ã¨ã‚’ä¼ãˆã‚‹
         { "COLOR",    0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
-        //UVÀ•W(uv)
+        //UVåº§æ¨™(uv)
         {"TEX",0,DXGI_FORMAT_R32G32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
     };
 
-    // “ü—ÍƒŒƒCƒAƒEƒg‚Ìì¬
-    unsigned int numElements = ARRAYSIZE(layout);                           // ƒŒƒCƒAƒEƒg‚ÌƒTƒCƒY
-    ID3DBlob* p_vsBlob = this->p_vertexShader->GetShaderFile();             // ’¸“_ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹‚ÌŽæ“¾
+    // å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®ä½œæˆ
+    unsigned int numElements = ARRAYSIZE(layout);                           // ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®ã‚µã‚¤ã‚º
+    ID3DBlob* p_vsBlob = this->p_vertexShader->GetShaderFile();             // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®å–å¾—
     hr = this->p_inputLayout->Create(layout, numElements, p_vsBlob);
 
-    // ƒTƒ“ƒvƒ‰[‚ðì¬
+    // ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’ä½œæˆ
     hr = this->p_sampler->Create(D3D11_FILTER_MIN_MAG_MIP_LINEAR,
         D3D11_TEXTURE_ADDRESS_CLAMP,
         D3D11_TEXTURE_ADDRESS_CLAMP,
         D3D11_TEXTURE_ADDRESS_CLAMP);
     if (FAILED(hr)) { return; }
 
-    // ƒuƒŒƒ“ƒhƒXƒe[ƒg‚Ìì¬
-    // ¨“§‰ßˆ—‚â‰ÁŽZ‡¬‚ð‰Â”\‚É‚·‚éF‚Ì‡¬•û–@
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã®ä½œæˆ
+    // â†’é€éŽå‡¦ç†ã‚„åŠ ç®—åˆæˆã‚’å¯èƒ½ã«ã™ã‚‹è‰²ã®åˆæˆæ–¹æ³•
     {
         D3D11_BLEND_DESC    brendState;
 
@@ -126,12 +126,12 @@ void	Test_Otani::Initialize(void)
             hr = p_device->CreateBlendState(&brendState, &this->p_brendState);
             if (FAILED(hr)) { return; }
         }
-        // [“xƒeƒXƒg‚ð–³Œø‚É‚·‚é
+        // æ·±åº¦ãƒ†ã‚¹ãƒˆã‚’ç„¡åŠ¹ã«ã™ã‚‹
         ID3D11DepthStencilState* p_dSState;
         CD3D11_DEPTH_STENCIL_DESC   dsDesc;
         ZeroMemory(&dsDesc, sizeof(dsDesc));
 
-        dsDesc.DepthEnable = FALSE;     // [“xƒeƒXƒg‚ð–³Œø‚ÉÝ’è
+        dsDesc.DepthEnable = FALSE;     // æ·±åº¦ãƒ†ã‚¹ãƒˆã‚’ç„¡åŠ¹ã«è¨­å®š
         dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
         dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
         if (p_device)
@@ -139,7 +139,7 @@ void	Test_Otani::Initialize(void)
             hr = p_device->CreateDepthStencilState(&dsDesc, &p_dSState);
             if (FAILED(hr)) { return; }
 
-            // ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚ÌŽæ“¾
+            // ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—
             ID3D11DeviceContext* p_deviceContext = this->p_cd3d11->GetDeviceContext();
             if (p_deviceContext)
             {
@@ -147,15 +147,15 @@ void	Test_Otani::Initialize(void)
             }
         }
     }
-    // ƒIƒuƒWƒFƒNƒg‚ÌÀ•W‚ðÝ’è
-    this->p_TestObject->SetPos(TestPos.x, TestPos.y, 0.0f); //‰ŠúÀ•W-200.0f
-    this->p_TestObject2->SetPos(TestPos2.x, TestPos2.y, 0.0f); //p_object‚©‚ç400.0f—£‚ê‚½êŠ‚É¶¬
-    //ƒIƒuƒWƒFƒNƒg‚ÌƒTƒCƒY‚ðÝ’è
-    this->p_TestObject->SetSize(TestSize.x, TestSize.y, 0.0f); // ƒTƒCƒY‚Í100.0f~100.0f
-    this->p_TestObject2->SetSize(TestSize2.x, TestSize2.y, 0.0f); // “¯ã
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®åº§æ¨™ã‚’è¨­å®š
+    this->p_TestObject->SetPos(TestPos.x, TestPos.y, 0.0f); //åˆæœŸåº§æ¨™-200.0f
+    this->p_TestObject2->SetPos(TestPos2.x, TestPos2.y, 0.0f); //p_objectã‹ã‚‰400.0fé›¢ã‚ŒãŸå ´æ‰€ã«ç”Ÿæˆ
+    //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®ã‚µã‚¤ã‚ºã‚’è¨­å®š
+    this->p_TestObject->SetSize(TestSize.x, TestSize.y, 0.0f); // ã‚µã‚¤ã‚ºã¯100.0fÃ—100.0f
+    this->p_TestObject2->SetSize(TestSize2.x, TestSize2.y, 0.0f); // åŒä¸Š
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌXV
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æ›´æ–°
 *	@date	2024/05/10
 */
 void	Test_Otani::Update(void)
@@ -165,15 +165,15 @@ void	Test_Otani::Update(void)
         this->p_sceneManager->ChangeScene(Scene::TEST_OTANI);
         return;
     }
-    //‰E–îˆóƒL[‚Å‰EˆÚ“®
+    //å³çŸ¢å°ã‚­ãƒ¼ã§å³ç§»å‹•
     if (GetAsyncKeyState(VK_RIGHT))
     {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x + 20, p_TestObject->GetPos().y, 0.0f); //À•WXV
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x + 20, p_TestObject->GetPos().y, 0.0f); //åº§æ¨™æ›´æ–°
     }
-    //¶–îˆóƒL[‚Å¶ˆÚ“®
+    //å·¦çŸ¢å°ã‚­ãƒ¼ã§å·¦ç§»å‹•
     if (GetAsyncKeyState(VK_LEFT))
     {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x - 20, p_TestObject->GetPos().y, 0.0f); //À•WXV
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x - 20, p_TestObject->GetPos().y, 0.0f); //åº§æ¨™æ›´æ–°
     }
 
     auto& col1 = p_TestObject->GetCollider();
@@ -187,84 +187,84 @@ void	Test_Otani::Update(void)
         p_TestObject->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
     }
 
-    // ƒIƒuƒWƒFƒNƒg‚ÌXV
+    // ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æ›´æ–°
     this->p_TestObject->Update();
     this->p_TestObject2->Update();
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æç”»
 *	@date	2024/05/10
 */
 void	Test_Otani::Draw(void)
 {
 
     //--------------------------------------------------------------------------
-    //		•`‰æŠÖ˜A(‚»‚ñ‚È•p”É‚É•Ï‚¦‚é‚±‚Æ‚Í‚È‚¢‚ÆŽv‚¤)
+    //		æç”»é–¢é€£(ãã‚“ãªé »ç¹ã«å¤‰ãˆã‚‹ã“ã¨ã¯ãªã„ã¨æ€ã†)
     //--------------------------------------------------------------------------	
 
-    // •`‰æÝ’è—p‚ÉƒfƒoƒCƒX‚È‚Ç‚ðŽæ“¾
+    // æç”»è¨­å®šç”¨ã«ãƒ‡ãƒã‚¤ã‚¹ãªã©ã‚’å–å¾—
     CD3D11* cd3d11 = CD3D11::GetInstance();
     ID3D11DeviceContext* deviceContext = cd3d11->GetDeviceContext();
     ID3D11DepthStencilView* depthStencilView = cd3d11->GetDepthStencilView();
     ID3D11RenderTargetView* renderTargetView = cd3d11->GetRenderTargetView();
     D3D11_VIEWPORT* viewport = cd3d11->GetViewport();
 
-    // “ü—ÍƒŒƒCƒAƒEƒg‚ÌÝ’è
+    // å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆã®è¨­å®š
     this->p_inputLayout->SetInputLayout();
     deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
 
-    // ƒVƒF[ƒ_‚ðƒZƒbƒg
+    // ã‚·ã‚§ãƒ¼ãƒ€ã‚’ã‚»ãƒƒãƒˆ
     this->p_vertexShader->SetShader(0, 0);
     this->p_pixelShader->SetShader(0, 0);
 
-    // ƒTƒ“ƒvƒ‰[‚ðƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚É“n‚·
+    // ã‚µãƒ³ãƒ—ãƒ©ãƒ¼ã‚’ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã«æ¸¡ã™
     this->p_sampler->SetSamplerPS(0, 1);
 
-    // ƒuƒŒƒ“ƒhƒXƒe[ƒg‚ðƒZƒbƒg
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆã‚’ã‚»ãƒƒãƒˆ
     deviceContext->OMSetBlendState(this->p_brendState, NULL, 0xfffffffff);
 
     //--------------------------------------------------------------------------
-    //		ƒIƒuƒWƒFƒNƒg‚Ì•`‰æ
+    //		ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã®æç”»
     //--------------------------------------------------------------------------	
     this->p_TestObject2->Draw();
     this->p_TestObject->Draw();
 
 }
 
-/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌI—¹ˆ—
+/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®çµ‚äº†å‡¦ç†
 *	@date	2024/05/10
 */
 void	Test_Otani::Finalize(void)
 {
-    // ’¸“_ƒVƒF[ƒ_
+    // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€
     if (this->p_vertexShader) {
         delete   this->p_vertexShader;
         this->p_vertexShader = nullptr;
     }
 
-    // ƒsƒNƒZƒ‹ƒVƒF[ƒ_
+    // ãƒ”ã‚¯ã‚»ãƒ«ã‚·ã‚§ãƒ¼ãƒ€
     if (this->p_pixelShader) {
         delete    this->p_pixelShader;
         this->p_pixelShader = nullptr;
     }
 
-    // “ü—ÍƒŒƒCƒAƒEƒg
+    // å…¥åŠ›ãƒ¬ã‚¤ã‚¢ã‚¦ãƒˆ
     if (this->p_inputLayout) {
         delete    this->p_inputLayout;
         this->p_inputLayout = nullptr;
     }
 
-    // ƒTƒ“ƒvƒ‰[
+    // ã‚µãƒ³ãƒ—ãƒ©ãƒ¼
     if (this->p_sampler) {
         delete  this->p_sampler;
         this->p_sampler = nullptr;
     }
 
-    // ƒuƒŒƒ“ƒhƒXƒe[ƒg
+    // ãƒ–ãƒ¬ãƒ³ãƒ‰ã‚¹ãƒ†ãƒ¼ãƒˆ
     if (this->p_brendState) {
         this->p_brendState->Release();
     }
-    //ƒIƒuƒWƒFƒNƒg
+    //ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
     if (this->p_TestObject) {
         delete this->p_TestObject;
         this->p_TestObject = nullptr;

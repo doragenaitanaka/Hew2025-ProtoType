@@ -1,49 +1,49 @@
-#include"CVertexShader.h"
+ï»¿#include"CVertexShader.h"
 #include"../../01_Initialize/CD3D11.h"
 #include"../../../SafePointers.h"
 
-/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/04/24
 */
 CVertexShader::CVertexShader()
 {
 	this->p_vertexShader = NULL;
 }
-/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/04/24
 */
 CVertexShader::~CVertexShader()
 {
-	//’¸“_ƒVƒF[ƒ_[‚Ì‰ğ•ú
+	//é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®è§£æ”¾
 	this->Release();
 }
 
-/**	@brief 	’¸“_ƒVƒF[ƒ_[‚Ìì¬
-*	@param	ID3D11ClassLinkage* p_classLinkage	ƒNƒ‰ƒXƒŠƒ“ƒP[ƒWƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^[
+/**	@brief 	é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ä½œæˆ
+*	@param	ID3D11ClassLinkage* p_classLinkage	ã‚¯ãƒ©ã‚¹ãƒªãƒ³ã‚±ãƒ¼ã‚¸ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
 *	@return	HRESULT
 *	@date	2024/04/24
 */
 HRESULT	CVertexShader::Create(ID3D11ClassLinkage* p_classLinkage)
 {
-    //¶¬Ï‚Ìê‡‚Í”ò‚Î‚·
+    //ç”Ÿæˆæ¸ˆã®å ´åˆã¯é£›ã°ã™
     if (!this->p_vertexShader)
     {
         
         ID3DBlob* p_vsCode = this->GetShaderFile();
-        //CD3D11ƒNƒ‰ƒX‚Ìæ“¾
+        //CD3D11ã‚¯ãƒ©ã‚¹ã®å–å¾—
         if (!this->cd3d11)
         {
             this->cd3d11 = CD3D11::GetInstance();
         }
-        //ƒfƒoƒCƒX‚Ìæ“¾
+        //ãƒ‡ãƒã‚¤ã‚¹ã®å–å¾—
         HRESULT hr;
         ID3D11Device* device = cd3d11->GetDevice();
-        //’¸“_ƒVƒF[ƒ_‚Ì¶¬
+        //é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã®ç”Ÿæˆ
         hr = device->CreateVertexShader(
-            p_vsCode->GetBufferPointer(),       //ƒRƒ“ƒpƒCƒ‹‚³‚ê‚½ƒVƒF[ƒ_‚Ö‚Ìƒ|ƒCƒ“ƒ^
-            p_vsCode->GetBufferSize(),          //ƒRƒ“ƒpƒCƒ‹‚³‚ê‚½’¸“_ƒVƒF[ƒ_[‚ÌƒTƒCƒY
-            NULL,                               //ƒNƒ‰ƒXƒŠƒ“ƒP[ƒWƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^[
-            &this->p_vertexShader               //ì¬‚³‚ê‚½ID3D11VertexShaderƒCƒ“ƒ^[ƒtƒFƒCƒX‚Ö‚Ìƒ|ƒCƒ“ƒ^[‚ÌƒAƒhƒŒƒX
+            p_vsCode->GetBufferPointer(),       //ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚ŒãŸã‚·ã‚§ãƒ¼ãƒ€ã¸ã®ãƒã‚¤ãƒ³ã‚¿
+            p_vsCode->GetBufferSize(),          //ã‚³ãƒ³ãƒ‘ã‚¤ãƒ«ã•ã‚ŒãŸé ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚µã‚¤ã‚º
+            NULL,                               //ã‚¯ãƒ©ã‚¹ãƒªãƒ³ã‚±ãƒ¼ã‚¸ã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼
+            &this->p_vertexShader               //ä½œæˆã•ã‚ŒãŸID3D11VertexShaderã‚¤ãƒ³ã‚¿ãƒ¼ãƒ•ã‚§ã‚¤ã‚¹ã¸ã®ãƒã‚¤ãƒ³ã‚¿ãƒ¼ã®ã‚¢ãƒ‰ãƒ¬ã‚¹
         );
         if (FAILED(hr))
         {
@@ -54,37 +54,37 @@ HRESULT	CVertexShader::Create(ID3D11ClassLinkage* p_classLinkage)
     return  S_OK;
 }
 
-/**	@brief 	’¸“_ƒVƒF[ƒ_[‚ÌƒZƒbƒg
-*	@param	ID3D11ClassInstance* const* pp_classInstances	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX”z—ñ‚Ìƒ|ƒCƒ“ƒ^
-*	@param	UINT	numClassInstances	ƒNƒ‰ƒXƒCƒ“ƒXƒ^ƒ“ƒX”z—ñ‚Ì”
+/**	@brief 	é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®ã‚»ãƒƒãƒˆ
+*	@param	ID3D11ClassInstance* const* pp_classInstances	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹é…åˆ—ã®ãƒã‚¤ãƒ³ã‚¿
+*	@param	UINT	numClassInstances	ã‚¯ãƒ©ã‚¹ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹é…åˆ—ã®æ•°
 *	@date	2024/04/24
 */
 void	CVertexShader::SetShader(ID3D11ClassInstance* const* pp_classInstances, UINT	numClassInstances)
 {
-    //‘¶İ‚µ‚Ä‚¢‚È‚¯‚ê‚ÎƒGƒ‰[
+    //å­˜åœ¨ã—ã¦ã„ãªã‘ã‚Œã°ã‚¨ãƒ©ãƒ¼
     if (!this->p_vertexShader)
     {
-        // ƒVƒF[ƒ_‚ÌƒGƒ‰[“à—e‚ğ•\¦
-        MessageBox(NULL, L"’¸“_ƒVƒF[ƒ_[‚ª‚ ‚è‚Ü‚¹‚ñ", L"Shader Error", MB_OK);
+        // ã‚·ã‚§ãƒ¼ãƒ€ã®ã‚¨ãƒ©ãƒ¼å†…å®¹ã‚’è¡¨ç¤º
+        MessageBox(NULL, L"é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãŒã‚ã‚Šã¾ã›ã‚“", L"Shader Error", MB_OK);
         return;
     }
-    //CD3D11ƒNƒ‰ƒX‚Ìæ“¾
+    //CD3D11ã‚¯ãƒ©ã‚¹ã®å–å¾—
     if (!this->cd3d11)
     {
         this->cd3d11 = CD3D11::GetInstance();
     }
     if (this->cd3d11)
     {
-        ID3D11DeviceContext* context = cd3d11->GetDeviceContext();						    //	ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾		
-        context->VSSetShader(this->p_vertexShader, pp_classInstances, numClassInstances);   //   ’¸“_ƒVƒF[ƒ_‚ğƒZƒbƒg
+        ID3D11DeviceContext* context = cd3d11->GetDeviceContext();						    //	ãƒ‡ãƒã‚¤ã‚¹ã‚³ãƒ³ãƒ†ã‚­ã‚¹ãƒˆã®å–å¾—		
+        context->VSSetShader(this->p_vertexShader, pp_classInstances, numClassInstances);   //   é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã‚’ã‚»ãƒƒãƒˆ
     }
 }
 
-/**	@brief 	’¸“_ƒVƒF[ƒ_[‚Ì‰ğ•ú
+/**	@brief 	é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ã®è§£æ”¾
 *	@date	2024/04/24
 */
 void	CVertexShader::Release(void)
 {
-	this->CShader::Release();	        // ’¸“_ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹‚Ì‰ğ•ú
-    SAFE_RELEASE(this->p_vertexShader);	// ’¸“_ƒVƒF[ƒ_‚Ì‰ğ•ú
+	this->CShader::Release();	        // é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ãƒ¼ãƒ•ã‚¡ã‚¤ãƒ«ã®è§£æ”¾
+    SAFE_RELEASE(this->p_vertexShader);	// é ‚ç‚¹ã‚·ã‚§ãƒ¼ãƒ€ã®è§£æ”¾
 }

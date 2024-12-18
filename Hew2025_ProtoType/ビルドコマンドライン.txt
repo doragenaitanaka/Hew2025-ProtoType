@@ -1,0 +1,1 @@
+powershell -ExecutionPolicy Bypass -File "$(ProjectDir)SaveAsUTF8.ps1" "$(ProjectDir)"

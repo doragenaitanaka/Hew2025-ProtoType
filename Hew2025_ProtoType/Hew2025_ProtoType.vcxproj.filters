@@ -52,6 +52,15 @@
     <Filter Include="ソース ファイル\other">
       <UniqueIdentifier>{874ba13e-ddc6-4780-8211-27398e8a205b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\other">
+      <UniqueIdentifier>{232c3bd2-b633-4d6a-9427-6a0f0ceac598}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Collider">
+      <UniqueIdentifier>{a03fcf46-f277-49d8-852c-932e8b7b9f8e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Collider">
+      <UniqueIdentifier>{0112e276-fe18-457f-b167-f2d30fd3e20d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp">
@@ -120,9 +129,6 @@
     <ClCompile Include="Library\Code\self\04_DirextX_11\01_Initialize\CD3D11.cpp">
       <Filter>ソース ファイル\Manager</Filter>
     </ClCompile>
-    <ClCompile Include="Library\Code\self\05_Collider2D\Collider2D.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
     <ClCompile Include="Library\Code\self\10_Object\Object.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
@@ -147,8 +153,20 @@
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル\other</Filter>
     </ClCompile>
+    <ClCompile Include="Library\Code\self\05_Collider\00_BaseCollider\BaseCollider.cpp">
+      <Filter>ソース ファイル\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.cpp">
+      <Filter>ソース ファイル\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.cpp">
+      <Filter>ソース ファイル\Collider</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\94_Test_Otani\Test_Otani.cpp">
+      <Filter>ソース ファイル\Scene\Test</Filter>
+    </ClCompile>
     <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp">
-      <Filter>ソース ファイル</Filter>
+      <Filter>ソース ファイル\other</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -160,9 +178,6 @@
     </ClInclude>
     <ClInclude Include="Scene\03_ResultScene\ResultScene.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="main.h">
-      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
     <ClInclude Include="Library\Code\self\03_Windows\WindowSetup.h">
       <Filter>ヘッダー ファイル\Manager</Filter>
@@ -218,12 +233,6 @@
     <ClInclude Include="Library\Code\self\04_DirextX_11\09_Shader\02_PixelShader\CPixelShader.h">
       <Filter>ヘッダー ファイル\dx\shader</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Code\self\SafePointers.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Code\self\05_Collider2D\Collider2D.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
     <ClInclude Include="Library\Code\self\10_Object\Object.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
@@ -246,10 +255,28 @@
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\other</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\SafePointers.h">
+      <Filter>ヘッダー ファイル\other</Filter>
+    </ClInclude>
+    <ClInclude Include="main.h">
+      <Filter>ヘッダー ファイル\other</Filter>
     </ClInclude>
     <ClInclude Include="Library\Code\self\imagawa_Input\input.h">
-      <Filter>ヘッダー ファイル</Filter>
+      <Filter>ヘッダー ファイル\other</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\05_Collider\00_BaseCollider\BaseCollider.h">
+      <Filter>ヘッダー ファイル\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.h">
+      <Filter>ヘッダー ファイル\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.h">
+      <Filter>ヘッダー ファイル\Collider</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\94_Test_Otani\Test_Otani.h">
+      <Filter>ヘッダー ファイル\Scene\Test</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

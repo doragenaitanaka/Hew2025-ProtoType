@@ -1,6 +1,6 @@
-#include "BoxCollider.h"
+ï»¿#include "BoxCollider.h"
 
-/**	@brief  ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+/**	@brief  ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/12/16
 */
 //BoxCollider::BoxCollider(DirectX::XMFLOAT3 _pos, DirectX::XMFLOAT3 _size)
@@ -13,7 +13,7 @@ BoxCollider::BoxCollider(DirectX::XMFLOAT3 _pos, DirectX::XMFLOAT3 _size) : Base
     SetSize(_size);
 }
 
-/**	@brief  ƒfƒXƒgƒ‰ƒNƒ^
+/**	@brief  ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 *	@date	2024/12/16
 */
 BoxCollider::~BoxCollider()
@@ -22,10 +22,10 @@ BoxCollider::~BoxCollider()
 }
 
 
-/**	@brief  ƒTƒCƒY‚Ì•ÏX
+/**	@brief  ã‚µã‚¤ã‚ºã®å¤‰æ›´
 *	@date	2024/12/15
-*	@param XMFLOAT3 _size •ÏX‚µ‚½‚¢ƒTƒCƒY‚Ì’l
-*	@return	bool size ÚG‚µ‚Ä‚¢‚é‚©
+*	@param XMFLOAT3 _size å¤‰æ›´ã—ãŸã„ã‚µã‚¤ã‚ºã®å€¤
+*	@return	bool size æ¥è§¦ã—ã¦ã„ã‚‹ã‹
 */
 void BoxCollider::SetSize(DirectX::XMFLOAT3 _size)
 {
@@ -33,47 +33,47 @@ void BoxCollider::SetSize(DirectX::XMFLOAT3 _size)
 }
 
 
-/**	@brief  ƒTƒCƒY‚Ìæ“¾
+/**	@brief  ã‚µã‚¤ã‚ºã®å–å¾—
 *	@date	2024/12/16
-*	@return	XMFLOAT3 size Object‚ÌƒTƒCƒY
+*	@return	XMFLOAT3 size Objectã®ã‚µã‚¤ã‚º
 */
 DirectX::XMFLOAT3 BoxCollider::GetSize(void)
 {
 	return this->size;
 }
 
-/**	@brief  ‹éŒ`‚Æ‰~‚Ì“–‚½‚è”»’è
+/**	@brief  çŸ©å½¢ã¨å††ã®å½“ãŸã‚Šåˆ¤å®š
 *	@date	2024/12/15
-*	@param BaseCollider& _other ÚG”»’è‚ğæ‚é‘ÎÛƒIƒuƒWƒFƒNƒg
-*	@return	bool idk ÚG‚µ‚Ä‚¢‚é‚©
+*	@param BaseCollider& _other æ¥è§¦åˆ¤å®šã‚’å–ã‚‹å¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+*	@return	bool idk æ¥è§¦ã—ã¦ã„ã‚‹ã‹
 */
 bool BoxCollider::CheckCollisionCircle(BaseCollider& _other)
 {
-    // ‹éŒ`‚Æ‰~‚Ì“–‚½‚è”»’è
+    // çŸ©å½¢ã¨å††ã®å½“ãŸã‚Šåˆ¤å®š
     CircleCollider& otherCircle = static_cast<CircleCollider&>(_other);
 
     DirectX::XMFLOAT3 otherPos = otherCircle.GetPosition();
     float radius = otherCircle.GetRadius();
 
-    // Å‚à‹ß‚¢“_‚ğŒvZ
+    // æœ€ã‚‚è¿‘ã„ç‚¹ã‚’è¨ˆç®—
     float closestX = std::max(this->GetPosition().x - this->size.x / 2, std::min(otherPos.x, this->GetPosition().x + this->size.x / 2));
     float closestY = std::max(this->GetPosition().y - this->size.y / 2, std::min(otherPos.y, this->GetPosition().y + this->size.y / 2));
 
-    // ‰~‚Ì’†S‚ÆÅ‹ßÚ“_‚Ì‹——£‚ğŒvZ
+    // å††ã®ä¸­å¿ƒã¨æœ€è¿‘æ¥ç‚¹ã®è·é›¢ã‚’è¨ˆç®—
     float distX = otherPos.x - closestX;
     float distY = otherPos.y - closestY;
     return (distX * distX + distY * distY) <= (radius * radius);
 }
 
 
-/**	@brief  ‹éŒ`“¯m‚Ì“–‚½‚è”»’è
+/**	@brief  çŸ©å½¢åŒå£«ã®å½“ãŸã‚Šåˆ¤å®š
 *	@date	2024/12/15
-*	@param BaseCollider& _other ÚG”»’è‚ğ‘ÎÛæ‚éƒIƒuƒWƒFƒNƒg
-*	@return	bool idk ÚG‚µ‚Ä‚¢‚é‚©
+*	@param BaseCollider& _other æ¥è§¦åˆ¤å®šã‚’å¯¾è±¡å–ã‚‹ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+*	@return	bool idk æ¥è§¦ã—ã¦ã„ã‚‹ã‹
 */
 bool BoxCollider::CheckCollisionRectangle(BaseCollider& _other) 
 {
-    // ‹éŒ`“¯m‚Ì“–‚½‚è”»’è
+    // çŸ©å½¢åŒå£«ã®å½“ãŸã‚Šåˆ¤å®š
     BoxCollider& otherBox = static_cast<BoxCollider&>(_other);
 
     DirectX::XMFLOAT3 otherPos = otherBox.GetPosition();
@@ -84,4 +84,5 @@ bool BoxCollider::CheckCollisionRectangle(BaseCollider& _other)
         this->GetPosition().y + size.y / 2 >= otherPos.y - otherSize.y / 2 &&
         this->GetPosition().y - size.y / 2 <= otherPos.y + otherSize.y / 2);
 }
+
 

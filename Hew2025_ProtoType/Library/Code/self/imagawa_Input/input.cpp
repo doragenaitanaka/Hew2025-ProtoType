@@ -1,38 +1,38 @@
-#include"../../Library/Code/self/imagawa_Input/input.h"
+ï»¿#include"../imagawa_Input/input.h"
 
-/*@brief@ƒRƒ“ƒXƒgƒ‰ƒNƒ^: ƒAƒNƒVƒ‡ƒ“–¼‚Æ‘Î‰‚·‚é“ü—ÍiƒL[ƒ{[ƒhAƒQ[ƒ€ƒpƒbƒhj‚ğİ’è*/
+/*@briefã€€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿: ã‚¢ã‚¯ã‚·ãƒ§ãƒ³åã¨å¯¾å¿œã™ã‚‹å…¥åŠ›ï¼ˆã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã€ã‚²ãƒ¼ãƒ ãƒ‘ãƒƒãƒ‰ï¼‰ã‚’è¨­å®š*/
 Input::Input()
 {
-    /**@brief@U“®ŠÔ*/
+    /**@briefã€€æŒ¯å‹•æ™‚é–“*/
     VibrationTime = 0;
 
-    /*@brief@ƒAƒNƒVƒ‡ƒ“–¼‚ÆƒL[/ƒ{ƒ^ƒ“‚ğƒ}ƒbƒsƒ“ƒO
-      @memo@ ƒL[“ü—ÍAƒpƒbƒh“ü—Í‚Ì’è”’è‹`‚Í"input.h"‚Ìˆê”Ôã‚ğQl‚É
-      @memo@ƒeƒ“ƒvƒŒ[ƒgFinputActionMap["ƒAƒNƒVƒ‡ƒ“–¼"] = { {InputType::keyboard, VK_}, {InputType::gamepad, XINPUT_} };
+    /*@briefã€€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³åã¨ã‚­ãƒ¼/ãƒœã‚¿ãƒ³ã‚’ãƒãƒƒãƒ”ãƒ³ã‚°
+      @memoã€€ ã‚­ãƒ¼å…¥åŠ›ã€ãƒ‘ãƒƒãƒ‰å…¥åŠ›ã®å®šæ•°å®šç¾©ã¯"input.h"ã®ä¸€ç•ªä¸Šã‚’å‚è€ƒã«
+      @memoã€€ãƒ†ãƒ³ãƒ—ãƒ¬ãƒ¼ãƒˆï¼šinputActionMap["ã‚¢ã‚¯ã‚·ãƒ§ãƒ³å"] = { {InputType::keyboard, VK_}, {InputType::gamepad, XINPUT_} };
     */
     inputActionMap["RIGHT"] = { {InputType::keyboard, VK_D}, {InputType::gamepad, XINPUT_RIGHT} };
     inputActionMap["LEFT"]  = { {InputType::keyboard, VK_A}, {InputType::gamepad, XINPUT_LEFT } };
     inputActionMap["UP" ]   = { {InputType::keyboard, VK_W}, {InputType::gamepad, XINPUT_UP   } };
     inputActionMap["DOWN" ] = { {InputType::keyboard, VK_S}, {InputType::gamepad, XINPUT_DOWN } };
 
-    /*@brief@“ü—Íó‘Ô‚ğ‰Šú‰»*/
+    /*@briefã€€å…¥åŠ›çŠ¶æ…‹ã‚’åˆæœŸåŒ–*/
     for (const auto& mapInfo : inputActionMap)
     {
 
-        /*@memo@Œ»İ‚Ìó‘Ô*/
+        /*@memoã€€ç¾åœ¨ã®çŠ¶æ…‹*/
         currentInput[mapInfo.first] = false;
 
-        /*@memo@‘OƒtƒŒ[ƒ€‚Ìó‘Ô*/
+        /*@memoã€€å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã®çŠ¶æ…‹*/
         lastInput[mapInfo.first] = false;
 
     }
 
 }
 
-/*@brief@ƒfƒXƒgƒ‰ƒNƒ^*/
+/*@briefã€€ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿*/
 Input::~Input()
 {
-    /**@brief@U“®‚ğI—¹‚³‚¹‚é*/
+    /**@briefã€€æŒ¯å‹•ã‚’çµ‚äº†ã•ã›ã‚‹*/
     XINPUT_VIBRATION vibration;
     ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
     vibration.wLeftMotorSpeed = 0;
@@ -40,31 +40,31 @@ Input::~Input()
     XInputSetState(0, &vibration);
 }
 
-/*@brief@“ü—Íó‘Ô‚ğXV‚·‚éŠÖ”*/
+/*@briefã€€å…¥åŠ›çŠ¶æ…‹ã‚’æ›´æ–°ã™ã‚‹é–¢æ•°*/
 void Input::Update()
 {
 
-    /*@brief@1ƒtƒŒ[ƒ€‘O‚ÌƒL[ó‘Ô‚ğ•Û‘¶*/
+    /*@briefã€€1ãƒ•ãƒ¬ãƒ¼ãƒ å‰ã®ã‚­ãƒ¼çŠ¶æ…‹ã‚’ä¿å­˜*/
     lastInput = currentInput;
 
-    /*@brief@ƒL[ƒ{[ƒhó‘Ô‚ÌXV*/
+    /*@briefã€€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰çŠ¶æ…‹ã®æ›´æ–°*/
     BOOL hr = GetKeyboardState(keyState);
 
-    /*@brief@ƒRƒ“ƒgƒ[ƒ‰[ó‘Ô‚ÌXV*/
+    /*@briefã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼çŠ¶æ…‹ã®æ›´æ–°*/
     XInputGetState(0, &padState);
 
-    /*@brief@ŠeƒAƒNƒVƒ‡ƒ“‚É‚Â‚¢‚ÄŒ»İ‚Ì“ü—Íó‘Ô‚ğXV*/
+    /*@briefã€€å„ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã«ã¤ã„ã¦ç¾åœ¨ã®å…¥åŠ›çŠ¶æ…‹ã‚’æ›´æ–°*/
     for (const auto& mapInfo : inputActionMap)
     {
 
-        /*@brief@‚±‚ÌƒAƒNƒVƒ‡ƒ“‚ª‰Ÿ‚³‚ê‚Ä‚¢‚é‚©*/
+        /*@briefã€€ã“ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒæŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹*/
         bool isPressed = false;
 
-        /*@brief@ƒAƒNƒVƒ‡ƒ“‚ÉŠ„‚è“–‚Ä‚ç‚ê‚½‚·‚×‚Ä‚Ì“ü—Í‚ğŠm”F*/
+        /*@briefã€€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã«å‰²ã‚Šå½“ã¦ã‚‰ã‚ŒãŸã™ã¹ã¦ã®å…¥åŠ›ã‚’ç¢ºèª*/
         for (const auto& inputInfo : mapInfo.second)
         {
 
-            /*@brief@ƒL[ƒ{[ƒh‚Ì“ü—Í”»’è*/
+            /*@briefã€€ã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã®å…¥åŠ›åˆ¤å®š*/
             if (inputInfo.type == InputType::keyboard && (keyState[inputInfo.buttonID] & 0x80)) 
             {
 
@@ -72,7 +72,7 @@ void Input::Update()
 
             }
 
-            /*@brief@ƒRƒ“ƒgƒ[ƒ‰[‚Ì“ü—Í”»’è*/
+            /*@briefã€€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã®å…¥åŠ›åˆ¤å®š*/
             if (inputInfo.type == InputType::gamepad && (padState.Gamepad.wButtons & inputInfo.buttonID)) 
             {
 
@@ -80,7 +80,7 @@ void Input::Update()
 
             }
 
-            /*@brief@ƒ}ƒEƒX‚Ì“ü—Í”»’è*/
+            /*@briefã€€ãƒã‚¦ã‚¹ã®å…¥åŠ›åˆ¤å®š*/
             if (inputInfo.type == InputType::mouse && (mouseState & inputInfo.buttonID)) 
             {
 
@@ -88,19 +88,19 @@ void Input::Update()
 
             }
 
-            /*@brief@‚¢‚¸‚ê‚©‚ª‰Ÿ‚³‚ê‚Ä‚¢‚½‚ç”»’èI—¹*/
+            /*@briefã€€ã„ãšã‚Œã‹ãŒæŠ¼ã•ã‚Œã¦ã„ãŸã‚‰åˆ¤å®šçµ‚äº†*/
             if (isPressed) { break;}
 
         }
 
-       /*@brief@Œ»İ‚Ì“ü—Í”»’è‚ğ•Û‘¶*/
+       /*@briefã€€ç¾åœ¨ã®å…¥åŠ›åˆ¤å®šã‚’ä¿å­˜*/
         currentInput[mapInfo.first] = isPressed;
     }
-    /*@brief@U“®Œp‘±ŠÔ‚ğƒJƒEƒ“ƒg*/
+    /*@briefã€€æŒ¯å‹•ç¶™ç¶šæ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆ*/
     if (VibrationTime > 0) {
         VibrationTime--;
         if (VibrationTime == 0)
-        { /*@brief@U“®Œp‘±ŠÔ‚ªŒo‚Á‚½‚ÉU“®‚ğ~‚ß‚é*/
+        { /*@briefã€€æŒ¯å‹•ç¶™ç¶šæ™‚é–“ãŒçµŒã£ãŸæ™‚ã«æŒ¯å‹•ã‚’æ­¢ã‚ã‚‹*/
             XINPUT_VIBRATION vibration;
             ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
             vibration.wLeftMotorSpeed = 0;
@@ -111,27 +111,27 @@ void Input::Update()
 
 }
 
-/*@brieg@ƒAƒNƒVƒ‡ƒ“‚ªŒ»İ‰Ÿ‚³‚ê‚Ä‚¢‚é‚©Šm”F*/
+/*@briegã€€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒç¾åœ¨æŠ¼ã•ã‚Œã¦ã„ã‚‹ã‹ç¢ºèª*/
 bool Input::Press(const std::string& action) const
 {
 
-    /*@brief@Œ»İ‚Æ‘OƒtƒŒ[ƒ€‚Ì“ü—Íó‘Ô‚ğæ“¾*/
+    /*@briefã€€ç¾åœ¨ã¨å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã®å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—*/
     auto it = currentInput.find(action);
 
-    /*@brief@‰Ÿ‚³‚ê‚Ä‚¢‚ê‚Îtrue*/
+    /*@briefã€€æŠ¼ã•ã‚Œã¦ã„ã‚Œã°true*/
     return (it != currentInput.end()) && it->second; 
 
 }
 
-/*@brieg@ƒAƒNƒVƒ‡ƒ“‚ª‰Ÿ‚³‚ê‚½uŠÔ‚©Šm”F*/
+/*@briegã€€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒæŠ¼ã•ã‚ŒãŸç¬é–“ã‹ç¢ºèª*/
 bool Input::Trigger(const std::string& action) const
 {
 
-    /*@brief@Œ»İ‚Æ‘OƒtƒŒ[ƒ€‚Ì“ü—Íó‘Ô‚ğæ“¾*/
+    /*@briefã€€ç¾åœ¨ã¨å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã®å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—*/
     auto itCurrent = currentInput.find(action);
     auto itLast = lastInput.find(action);
 
-    /*@brief@ƒAƒNƒVƒ‡ƒ“‚ª’è‹`‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Îfalse*/
+    /*@briefã€€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒå®šç¾©ã•ã‚Œã¦ã„ãªã‘ã‚Œã°false*/
     if (itCurrent == currentInput.end() || itLast == lastInput.end())
     {
 
@@ -139,20 +139,20 @@ bool Input::Trigger(const std::string& action) const
 
     }
 
-    /*@brief@Œ»İ‰Ÿ‚³‚ê‚Ä‚¢‚ÄA‘OƒtƒŒ[ƒ€‚Å‰Ÿ‚³‚ê‚Ä‚¢‚È‚¢ê‡*/
+    /*@briefã€€ç¾åœ¨æŠ¼ã•ã‚Œã¦ã„ã¦ã€å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã§æŠ¼ã•ã‚Œã¦ã„ãªã„å ´åˆ*/
     return itCurrent->second && !itLast->second; 
 
 }
 
-/*@brieg@ƒAƒNƒVƒ‡ƒ“‚ª—£‚³‚ê‚½uŠÔ‚©Šm”F*/
+/*@briegã€€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒé›¢ã•ã‚ŒãŸç¬é–“ã‹ç¢ºèª*/
 bool Input::Release(const std::string& action) const
 {
 
-    /*@brief@Œ»İ‚Æ‘OƒtƒŒ[ƒ€‚Ì“ü—Íó‘Ô‚ğæ“¾*/
+    /*@briefã€€ç¾åœ¨ã¨å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã®å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—*/
     auto itCurrent = currentInput.find(action);
     auto itLast = lastInput.find(action);
 
-    /*@brief@ƒAƒNƒVƒ‡ƒ“‚ª’è‹`‚³‚ê‚Ä‚¢‚È‚¯‚ê‚Îfalse*/
+    /*@briefã€€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ãŒå®šç¾©ã•ã‚Œã¦ã„ãªã‘ã‚Œã°false*/
     if (itCurrent == currentInput.end() || itLast == lastInput.end())
     {
 
@@ -160,62 +160,62 @@ bool Input::Release(const std::string& action) const
 
     }
 
-    /*@brief@Œ»İ‚Í‰Ÿ‚³‚ê‚Ä‚¢‚È‚­‚ÄA‘OƒtƒŒ[ƒ€‚Å‚Í‰Ÿ‚³‚ê‚Ä‚¢‚½ê‡*/
+    /*@briefã€€ç¾åœ¨ã¯æŠ¼ã•ã‚Œã¦ã„ãªãã¦ã€å‰ãƒ•ãƒ¬ãƒ¼ãƒ ã§ã¯æŠ¼ã•ã‚Œã¦ã„ãŸå ´åˆ*/
     return !itCurrent->second && itLast->second;
 
 }
 
-/*@memo@DX21‚©‚ç”²ˆ*/
-/**@brief ¶ƒAƒiƒƒOƒXƒeƒBƒbƒN*/
+/*@memoã€€DX21ã‹ã‚‰æŠœç²‹*/
+/**@brief å·¦ã‚¢ãƒŠãƒ­ã‚°ã‚¹ãƒ†ã‚£ãƒƒã‚¯*/
 DirectX::XMFLOAT2 Input::GetLeftAnalogStick(void)
 {
-    SHORT x = padState.Gamepad.sThumbLX; // -32768`32767
-    SHORT y = padState.Gamepad.sThumbLY; // -32768`32767
+    SHORT x = padState.Gamepad.sThumbLX; // -32768ï½32767
+    SHORT y = padState.Gamepad.sThumbLY; // -32768ï½32767
 
     DirectX::XMFLOAT2 res;
-    res.x = x / 32767.0f; //-1`1
-    res.y = y / 32767.0f; //-1`1
+    res.x = x / 32767.0f; //-1ï½1
+    res.y = y / 32767.0f; //-1ï½1
     return res;
 }
 
-/**@brief ‰EƒAƒiƒƒOƒXƒeƒBƒbƒN*/
+/**@brief å³ã‚¢ãƒŠãƒ­ã‚°ã‚¹ãƒ†ã‚£ãƒƒã‚¯*/
 DirectX::XMFLOAT2 Input::GetRightAnalogStick(void)
 {
-    SHORT x =padState.Gamepad.sThumbRX; // -32768`32767
-    SHORT y =padState.Gamepad.sThumbRY; // -32768`32767
+    SHORT x =padState.Gamepad.sThumbRX; // -32768ï½32767
+    SHORT y =padState.Gamepad.sThumbRY; // -32768ï½32767
 
     DirectX::XMFLOAT2 res;
-    res.x = x / 32767.0f; //-1`1
-    res.y = y / 32767.0f; //-1`1
+    res.x = x / 32767.0f; //-1ï½1
+    res.y = y / 32767.0f; //-1ï½1
     return res;
 }
 
-/**@brief@¶ƒgƒŠƒK[*/
+/**@briefã€€å·¦ãƒˆãƒªã‚¬ãƒ¼*/
 float Input::GetLeftTrigger(void)
 {
-    BYTE t = padState.Gamepad.bLeftTrigger; // 0`255
+    BYTE t = padState.Gamepad.bLeftTrigger; // 0ï½255
     return t / 255.0f;
 }
 
-/**@brief@‰EƒgƒŠƒK[*/
+/**@briefã€€å³ãƒˆãƒªã‚¬ãƒ¼*/
 float Input::GetRightTrigger(void)
 {
-    BYTE t = padState.Gamepad.bRightTrigger; // 0`255
+    BYTE t = padState.Gamepad.bRightTrigger; // 0ï½255
     return t / 255.0f;
 }
 
-/** @brief@U“®‚Ìˆ—*/
+/** @briefã€€æŒ¯å‹•ã®å‡¦ç†*/
 void Input::SetVibration(int frame, float powor)
 {
-    /**@brief@XINPUT_VIBRATION\‘¢‘Ì‚ÌƒCƒ“ƒXƒ^ƒ“ƒX‚ğì¬*/
+    /**@briefã€€XINPUT_VIBRATIONæ§‹é€ ä½“ã®ã‚¤ãƒ³ã‚¹ã‚¿ãƒ³ã‚¹ã‚’ä½œæˆ*/
     XINPUT_VIBRATION vibration;
     ZeroMemory(&vibration, sizeof(XINPUT_VIBRATION));
 
-    /**@brief ƒ‚[ƒ^[‚Ì‹­“x‚ğİ’èi0`65535j*/
+    /**@brief ãƒ¢ãƒ¼ã‚¿ãƒ¼ã®å¼·åº¦ã‚’è¨­å®šï¼ˆ0ï½65535ï¼‰*/
     vibration.wLeftMotorSpeed = (WORD)(powor * 65535.0f);
     vibration.wRightMotorSpeed = (WORD)(powor * 65535.0f);
     XInputSetState(0, &vibration);
 
-    /**@brief@U“®Œp‘±ŠÔ‚ğ‘ã“ü*/
+    /**@briefã€€æŒ¯å‹•ç¶™ç¶šæ™‚é–“ã‚’ä»£å…¥*/
     VibrationTime = frame;
 }

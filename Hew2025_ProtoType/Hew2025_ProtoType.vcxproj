@@ -110,6 +110,9 @@
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PostBuildEvent>
+      <Command>powershell -ExecutionPolicy Bypass -File "$(ProjectDir)SaveAsUTF8.ps1" "$(ProjectDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -126,6 +129,9 @@
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
+    <PreBuildEvent>
+      <Command>powershell -ExecutionPolicy Bypass -File "$(ProjectDir)SaveAsUTF8.ps1" "$(ProjectDir)"</Command>
+    </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.cpp" />
@@ -147,7 +153,9 @@
     <ClCompile Include="Library\Code\self\04_DirextX_11\09_Shader\01_CVertexShader\CVertexShader.cpp" />
     <ClCompile Include="Library\Code\self\04_DirextX_11\09_Shader\02_PixelShader\CPixelShader.cpp" />
     <ClCompile Include="Library\Code\self\04_DirextX_11\10_Sampler\CSampler.cpp" />
-    <ClCompile Include="Library\Code\self\05_Collider2D\Collider2D.cpp" />
+    <ClCompile Include="Library\Code\self\05_Collider\00_BaseCollider\BaseCollider.cpp" />
+    <ClCompile Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.cpp" />
+    <ClCompile Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.cpp" />
     <ClCompile Include="Library\Code\self\10_Object\Object.cpp" />
     <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp" />
     <ClCompile Include="main.cpp" />
@@ -155,6 +163,7 @@
     <ClCompile Include="Scene\01_TitleScene\TitleScene.cpp" />
     <ClCompile Include="Scene\02_GameScene\GameScene.cpp" />
     <ClCompile Include="Scene\03_ResultScene\ResultScene.cpp" />
+    <ClCompile Include="Scene\94_Test_Otani\Test_Otani.cpp" />
     <ClCompile Include="Scene\95_Test_Ri\Test_Ri.cpp" />
     <ClCompile Include="Scene\96_Test_Imagawa\Test_Imagawa.cpp" />
     <ClCompile Include="Scene\97_Test_Ueda\Test_Ueda.cpp" />
@@ -181,7 +190,9 @@
     <ClInclude Include="Library\Code\self\04_DirextX_11\09_Shader\01_CVertexShader\CVertexShader.h" />
     <ClInclude Include="Library\Code\self\04_DirextX_11\09_Shader\02_PixelShader\CPixelShader.h" />
     <ClInclude Include="Library\Code\self\04_DirextX_11\10_Sampler\CSampler.h" />
-    <ClInclude Include="Library\Code\self\05_Collider2D\Collider2D.h" />
+    <ClInclude Include="Library\Code\self\05_Collider\00_BaseCollider\BaseCollider.h" />
+    <ClInclude Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.h" />
+    <ClInclude Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.h" />
     <ClInclude Include="Library\Code\self\10_Object\Object.h" />
     <ClInclude Include="Library\Code\self\imagawa_Input\input.h" />
     <ClInclude Include="Library\Code\self\SafePointers.h" />
@@ -190,6 +201,7 @@
     <ClInclude Include="Scene\01_TitleScene\TitleScene.h" />
     <ClInclude Include="Scene\02_GameScene\GameScene.h" />
     <ClInclude Include="Scene\03_ResultScene\ResultScene.h" />
+    <ClInclude Include="Scene\94_Test_Otani\Test_Otani.h" />
     <ClInclude Include="Scene\95_Test_Ri\Test_Ri.h" />
     <ClInclude Include="Scene\96_Test_Imagawa\Test_Imagawa.h" />
     <ClInclude Include="Scene\97_Test_Ueda\Test_Ueda.h" />

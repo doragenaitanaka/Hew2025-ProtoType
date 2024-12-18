@@ -1,9 +1,9 @@
-#include"01_Tetris.h"
+ï»¿#include"01_Tetris.h"
 
-/**	@brief 	ƒeƒgƒŠƒ~ƒm‚Ì¶¬‚ğs‚¤ŠÖ”
-*	@param	BlockStatus**	_pp_blockData		ƒeƒgƒŠƒ~ƒm‚Ìó‘Ô‚ªŠi”[‚³‚ê‚½”z—ñ
-*	@param	std::vector<int>& _tetriminoList	—‚Æ‚·ƒeƒgƒŠƒ~ƒm‚ÌƒŠƒXƒg
-*	@param	int& _currentArray	¡‰½”Ô–Ú‚Ìƒ~ƒm‚ğ—‚Æ‚·‚Ì‚©
+/**	@brief 	ãƒ†ãƒˆãƒªãƒŸãƒã®ç”Ÿæˆã‚’è¡Œã†é–¢æ•°
+*	@param	BlockStatus**	_pp_blockData		ãƒ†ãƒˆãƒªãƒŸãƒã®çŠ¶æ…‹ãŒæ ¼ç´ã•ã‚ŒãŸé…åˆ—
+*	@param	std::vector<int>& _tetriminoList	è½ã¨ã™ãƒ†ãƒˆãƒªãƒŸãƒã®ãƒªã‚¹ãƒˆ
+*	@param	int& _currentArray	ä»Šä½•ç•ªç›®ã®ãƒŸãƒã‚’è½ã¨ã™ã®ã‹
 *	@date	2024/06/27
 */
 TetriminoShape	CreateTetrimino(BlockStatus** _pp_blockData, std::vector<int>& _tetriminoList,int&  _currentArray)
@@ -92,11 +92,11 @@ TetriminoShape	CreateTetrimino(BlockStatus** _pp_blockData, std::vector<int>& _t
         break;
     }
     
-    // —v‘f‚ği‚ß‚é
+    // è¦ç´ ã‚’é€²ã‚ã‚‹
     if (_currentArray == TetriminoShape::SHAPE_MAX * 2 - 1) { _currentArray = 0; }
     else { _currentArray++; }
 
-    // 1‡–Ú‚ªI‚í‚Á‚½‚Æ‚«1‡–Ú‚ğ•À‚×‘Ö‚¦’¼‚·
+    // 1é †ç›®ãŒçµ‚ã‚ã£ãŸã¨ã1é †ç›®ã‚’ä¸¦ã¹æ›¿ãˆç›´ã™
     if (_currentArray == TetriminoShape::SHAPE_MAX)
     { 
          for (int i = 0; i < TetriminoShape::SHAPE_MAX; i++)
@@ -105,7 +105,7 @@ TetriminoShape	CreateTetrimino(BlockStatus** _pp_blockData, std::vector<int>& _t
             std::swap(_tetriminoList[i], _tetriminoList[j]);
         }
     } 
-    // 2‡–Ú‚ªI‚í‚Á‚½‚Æ‚«2‡–Ú‚ğ•À‚×‘Ö‚¦’¼‚·
+    // 2é †ç›®ãŒçµ‚ã‚ã£ãŸã¨ã2é †ç›®ã‚’ä¸¦ã¹æ›¿ãˆç›´ã™
     if (_currentArray == 0)
     {
         for (int i = TetriminoShape::SHAPE_MAX; i < TetriminoShape::SHAPE_MAX * 2; i++)
@@ -117,15 +117,15 @@ TetriminoShape	CreateTetrimino(BlockStatus** _pp_blockData, std::vector<int>& _t
     return  shapeType;
 }
 
-/**	@brief 	NextƒuƒƒbƒN‚Ì¶¬‚ğs‚¤ŠÖ”
-*	@param	TetriminoShape**	_pp_nextBlockData		Next‚ÌŒ`ó‚ªŠi”[‚³‚ê‚½”z—ñ
-*	@param	std::vector<int>& _tetriminoList	—‚Æ‚·ƒeƒgƒŠƒ~ƒm‚ÌƒŠƒXƒg
-*	@param	int& _nextBlockArray	‚Ç‚Ìnext‚ğ•\¦‚³‚¹‚é‚Ì‚©
+/**	@brief 	Nextãƒ–ãƒ­ãƒƒã‚¯ã®ç”Ÿæˆã‚’è¡Œã†é–¢æ•°
+*	@param	TetriminoShape**	_pp_nextBlockData		Nextã®å½¢çŠ¶ãŒæ ¼ç´ã•ã‚ŒãŸé…åˆ—
+*	@param	std::vector<int>& _tetriminoList	è½ã¨ã™ãƒ†ãƒˆãƒªãƒŸãƒã®ãƒªã‚¹ãƒˆ
+*	@param	int& _nextBlockArray	ã©ã®nextã‚’è¡¨ç¤ºã•ã›ã‚‹ã®ã‹
 *	@date	2024/09/19
 */
 void	CreateNextTetrimino(TetriminoShape** _pp_nextBlockData, std::vector<int>& _tetriminoList, int& _nextBlockArray)
 {
-    // ˆê“x•\¦‚ğƒŠƒZƒbƒg‚·‚é
+    // ä¸€åº¦è¡¨ç¤ºã‚’ãƒªã‚»ãƒƒãƒˆã™ã‚‹
     for (int x = 0; x < 4; x++)
     {
         for (int y = 0; y < STAGE_Y; y++)
@@ -134,13 +134,13 @@ void	CreateNextTetrimino(TetriminoShape** _pp_nextBlockData, std::vector<int>& _
         }
     }
 
-    // w’èŒÂ”•\¦‚³‚¹‚é
+    // æŒ‡å®šå€‹æ•°è¡¨ç¤ºã•ã›ã‚‹
     for (int i = 0; i < 1; i++)
     {
         TetriminoShape shape = (TetriminoShape)_tetriminoList[_nextBlockArray + i];
-        int nextY = i * 4;  // •\¦‚ğn‚ß‚éˆÊ’u
+        int nextY = i * 4;  // è¡¨ç¤ºã‚’å§‹ã‚ã‚‹ä½ç½®
 
-        // ƒuƒƒbƒN‚Ì•\¦
+        // ãƒ–ãƒ­ãƒƒã‚¯ã®è¡¨ç¤º
         switch (shape)
         {
         case I_MINO:
@@ -195,23 +195,23 @@ void	CreateNextTetrimino(TetriminoShape** _pp_nextBlockData, std::vector<int>& _
     }
 }
 
-/**	@brief 	ƒeƒgƒŠƒ~ƒm‚ª—‚¿‚½‚©’²‚×‚éŠÖ”
-*	@param	BlockStatus** _pp_blockData	ƒeƒgƒŠƒ~ƒm‚Ìó‘Ô‚ªŠi”[‚³‚ê‚½”z—ñ
-*	@return	bool	isFall	true:—‚¿‚½
+/**	@brief 	ãƒ†ãƒˆãƒªãƒŸãƒãŒè½ã¡ãŸã‹èª¿ã¹ã‚‹é–¢æ•°
+*	@param	BlockStatus** _pp_blockData	ãƒ†ãƒˆãƒªãƒŸãƒã®çŠ¶æ…‹ãŒæ ¼ç´ã•ã‚ŒãŸé…åˆ—
+*	@return	bool	isFall	true:è½ã¡ãŸ
 *	@date	2024/06/27
 */
 bool	GetTetriminoIsFall(BlockStatus** _pp_blockData)
 {
-    // —‚Æ‚¹‚é‚©’²‚×‚é
-    bool    isFall = true;  //true:—‚¿‚é
+    // è½ã¨ã›ã‚‹ã‹èª¿ã¹ã‚‹
+    bool    isFall = true;  //true:è½ã¡ã‚‹
     for (int x = 0; x < STAGE_X; x++)
     {
         for (int y = 0; y < STAGE_Y + 3; y++)
         {
-            //—‚Æ‚¹‚éƒuƒƒbƒN && ( ˆê”Ô‰º‚É‚ ‚é || 1ƒ}ƒX‰º‚ÉƒuƒƒbƒN‚ª‚ ‚é )
+            //è½ã¨ã›ã‚‹ãƒ–ãƒ­ãƒƒã‚¯ && ( ä¸€ç•ªä¸‹ã«ã‚ã‚‹ || 1ãƒã‚¹ä¸‹ã«ãƒ–ãƒ­ãƒƒã‚¯ãŒã‚ã‚‹ )
             if (_pp_blockData[x][y].minoState == TetriminoState::FALLING && (y == TetriminoState::EMPTY || _pp_blockData[x][y - 1].minoState == TetriminoState::LANDED))
             {
-                isFall = false;             // —‚¿‚È‚¢
+                isFall = false;             // è½ã¡ãªã„
                 break;
             }
         }
@@ -220,14 +220,14 @@ bool	GetTetriminoIsFall(BlockStatus** _pp_blockData)
     return  isFall;
 }
 
-/**	@brief 	ƒeƒgƒŠƒ~ƒm‚ª‰ñ“]‚Å‚«‚éó‘Ô‚©’²‚×‚éŠÖ”
-*	@param	int _tetriminoData[TetriminoShape::SHAPE_MAX][TetriminoDirection::Direction_MAX][4][4]		ƒeƒgƒŠƒ~ƒm‚ÌŒ`óƒf[ƒ^4ŸŒ³”z—ñ
-*	@param	TetriminoState**	_pp_data	ƒeƒgƒŠƒ~ƒm‚Ìó‘Ô‚ªŠi”[‚³‚ê‚½”z—ñ
-*	@param	TetriminoStatus	_currentStatus			Œ»İ‚ÌƒeƒgƒŠƒ~ƒm‚Ìó‘Ô
-*	@param	int  _newDirc	Ÿ‚ÌŒü‚«
-*	@param	int	_baseX	Šî€“_x
-*	@param	int	_baseY	Šî€“_y
-*	@return	bool	isRotate	true:‰ñ“]‚Å‚«‚é
+/**	@brief 	ãƒ†ãƒˆãƒªãƒŸãƒãŒå›è»¢ã§ãã‚‹çŠ¶æ…‹ã‹èª¿ã¹ã‚‹é–¢æ•°
+*	@param	int _tetriminoData[TetriminoShape::SHAPE_MAX][TetriminoDirection::Direction_MAX][4][4]		ãƒ†ãƒˆãƒªãƒŸãƒã®å½¢çŠ¶ãƒ‡ãƒ¼ã‚¿4æ¬¡å…ƒé…åˆ—
+*	@param	TetriminoState**	_pp_data	ãƒ†ãƒˆãƒªãƒŸãƒã®çŠ¶æ…‹ãŒæ ¼ç´ã•ã‚ŒãŸé…åˆ—
+*	@param	TetriminoStatus	_currentStatus			ç¾åœ¨ã®ãƒ†ãƒˆãƒªãƒŸãƒã®çŠ¶æ…‹
+*	@param	int  _newDirc	æ¬¡ã®å‘ã
+*	@param	int	_baseX	åŸºæº–ç‚¹x
+*	@param	int	_baseY	åŸºæº–ç‚¹y
+*	@return	bool	isRotate	true:å›è»¢ã§ãã‚‹
 *	@date	2024/06/27
 */
 bool	GetTetriminoIsRotate(int _tetriminoData[TetriminoShape::SHAPE_MAX][TetriminoDirection::Direction_MAX][4][4], BlockStatus** _pp_data, TetriminoStatus	_currentStatus, int  _newDirc, int	_baseX, int	_baseY)
@@ -238,16 +238,16 @@ bool	GetTetriminoIsRotate(int _tetriminoData[TetriminoShape::SHAPE_MAX][Tetrimin
         for (int ty = 0; ty < 4; ty++)
         {
             if (_tetriminoData[_currentStatus.type][_newDirc][ty][tx] == TetriminoState::FALLING &&
-                // ƒXƒe[ƒW‚©‚ç‚Í‚İo‚é‚Æ‚«
+                // ã‚¹ãƒ†ãƒ¼ã‚¸ã‹ã‚‰ã¯ã¿å‡ºã‚‹ã¨ã
                 (   _baseX + tx > STAGE_X - 1 ||                                                  
                     _baseY + ty > STAGE_Y - 1 ||
                     _baseX + tx < 0 ||
                     _baseY + ty < 0 ||
-                    _pp_data[_baseX + tx][_baseY + ty].minoState == TetriminoState::LANDED       // Šù‚ÉƒuƒƒbƒN‚ª‚ ‚é
+                    _pp_data[_baseX + tx][_baseY + ty].minoState == TetriminoState::LANDED       // æ—¢ã«ãƒ–ãƒ­ãƒƒã‚¯ãŒã‚ã‚‹
                 )
             )
             {
-                isRotate = false;  // ‰ñ“]‚Å‚«‚È‚¢
+                isRotate = false;  // å›è»¢ã§ããªã„
                 break;
             }
         }
@@ -256,14 +256,14 @@ bool	GetTetriminoIsRotate(int _tetriminoData[TetriminoShape::SHAPE_MAX][Tetrimin
     return  isRotate;
 }
 
-/**	@brief 	ƒeƒgƒŠƒ~ƒm‚ğ’…’n‚³‚¹‚éŠÖ”
-*	@param	BlockStatus** _pp_blockData	ƒeƒgƒŠƒ~ƒm‚Ìó‘Ô‚ªŠi”[‚³‚ê‚½”z—ñ
+/**	@brief 	ãƒ†ãƒˆãƒªãƒŸãƒã‚’ç€åœ°ã•ã›ã‚‹é–¢æ•°
+*	@param	BlockStatus** _pp_blockData	ãƒ†ãƒˆãƒªãƒŸãƒã®çŠ¶æ…‹ãŒæ ¼ç´ã•ã‚ŒãŸé…åˆ—
 *	@param	TetriminoStatus _currentStatus
 *	@date	2024/06/27
 */
 void	LandTetrimino(BlockStatus** _pp_blockData, TetriminoStatus _currentStatus)
 {
-    //’…’nŒã‚É•ÏX
+    //ç€åœ°å¾Œã«å¤‰æ›´
     for (int x = 0; x < STAGE_X; x++)
     {
         for (int y = 0; y < STAGE_Y + 3; y++)
@@ -277,25 +277,25 @@ void	LandTetrimino(BlockStatus** _pp_blockData, TetriminoStatus _currentStatus)
     }
 }
 
-/**	@brief 	ƒeƒgƒŠƒ~ƒm‚ğ—‰º‚³‚¹‚éŠÖ”
-*	@param	BlockStatus** _pp_blockData	ƒeƒgƒŠƒ~ƒm‚Ìó‘Ô‚ªŠi”[‚³‚ê‚½”z—ñ
+/**	@brief 	ãƒ†ãƒˆãƒªãƒŸãƒã‚’è½ä¸‹ã•ã›ã‚‹é–¢æ•°
+*	@param	BlockStatus** _pp_blockData	ãƒ†ãƒˆãƒªãƒŸãƒã®çŠ¶æ…‹ãŒæ ¼ç´ã•ã‚ŒãŸé…åˆ—
 *	@date	2024/06/27
 */
 void	FallTetrimino(BlockStatus** _pp_blockData)
 {
-    // ˆê“I‚ÉXVî•ñ‚ğˆÚ‚·
+    // ä¸€æ™‚çš„ã«æ›´æ–°æƒ…å ±ã‚’ç§»ã™
     BlockStatus temp[STAGE_X][STAGE_Y + 3] = {};
     for (int x = 0; x < STAGE_X; x++)
     {
         for (int y = 0; y < STAGE_Y + 3; y++)
         {
-            // —‰º’†‚ÌƒIƒuƒWƒFƒNƒg‚ğ1’i‰º‚°‚é
+            // è½ä¸‹ä¸­ã®ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆã‚’1æ®µä¸‹ã’ã‚‹
             if (_pp_blockData[x][y].minoState == TetriminoState::FALLING)
             {
                 temp[x][y - 1].minoState = TetriminoState::FALLING;
                 temp[x][y - 1].minoShape = _pp_blockData[x][y].minoShape;
             }
-            // ‚»‚êˆÈŠO‚àƒRƒs[
+            // ãã‚Œä»¥å¤–ã‚‚ã‚³ãƒ”ãƒ¼
             else if (_pp_blockData[x][y].minoState == TetriminoState::LANDED)
             {
                 temp[x][y].minoState = TetriminoState::LANDED;
@@ -303,7 +303,7 @@ void	FallTetrimino(BlockStatus** _pp_blockData)
             }
         }
     }
-    // XVî•ñ‚ğŒ³ƒf[ƒ^‚ÉƒRƒs[
+    // æ›´æ–°æƒ…å ±ã‚’å…ƒãƒ‡ãƒ¼ã‚¿ã«ã‚³ãƒ”ãƒ¼
     for (int x = 0; x < STAGE_X; x++)
     {
         for (int y = 0; y < STAGE_Y + 3; y++)
@@ -314,9 +314,9 @@ void	FallTetrimino(BlockStatus** _pp_blockData)
     }
 }
 
-/**	@brief 	ŠeƒuƒƒbƒN‚ÌF‚ğİ’è‚·‚éì‹Æ
-*	@param		BlockStatus** _pp_blockData			ƒuƒƒbƒN‚Ìƒf[ƒ^”z—ñ
-*	@param		Object** _pp_blocks					ƒuƒƒbƒN
+/**	@brief 	å„ãƒ–ãƒ­ãƒƒã‚¯ã®è‰²ã‚’è¨­å®šã™ã‚‹ä½œæ¥­
+*	@param		BlockStatus** _pp_blockData			ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿é…åˆ—
+*	@param		Object** _pp_blocks					ãƒ–ãƒ­ãƒƒã‚¯
 *	@date	2024/09/15
 */
 void	SetBlockColor(BlockStatus** _pp_blockData, Object** _pp_blocks)
@@ -348,39 +348,39 @@ void	SetBlockColor(BlockStatus** _pp_blockData, Object** _pp_blocks)
     //    }
     //}
 
-    // F‚ğ•t‚¯‚é
+    // è‰²ã‚’ä»˜ã‘ã‚‹
     for (int x = 0; x < STAGE_X; x++)
     {
         for (int y = 0; y < STAGE_Y; y++)
         {
-            // ƒuƒƒbƒN©‘Ì‚ÌF
+            // ãƒ–ãƒ­ãƒƒã‚¯è‡ªä½“ã®è‰²
             switch (_pp_blockData[x][y].minoShape)
             {
-                // …F
+                // æ°´è‰²
             case I_MINO:
                 _pp_blocks[x][y].SetColor({ 0.0f, 0.8f, 0.9f, 1.0f });
                 break;
-                // ‰©F
+                // é»„è‰²
             case O_MINO:
                 _pp_blocks[x][y].SetColor({ 0.9f, 0.7f, 0.0f, 1.0f });
                 break;
-                // —ÎF
+                // ç·‘è‰²
             case S_MINO:
                 _pp_blocks[x][y].SetColor({ 0.0f, 0.9f, 0.0f, 1.0f });
                 break;
-                // ÔF
+                // èµ¤è‰²
             case Z_MINO:
                 _pp_blocks[x][y].SetColor({ 0.9f, 0.0f, 0.0f, 1.0f });
                 break;
-                // ÂF
+                // é’è‰²
             case J_MINO:
                 _pp_blocks[x][y].SetColor({ 0.1f, 0.3f, 0.9f, 1.0f });
                 break;
-                // òF
+                // æ©™è‰²
             case L_MINO:
                 _pp_blocks[x][y].SetColor({ 0.9f, 0.4f, 0.0f, 1.0f });
                 break;
-                // ‡F
+                // ç´«è‰²
             case T_MINO:
                 _pp_blocks[x][y].SetColor({ 0.7f, 0.3f, 0.8f, 1.0f });
                 break;
@@ -389,22 +389,22 @@ void	SetBlockColor(BlockStatus** _pp_blockData, Object** _pp_blocks)
                 break;
             }
 
-            // ƒuƒƒbƒN‚Ìó‘Ô
+            // ãƒ–ãƒ­ãƒƒã‚¯ã®çŠ¶æ…‹
             switch (_pp_blockData[x][y].minoState)
             {
-            case	TetriminoState::EMPTY:// ‹ó”’
+            case	TetriminoState::EMPTY:// ç©ºç™½
                 _pp_blocks[x][y].SetColor({ 1.0f, 1.0f, 1.0f, 0.4f });
                 break;
-                //case	TetriminoState::LANDED:// ’…’n‚µ‚Ä‚¢‚éƒeƒgƒŠƒ~ƒm
+                //case	TetriminoState::LANDED:// ç€åœ°ã—ã¦ã„ã‚‹ãƒ†ãƒˆãƒªãƒŸãƒ
                 //	_pp_blocks[x][y].SetColor({ 1.0f, 1.0f, 1.0f, 1.0f });
                 //	break;
-                //case	TetriminoState::FALLING:// —‚¿‚Ä‚«‚Ä‚¢‚éƒeƒgƒŠƒ~ƒm
+                //case	TetriminoState::FALLING:// è½ã¡ã¦ãã¦ã„ã‚‹ãƒ†ãƒˆãƒªãƒŸãƒ
                 //	_pp_blocks[x][y].SetColor({ 1.0f, 0.8f, 0.8f, 1.0f });
                 //	break;
-            case	TetriminoState::COMPLETE:// ‘µ‚Á‚½ƒeƒgƒŠƒ~ƒm
+            case	TetriminoState::COMPLETE:// æƒã£ãŸãƒ†ãƒˆãƒªãƒŸãƒ
                 _pp_blocks[x][y].SetColor({ 0.4f, 0.4f, 1.0f, 1.0f });
                 break;
-            case	TetriminoState::GAMEOVER:// ƒQ[ƒ€ƒI[ƒo[
+            case	TetriminoState::GAMEOVER:// ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼æ™‚
                 _pp_blocks[x][y].SetColor({ 1.0f, 2.0f, 2.0f, 1.0f });
                 break;
             default:
@@ -414,49 +414,49 @@ void	SetBlockColor(BlockStatus** _pp_blockData, Object** _pp_blocks)
     }
 }
 
-/**	@brief 	NextƒuƒƒbƒN‚ÌF‚ğİ’è‚·‚éì‹Æ
-*	@param		TetriminoShape* _p_nextBlocksShape	NextƒuƒƒbƒN‚ÌŒ`
-*	@param		Object** _pp_NextBlocks				NextƒuƒƒbƒN
+/**	@brief 	Nextãƒ–ãƒ­ãƒƒã‚¯ã®è‰²ã‚’è¨­å®šã™ã‚‹ä½œæ¥­
+*	@param		TetriminoShape* _p_nextBlocksShape	Nextãƒ–ãƒ­ãƒƒã‚¯ã®å½¢
+*	@param		Object** _pp_NextBlocks				Nextãƒ–ãƒ­ãƒƒã‚¯
 *	@date	2024/09/19
 */
 void	SetNextBlockColor(TetriminoShape** _pp_nextBlocksShape, Object** _pp_NextBlocks)
 {
-    // F‚ğ•t‚¯‚é
+    // è‰²ã‚’ä»˜ã‘ã‚‹
     for (int x = 0; x < 4; x++)
     {
         for (int y = 0; y < STAGE_Y; y++)
         {
             switch (_pp_nextBlocksShape[x][y])
             {
-                // …F
+                // æ°´è‰²
             case I_MINO:
                 _pp_NextBlocks[x][y].SetColor({ 0.0f, 0.8f, 0.9f, 1.0f });
                 break;
-                // ‰©F
+                // é»„è‰²
             case O_MINO:
                 _pp_NextBlocks[x][y].SetColor({ 0.9f, 0.7f, 0.0f, 1.0f });
                 break;
-                // —ÎF
+                // ç·‘è‰²
             case S_MINO:
                 _pp_NextBlocks[x][y].SetColor({ 0.0f, 0.9f, 0.0f, 1.0f });
                 break;
-                // ÔF
+                // èµ¤è‰²
             case Z_MINO:
                 _pp_NextBlocks[x][y].SetColor({ 0.9f, 0.0f, 0.0f, 1.0f });
                 break;
-                // ÂF
+                // é’è‰²
             case J_MINO:
                 _pp_NextBlocks[x][y].SetColor({ 0.1f, 0.3f, 0.9f, 1.0f });
                 break;
-                // òF
+                // æ©™è‰²
             case L_MINO:
                 _pp_NextBlocks[x][y].SetColor({ 0.9f, 0.4f, 0.0f, 1.0f });
                 break;
-                // ‡F
+                // ç´«è‰²
             case T_MINO:
                 _pp_NextBlocks[x][y].SetColor({ 0.7f, 0.3f, 0.8f, 1.0f });
                 break;
-                // ‘¶İ‚µ‚È‚¢(“§–¾)
+                // å­˜åœ¨ã—ãªã„(é€æ˜)
             case SHAPE_NULL:
                 _pp_NextBlocks[x][y].SetColor({ 1.0f, 1.0f, 1.0f, 0.0f });
                 //break;
@@ -468,54 +468,54 @@ void	SetNextBlockColor(TetriminoShape** _pp_nextBlocksShape, Object** _pp_NextBl
     }
 }
 
-/**	@brief 	ƒQ[ƒ€ƒI[ƒo[‚©‚Ç‚¤‚©Šm”F‚·‚éŠÖ”
-*	@param		BlockStatus** _pp_blockData			ƒuƒƒbƒN‚Ìƒf[ƒ^”z—ñ
-*	@param		TetriminoState& gameState			Œ»İ‚ÌƒQ[ƒ€‚Ìó‘Ô
+/**	@brief 	ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã‹ã©ã†ã‹ç¢ºèªã™ã‚‹é–¢æ•°
+*	@param		BlockStatus** _pp_blockData			ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿é…åˆ—
+*	@param		TetriminoState& gameState			ç¾åœ¨ã®ã‚²ãƒ¼ãƒ ã®çŠ¶æ…‹
 *	@date	2024/09/15
 */
 void	CheckGameover(BlockStatus** _pp_blockData, TetriminoState& _gameState)
 {
-    // ƒQ[ƒ€ƒI[ƒo[ó‘Ô‚©‚Ç‚¤‚©ƒ`ƒFƒbƒN
+    // ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼çŠ¶æ…‹ã‹ã©ã†ã‹ãƒã‚§ãƒƒã‚¯
     for (int x = 0; x < STAGE_X; x++)
     {
-        // 1”Ôã‚Ì—ñ‚ª‘µ‚Á‚Ä‚¢‚½‚ç
+        // 1ç•ªä¸Šã®åˆ—ãŒæƒã£ã¦ã„ãŸã‚‰
         if (_pp_blockData[x][STAGE_Y - 1].minoState == TetriminoState::LANDED)
         {
-            // ƒeƒgƒŠƒ~ƒm‚ÌF‚ğ•ÏX
+            // ãƒ†ãƒˆãƒªãƒŸãƒã®è‰²ã‚’å¤‰æ›´
             for (int tx = 0; tx < STAGE_X; tx++)
             {
                 for (int ty = 0; ty < STAGE_Y + 3; ty++)
                 {
-                    // ‚à‚¤’u‚¯‚È‚¢‰ÓŠ‚ÌƒuƒƒbƒN‚ğ
+                    // ã‚‚ã†ç½®ã‘ãªã„ç®‡æ‰€ã®ãƒ–ãƒ­ãƒƒã‚¯ã‚’
                     if (_pp_blockData[tx][ty].minoState == TetriminoState::LANDED)
                     {
-                        // ƒQ[ƒ€ƒI[ƒo[ó‘Ô‚É•ÏX
+                        // ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼çŠ¶æ…‹ã«å¤‰æ›´
                         _pp_blockData[tx][ty].minoState = TetriminoState::GAMEOVER;
                     }
                 }
             }
-            // ƒQ[ƒ€ó‘Ô‚ğƒQ[ƒ€ƒI[ƒo[‚É•ÏX
+            // ã‚²ãƒ¼ãƒ çŠ¶æ…‹ã‚’ã‚²ãƒ¼ãƒ ã‚ªãƒ¼ãƒãƒ¼ã«å¤‰æ›´
             _gameState = TetriminoState::GAMEOVER;
             break;
         }
     }
 }
 
-/**	@brief 	‘µ‚Á‚½ƒuƒƒbƒN‚ğÁ‚·ŠÖ”
-*	@param		BlockStatus** _pp_blockData			ƒuƒƒbƒN‚Ìƒf[ƒ^”z—ñ
-*	@param		TetriminoState& _gameState			Œ»İ‚ÌƒQ[ƒ€‚Ìó‘Ô
-*   @return     int completeNum                     ‘µ‚Á‚½—ñ”
+/**	@brief 	æƒã£ãŸãƒ–ãƒ­ãƒƒã‚¯ã‚’æ¶ˆã™é–¢æ•°
+*	@param		BlockStatus** _pp_blockData			ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿é…åˆ—
+*	@param		TetriminoState& _gameState			ç¾åœ¨ã®ã‚²ãƒ¼ãƒ ã®çŠ¶æ…‹
+*   @return     int completeNum                     æƒã£ãŸåˆ—æ•°
 *	@date	2024/09/15
 */
 int	DeleteCompleteBlocks(BlockStatus** _pp_blockData, TetriminoState& _gameState)
 {
-    // 1—ñ‘µ‚Á‚½s‚ğ’T‚·
+    // 1åˆ—æƒã£ãŸè¡Œã‚’æ¢ã™
     int completeNum = 0;
     for (int y = 0; y < STAGE_Y + 3; y++)
     {
         if (_pp_blockData[0][y].minoState == TetriminoState::COMPLETE)
         {
-            // ‚»‚Ìs‚ğ”ò‚Î‚µ‚Äƒf[ƒ^‚ÉŠi”[
+            // ãã®è¡Œã‚’é£›ã°ã—ã¦ãƒ‡ãƒ¼ã‚¿ã«æ ¼ç´
             for (int ty = y + 1; ty < STAGE_Y + 3; ty++)
             {
                 for (int tx = 0; tx < STAGE_X; tx++)
@@ -523,28 +523,28 @@ int	DeleteCompleteBlocks(BlockStatus** _pp_blockData, TetriminoState& _gameState
                     _pp_blockData[tx][ty - 1] = _pp_blockData[tx][ty];
                 }
             }
-            y--;    // XVŒã‚Ìs‚ğŒ©‚é‚½‚ß‚É”ò‚Î‚µ‚½1s•ªˆø‚¢‚Ä‚¨‚­
+            y--;    // æ›´æ–°å¾Œã®è¡Œã‚’è¦‹ã‚‹ãŸã‚ã«é£›ã°ã—ãŸ1è¡Œåˆ†å¼•ã„ã¦ãŠã
             completeNum++;
         }
     }
-    _gameState = TetriminoState::EMPTY;     // —‚Æ‚¹‚éƒeƒgƒŠƒ~ƒm‚ª‘¶İ‚µ‚È‚¢
-    return  completeNum;                    // ‘µ‚¦‚½—ñ”‚ğ‚©‚¦‚·
+    _gameState = TetriminoState::EMPTY;     // è½ã¨ã›ã‚‹ãƒ†ãƒˆãƒªãƒŸãƒãŒå­˜åœ¨ã—ãªã„
+    return  completeNum;                    // æƒãˆãŸåˆ—æ•°ã‚’ã‹ãˆã™
 }
 
-/**	@brief	ƒuƒƒbƒN‚ª‘µ‚Á‚Ä‚¢‚é‚©Šm”F
-*	@param		BlockStatus** _pp_blockData			ƒuƒƒbƒN‚Ìƒf[ƒ^”z—ñ
-*	@param		TetriminoState& _gameState			Œ»İ‚ÌƒQ[ƒ€‚Ìó‘Ô
+/**	@brief	ãƒ–ãƒ­ãƒƒã‚¯ãŒæƒã£ã¦ã„ã‚‹ã‹ç¢ºèª
+*	@param		BlockStatus** _pp_blockData			ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿é…åˆ—
+*	@param		TetriminoState& _gameState			ç¾åœ¨ã®ã‚²ãƒ¼ãƒ ã®çŠ¶æ…‹
 *	@date	2024/09/15
 */
 void	CheckCompleteBlocks(BlockStatus** _pp_blockData, TetriminoState& _gameState)
 {
     for (int y = 0; y < STAGE_Y + 3; y++)
     {
-        // 1—ñ‚²‚Æ‚ÉŒ©‚é
+        // 1åˆ—ã”ã¨ã«è¦‹ã‚‹
         bool isCompleted = true;
         for (int x = 0; x < STAGE_X; x++)
         {
-            // ‘µ‚Á‚Ä‚¢‚È‚¯‚ê‚Î
+            // æƒã£ã¦ã„ãªã‘ã‚Œã°
             if (_pp_blockData[x][y].minoState == TetriminoState::EMPTY)
             {
                 isCompleted = false;
@@ -552,21 +552,21 @@ void	CheckCompleteBlocks(BlockStatus** _pp_blockData, TetriminoState& _gameState
             }
         }
 
-        // ‘µ‚Á‚Ä‚¢‚é—ñ‚Ìƒ~ƒmó‘Ô‚ğ•ÏX
+        // æƒã£ã¦ã„ã‚‹åˆ—ã®ãƒŸãƒçŠ¶æ…‹ã‚’å¤‰æ›´
         if (isCompleted)
         {
             for (int x = 0; x < STAGE_X; x++)
             {
                 _pp_blockData[x][y].minoState = TetriminoState::COMPLETE;
             }
-            _gameState = TetriminoState::COMPLETE;     // ƒeƒgƒŠƒ~ƒm‚ª1—ñ‘µ‚Á‚½
+            _gameState = TetriminoState::COMPLETE;     // ãƒ†ãƒˆãƒªãƒŸãƒãŒ1åˆ—æƒã£ãŸ
         }
     }
 }
 
-/**	@brief	ƒXƒRƒA‚Ì•`‰æ
-*	@param		unsigned int& _score					ƒXƒRƒA
-*	@param		BackGround&	_p_scoreBoard	ƒXƒRƒA•\¦—pƒIƒuƒWƒFƒNƒg
+/**	@brief	ã‚¹ã‚³ã‚¢ã®æç”»
+*	@param		unsigned int& _score					ã‚¹ã‚³ã‚¢
+*	@param		BackGround&	_p_scoreBoard	ã‚¹ã‚³ã‚¢è¡¨ç¤ºç”¨ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
 *	@date	2024/09/15
 */
 void	DrawScore(unsigned int& _score, BackGround& _p_scoreBoard)
@@ -577,33 +577,33 @@ void	DrawScore(unsigned int& _score, BackGround& _p_scoreBoard)
     int digit = 0;
     do
     {
-        // 1Œ…‚ğØ‚èo‚·
+        // 1æ¡ã‚’åˆ‡ã‚Šå‡ºã™
         float numU = _score % (int)std::pow(10, digit + 1) / (int)std::pow(10, digit);
 
-        // ˆÊ’u‚Æ”’l‚ğİ’è
+        // ä½ç½®ã¨æ•°å€¤ã‚’è¨­å®š
         _p_scoreBoard.SetTextureNumU(numU);
         _p_scoreBoard.SetPos(pos.x - size.x * digit, pos.y, pos.z);
         
-        // ƒXƒRƒA‚ğ•`‰æ
+        // ã‚¹ã‚³ã‚¢ã‚’æç”»
         _p_scoreBoard.Update({ 0.0f ,0.0f ,0.0f });
         _p_scoreBoard.Draw(sizeof(Vertex));
         digit++;
 
     } while (_score >= (int)std::pow(10, digit));
 
-    // ˆÊ’u‚ğŒ³‚É–ß‚·
+    // ä½ç½®ã‚’å…ƒã«æˆ»ã™
     _p_scoreBoard.SetPos(pos.x, pos.y, pos.z);
 }
 
-///**	@brief	ƒeƒgƒŠƒ~ƒm‚ğ‰ñ“]‚³‚¹‚éŠÖ”
-//*	@param	int _tetriminoData[TetriminoShape::SHAPE_MAX][TetriminoDirection::Direction_MAX][4][4]		ƒeƒgƒŠƒ~ƒm‚ÌŒ`óƒf[ƒ^4ŸŒ³”z—ñ
-//*	@param		BlockStatus** _pp_blockData			ƒuƒƒbƒN‚Ìƒf[ƒ^”z—ñ
-//*	@param	TetriminoStatus& _currentTetrimino		Œ»İ‚Ìƒ~ƒm‚ÌƒXƒe[ƒ^ƒX
+///**	@brief	ãƒ†ãƒˆãƒªãƒŸãƒã‚’å›è»¢ã•ã›ã‚‹é–¢æ•°
+//*	@param	int _tetriminoData[TetriminoShape::SHAPE_MAX][TetriminoDirection::Direction_MAX][4][4]		ãƒ†ãƒˆãƒªãƒŸãƒã®å½¢çŠ¶ãƒ‡ãƒ¼ã‚¿4æ¬¡å…ƒé…åˆ—
+//*	@param		BlockStatus** _pp_blockData			ãƒ–ãƒ­ãƒƒã‚¯ã®ãƒ‡ãƒ¼ã‚¿é…åˆ—
+//*	@param	TetriminoStatus& _currentTetrimino		ç¾åœ¨ã®ãƒŸãƒã®ã‚¹ãƒ†ãƒ¼ã‚¿ã‚¹
 //*	@date	2024/09/15
 //*/
 //void RotateTetrimino(int _tetriminoData[TetriminoShape::SHAPE_MAX][TetriminoDirection::Direction_MAX][4][4], BlockStatus** _pp_blockData, TetriminoStatus& _currentTetrimino)
 //{
-//    // —‰º’†‚ğ‘S‚Ä‚È‚­‚·
+//    // è½ä¸‹ä¸­ã‚’å…¨ã¦ãªãã™
 //    for (int x = 0; x < STAGE_X; x++)
 //    {
 //        for (int y = 0; y < STAGE_Y + 3; y++)
@@ -615,19 +615,19 @@ void	DrawScore(unsigned int& _score, BackGround& _p_scoreBoard)
 //            }
 //        }
 //    }
-//    // ‰ñ“]Œã‚Ìƒf[ƒ^‚ğ‘‚«‚Ş
+//    // å›è»¢å¾Œã®ãƒ‡ãƒ¼ã‚¿ã‚’æ›¸ãè¾¼ã‚€
 //    for (int tx = 0; tx < 4; tx++)
 //    {
 //        for (int ty = 0; ty < 4; ty++)
 //        {
 //            if (_tetriminoData[_currentTetrimino.type][tempDirc][ty][tx] == TetriminoState::FALLING)
 //            {
-//                _pp_blockData[baseX + tx][baseY + ty].minoState = TetriminoState::FALLING;         // ó‘ÔXV
-//                _pp_blockData[baseX + tx][baseY + ty].minoShape = _currentTetrimino.type;       // FXV
+//                _pp_blockData[baseX + tx][baseY + ty].minoState = TetriminoState::FALLING;         // çŠ¶æ…‹æ›´æ–°
+//                _pp_blockData[baseX + tx][baseY + ty].minoShape = _currentTetrimino.type;       // è‰²æ›´æ–°
 //            }
 //        }
 //    }
-//    // Œü‚«‚ğXV‚·‚é
+//    // å‘ãã‚’æ›´æ–°ã™ã‚‹
 //    this->p_currentMino->direction = (TetriminoDirection)tempDirc;
 //
 //}

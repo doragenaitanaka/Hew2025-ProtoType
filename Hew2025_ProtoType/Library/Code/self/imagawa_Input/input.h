@@ -1,4 +1,4 @@
-#pragma once
+ï»¿#pragma once
 #include<d3d11.h>
 #include<DirectXMath.h>
 #include<iostream>
@@ -7,62 +7,62 @@
 #include<map>
 #pragma comment(lib,"xinput.lib")
 
-/*@brief@’è”’è‹`ƒpƒbƒh“ü—Í*/
-#define XINPUT_A              0x1000	/*@memo ‚`ƒ{ƒ^ƒ“@@@@@@@*/
-#define XINPUT_B              0x2000	/*@memo ‚aƒ{ƒ^ƒ“@@@@@@@*/
-#define XINPUT_X              0x4000	/*@memo ‚wƒ{ƒ^ƒ“@@@@@@@*/
-#define XINPUT_Y              0x8000	/*@memo ‚xƒ{ƒ^ƒ“@@@@@@@*/
-#define XINPUT_UP             0x0001	/*@memo \šãƒ{ƒ^ƒ“@@@@@*/
-#define XINPUT_DOWN           0x0002	/*@memo \š‰ºƒ{ƒ^ƒ“@@@@@*/
-#define XINPUT_LEFT           0x0004	/*@memo \š¶ƒ{ƒ^ƒ“@@@@@*/
-#define XINPUT_RIGHT          0x0008	/*@memo \š‰Eƒ{ƒ^ƒ“@@@@@*/
-#define XINPUT_START          0x0010	/*@memo HHƒ{ƒ^ƒ“@@@@@@*/
-#define XINPUT_BACK           0x0020	/*@memo HHƒ{ƒ^ƒ“@@@@@@*/
-#define XINPUT_LEFT_THUMB     0x0040	/*@memo ¶ƒXƒeƒBƒbƒN‰Ÿ‚µ‚İ@*/
-#define XINPUT_RIGHT_THUMB    0x0080	/*@memo ‰EƒXƒeƒBƒbƒN‰Ÿ‚µ‚İ@*/
-#define XINPUT_LEFT_SHOULDER  0x0100	/*@memo ‚kƒ{ƒ^ƒ“@@@@@@@*/
-#define XINPUT_RIGHT_SHOULDER 0x0200	/*@memo ‚qƒ{ƒ^ƒ“@@@@@@@*/
+/*@briefã€€å®šæ•°å®šç¾©ãƒ‘ãƒƒãƒ‰å…¥åŠ›*/
+#define XINPUT_A              0x1000	/*@memo ï¼¡ãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€ã€€ã€€*/
+#define XINPUT_B              0x2000	/*@memo ï¼¢ãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€ã€€ã€€*/
+#define XINPUT_X              0x4000	/*@memo ï¼¸ãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€ã€€ã€€*/
+#define XINPUT_Y              0x8000	/*@memo ï¼¹ãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€ã€€ã€€*/
+#define XINPUT_UP             0x0001	/*@memo åå­—ä¸Šãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€*/
+#define XINPUT_DOWN           0x0002	/*@memo åå­—ä¸‹ãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€*/
+#define XINPUT_LEFT           0x0004	/*@memo åå­—å·¦ãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€*/
+#define XINPUT_RIGHT          0x0008	/*@memo åå­—å³ãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€*/
+#define XINPUT_START          0x0010	/*@memo ï¼Ÿï¼Ÿãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€ã€€*/
+#define XINPUT_BACK           0x0020	/*@memo ï¼Ÿï¼Ÿãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€ã€€*/
+#define XINPUT_LEFT_THUMB     0x0040	/*@memo å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯æŠ¼ã—è¾¼ã¿ã€€*/
+#define XINPUT_RIGHT_THUMB    0x0080	/*@memo å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯æŠ¼ã—è¾¼ã¿ã€€*/
+#define XINPUT_LEFT_SHOULDER  0x0100	/*@memo ï¼¬ãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€ã€€ã€€*/
+#define XINPUT_RIGHT_SHOULDER 0x0200	/*@memo ï¼²ãƒœã‚¿ãƒ³ã€€ã€€ã€€ã€€ã€€ã€€ã€€*/
 
-//*@brief@’è”’è‹`ƒL[“ü—Í*/
-#define VK_0 0x30	/*@memo ‚OƒL[*/
-#define VK_1 0x31	/*@memo ‚PƒL[*/
-#define VK_2 0x32	/*@memo ‚QƒL[*/
-#define VK_3 0x33	/*@memo ‚RƒL[*/
-#define VK_4 0x34	/*@memo ‚SƒL[*/
-#define VK_5 0x35	/*@memo ‚TƒL[*/
-#define VK_6 0x36	/*@memo ‚UƒL[*/
-#define VK_7 0x37	/*@memo ‚VƒL[*/
-#define VK_8 0x38	/*@memo ‚WƒL[*/
-#define VK_9 0x39	/*@memo ‚XƒL[*/
-#define VK_A 0x41	/*@memo ‚`ƒL[*/
-#define VK_B 0x42	/*@memo ‚aƒL[*/
-#define VK_C 0x43	/*@memo ‚bƒL[*/
-#define VK_D 0x44	/*@memo ‚cƒL[*/
-#define VK_E 0x45	/*@memo ‚dƒL[*/
-#define VK_F 0x46	/*@memo ‚eƒL[*/
-#define VK_G 0x47	/*@memo ‚fƒL[*/
-#define VK_H 0x48	/*@memo ‚gƒL[*/
-#define VK_I 0x49	/*@memo ‚hƒL[*/
-#define VK_J 0x4A	/*@memo ‚iƒL[*/
-#define VK_K 0x4B	/*@memo ‚jƒL[*/
-#define VK_L 0x4C	/*@memo ‚kƒL[*/
-#define VK_M 0x4D	/*@memo ‚lƒL[*/
-#define VK_N 0x4E	/*@memo ‚mƒL[*/
-#define VK_O 0x4F	/*@memo ‚nƒL[*/
-#define VK_P 0x50	/*@memo ‚oƒL[*/
-#define VK_Q 0x51	/*@memo ‚pƒL[*/
-#define VK_R 0x52	/*@memo ‚qƒL[*/
-#define VK_S 0x53	/*@memo ‚rƒL[*/
-#define VK_T 0x54	/*@memo ‚sƒL[*/
-#define VK_U 0x45	/*@memo ‚tƒL[*/
-#define VK_V 0x56	/*@memo ‚uƒL[*/
-#define VK_W 0x57	/*@memo ‚vƒL[*/
-#define VK_X 0x58	/*@memo ‚wƒL[*/
-#define VK_Y 0x59	/*@memo ‚xƒL[*/
-#define VK_Z 0x5A	/*@memo ‚yƒL[*/
+//*@briefã€€å®šæ•°å®šç¾©ã‚­ãƒ¼å…¥åŠ›*/
+#define VK_0 0x30	/*@memo ï¼ã‚­ãƒ¼*/
+#define VK_1 0x31	/*@memo ï¼‘ã‚­ãƒ¼*/
+#define VK_2 0x32	/*@memo ï¼’ã‚­ãƒ¼*/
+#define VK_3 0x33	/*@memo ï¼“ã‚­ãƒ¼*/
+#define VK_4 0x34	/*@memo ï¼”ã‚­ãƒ¼*/
+#define VK_5 0x35	/*@memo ï¼•ã‚­ãƒ¼*/
+#define VK_6 0x36	/*@memo ï¼–ã‚­ãƒ¼*/
+#define VK_7 0x37	/*@memo ï¼—ã‚­ãƒ¼*/
+#define VK_8 0x38	/*@memo ï¼˜ã‚­ãƒ¼*/
+#define VK_9 0x39	/*@memo ï¼™ã‚­ãƒ¼*/
+#define VK_A 0x41	/*@memo ï¼¡ã‚­ãƒ¼*/
+#define VK_B 0x42	/*@memo ï¼¢ã‚­ãƒ¼*/
+#define VK_C 0x43	/*@memo ï¼£ã‚­ãƒ¼*/
+#define VK_D 0x44	/*@memo ï¼¤ã‚­ãƒ¼*/
+#define VK_E 0x45	/*@memo ï¼¥ã‚­ãƒ¼*/
+#define VK_F 0x46	/*@memo ï¼¦ã‚­ãƒ¼*/
+#define VK_G 0x47	/*@memo ï¼§ã‚­ãƒ¼*/
+#define VK_H 0x48	/*@memo ï¼¨ã‚­ãƒ¼*/
+#define VK_I 0x49	/*@memo ï¼©ã‚­ãƒ¼*/
+#define VK_J 0x4A	/*@memo ï¼ªã‚­ãƒ¼*/
+#define VK_K 0x4B	/*@memo ï¼«ã‚­ãƒ¼*/
+#define VK_L 0x4C	/*@memo ï¼¬ã‚­ãƒ¼*/
+#define VK_M 0x4D	/*@memo ï¼­ã‚­ãƒ¼*/
+#define VK_N 0x4E	/*@memo ï¼®ã‚­ãƒ¼*/
+#define VK_O 0x4F	/*@memo ï¼¯ã‚­ãƒ¼*/
+#define VK_P 0x50	/*@memo ï¼°ã‚­ãƒ¼*/
+#define VK_Q 0x51	/*@memo ï¼±ã‚­ãƒ¼*/
+#define VK_R 0x52	/*@memo ï¼²ã‚­ãƒ¼*/
+#define VK_S 0x53	/*@memo ï¼³ã‚­ãƒ¼*/
+#define VK_T 0x54	/*@memo ï¼´ã‚­ãƒ¼*/
+#define VK_U 0x45	/*@memo ï¼µã‚­ãƒ¼*/
+#define VK_V 0x56	/*@memo ï¼¶ã‚­ãƒ¼*/
+#define VK_W 0x57	/*@memo ï¼·ã‚­ãƒ¼*/
+#define VK_X 0x58	/*@memo ï¼¸ã‚­ãƒ¼*/
+#define VK_Y 0x59	/*@memo ï¼¹ã‚­ãƒ¼*/
+#define VK_Z 0x5A	/*@memo ï¼ºã‚­ãƒ¼*/
 
 
-/*@brief@—ñ‹“Œ^F“ü—ÍƒfƒoƒCƒX‚Ìí—Ş*/
+/*@briefã€€åˆ—æŒ™å‹ï¼šå…¥åŠ›ãƒ‡ãƒã‚¤ã‚¹ã®ç¨®é¡*/
 enum class InputType
 {
 
@@ -72,7 +72,7 @@ enum class InputType
 
 };
 
-/*@brief@\‘¢‘ÌF“ü—Íƒ}ƒbƒsƒ“ƒOî•ñ*/
+/*@briefã€€æ§‹é€ ä½“ï¼šå…¥åŠ›ãƒãƒƒãƒ”ãƒ³ã‚°æƒ…å ±*/
 struct InputMap
 {
 
@@ -82,81 +82,81 @@ struct InputMap
 };
 
 
-/*@brief@ƒAƒNƒVƒ‡ƒ“–¼‚ğƒL[‚É‚µ‚ÄA‘Î‰‚·‚é“ü—Íƒ}ƒbƒsƒ“ƒO‚ğŠi”[*/
+/*@briefã€€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³åã‚’ã‚­ãƒ¼ã«ã—ã¦ã€å¯¾å¿œã™ã‚‹å…¥åŠ›ãƒãƒƒãƒ”ãƒ³ã‚°ã‚’æ ¼ç´*/
 using InputActionMap_t = std::map<std::string, std::vector<InputMap>>;
-/*@brief@ƒNƒ‰ƒXFƒL[ƒ{[ƒhAƒRƒ“ƒgƒ[ƒ‰[Aƒ}ƒEƒX‚Ì“ü—Í‚ğŠÇ—‚·‚éƒNƒ‰ƒX*/
+/*@briefã€€ã‚¯ãƒ©ã‚¹ï¼šã‚­ãƒ¼ãƒœãƒ¼ãƒ‰ã€ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼ã€ãƒã‚¦ã‚¹ã®å…¥åŠ›ã‚’ç®¡ç†ã™ã‚‹ã‚¯ãƒ©ã‚¹*/
 class Input
 {
 
 private:
-	/*@memo@ƒƒ“ƒo•Ï”F“ü—Íó‘Ô*/
+	/*@memoã€€ãƒ¡ãƒ³ãƒå¤‰æ•°ï¼šå…¥åŠ›çŠ¶æ…‹*/
 
 	
 
-	/*@brief@Œ»İ‚Ì“ü—Íó‘Ô*/
+	/*@briefã€€ç¾åœ¨ã®å…¥åŠ›çŠ¶æ…‹*/
 	BYTE keyState[256] = {};
 
-	/*@brief@Œ»İ‚Ì“ü—Íó‘Ô*/
+	/*@briefã€€ç¾åœ¨ã®å…¥åŠ›çŠ¶æ…‹*/
 	XINPUT_STATE padState = {};
 
-	/*@brief@Œ»İ‚Ì“ü—Íó‘Ô*/
+	/*@briefã€€ç¾åœ¨ã®å…¥åŠ›çŠ¶æ…‹*/
 	int mouseState = 0;
 
-	/*@brief@ƒAƒNƒVƒ‡ƒ“–¼‚Æ“ü—Í‚Ì‘Î‰•t‚¯*/
+	/*@briefã€€ã‚¢ã‚¯ã‚·ãƒ§ãƒ³åã¨å…¥åŠ›ã®å¯¾å¿œä»˜ã‘*/
 	InputActionMap_t inputActionMap;
 
-	/*@brief@Œ»İ‚ÌƒtƒŒ[ƒ€‚ÌƒAƒNƒVƒ‡ƒ“ó‘Ô*/
+	/*@briefã€€ç¾åœ¨ã®ãƒ•ãƒ¬ãƒ¼ãƒ ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³çŠ¶æ…‹*/
 	std::map<std::string, bool>currentInput;
 
-	/*@brief@‚PƒtƒŒ[ƒ€‘O‚ÌƒAƒNƒVƒ‡ƒ“ó‘Ô*/
+	/*@briefã€€ï¼‘ãƒ•ãƒ¬ãƒ¼ãƒ å‰ã®ã‚¢ã‚¯ã‚·ãƒ§ãƒ³çŠ¶æ…‹*/
 	std::map<std::string, bool>lastInput;
 
-	/*@brief@U“®Œp‘±ŠÔ‚ğƒJƒEƒ“ƒg‚·‚é•Ï”*/
+	/*@briefã€€æŒ¯å‹•ç¶™ç¶šæ™‚é–“ã‚’ã‚«ã‚¦ãƒ³ãƒˆã™ã‚‹å¤‰æ•°*/
 	int VibrationTime;
 
 public:
 
-	/*@memo@ƒRƒ“ƒXƒgƒ‰ƒNƒ^
-	 *@brief@‰Šú‰»ˆ—
+	/*@memoã€€ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 *@briefã€€åˆæœŸåŒ–å‡¦ç†
 	 */
 	Input();
 
-	/*@memo@ƒfƒXƒgƒ‰ƒNƒ^
-	 *@brief@I—¹ˆ—
+	/*@memoã€€ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	 *@briefã€€çµ‚äº†å‡¦ç†
 	 */
 	~Input();
 
-	/*@brief@“ü—Íó‘Ô‚ÌXV*/
+	/*@briefã€€å…¥åŠ›çŠ¶æ…‹ã®æ›´æ–°*/
 	void Update();
 
-	/*@memo@ƒAƒiƒƒOƒXƒeƒBƒbƒN‘€ì*/
-	/*@brief@¶ƒXƒeƒBƒbƒN‚Ì“ü—Íó‘Ô‚ğæ“¾*/
+	/*@memoã€€ã‚¢ãƒŠãƒ­ã‚°ã‚¹ãƒ†ã‚£ãƒƒã‚¯æ“ä½œ*/
+	/*@briefã€€å·¦ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—*/
 	DirectX::XMFLOAT2 GetLeftAnalogStick(void);
 
-	/*@brief@‰EƒXƒeƒBƒbƒN‚Ì“ü—Íó‘Ô‚ğæ“¾*/
+	/*@briefã€€å³ã‚¹ãƒ†ã‚£ãƒƒã‚¯ã®å…¥åŠ›çŠ¶æ…‹ã‚’å–å¾—*/
 	DirectX::XMFLOAT2 GetRightAnalogStick(void);
 
-	/*@brief@¶ƒgƒŠƒK[‚Ì“ü—Í’l‚ğæ“¾*/
+	/*@briefã€€å·¦ãƒˆãƒªã‚¬ãƒ¼ã®å…¥åŠ›å€¤ã‚’å–å¾—*/
 	float GetLeftTrigger(void);
 
-	/*@brief@‰EƒgƒŠƒK[‚Ì“ü—Í’l‚ğæ“¾*/
+	/*@briefã€€å³ãƒˆãƒªã‚¬ãƒ¼ã®å…¥åŠ›å€¤ã‚’å–å¾—*/
 	float GetRightTrigger(void);
 
-	/*@bruef@V‚µ‚¢“ü—Íî•ñ‚ğƒAƒNƒVƒ‡ƒ“‚É’Ç‰Á*/
+	/*@bruefã€€æ–°ã—ã„å…¥åŠ›æƒ…å ±ã‚’ã‚¢ã‚¯ã‚·ãƒ§ãƒ³ã«è¿½åŠ */
 	void a(const std::string& action, const InputMap info);
 
-	/*@brief@U“®(ƒRƒ“ƒgƒ[ƒ‰[)*/
-	/*@memo@flameFU“®‚ğŒp‘±‚·‚éŠÔ(’PˆÊFƒtƒŒ[ƒ€)*/
-	/*@memo@powoeFU“®‚Ì‹­‚³(0`1)*/
+	/*@briefã€€æŒ¯å‹•(ã‚³ãƒ³ãƒˆãƒ­ãƒ¼ãƒ©ãƒ¼)*/
+	/*@memoã€€flameï¼šæŒ¯å‹•ã‚’ç¶™ç¶šã™ã‚‹æ™‚é–“(å˜ä½ï¼šãƒ•ãƒ¬ãƒ¼ãƒ )*/
+	/*@memoã€€powoeï¼šæŒ¯å‹•ã®å¼·ã•(0ï½1)*/
 	void SetVibration(int frame = 1, float powor = 1);
 
-	/*@memo@“ü—Íó‘Ô‚ÌŠm”F*/
-	/*@brief@Pressi‰Ÿ‚³‚ê‚Ä‚¢‚é‚Æ‚«j*/
+	/*@memoã€€å…¥åŠ›çŠ¶æ…‹ã®ç¢ºèª*/
+	/*@briefã€€Pressï¼ˆæŠ¼ã•ã‚Œã¦ã„ã‚‹ã¨ãï¼‰*/
 	bool Press(const std::string& action)const;
 
-	/*@brief@Triggeri‰Ÿ‚µ‚½uŠÔj*/
+	/*@briefã€€Triggerï¼ˆæŠ¼ã—ãŸç¬é–“ï¼‰*/
 	bool Trigger(const std::string& action)const;
 
-	/*@brief@Releasei—£‚µ‚½uŠÔj*/
+	/*@briefã€€Releaseï¼ˆé›¢ã—ãŸç¬é–“ï¼‰*/
 	bool Release(const std::string& action)const;
 };

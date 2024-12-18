@@ -1,13 +1,11 @@
 ﻿#pragma once
 #include"../04_DirextX_11/07_Buffer/01_CVertexBuffer/CVertexBuffer.h"
 #include"../04_DirextX_11/07_Buffer/03_CConstantBuffer/CConstantBuffer.h"
+#include"../04_DirextX_11/08_InputLayout/CInputLayout.h"
 
-#include "../../../../BaseCollider.h"
-#include "../../../../BoxCollider.h"
-#include "../../../../CircleCollider.h"
-
-#include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
-
+#include "../05_Collider/00_BaseCollider/BaseCollider.h"
+#include "../05_Collider/01_BoxCollider/BoxCollider.h"
+#include "../05_Collider/02_CircleCollider/CircleCollider.h"
 
 #include<DirectXMath.h> //  DirectX::XMFLOAT3に必要
 

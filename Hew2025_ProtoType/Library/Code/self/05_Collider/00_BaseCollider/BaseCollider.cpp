@@ -1,8 +1,8 @@
-#include "BaseCollider.h"
-#include "BoxCollider.h"
-#include "CircleCollider.h"
+ï»¿#include "BaseCollider.h"
+#include "../01_BoxCollider/BoxCollider.h"
+#include "../02_CircleCollider/CircleCollider.h"
 
-///**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+///**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //	*	@date	2024/12/15
 //	*/
 BaseCollider::BaseCollider(DirectX::XMFLOAT3 _pos)
@@ -10,7 +10,7 @@ BaseCollider::BaseCollider(DirectX::XMFLOAT3 _pos)
     SetPosition(_pos);
 }
 
-///**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+///**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
 //*	@date	2024/12/15
 //*/
 //BaseCollider::~BaseCollider()
@@ -18,28 +18,28 @@ BaseCollider::BaseCollider(DirectX::XMFLOAT3 _pos)
 //
 //}
 
-/**	@brief  À•Wİ’è
+/**	@brief  åº§æ¨™è¨­å®š
 *	@date	2024/12/15
-*	@param XMFLOAT3 idk İ’è‚µ‚½‚¢À•W
+*	@param XMFLOAT3 idk è¨­å®šã—ãŸã„åº§æ¨™
 */
 void BaseCollider::SetPosition(DirectX::XMFLOAT3 _pos)
 {
 	position = _pos;
 }
 
-/**	@brief  À•Wæ“¾
+/**	@brief  åº§æ¨™å–å¾—
 *	@date	2024/12/15
-*	@return	XMFLOAT position À•Wî•ñ
+*	@return	XMFLOAT position åº§æ¨™æƒ…å ±
 */
 DirectX::XMFLOAT3 BaseCollider::GetPosition(void)
 {
 	return position;
 }
 
-/**	@brief  “–‚½‚è”»’è
+/**	@brief  å½“ãŸã‚Šåˆ¤å®š
 *	@date	2024/12/15
-*	@param BaseCollider&  _other ÚG”»’è‚ğæ‚é‘ÎÛƒIƒuƒWƒFƒNƒg
-*	@return	bool idk ÚG‚µ‚Ä‚¢‚é‚©
+*	@param BaseCollider&  _other æ¥è§¦åˆ¤å®šã‚’å–ã‚‹å¯¾è±¡ã‚ªãƒ–ã‚¸ã‚§ã‚¯ãƒˆ
+*	@return	bool idk æ¥è§¦ã—ã¦ã„ã‚‹ã‹
 */ 
 bool BaseCollider::CheckCollision(BaseCollider& _other) 
 {
