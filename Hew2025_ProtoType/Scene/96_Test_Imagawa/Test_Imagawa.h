@@ -1,50 +1,77 @@
-ï»¿/**	@file 	Test_Imagawa.h
-*	@brief 	ä»Šå·ç”¨ã®ãƒ†ã‚¹ãƒˆã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
+/**	@file 	Test_Imagawa.h
+*	@brief 	¡ì—p‚ÌƒeƒXƒgƒV[ƒ“ƒNƒ‰ƒX
 *	@date	2024/05/21
-*	@memo	ãƒãƒãƒ¼ã‚¸ãƒ£ãƒ¼ã¯é™çš„ãƒ¡ãƒ³ãƒå¤‰æ•°ãªã®ã§å–å¾—ã®ã¿
+*	@memo	ƒ}ƒl[ƒWƒƒ[‚ÍÃ“Iƒƒ“ƒo•Ï”‚È‚Ì‚Åæ“¾‚Ì‚İ
 */
 #pragma once
 
-// ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
+// ƒCƒ“ƒNƒ‹[ƒh
 #include"../00_BaseScene/BaseScene.h"
 #include"../../Library/Code/self/02_SceneManager/SceneManager.h"
+#include"../../Library/Code/self/10_Object/Object.h"
+#include"../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
+#include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
+#include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
+#include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
+#include"../../Library/Code/self/imagawa_Input/input.h"
 #include<iostream>
 
+
+
 /**	@file	Test_Imagawa.h
-*	@brief 	ä»Šå·ç”¨ã®ãƒ†ã‚¹ãƒˆã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
+*	@brief 	¡ì—p‚ÌƒeƒXƒgƒV[ƒ“ƒNƒ‰ƒX
 *	@date	2024/05/21
-*	@memo	åŸºåº•ã‚¯ãƒ©ã‚¹ã®ç´”ç²‹ä»®æƒ³é–¢æ•°ã‚’ç¶™æ‰¿ã—ã¦ã„ã‚‹è£ä»˜ã‘(èª¤ã£ãŸç¶™æ‰¿å‹•ä½œã‚’é˜²ããŸã‚)ã«ç¶™æ‰¿ã—ãŸãƒ¡ãƒ³ãƒé–¢æ•°ã«overrideæŒ‡å®šå­ã‚’ä½¿ç”¨ã—ã¦ã„ã‚‹
+*	@memo	Šî’êƒNƒ‰ƒX‚Ìƒˆ‰¼‘zŠÖ”‚ğŒp³‚µ‚Ä‚¢‚é— •t‚¯(Œë‚Á‚½Œp³“®ì‚ğ–h‚®‚½‚ß)‚ÉŒp³‚µ‚½ƒƒ“ƒoŠÖ”‚Éoverridew’èq‚ğg—p‚µ‚Ä‚¢‚é
 */
 class Test_Imagawa :public BaseScene
 {
 public:
-	/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+
+	/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 	*	* @date 2024/05/21
 	*/
 	Test_Imagawa();
-	/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+	/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
 	*	@date 2024/05/21
 	*/
 	~Test_Imagawa()override;
-	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®åˆæœŸåŒ–
+	/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì‰Šú‰»
 	*	@date 2024/05/21
 	*/
 	void	Initialize(void)override;
 
-	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æ›´æ–°
+	/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌXV
 	*	@date 2024/05/21
 	*/
 	void	Update(void)override;
 
-	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æç”»
+	/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ
 	*	@date 2024/05/21
 	*/
 	void	Draw(void)override;
 
-	/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®çµ‚äº†å‡¦ç†
+	/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌI—¹ˆ—
 	*	@date 2024/05/21
 	*/
 	void	Finalize(void)override;
 
+	/** @brief@U“®‚ÌÚ×İ’è@
+	*   @memo@flameFU“®‚·‚é’·‚³@
+	*   @memo@powerFU“®‚Ì‹­‚³
+	*/
+	int flame = 0;
+	float power = 0;
+
 private:
+	Input input;
+	Object* p_object;
+
+	//--------------------------------------------------------------------------
+	//		•`‰æŠÖ˜A
+	//--------------------------------------------------------------------------	
+	CInputLayout* p_inputLayout;		//  “ü—ÍƒŒƒCƒAƒEƒg
+	CVertexShader* p_vertexShader;		//  ’¸“_ƒVƒF[ƒ_
+	CPixelShader* p_pixelShader;		//  ƒsƒNƒZƒ‹ƒVƒF[ƒ_
+	CSampler* p_sampler;				// ƒTƒ“ƒvƒ‰[
+	ID3D11BlendState* p_brendState;		// ƒAƒ‹ƒtƒ@ƒuƒŒƒ“ƒfƒBƒ“ƒO—pƒXƒe[ƒg
 };

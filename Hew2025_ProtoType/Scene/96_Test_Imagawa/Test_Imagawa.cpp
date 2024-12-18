@@ -1,51 +1,272 @@
-ï»¿/**	@file	Test_Imagawa.cpp
-*	@brief 	ä»Šå·ç”¨ã®ã‚²ãƒ¼ãƒ ã‚·ãƒ¼ãƒ³ã‚¯ãƒ©ã‚¹
+/**	@file	Test_Imagawa.cpp
+*	@brief 	¡ì—p‚ÌƒQ[ƒ€ƒV[ƒ“ƒNƒ‰ƒX
 *	@date	2024/05/10
 */
 #include"Test_Imagawa.h"
+#include"../../Library/Code/self/03_Windows/WindowSetup.h"
+#include<Windows.h>
 
-/**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+/**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
 *	@date	2024/05/10
 */
 Test_Imagawa::Test_Imagawa()
 {
+    
+    this->p_object = nullptr;
+
+    this->p_vertexShader = nullptr;
+    this->p_pixelShader = nullptr;
+    this->p_inputLayout = nullptr;
+    this->p_sampler = nullptr;
+    this->p_brendState = nullptr;
 }
-/**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
+/**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
 *	@date	2024/05/10
 */
 Test_Imagawa::~Test_Imagawa()
 {
 	this->Finalize();
 }
-/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®åˆæœŸåŒ–
+/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì‰Šú‰»
 *	@date	2024/05/10
 */
 void	Test_Imagawa::Initialize(void)
 {
+    if (!this->p_object) { this->p_object = new Object; }
+
+    if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // ’¸“_ƒVƒF[ƒ_
+    if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ƒsƒNƒZƒ‹ƒVƒF[ƒ_
+    if (!this->p_inputLayout) { this->p_inputLayout = new CInputLayout; }               // “ü—ÍƒŒƒCƒAƒEƒg
+    if (!this->p_sampler) { this->p_sampler = new CSampler; }
+
+    // ƒIƒuƒWƒFƒNƒg
+    this->p_object->Init(L"Asset/block.png");
+
+   
+
+    //--------------------------------------------------------------------------
+   //		•`‰æŠÖ˜A‚Ì‰Šú‰»
+   //--------------------------------------------------------------------------	
+
+    HRESULT hr;
+    // ƒVƒF[ƒ_
+    {
+        // ’¸“_ƒVƒF[ƒ_ƒRƒ“ƒpƒCƒ‹
+        hr = this->p_vertexShader->CompileFromFile(
+            L"Shader/VertexShader.hlsl",            // g—p‚µ‚½‚¢ƒVƒF[ƒ_ƒtƒ@ƒCƒ‹ƒpƒX
+            NULL,
+            NULL,
+            "vs_main",                              // ƒVƒF[ƒ_ƒtƒ@ƒCƒ‹“à‚Å‘‚¢‚Ä‚¢‚éƒGƒ“ƒgƒŠ[ƒ|ƒCƒ“ƒg
+            "vs_5_0",                               // ƒVƒF[ƒ_‚Ìƒo[ƒWƒ‡ƒ“
+            0,
+            0
+        );
+
+        //  ƒsƒNƒZƒ‹ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹ƒRƒ“ƒpƒCƒ‹
+        hr = this->p_pixelShader->CompileFromFile(
+            L"Shader/PixelShader.hlsl",
+            NULL,
+            NULL,
+            "ps_main",
+            "ps_5_0",
+            0,
+            0
+        );
+
+        //  ƒVƒF[ƒ_‚Ì¶¬
+        hr = this->p_vertexShader->Create(NULL);     //  ’¸“_ƒVƒF[ƒ_
+        hr = this->p_pixelShader->Create(NULL);      //  ƒsƒNƒZƒ‹ƒVƒF[ƒ_
+    }
+
+    // ƒCƒ“ƒvƒbƒgƒŒƒCƒAƒEƒgì¬
+    D3D11_INPUT_ELEMENT_DESC layout[]
+    {
+        // ˆÊ’uÀ•W‚ª‚ ‚é‚Æ‚¢‚¤‚±‚Æ‚ğ“`‚¦‚é
+        { "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT,    0,                            0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+        // Fî•ñ‚ª‚ ‚é‚Æ‚¢‚¤‚±‚Æ‚ğ“`‚¦‚é
+        { "COLOR",    0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+        //UVÀ•W(uv)
+        {"TEX",0,DXGI_FORMAT_R32G32_FLOAT,0,D3D11_APPEND_ALIGNED_ELEMENT,D3D11_INPUT_PER_VERTEX_DATA,0},
+    };
+
+    // “ü—ÍƒŒƒCƒAƒEƒg‚Ìì¬
+    unsigned int numElements = ARRAYSIZE(layout);                           // ƒŒƒCƒAƒEƒg‚ÌƒTƒCƒY
+    ID3DBlob* p_vsBlob = this->p_vertexShader->GetShaderFile();             // ’¸“_ƒVƒF[ƒ_[ƒtƒ@ƒCƒ‹‚Ìæ“¾
+    hr = this->p_inputLayout->Create(layout, numElements, p_vsBlob);
+
+    // ƒTƒ“ƒvƒ‰[‚ğì¬
+    hr = this->p_sampler->Create(D3D11_FILTER_MIN_MAG_MIP_LINEAR,
+        D3D11_TEXTURE_ADDRESS_CLAMP,
+        D3D11_TEXTURE_ADDRESS_CLAMP,
+        D3D11_TEXTURE_ADDRESS_CLAMP);
+    if (FAILED(hr)) { return; }
+
+    // ƒuƒŒƒ“ƒhƒXƒe[ƒg‚Ìì¬
+    // ¨“§‰ßˆ—‚â‰ÁZ‡¬‚ğ‰Â”\‚É‚·‚éF‚Ì‡¬•û–@
+    {
+        D3D11_BLEND_DESC    brendState;
+
+        ZeroMemory(&brendState, sizeof(D3D11_BLEND_DESC));
+        brendState.AlphaToCoverageEnable = FALSE;
+        brendState.IndependentBlendEnable = FALSE;
+        brendState.RenderTarget[0].BlendEnable = TRUE;
+        brendState.RenderTarget[0].SrcBlend = D3D11_BLEND_SRC_ALPHA;
+        brendState.RenderTarget[0].DestBlend = D3D11_BLEND_INV_SRC_ALPHA;
+        brendState.RenderTarget[0].BlendOp = D3D11_BLEND_OP_ADD;
+        brendState.RenderTarget[0].SrcBlendAlpha = D3D11_BLEND_ONE;
+        brendState.RenderTarget[0].DestBlendAlpha = D3D11_BLEND_ZERO;
+        brendState.RenderTarget[0].BlendOpAlpha = D3D11_BLEND_OP_ADD;
+        brendState.RenderTarget[0].RenderTargetWriteMask = D3D11_COLOR_WRITE_ENABLE_ALL;
+
+        ID3D11Device* p_device = this->p_cd3d11->GetDevice();
+        if (p_device)
+        {
+            hr = p_device->CreateBlendState(&brendState, &this->p_brendState);
+            if (FAILED(hr)) { return; }
+        }
+        // [“xƒeƒXƒg‚ğ–³Œø‚É‚·‚é
+        ID3D11DepthStencilState* p_dSState;
+        CD3D11_DEPTH_STENCIL_DESC   dsDesc;
+        ZeroMemory(&dsDesc, sizeof(dsDesc));
+
+        dsDesc.DepthEnable = FALSE;     // [“xƒeƒXƒg‚ğ–³Œø‚Éİ’è
+        dsDesc.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+        dsDesc.DepthFunc = D3D11_COMPARISON_LESS;
+        if (p_device)
+        {
+            hr = p_device->CreateDepthStencilState(&dsDesc, &p_dSState);
+            if (FAILED(hr)) { return; }
+
+            // ƒfƒoƒCƒXƒRƒ“ƒeƒLƒXƒg‚Ìæ“¾
+            ID3D11DeviceContext* p_deviceContext = this->p_cd3d11->GetDeviceContext();
+            if (p_deviceContext)
+            {
+                p_deviceContext->OMSetDepthStencilState(p_dSState, 1);
+            }
+        }
+    }
+
+
 }
 
-/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æ›´æ–°
+/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌXV
 *	@date	2024/05/10
 */
 void	Test_Imagawa::Update(void)
 {
+  
+    /*@brief@inputXV*/
+    input.Update();
+
+    /**@brief@U“®‚Ì’·‚³F‚T•b*/
+    flame = 5;
+
+    /**@brief@U“®‚Ì‹­‚³F‚R*/
+    power = 0.5f;
+
+    // Œ»İ‚ÌƒIƒuƒWƒFƒNƒg‚ÌˆÊ’u‚ğæ“¾
+    DirectX::XMFLOAT3 pos = this->p_object->GetPos();
+
+    // “ü—Í‚É‰‚¶‚½ˆÊ’u‚ÌXV•U“®‚Ìˆ—
+    if (input.Press("LEFT")) {{pos.x -= 2.0f;input.SetVibration(flame, power);}}
+    if (input.Press("RIGHT")){{pos.x += 2.0f;input.SetVibration(flame, power);}}
+    if (input.Press("UP"))   {{pos.y += 2.0f;input.SetVibration(flame, power);}}
+    if (input.Press("DOWN")) {{pos.y -= 2.0f;input.SetVibration(flame, power);}}
+
+    /*@memo@ƒRƒ“ƒgƒ[ƒ‰[‚Ì“®ìŠm”F*/
+
+    /*@brief@leftStick‚É‘ã“ü*/
+    DirectX::XMFLOAT2 leftStick = input.GetLeftAnalogStick();
+
+    /*@brief@ƒXƒeƒBƒbƒN‚ÌƒXƒs[ƒh*/
+    float moveSpeed = 5.0f;
+
+    /*@brief@ƒvƒŒƒCƒ„[‚ğ“®‚©‚·ˆ—*/
+    pos.x += leftStick.x * moveSpeed;
+    pos.y += leftStick.y * moveSpeed;
+
+    // ƒIƒuƒWƒFƒNƒg‚ÌˆÊ’u‚ğXV
+    this->p_object->SetPos(pos.x, pos.y, pos.z);
+
     if (GetAsyncKeyState(VK_SPACE))
     {
         this->p_sceneManager->ChangeScene(Scene::TEST_IMAGAWA);
         return;
     }
+
+    // ƒIƒuƒWƒFƒNƒg‚ğXV
+    this->p_object->Update();
 }
 
-/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®æç”»
+
+
+/**	@brief 	ƒV[ƒ“‘S‘Ì‚Ì•`‰æ
 *	@date	2024/05/10
 */
 void	Test_Imagawa::Draw(void)
 {
+    //--------------------------------------------------------------------------
+    //		•`‰æŠÖ˜A(‚»‚ñ‚È•p”É‚É•Ï‚¦‚é‚±‚Æ‚Í‚È‚¢‚Æv‚¤)
+    //--------------------------------------------------------------------------	
+
+    // •`‰æİ’è—p‚ÉƒfƒoƒCƒX‚È‚Ç‚ğæ“¾
+    CD3D11* cd3d11 = CD3D11::GetInstance();
+    ID3D11DeviceContext* deviceContext = cd3d11->GetDeviceContext();
+    ID3D11DepthStencilView* depthStencilView = cd3d11->GetDepthStencilView();
+    ID3D11RenderTargetView* renderTargetView = cd3d11->GetRenderTargetView();
+    D3D11_VIEWPORT* viewport = cd3d11->GetViewport();
+
+    // “ü—ÍƒŒƒCƒAƒEƒg‚Ìİ’è
+    this->p_inputLayout->SetInputLayout();
+    deviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLESTRIP);
+
+    // ƒVƒF[ƒ_‚ğƒZƒbƒg
+    this->p_vertexShader->SetShader(0, 0);
+    this->p_pixelShader->SetShader(0, 0);
+
+    // ƒTƒ“ƒvƒ‰[‚ğƒsƒNƒZƒ‹ƒVƒF[ƒ_[‚É“n‚·
+    this->p_sampler->SetSamplerPS(0, 1);
+
+    // ƒuƒŒƒ“ƒhƒXƒe[ƒg‚ğƒZƒbƒg
+    deviceContext->OMSetBlendState(this->p_brendState, NULL, 0xfffffffff);
+
+    //--------------------------------------------------------------------------
+    //		ƒIƒuƒWƒFƒNƒg‚Ì•`‰æ
+    //--------------------------------------------------------------------------	
+    this->p_object->Draw();
 }
 
-/**	@brief 	ã‚·ãƒ¼ãƒ³å…¨ä½“ã®çµ‚äº†å‡¦ç†
+/**	@brief 	ƒV[ƒ“‘S‘Ì‚ÌI—¹ˆ—
 *	@date	2024/05/10
 */
 void	Test_Imagawa::Finalize(void)
 {
+    // ’¸“_ƒVƒF[ƒ_
+    if (this->p_vertexShader) {
+        delete   this->p_vertexShader;
+        this->p_vertexShader = nullptr;
+    }
+
+    // ƒsƒNƒZƒ‹ƒVƒF[ƒ_
+    if (this->p_pixelShader) {
+        delete    this->p_pixelShader;
+        this->p_pixelShader = nullptr;
+    }
+
+    // “ü—ÍƒŒƒCƒAƒEƒg
+    if (this->p_inputLayout) {
+        delete    this->p_inputLayout;
+        this->p_inputLayout = nullptr;
+    }
+
+    // ƒTƒ“ƒvƒ‰[
+    if (this->p_sampler) {
+        delete  this->p_sampler;
+        this->p_sampler = nullptr;
+    }
+
+    // ƒuƒŒƒ“ƒhƒXƒe[ƒg
+    if (this->p_brendState) {
+        this->p_brendState->Release();
+    }
 }

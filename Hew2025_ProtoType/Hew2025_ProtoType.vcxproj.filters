@@ -147,19 +147,7 @@
     <ClCompile Include="main.cpp">
       <Filter>ソース ファイル\other</Filter>
     </ClCompile>
-    <ClCompile Include="Library\Code\self\Uryu_Collision\Colision.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\94_Test_Otani\Test_Otani.cpp">
-      <Filter>ソース ファイル\Scene\Test</Filter>
-    </ClCompile>
-    <ClCompile Include="BaseCollider.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="BoxCollider.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="CircleCollider.cpp">
+    <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -260,19 +248,7 @@
     <ClInclude Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Code\self\Uryu_Collision\Collision.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\94_Test_Otani\Test_Otani.h">
-      <Filter>ヘッダー ファイル\Scene\Test</Filter>
-    </ClInclude>
-    <ClInclude Include="BaseCollider.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="BoxCollider.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="CircleCollider.h">
+    <ClInclude Include="Library\Code\self\imagawa_Input\input.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
