@@ -53,7 +53,7 @@ Object::~Object()
 HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_changeFrame , float	_moveUPos)
 {
 	// オブジェクトの座標に位置を合わせる
-	this->p_coll = new BoxCollider();
+	this->p_coll = new BoxCollider(DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f), DirectX::XMFLOAT3(100.0f, 100.0f, 100.0f));
 
 	// 分割数に応じてUV座標を決める
 	this->splitX = _splitX;
@@ -313,6 +313,15 @@ float	Object::GetTextureNumV(void)
 	return	this->numV;
 }
 
+/**	@brief 	コライダーの取得
+*	@return	BaseCollider&		コライダー
+*	@date	2024/06/12
+*/
+BaseCollider& Object::GetCollider(void)
+{
+	return *this->p_coll;
+}
+
 /**	@brief 	映すテクスチャの頂点座標を設定
 *	@param	DirectX::XMFLOAT4	_color	頂点カラー
 *	@date	2024/06/12
@@ -330,6 +339,7 @@ void	Object::SetAlpha(float	_color)
 {
 	this->color.w = _color;
 }
+
 
 /**	@brief 	テクスチャの読み込み関数
 *	@param	const wchar_t* fileName ファイルパス

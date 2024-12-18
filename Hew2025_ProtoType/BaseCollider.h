@@ -28,8 +28,9 @@ public:
 
 	/**	@brief 	コンストラクタ
 	*	@date	2024/12/15
+	*	@param XMFLOAT3 _pos 設定したい座標
 	*/
-	BaseCollider() = default;
+	BaseCollider(DirectX::XMFLOAT3 _pos);
 
 	/**	@brief 	デストラクタ
 	*	@date	2024/12/15
@@ -40,7 +41,7 @@ public:
 	*	@date	2024/12/15
 	*	@param XMFLOAT3 _position 設定したい座標
 	*/
-	void SetPosition(DirectX::XMFLOAT3 _position);
+	void SetPosition(DirectX::XMFLOAT3 _pos);
 
 	/**	@brief  座標取得
 	*	@date	2024/12/15

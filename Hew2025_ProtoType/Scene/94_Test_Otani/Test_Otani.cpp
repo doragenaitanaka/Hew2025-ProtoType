@@ -9,11 +9,11 @@
 */
 Test_Otani::Test_Otani()
 {
-    this->p_object = nullptr;
+    this->p_TestObject = nullptr;
     /** @brief 二つ目のオブジェクトを出す用
     *   @date 2024/12/11
     */
-    this->p_object2 = nullptr;
+    this->p_TestObject2 = nullptr;
 
     this->p_vertexShader = nullptr;
     this->p_pixelShader = nullptr;
@@ -33,8 +33,8 @@ Test_Otani::~Test_Otani()
 */
 void	Test_Otani::Initialize(void)
 {
-    if (!this->p_object) { this->p_object = new Object; }
-    if (!this->p_object2) { this->p_object2 = new Object; }
+    if (!this->p_TestObject) { this->p_TestObject = new Object; }
+    if (!this->p_TestObject2) { this->p_TestObject2 = new Object; }
 
     if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
     if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
@@ -42,8 +42,8 @@ void	Test_Otani::Initialize(void)
     if (!this->p_sampler) { this->p_sampler = new CSampler; }                           // サンプラー
 
     // オブジェクト
-    this->p_object->Init(L"Asset/block.png");
-    this->p_object2->Init(L"Asset/block.png");
+    this->p_TestObject->Init(L"Asset/block.png");
+    this->p_TestObject2->Init(L"Asset/block.png");
 
 
     //--------------------------------------------------------------------------
@@ -148,11 +148,11 @@ void	Test_Otani::Initialize(void)
         }
     }
     // オブジェクトの座標を設定
-    this->p_object->SetPos(TestPos.x, TestPos.y, 0.0f); //初期座標-200.0f
-    this->p_object2->SetPos(TestPos2.x, TestPos2.y, 0.0f); //p_objectから400.0f離れた場所に生成
+    this->p_TestObject->SetPos(TestPos.x, TestPos.y, 0.0f); //初期座標-200.0f
+    this->p_TestObject2->SetPos(TestPos2.x, TestPos2.y, 0.0f); //p_objectから400.0f離れた場所に生成
     //オブジェクトのサイズを設定
-    this->p_object->SetSize(TestSize.x, TestSize.y, 0.0f); // サイズは100.0f×100.0f
-    this->p_object2->SetSize(TestSize2.x, TestSize2.y, 0.0f); // 同上
+    this->p_TestObject->SetSize(TestSize.x, TestSize.y, 0.0f); // サイズは100.0f×100.0f
+    this->p_TestObject2->SetSize(TestSize2.x, TestSize2.y, 0.0f); // 同上
 }
 
 /**	@brief 	シーン全体の更新
@@ -168,18 +168,28 @@ void	Test_Otani::Update(void)
     //右矢印キーで右移動
     if (GetAsyncKeyState(VK_RIGHT))
     {
-        this->p_object->SetPos(p_object->GetPos().x + 20, p_object->GetPos().y, 0.0f); //座標更新
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x + 20, p_TestObject->GetPos().y, 0.0f); //座標更新
     }
     //左矢印キーで左移動
     if (GetAsyncKeyState(VK_LEFT))
     {
-        this->p_object->SetPos(p_object->GetPos().x - 20, p_object->GetPos().y, 0.0f); //座標更新
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x - 20, p_TestObject->GetPos().y, 0.0f); //座標更新
     }
 
+    auto& col1 = p_TestObject->GetCollider();
+    auto& col2 = p_TestObject2->GetCollider();
+    if (col1.CheckCollision(col2))
+    {
+        p_TestObject->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
+    }
+    else
+    {
+        p_TestObject->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
+    }
 
     // オブジェクトの更新
-    this->p_object->Update();
-    this->p_object2->Update();
+    this->p_TestObject->Update();
+    this->p_TestObject2->Update();
 }
 
 /**	@brief 	シーン全体の描画
@@ -216,8 +226,9 @@ void	Test_Otani::Draw(void)
     //--------------------------------------------------------------------------
     //		オブジェクトの描画
     //--------------------------------------------------------------------------	
-    this->p_object->Draw();
-    this->p_object2->Draw();
+    this->p_TestObject2->Draw();
+    this->p_TestObject->Draw();
+
 }
 
 /**	@brief 	シーン全体の終了処理
@@ -254,13 +265,13 @@ void	Test_Otani::Finalize(void)
         this->p_brendState->Release();
     }
     //オブジェクト
-    if (this->p_object) {
-        delete this->p_object;
-        this->p_object = nullptr;
+    if (this->p_TestObject) {
+        delete this->p_TestObject;
+        this->p_TestObject = nullptr;
     }
 
-    if (this->p_object2) {
-        delete this->p_object2;
-        this->p_object2 = nullptr;
+    if (this->p_TestObject2) {
+        delete this->p_TestObject2;
+        this->p_TestObject2 = nullptr;
     }
 }

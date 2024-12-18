@@ -3,9 +3,9 @@
 /**	@brief  コンストラクタ
 *	@date	2024/12/16
 */
-CircleCollider::CircleCollider()
+CircleCollider::CircleCollider(DirectX::XMFLOAT3 _pos, float _radius) :BaseCollider(_pos)
 {
-    SetRadius(1.0f);
+    SetRadius(_radius);
 }
 
 

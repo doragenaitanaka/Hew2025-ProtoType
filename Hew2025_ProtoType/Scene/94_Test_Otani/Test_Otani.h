@@ -59,11 +59,11 @@ public:
 	XMFLOAT2 TestSize2 = { 100.0f,100.0f };
 
 private:
-	Object* p_object;
+	Object* p_TestObject;
 	/** @brief 二つ目のオブジェクト用
 	*   @date  2024/12/11
 	*/
-	Object* p_object2;
+	Object* p_TestObject2;
 
 
 	//--------------------------------------------------------------------------

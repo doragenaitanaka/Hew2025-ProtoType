@@ -12,7 +12,7 @@ public:
 	*	@date	2024/12/16
 	*/
     //BoxCollider(DirectX::XMFLOAT3 _pos, DirectX::XMFLOAT3 _size);
-	BoxCollider();
+	BoxCollider(DirectX::XMFLOAT3 _pos, DirectX::XMFLOAT3 _size);
 
 	/**	@brief  デストラクタ
 	*	@date	2024/12/16

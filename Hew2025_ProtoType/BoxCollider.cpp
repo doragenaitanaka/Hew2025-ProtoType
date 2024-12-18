@@ -8,11 +8,8 @@
 //    SetPosition(_pos);
 //    SetSize(_size);
 //}
-BoxCollider::BoxCollider()
+BoxCollider::BoxCollider(DirectX::XMFLOAT3 _pos, DirectX::XMFLOAT3 _size) : BaseCollider(_pos)
 {
-    DirectX::XMFLOAT3 _pos = {1.0f, 1.0f, 1.0f};
-    DirectX::XMFLOAT3 _size = { 1.0f, 1.0f, 1.0f };
-    SetPosition(_pos);
     SetSize(_size);
 }
 

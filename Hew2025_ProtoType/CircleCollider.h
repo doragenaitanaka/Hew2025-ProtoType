@@ -12,7 +12,7 @@ public:
 	/**	@brief  コンストラクタ
 	*	@date	2024/12/16
 	*/
-	CircleCollider();
+	CircleCollider(DirectX::XMFLOAT3 _pos, float _radius);
 
 
 	/**	@brief  デストラクタ

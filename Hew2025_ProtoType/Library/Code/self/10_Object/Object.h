@@ -6,6 +6,8 @@
 #include "../../../../BoxCollider.h"
 #include "../../../../CircleCollider.h"
 
+#include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
+
 
 #include<DirectXMath.h> //  DirectX::XMFLOAT3に必要
 
@@ -129,10 +131,11 @@ public:
 	float	GetTextureNumV(void);
 
 	/**	@brief 	コライダーの取得
-	*	@return	Collider2D&		コライダー2D
+	*	@return	BaseCollider&		コライダー
 	*	@date	2024/06/12
 	*/
-	BaseCollider&	GetCollider2D(void);
+	BaseCollider&	GetCollider(void);
+
 
 	/**	@brief 	テクスチャをセット
 	*	@param	DirectX::XMFLOAT4	_color	頂点カラー

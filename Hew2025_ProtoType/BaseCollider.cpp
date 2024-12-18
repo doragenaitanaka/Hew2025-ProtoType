@@ -5,11 +5,11 @@
 ///**	@brief 	コンストラクタ
 //	*	@date	2024/12/15
 //	*/
-//BaseCollider::BaseCollider()
-//{
-//    
-//}
-//
+BaseCollider::BaseCollider(DirectX::XMFLOAT3 _pos)
+{
+    SetPosition(_pos);
+}
+
 ///**	@brief 	デストラクタ
 //*	@date	2024/12/15
 //*/
@@ -22,9 +22,9 @@
 *	@date	2024/12/15
 *	@param XMFLOAT3 idk 設定したい座標
 */
-void BaseCollider::SetPosition(DirectX::XMFLOAT3 _position)
+void BaseCollider::SetPosition(DirectX::XMFLOAT3 _pos)
 {
-	position = _position;
+	position = _pos;
 }
 
 /**	@brief  座標取得
