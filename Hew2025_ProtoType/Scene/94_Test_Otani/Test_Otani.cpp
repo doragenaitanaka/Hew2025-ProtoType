@@ -236,42 +236,21 @@ void	Test_Otani::Draw(void)
 */
 void	Test_Otani::Finalize(void)
 {
-    // 頂点シェーダ
-    if (this->p_vertexShader) {
-        delete   this->p_vertexShader;
-        this->p_vertexShader = nullptr;
-    }
+    
+    //--------------------------------------------------------------------------
+    //		描画関連
+    //--------------------------------------------------------------------------	
+    SAFE_DELETE(this->p_vertexShader);  // 頂点シェーダ
+    SAFE_DELETE(this->p_pixelShader);   // ピクセルシェーダ
+    SAFE_DELETE(this->p_inputLayout);   // 入力レイアウト
+    SAFE_DELETE(this->p_sampler);       // サンプラー
 
-    // ピクセルシェーダ
-    if (this->p_pixelShader) {
-        delete    this->p_pixelShader;
-        this->p_pixelShader = nullptr;
-    }
+    SAFE_RELEASE(this->p_brendState); // ブレンドステート
 
-    // 入力レイアウト
-    if (this->p_inputLayout) {
-        delete    this->p_inputLayout;
-        this->p_inputLayout = nullptr;
-    }
 
-    // サンプラー
-    if (this->p_sampler) {
-        delete  this->p_sampler;
-        this->p_sampler = nullptr;
-    }
-
-    // ブレンドステート
-    if (this->p_brendState) {
-        this->p_brendState->Release();
-    }
-    //オブジェクト
-    if (this->p_TestObject) {
-        delete this->p_TestObject;
-        this->p_TestObject = nullptr;
-    }
-
-    if (this->p_TestObject2) {
-        delete this->p_TestObject2;
-        this->p_TestObject2 = nullptr;
-    }
+    //--------------------------------------------------------------------------
+    //		オブジェクト
+    //--------------------------------------------------------------------------	
+    SAFE_DELETE(this->p_TestObject);
+    SAFE_DELETE(this->p_TestObject2);
 }
