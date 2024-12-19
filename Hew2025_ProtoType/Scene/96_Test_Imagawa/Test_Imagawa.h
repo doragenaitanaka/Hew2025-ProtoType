@@ -7,7 +7,6 @@
 
 // インクルード
 #include"../00_BaseScene/BaseScene.h"
-#include"../../Library/Code/self/02_SceneManager/SceneManager.h"
 #include"../../Library/Code/self/10_Object/Object.h"
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"

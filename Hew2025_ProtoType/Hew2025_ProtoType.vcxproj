@@ -122,6 +122,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
+      <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -160,9 +161,23 @@
     <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp" />
-    <ClCompile Include="Scene\01_TitleScene\TitleScene.cpp" />
-    <ClCompile Include="Scene\02_GameScene\GameScene.cpp" />
-    <ClCompile Include="Scene\03_ResultScene\ResultScene.cpp" />
+    <ClCompile Include="Scene\01_SplashScreanScene\SplashScreanScene.cpp" />
+    <ClCompile Include="Scene\02_TitleScene\TitleScene.cpp" />
+    <ClCompile Include="Scene\03_StageSelectScene\StageSelectScene.cpp" />
+    <ClCompile Include="Scene\04_Stage\01_Stage_1\Stage_1.cpp" />
+    <ClCompile Include="Scene\04_Stage\02_Stage_2\Stage_2.cpp" />
+    <ClCompile Include="Scene\04_Stage\03_Stage_3\Stage_3.cpp" />
+    <ClCompile Include="Scene\04_Stage\04_Stage_4\Stage_4.cpp" />
+    <ClCompile Include="Scene\04_Stage\05_Stage_5\Stage_5.cpp" />
+    <ClCompile Include="Scene\04_Stage\06_Stage_6\Stage_6.cpp" />
+    <ClCompile Include="Scene\04_Stage\07_Stage_7\Stage_7.cpp" />
+    <ClCompile Include="Scene\04_Stage\08_Stage_8\Stage_8.cpp" />
+    <ClCompile Include="Scene\04_Stage\09_Stage_9\Stage_9.cpp" />
+    <ClCompile Include="Scene\04_Stage\10_Stage_10\Stage_10.cpp" />
+    <ClCompile Include="Scene\04_Stage\11_Stage_11\Stage_11.cpp" />
+    <ClCompile Include="Scene\04_Stage\12_Stage_12\Stage_12.cpp" />
+    <ClCompile Include="Scene\05_EndingScene\EndingScene.cpp" />
+    <ClCompile Include="Scene\93_Test_Takahashi\Test_Takahashi.cpp" />
     <ClCompile Include="Scene\94_Test_Otani\Test_Otani.cpp" />
     <ClCompile Include="Scene\95_Test_Ri\Test_Ri.cpp" />
     <ClCompile Include="Scene\96_Test_Imagawa\Test_Imagawa.cpp" />
@@ -198,9 +213,23 @@
     <ClInclude Include="Library\Code\self\SafePointers.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h" />
-    <ClInclude Include="Scene\01_TitleScene\TitleScene.h" />
-    <ClInclude Include="Scene\02_GameScene\GameScene.h" />
-    <ClInclude Include="Scene\03_ResultScene\ResultScene.h" />
+    <ClInclude Include="Scene\01_SplashScreanScene\SplashScreanScene.h" />
+    <ClInclude Include="Scene\02_TitleScene\TitleScene.h" />
+    <ClInclude Include="Scene\03_StageSelectScene\StageSelectScene.h" />
+    <ClInclude Include="Scene\04_Stage\01_Stage_1\Stage_1.h" />
+    <ClInclude Include="Scene\04_Stage\02_Stage_2\Stage_2.h" />
+    <ClInclude Include="Scene\04_Stage\03_Stage_3\Stage_3.h" />
+    <ClInclude Include="Scene\04_Stage\04_Stage_4\Stage_4.h" />
+    <ClInclude Include="Scene\04_Stage\05_Stage_5\Stage_5.h" />
+    <ClInclude Include="Scene\04_Stage\06_Stage_6\Stage_6.h" />
+    <ClInclude Include="Scene\04_Stage\07_Stage_7\Stage_7.h" />
+    <ClInclude Include="Scene\04_Stage\08_Stage_8\Stage_8.h" />
+    <ClInclude Include="Scene\04_Stage\09_Stage_9\Stage_9.h" />
+    <ClInclude Include="Scene\04_Stage\10_Stage_10\Stage_10.h" />
+    <ClInclude Include="Scene\04_Stage\11_Stage_11\Stage_11.h" />
+    <ClInclude Include="Scene\04_Stage\12_Stage_12\Stage_12.h" />
+    <ClInclude Include="Scene\05_EndingScene\EndingScene.h" />
+    <ClInclude Include="Scene\93_Test_Takahashi\Test_Takahashi.h" />
     <ClInclude Include="Scene\94_Test_Otani\Test_Otani.h" />
     <ClInclude Include="Scene\95_Test_Ri\Test_Ri.h" />
     <ClInclude Include="Scene\96_Test_Imagawa\Test_Imagawa.h" />

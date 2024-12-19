@@ -4,10 +4,28 @@
 */
 
 #include"SceneManager.h"
-#include"../../../../Scene/01_TitleScene/TitleScene.h"
-#include"../../../../Scene/02_GameScene/GameScene.h"
-#include"../../../../Scene/03_ResultScene/ResultScene.h"
+#include"../../../../Scene/01_SplashScreanScene/SplashScreanScene.h"
+#include"../../../../Scene/02_TitleScene/TitleScene.h"
+#include"../../../../Scene/03_StageSelectScene/StageSelectScene.h"
 
+// ステージ
+#include"../../../../Scene/04_Stage/01_Stage_1/Stage_1.h"
+#include"../../../../Scene/04_Stage/02_Stage_2/Stage_2.h"
+#include"../../../../Scene/04_Stage/03_Stage_3/Stage_3.h"
+#include"../../../../Scene/04_Stage/04_Stage_4/Stage_4.h"
+#include"../../../../Scene/04_Stage/05_Stage_5/Stage_5.h"
+#include"../../../../Scene/04_Stage/06_Stage_6/Stage_6.h"
+#include"../../../../Scene/04_Stage/07_Stage_7/Stage_7.h"
+#include"../../../../Scene/04_Stage/08_Stage_8/Stage_8.h"
+#include"../../../../Scene/04_Stage/09_Stage_9/Stage_9.h"
+#include"../../../../Scene/04_Stage/10_Stage_10/Stage_10.h"
+#include"../../../../Scene/04_Stage/11_Stage_11/Stage_11.h"
+#include"../../../../Scene/04_Stage/12_Stage_12/Stage_12.h"
+
+#include"../../../../Scene/05_EndingScene/EndingScene.h"
+
+// テスト
+#include"../../../../Scene/93_Test_Takahashi/Test_Takahashi.h"
 #include"../../../../Scene/94_Test_Otani/Test_Otani.h"
 #include"../../../../Scene/95_Test_Ri/Test_Ri.h"
 #include"../../../../Scene/96_Test_Imagawa/Test_Imagawa.h"
@@ -62,47 +80,81 @@ void	SceneManager::CreateScene(Scene sceneName)
 		//引数に合わせてシーンを生成する
 		switch (sceneName)
 		{
-		case Scene::TITLE:
-			//cout << "TitleSceneを生成" << endl;
+		case Scene::SplashScreanScene:
+			this->nowScene = new	SplashScreanScene;
+			break;
+		case Scene::TitleScene:
 			this->nowScene = new	TitleScene;
 			break;
-		case Scene::GAME:
-			//cout << "GameSceneを生成" << endl;
-			this->nowScene = new	GameScene;
+		case Scene::StageSelectScene:
+			this->nowScene = new	StageSelectScene;
 			break;
-		case Scene::RESULT:
-			//cout << "ResultSceneを生成" << endl;
-			this->nowScene = new	ResultScene;
+
+		//=====================
+		//		ステージ
+		//=====================
+		case Scene::Stage_1:
+			this->nowScene = new	Stage_1;
 			break;
+		case Scene::Stage_2:
+			this->nowScene = new	Stage_2;
+			break;
+		case Scene::Stage_3:
+			this->nowScene = new	Stage_3;
+			break;
+		case Scene::Stage_4:
+			this->nowScene = new	Stage_4;
+			break;
+		case Scene::Stage_5:
+			this->nowScene = new	Stage_5;
+			break;
+		case Scene::Stage_6:
+			this->nowScene = new	Stage_6;
+			break;
+		case Scene::Stage_7:
+			this->nowScene = new	Stage_7;
+			break;
+		case Scene::Stage_8:
+			this->nowScene = new	Stage_8;
+			break;
+		case Scene::Stage_9:
+			this->nowScene = new	Stage_9;
+			break;
+		case Scene::Stage_10:
+			this->nowScene = new	Stage_10;
+			break;
+		case Scene::Stage_11:
+			this->nowScene = new	Stage_11;
+			break;
+		case Scene::Stage_12:
+			this->nowScene = new	Stage_12;
+			break;
+
+		//=====================
+		//		テスト
+		//=====================
 		case Scene::TEST:
-			//cout << "TestSceneを生成" << endl;
 			this->nowScene = new	TestScene;
 			break;
 
 		case Scene::TEST_IMAGAWA:
-			//cout << "TestSceneを生成" << endl;
 			this->nowScene = new	Test_Imagawa;
 			break;
 		case Scene::TEST_UEDA:
-			//cout << "TestSceneを生成" << endl;
 			this->nowScene = new	Test_Ueda;
 			break;
 		case Scene::TEST_URYU:
-			//cout << "TestSceneを生成" << endl;
 			this->nowScene = new	Test_Uryu;
 			break;
 		case Scene::TEST_RI:
-			//cout << "TestSceneを生成" << endl;
 			this->nowScene = new	Test_Ri;
 			break;	
 		case Scene::TEST_OTANI:
-			//cout << "TestSceneを生成" << endl;
 			this->nowScene = new	Test_Otani;
 			break;
-		//case Scene::TAKAHASHI_TEST:
-		//	//cout << "TestSceneを生成" << endl;
-		//	this->nowScene = new	TestScene;
-		//	break;
+		case Scene::TEST_TAKAHASHI:
+			this->nowScene = new	Test_Takahashi;
+			break;
 		default:
 			break;
 		}

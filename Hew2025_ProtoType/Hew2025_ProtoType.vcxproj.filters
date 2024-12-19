@@ -61,18 +61,21 @@
     <Filter Include="ソース ファイル\Collider">
       <UniqueIdentifier>{0112e276-fe18-457f-b167-f2d30fd3e20d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="ヘッダー ファイル\Scene\Game">
+      <UniqueIdentifier>{d4012db2-e3ef-4efa-823a-4fed7f5f3a6f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ヘッダー ファイル\Scene\Game\Stage">
+      <UniqueIdentifier>{e6c186c3-a1e5-4a98-aa49-88215d6e535b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Game">
+      <UniqueIdentifier>{7640c338-3039-4c00-9f5f-f52fb612a353}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="ソース ファイル\Scene\Game\Stage">
+      <UniqueIdentifier>{668195e5-a540-4da1-aabb-81e8dfd24af6}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\03_ResultScene\ResultScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\01_TitleScene\TitleScene.cpp">
-      <Filter>ソース ファイル\Scene</Filter>
-    </ClCompile>
-    <ClCompile Include="Scene\02_GameScene\GameScene.cpp">
       <Filter>ソース ファイル\Scene</Filter>
     </ClCompile>
     <ClCompile Include="Library\Code\self\01_GameManager\GameManager.cpp">
@@ -168,15 +171,60 @@
     <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp">
       <Filter>ソース ファイル\other</Filter>
     </ClCompile>
+    <ClCompile Include="Scene\05_EndingScene\EndingScene.cpp">
+      <Filter>ソース ファイル\Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\01_SplashScreanScene\SplashScreanScene.cpp">
+      <Filter>ソース ファイル\Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\03_StageSelectScene\StageSelectScene.cpp">
+      <Filter>ソース ファイル\Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\02_TitleScene\TitleScene.cpp">
+      <Filter>ソース ファイル\Scene\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\01_Stage_1\Stage_1.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\02_Stage_2\Stage_2.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\03_Stage_3\Stage_3.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\04_Stage_4\Stage_4.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\05_Stage_5\Stage_5.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\06_Stage_6\Stage_6.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\07_Stage_7\Stage_7.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\08_Stage_8\Stage_8.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\09_Stage_9\Stage_9.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\11_Stage_11\Stage_11.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\10_Stage_10\Stage_10.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\12_Stage_12\Stage_12.cpp">
+      <Filter>ソース ファイル\Scene\Game\Stage</Filter>
+    </ClCompile>
+    <ClCompile Include="Scene\93_Test_Takahashi\Test_Takahashi.cpp">
+      <Filter>ソース ファイル\Scene\Test</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\02_GameScene\GameScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
-    <ClInclude Include="Scene\03_ResultScene\ResultScene.h">
       <Filter>ヘッダー ファイル\Scene</Filter>
     </ClInclude>
     <ClInclude Include="Library\Code\self\03_Windows\WindowSetup.h">
@@ -251,9 +299,6 @@
     <ClInclude Include="Scene\99_TestScene\TestScene.h">
       <Filter>ヘッダー ファイル\Scene\Test</Filter>
     </ClInclude>
-    <ClInclude Include="Scene\01_TitleScene\TitleScene.h">
-      <Filter>ヘッダー ファイル\Scene</Filter>
-    </ClInclude>
     <ClInclude Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.h">
       <Filter>ヘッダー ファイル\other</Filter>
     </ClInclude>
@@ -276,6 +321,57 @@
       <Filter>ヘッダー ファイル\Collider</Filter>
     </ClInclude>
     <ClInclude Include="Scene\94_Test_Otani\Test_Otani.h">
+      <Filter>ヘッダー ファイル\Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\01_Stage_1\Stage_1.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\02_Stage_2\Stage_2.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\03_Stage_3\Stage_3.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\04_Stage_4\Stage_4.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\06_Stage_6\Stage_6.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\05_Stage_5\Stage_5.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\07_Stage_7\Stage_7.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\08_Stage_8\Stage_8.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\09_Stage_9\Stage_9.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\10_Stage_10\Stage_10.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\11_Stage_11\Stage_11.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\12_Stage_12\Stage_12.h">
+      <Filter>ヘッダー ファイル\Scene\Game\Stage</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\05_EndingScene\EndingScene.h">
+      <Filter>ヘッダー ファイル\Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\01_SplashScreanScene\SplashScreanScene.h">
+      <Filter>ヘッダー ファイル\Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\03_StageSelectScene\StageSelectScene.h">
+      <Filter>ヘッダー ファイル\Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\02_TitleScene\TitleScene.h">
+      <Filter>ヘッダー ファイル\Scene\Game</Filter>
+    </ClInclude>
+    <ClInclude Include="Scene\93_Test_Takahashi\Test_Takahashi.h">
       <Filter>ヘッダー ファイル\Scene\Test</Filter>
     </ClInclude>
   </ItemGroup>

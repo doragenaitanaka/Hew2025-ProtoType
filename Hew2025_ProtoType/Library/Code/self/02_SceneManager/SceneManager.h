@@ -9,20 +9,38 @@
 #include<iostream>
 
 //シーン名
-enum Scene
+enum class Scene
 {
-	TITLE,
-	GAME,
-	RESULT,
+	SplashScreanScene,
 
+	TitleScene,
+	
+	StageSelectScene,
+
+	// ステージ
+	Stage_1,
+	Stage_2,
+	Stage_3,
+	Stage_4,
+	Stage_5,
+	Stage_6,
+	Stage_7,
+	Stage_8,
+	Stage_9,
+	Stage_10,
+	Stage_11,
+	Stage_12,
+	
+	EndingScene,
+
+	// テスト
 	TEST,
-
 	TEST_IMAGAWA,
 	TEST_UEDA,
 	TEST_URYU,
 	TEST_RI,
 	TEST_OTANI,
-	//TEST_TAKAHASHI,
+	TEST_TAKAHASHI,
 };
 
 // 前方宣言

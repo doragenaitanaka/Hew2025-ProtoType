@@ -1,6 +1,6 @@
-﻿/**	@file 	Test_Uryu.h
-*	@brief 	瓜生用のテストシーンクラス
-*	@date	2024/05/21
+﻿/**	@file 	Test_Takahashi.h
+*	@brief 	髙橋用のテストシーンクラス
+*	@date	2024/12/19
 *	@memo	マネージャーは静的メンバ変数なので取得のみ
 */
 #pragma once
@@ -14,39 +14,34 @@
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
 
-/**	@file	Test_Uryu.h
-*	@brief 	瓜生用のテストシーンクラス
-*	@date	2024/05/21
+/**	@file	Test_Takahashi.h
+*	@brief 	髙橋用のテストシーンクラス
+*	@date	2024/12/19
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している
 */
-class Test_Uryu :public BaseScene
+class Test_Takahashi :public BaseScene
 {
 public:
 	/**	@brief 	コンストラクタ
-	*	* @date 2024/05/21
 	*/
-	Test_Uryu();
+	Test_Takahashi();
 	/**	@brief 	デストラクタ
 	*	@date 2024/05/21
 	*/
-	~Test_Uryu()override;
+	~Test_Takahashi()override;
 	/**	@brief 	シーン全体の初期化
-	*	@date 2024/05/21
 	*/
 	void	Initialize(void)override;
 
 	/**	@brief 	シーン全体の更新
-	*	@date 2024/05/21
 	*/
 	void	Update(void)override;
 
 	/**	@brief 	シーン全体の描画
-	*	@date 2024/05/21
 	*/
 	void	Draw(void)override;
 
 	/**	@brief 	シーン全体の終了処理
-	*	@date 2024/05/21
 	*/
 	void	Finalize(void)override;
 
@@ -56,12 +51,14 @@ public:
 	//サイズ
 	XMFLOAT2 TestSize = { 100.0f,100.0f };
 	XMFLOAT2 TestSize2 = { 100.0f,100.0f };
+
 private:
-	Object* p_object;
-	/** @brief 二つ目のオブジェクト用
-	*   @date  2024/12/11
-	*/
-	Object* p_object2;
+
+	//--------------------------------------------------------------------------
+	//		オブジェクト
+	//--------------------------------------------------------------------------	
+	Object* p_TestObject;
+	Object* p_TestObject2;
 
 	//--------------------------------------------------------------------------
 	//		描画関連
