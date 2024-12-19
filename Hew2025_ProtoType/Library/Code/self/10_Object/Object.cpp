@@ -52,8 +52,8 @@ Object::~Object()
 */
 HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_changeFrame , float	_moveUPos)
 {
-	// オブジェクトの座標に位置を合わせる
-	this->p_coll = new BoxCollider(DirectX::XMFLOAT3(1.0f, 1.0f, 1.0f), DirectX::XMFLOAT3(100.0f, 100.0f, 100.0f));
+	// コライダーをオブジェクトの座標、サイズと合わせる
+	this->p_coll = new BoxCollider(DirectX::XMFLOAT3(this->pos.x, this->pos.y, this->pos.z), DirectX::XMFLOAT3(this->size.x, this->size.y, this->size.z));
 
 	// 分割数に応じてUV座標を決める
 	this->splitX = _splitX;
@@ -226,7 +226,7 @@ void	Object::SetPos(float x, float y, float z)
 	this->ConstantBufferUpdate();
 }
 /**	@brief 	座標を設定
-*	@retuen		DirectX::XMFLOAT3
+*	@return		DirectX::XMFLOAT3
 *	@date	2024/09/19
 */
 DirectX::XMFLOAT3	Object::GetPos(void)
@@ -235,7 +235,7 @@ DirectX::XMFLOAT3	Object::GetPos(void)
 }
 
 /**	@brief 	サイズを設定
-*	@retuen		DirectX::XMFLOAT3
+*	@return		DirectX::XMFLOAT3
 *	@date	2024/09/19
 */
 DirectX::XMFLOAT3	Object::GetSize(void)
@@ -243,6 +243,27 @@ DirectX::XMFLOAT3	Object::GetSize(void)
 	return this->size;
 }
 
+/**	@brief 	コライダーの座標を設定
+*	@param		DirectX::XMFLOAT3	_collPos	コライダーの座標
+*	@date	2024/12/20
+*/
+void Object::SetColliderPos(DirectX::XMFLOAT3 _collPos)
+{
+	this->p_coll->SetPosition(_collPos);
+}
+
+/**	@brief 	コライダーのサイズを設定
+*	@return		DirectX::XMFLOAT3
+*	@date	2024/12/20
+*/
+void Object::SetColliderSize(DirectX::XMFLOAT3 _collSize)
+{
+	// Boxの場合大きさを設定する
+	if (typeid(*this->p_coll) == typeid(BoxCollider))
+	{
+		static_cast<BoxCollider*>(this->p_coll)->SetSize(_collSize);
+	}
+}
 
 /**	@brief 	大きさを設定
 *	@param	float x
@@ -255,9 +276,7 @@ void	Object::SetSize(float x, float y, float z)
 	this->size.x = x;
 	this->size.y = y;
 	this->size.z = z;
-
 }
-
 
 /**	@brief 	角度を設定
 *	@param	float angle

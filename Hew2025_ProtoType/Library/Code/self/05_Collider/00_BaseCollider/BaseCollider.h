@@ -8,7 +8,6 @@
 #include<DirectXMath.h> //  DirectX::XMFLOAT3に必要
 #include <typeinfo>	//typeidに必要
 #include <cmath>
-#include <DirectXMath.h>
 #include <iostream>
 
 //#include "CircleCollider.h"
@@ -70,5 +69,3 @@ public:
 */
 	bool CheckCollision(BaseCollider& _other);
 };
-
-

@@ -88,7 +88,19 @@ public:
 	*	@retuen		DirectX::XMFLOAT3
 	*	@date	2024/09/19
 	*/
-	DirectX::XMFLOAT3	GetSize(void);
+	DirectX::XMFLOAT3	GetSize(void);	
+
+	/**	@brief 	コライダーの座標を設定
+	*	@param		DirectX::XMFLOAT3	_collPos	コライダーの座標
+	*	@date	2024/12/20
+	*/
+	void SetColliderPos(DirectX::XMFLOAT3 _collPos);
+	
+	/**	@brief 	コライダーのサイズを設定
+	*	@retuen		DirectX::XMFLOAT3	_collSize	コライダーの大きさ
+	*	@date	2024/12/20
+	*/
+	void SetColliderSize(DirectX::XMFLOAT3 _collSize);
 
 	/**	@brief 	大きさを設定
 	*	@param	float x
