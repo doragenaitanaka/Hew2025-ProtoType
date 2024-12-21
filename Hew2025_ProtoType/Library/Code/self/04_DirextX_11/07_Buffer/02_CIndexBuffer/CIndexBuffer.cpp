@@ -68,7 +68,7 @@ HRESULT	CIndexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing,
 void	CIndexBuffer::SetIndexBuffer(DXGI_FORMAT	format, UINT	ofset)
 {
 	//バッファ情報ポインタのアドレスを取得
-	ID3D11Buffer** p_indexBuffer = this->GetBuffer();
+	ID3D11Buffer* p_indexBuffer = this->GetBuffer();
 	//インデックスバッファがあるとき
 	if (this->p_buffer)
 	{

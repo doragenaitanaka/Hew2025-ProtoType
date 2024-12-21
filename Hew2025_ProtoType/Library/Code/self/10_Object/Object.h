@@ -165,7 +165,6 @@ public:
 	*/
 	void	SetAlpha(float	_color);
 
-private:
 	/**	@brief 	テクスチャの読み込み関数
 	*	@param	const wchar_t* fileName ファイルパス
 	*	@return	ID3D11ShaderResourceView*	テクスチャ

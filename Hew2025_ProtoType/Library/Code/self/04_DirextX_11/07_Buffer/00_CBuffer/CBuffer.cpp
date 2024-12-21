@@ -30,10 +30,10 @@ void	CBuffer::Release(void)
 }
 
 /**	@brief 	バッファ情報のポインタを返す
-*	@return	ID3D11Buffer**
+*	@return	ID3D11Buffer*
 *	@date	2024/04/29
 */
-ID3D11Buffer** CBuffer::GetBuffer(void)
+ID3D11Buffer* CBuffer::GetBuffer(void)
 {
-	return	&this->p_buffer;
+	return	this->p_buffer;
 }
