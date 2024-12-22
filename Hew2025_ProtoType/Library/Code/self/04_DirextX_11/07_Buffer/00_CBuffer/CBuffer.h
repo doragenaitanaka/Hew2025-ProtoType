@@ -26,11 +26,12 @@ public:
 	*/
 	virtual	HRESULT	Create(const void* p_SysMem, UINT, UINT, D3D11_USAGE _usage = D3D11_USAGE_DEFAULT, UINT _cpuAccessFlags = 0) = 0;
 
-	/**	@brief 	バッファ情報のポインタアドレスを返す
-	*	@return	ID3D11Buffer**
+	/**	@brief 	バッファ情報のポインタを返す
+	*	@return	ID3D11Buffer*
 	*	@date	2024/04/29
 	*/
-	ID3D11Buffer** GetBuffer(void);
+	ID3D11Buffer* GetBuffer(void);
+
 
 	/**	@brief 	解放処理
 	*	@date	2024/04/29

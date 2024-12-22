@@ -21,19 +21,19 @@ CConstantBuffer::~CConstantBuffer()
 *	@return	HRESULT
 *	@date	2024/05/24
 */
-HRESULT	CConstantBuffer::Create(const void* p_SysMem, UINT	byteWidth, UINT	nothing , D3D11_USAGE _usage , UINT _cpuAccessFlags )
+HRESULT	CConstantBuffer::Create(const void* p_SysMem, UINT	byteWidth, UINT	nothing, D3D11_USAGE _usage, UINT _cpuAccessFlags)
 {
     //バッファの作成
     D3D11_BUFFER_DESC cbDesc;
     cbDesc.ByteWidth = byteWidth;
     cbDesc.Usage = _usage;
     cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
-    cbDesc.CPUAccessFlags = 0;
+    cbDesc.CPUAccessFlags = _cpuAccessFlags;
     cbDesc.MiscFlags = 0;
-    cbDesc.StructureByteStride = _cpuAccessFlags;
+	cbDesc.StructureByteStride = 0;
 
     //バッファ情報を取得
-    ID3D11Buffer** p_vertexBuffer = this->GetBuffer();
+    ID3D11Buffer* p_vertexBuffer = this->GetBuffer();
     ID3D11Device* device = cd3d11->GetDevice();
 	if (!this->p_buffer)
 	{
@@ -41,7 +41,7 @@ HRESULT	CConstantBuffer::Create(const void* p_SysMem, UINT	byteWidth, UINT	nothi
 		ID3D11Device* device = this->cd3d11->GetDevice();
 		HRESULT	hr;
 		//コンスタントバッファの作成
-		hr = device->CreateBuffer(&cbDesc, NULL, &p_buffer);
+		hr = device->CreateBuffer(&cbDesc, NULL, &this->p_buffer);
 		if (FAILED(hr))
 		{
 			//メモリの解放
@@ -64,7 +64,7 @@ void	CConstantBuffer::Update(_In_  const void* pSrcData)
 	if (this->cd3d11)
 	{
 		ID3D11DeviceContext* context = this->cd3d11->GetDeviceContext();	// コンテキスト取得
-		context->UpdateSubresource(p_buffer, 0, NULL, pSrcData, 0, 0);			// 定数バッファをGPU側に渡す
+		context->UpdateSubresource(this->p_buffer, 0, NULL, pSrcData, 0, 0);			// 定数バッファをGPU側に渡す
 	}
 }
 

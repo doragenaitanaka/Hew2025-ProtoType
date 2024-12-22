@@ -13,6 +13,7 @@ Test_Takahashi::Test_Takahashi()
     //--------------------------------------------------------------------------	
     this->p_TestObject = nullptr;
     this->p_TestObject2 = nullptr;
+    this->p_player = nullptr;
 
     //--------------------------------------------------------------------------
     //		描画関連
@@ -38,15 +39,23 @@ void	Test_Takahashi::Initialize(void)
     //--------------------------------------------------------------------------	
     if (!this->p_TestObject) { this->p_TestObject = new Object; }
     if (!this->p_TestObject2) { this->p_TestObject2 = new Object; }
+    if (!this->p_player) { this->p_player = new Player; }
     this->p_TestObject->Init(L"Asset/block.png");
     this->p_TestObject2->Init(L"Asset/block.png");
+    this->p_player->Init(L"Asset/block.png");
 
     // 座標を設定
-    this->p_TestObject->SetPos(TestPos.x, TestPos.y, 0.0f); //初期座標-200.0f
-    this->p_TestObject2->SetPos(TestPos2.x, TestPos2.y, 0.0f); //p_objectから400.0f離れた場所に生成
+    this->p_TestObject->SetPos(TestPos.x, TestPos.y, 0.0f);     //初期座標-200.0f
+    this->p_TestObject2->SetPos(TestPos2.x, TestPos2.y, 0.0f);  //p_objectから400.0f離れた場所に生成
+    this->p_player->SetPos(100.0f, 100.0f, 0.0f);
+
     // サイズを設定
-    this->p_TestObject->SetSize(TestSize.x, TestSize.y, 0.0f); // サイズは100.0f×100.0f
-    this->p_TestObject2->SetSize(TestSize2.x, TestSize2.y, 0.0f); // 同上
+    this->p_TestObject->SetSize(TestSize.x, TestSize.y, 0.0f);      // サイズは100.0f×100.0f
+    this->p_TestObject2->SetSize(TestSize2.x, TestSize2.y, 0.0f);   // 同上
+    this->p_player->SetSize(TestSize2.x, TestSize2.y, 0.0f); // 同上
+
+    this->p_TestObject->SetColliderSize(DirectX::XMFLOAT3(TestSize.x, TestSize.y, 0.0f)); 
+
     //--------------------------------------------------------------------------
     //		描画関連
     //--------------------------------------------------------------------------	
@@ -162,7 +171,7 @@ void	Test_Takahashi::Update(void)
 
     if (this->p_input->Trigger("SPACE"))
     {
-        this->p_sceneManager->ChangeScene(Scene::TEST_OTANI);
+        this->p_sceneManager->ChangeScene(Scene::TEST_TAKAHASHI);
         return;
     }
     //右矢印キーで右移動
@@ -190,6 +199,7 @@ void	Test_Takahashi::Update(void)
     // オブジェクトの更新
     this->p_TestObject->Update();
     this->p_TestObject2->Update();
+    this->p_player->Update();
 }
 
 /**	@brief 	シーン全体の描画
@@ -227,7 +237,7 @@ void	Test_Takahashi::Draw(void)
     //--------------------------------------------------------------------------	
     this->p_TestObject2->Draw();
     this->p_TestObject->Draw();
-
+    this->p_player->Draw();
 }
 
 /**	@brief 	シーン全体の終了処理
@@ -251,4 +261,5 @@ void	Test_Takahashi::Finalize(void)
     //--------------------------------------------------------------------------	
     SAFE_DELETE(this->p_TestObject);
     SAFE_DELETE(this->p_TestObject2);
+    SAFE_DELETE(this->p_player);
 }
