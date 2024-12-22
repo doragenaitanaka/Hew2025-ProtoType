@@ -158,6 +158,7 @@
     <ClCompile Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.cpp" />
     <ClCompile Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.cpp" />
     <ClCompile Include="Library\Code\self\10_Object\Object.cpp" />
+    <ClCompile Include="Library\Code\self\GrabBox.cpp" />
     <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp" />
@@ -209,6 +210,7 @@
     <ClInclude Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.h" />
     <ClInclude Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.h" />
     <ClInclude Include="Library\Code\self\10_Object\Object.h" />
+    <ClInclude Include="Library\Code\self\GrabBox.h" />
     <ClInclude Include="Library\Code\self\imagawa_Input\input.h" />
     <ClInclude Include="Library\Code\self\SafePointers.h" />
     <ClInclude Include="main.h" />

@@ -7,7 +7,7 @@
 
 //==================最初に実行されるシーン(ここしかいじっちゃダメ！！！！！！)========================
 
-Scene GameManager::startScene = Scene::TEST_TAKAHASHI;
+Scene GameManager::startScene = Scene::TEST_URYU;
 
 //====================================================================================================
 GameManager* GameManager::gameManager = nullptr;

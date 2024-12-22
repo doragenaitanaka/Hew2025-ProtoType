@@ -52,17 +52,26 @@ public:
 
 	//テスト用の座標変数
 	XMFLOAT2 TestPos = { -200.0f, 0.0f };
-	XMFLOAT2 TestPos2 = { 200.0f, 0.0f };
+	XMFLOAT2 TestPos2 = { 200.0f, -75.0f };
+	XMFLOAT2 TestPos3 = { 0.0f, 150.0f };
 	//サイズ
 	XMFLOAT2 TestSize = { 100.0f,100.0f };
-	XMFLOAT2 TestSize2 = { 100.0f,100.0f };
+	XMFLOAT2 TestSize2 = { 125.0f,125.0f };
+	XMFLOAT2 TestSize3 = { 125.0f,125.0f };
+	
+	bool TestMoveFlg = true;
+	int TestMoveCnt = 0;
+	int TestGrabState = 0;
 private:
-	Object* p_object;
+	Object* p_TestObject;
 	/** @brief 二つ目のオブジェクト用
 	*   @date  2024/12/11
 	*/
-	Object* p_object2;
-
+	Object* p_TestObject2;
+	/** @brief 三つ目のオブジェクト用
+	*	@date  2024/12/21
+	*/
+	Object* p_TestObject3;
 	//--------------------------------------------------------------------------
 	//		描画関連
 	//--------------------------------------------------------------------------	
