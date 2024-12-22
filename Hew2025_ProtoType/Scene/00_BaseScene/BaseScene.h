@@ -7,6 +7,7 @@
 #include<iostream>
 #include"../../Library/Code/self/02_SceneManager/SceneManager.h"
 #include"../../Library/Code/self/04_DirextX_11/01_Initialize/CD3D11.h"
+#include"../../Library/Code/self/imagawa_Input/input.h"
 #include"../../Library/Code/self/SafePointers.h"
 
 // 前方宣言
@@ -52,4 +53,5 @@ public:
 protected:
 	SceneManager* p_sceneManager;	// シーンマネージャー
 	CD3D11* p_cd3d11;				// d3d11クラス
+	Input* p_input;					// 入力
 };

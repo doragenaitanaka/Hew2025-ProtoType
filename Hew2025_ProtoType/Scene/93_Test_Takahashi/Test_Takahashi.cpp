@@ -158,18 +158,20 @@ void	Test_Takahashi::Initialize(void)
 */
 void	Test_Takahashi::Update(void)
 {
-    if (GetAsyncKeyState(VK_SPACE))
+    this->p_input->Update();
+
+    if (this->p_input->Trigger("SPACE"))
     {
         this->p_sceneManager->ChangeScene(Scene::TEST_OTANI);
         return;
     }
     //右矢印キーで右移動
-    if (GetAsyncKeyState(VK_RIGHT))
+    if (this->p_input->Press("RIGHT"))
     {
         this->p_TestObject->SetPos(p_TestObject->GetPos().x + 20, p_TestObject->GetPos().y, 0.0f); //座標更新
     }
     //左矢印キーで左移動
-    if (GetAsyncKeyState(VK_LEFT))
+    if (this->p_input->Press("LEFT"))
     {
         this->p_TestObject->SetPos(p_TestObject->GetPos().x - 20, p_TestObject->GetPos().y, 0.0f); //座標更新
     }

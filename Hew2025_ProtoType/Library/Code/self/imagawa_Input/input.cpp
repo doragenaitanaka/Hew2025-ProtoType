@@ -12,8 +12,11 @@ Input::Input()
     */
     inputActionMap["RIGHT"] = { {InputType::keyboard, VK_D}, {InputType::gamepad, XINPUT_RIGHT} };
     inputActionMap["LEFT"]  = { {InputType::keyboard, VK_A}, {InputType::gamepad, XINPUT_LEFT } };
-    inputActionMap["UP" ]   = { {InputType::keyboard, VK_W}, {InputType::gamepad, XINPUT_UP   } };
-    inputActionMap["DOWN" ] = { {InputType::keyboard, VK_S}, {InputType::gamepad, XINPUT_DOWN } };
+    inputActionMap["UP"]   = { {InputType::keyboard, VK_W}, {InputType::gamepad, XINPUT_UP   } };
+    inputActionMap["DOWN"] = { {InputType::keyboard, VK_S}, {InputType::gamepad, XINPUT_DOWN } };
+    inputActionMap["SPACE"] = { {InputType::keyboard, VK_SPACE}, {InputType::gamepad, XINPUT_B } };
+
+
 
     /*@brief　入力状態を初期化*/
     for (const auto& mapInfo : inputActionMap)
@@ -108,7 +111,6 @@ void Input::Update()
             XInputSetState(0, &vibration);
         }
     }
-
 }
 
 /*@brieg　アクションが現在押されているか確認*/
