@@ -4,8 +4,8 @@
 #define CLASS_NAME   L"DirectX11 Template"	// ウインドウクラスの名前
 #define WINDOW_NAME  L"windows create test"	// ウィンドウの名前
 
-#define	SCREEN_WIDTH	(640)
-#define	SCREEN_HEIGHT	(480)
+#define	SCREEN_WIDTH	(1920)
+#define	SCREEN_HEIGHT	(1080)
 
 //「終了しますか？」の画面出すやつ
 LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam);
