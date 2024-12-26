@@ -44,7 +44,7 @@ Stage_1::~Stage_1()
 void	Stage_1::Initialize(void)
 {
     if (!this->background) { this->background = new Object; }
-    if (!this->player) { this->player = new Object; }
+    if (!this->player) { this->player = new Player; }
 
     for (n = 0; n < 10; n++)
     {
@@ -68,7 +68,7 @@ void	Stage_1::Initialize(void)
 
     //オブジェクト
     this->background->Init(L"Asset/back_img_01.png");
-    this->player->Init(L"Asset/block.png");
+    this->player->Init(L"Asset/gumbody2.png");
     this->goal->Init(L"Asset/goal1.png");
 
     for (n = 0; n < 10; n++)
@@ -212,7 +212,7 @@ void	Stage_1::Initialize(void)
 
     //オブジェクトのサイズを設定
     this->background->SetSize(1920.0f, 1080.0f, 0.0f);
-    this->player->SetSize(100.0f, 100.0f, 0.0f);
+    this->player->SetSize(150.0f, 150.0f, 0.0f);
 
     this->block[0]->SetSize(BlockSize01.x, BlockSize01.y, 0.0f);
     this->block[1]->SetSize(BlockSize02.x, BlockSize02.y, 0.0f);
@@ -240,28 +240,62 @@ void	Stage_1::Initialize(void)
 */
 void	Stage_1::Update(void)
 {
+    this->p_input->Update();
 
-    //collier更新
+    p_input->GetLeftAnalogStick();
+
+    //----------------------------------------------
+    // Creative Mode
+    //----------------------------------------------
+    if (gamemode == 0)
+    {
+        if (p_input->GetLeftAnalogStick().x * 10.0f <= 2.0f && p_input->GetLeftAnalogStick().x * 10.0f >= -2.0f)
+        {
+            CameraPos.x += 0.0f;
+        }
+        else
+        {
+            CameraPos.x += p_input->GetLeftAnalogStick().x * 10.0f;
+        }
+        if (p_input->GetLeftAnalogStick().y * 10.0f <= 2.0f && p_input->GetLeftAnalogStick().y * 10.0f >= -2.0f)
+        {
+            CameraPos.y += 0.0f;
+        }
+        else
+        {
+            CameraPos.y += p_input->GetLeftAnalogStick().y * 10.0f;
+        }
+
+        if (this->p_input->Press("LEFT"))
+        {
+
+            CameraPos.x -= 10.0f;
+        }
+        if (this->p_input->Press("RIGHT"))
+        {
+            CameraPos.x += 10.0f;
+        }
+        if (this->p_input->Press("UP"))
+        {
+            CameraPos.y += 10.0f;
+        }
+        if (this->p_input->Press("DOWN"))
+        {
+            CameraPos.y -= 10.0f;
+        }
+    }
+
+    //----------------------------------------------
+    // Player Mode
+    //----------------------------------------------
+    if (gamemode == 1)
+    {
 
 
-    input.Update();
+    }
 
-    if (GetAsyncKeyState(VK_LEFT))
-    {
-        CameraPos.x -= 10.0f;
-    }
-    if (GetAsyncKeyState(VK_RIGHT))
-    {
-        CameraPos.x += 10.0f;
-    }
-    if (GetAsyncKeyState(VK_UP))
-    {
-        CameraPos.y += 10.0f;
-    }
-    if (GetAsyncKeyState(VK_DOWN))
-    {
-        CameraPos.y -= 10.0f;
-    }
+
+
     //-----------------------------------------------------
     //  座標更新
     //-----------------------------------------------------
@@ -414,6 +448,7 @@ void	Stage_1::Update(void)
     //-----------------------------------
     //Collider更新
     //-----------------------------------
+    this->player->SetColliderSize(DirectX::XMFLOAT3(PlayerSize.x, PlayerSize.y, 0.0f));
 
     this->block[0]->SetColliderSize(DirectX::XMFLOAT3(BlockSize01.x, BlockSize01.y, 0.0f));
     this->block[1]->SetColliderSize(DirectX::XMFLOAT3(BlockSize02.x, BlockSize02.y, 0.0f));
@@ -474,24 +509,30 @@ void	Stage_1::Update(void)
 
     if (col1.CheckCollision(colgoal))
     {
-        ColliderState = 3;//hook collider
+        ColliderState = 3;//goal collider
 
     }
-    if (ColliderState == 1)
+
+
+
+    if (gamemode == 0)//Creative Mode
     {
-        player->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
-    }
-    else if (ColliderState == 2)
-    {
-        player->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 1.0f, 1.0f));
-    }
-    else if (ColliderState == 3)
-    {
-        player->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f));
-    }
-    else
-    {
-        player->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
+        if (ColliderState == 1)
+        {
+            player->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.5f));
+        }
+        else if (ColliderState == 2)
+        {
+            player->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 1.0f, 1.5f));
+        }
+        else if (ColliderState == 3)
+        {
+            player->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 0.0f, 1.5f));
+        }
+        else
+        {
+            player->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.5f));
+        }
     }
 
     this->background->Update();

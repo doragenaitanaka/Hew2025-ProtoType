@@ -8,6 +8,7 @@
 #include"../../00_BaseScene/BaseScene.h"
 #include"../../../Library/Code/self/02_SceneManager/SceneManager.h"
 #include"../../../Library/Code/self/10_Object/Object.h"
+#include"../../../Library/Code/self/11_Player/Player.h"
 #include"../../../Library/Code/self/imagawa_Input/input.h"
 #include"../../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
@@ -63,6 +64,7 @@ public:
 	XMFLOAT2 GoalPos = { 600.0f, 1400.0f };
 	//サイズ
 	XMFLOAT2 TestSize = { 100.0f,100.0f };
+	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
 	XMFLOAT2 BlockDrawSize = { 0.0f,0.0f };
 	XMFLOAT2 BlockSize01 = { 8000.0f,100.0f };
 	XMFLOAT2 BlockSize02 = { 800.0f,200.0f };
@@ -78,6 +80,9 @@ public:
 	XMFLOAT2 HookSize03 = { 100.0f, 100.0f };
 
 	XMFLOAT2 GoalSize = { 200.0f, 200.0f };
+
+	int gamemode=0;
+
 	float posx = 0.0f;
 	float posy = 0.0f;
 	int drawnum = 0;
@@ -89,7 +94,7 @@ public:
 private:
 	Input input;
 	Object* background;
-	Object* player;
+	Player* player;
 	Object* block[100];
 	Object* blockdraw[10000];
 	Object* hook[100];

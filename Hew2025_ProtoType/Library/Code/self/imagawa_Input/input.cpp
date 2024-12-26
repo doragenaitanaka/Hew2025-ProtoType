@@ -10,10 +10,10 @@ Input::Input()
       @memo　 キー入力、パッド入力の定数定義は"input.h"の一番上を参考に
       @memo　テンプレート：inputActionMap["アクション名"] = { {InputType::keyboard, VK_}, {InputType::gamepad, XINPUT_} };
     */
-    inputActionMap["RIGHT"] = { {InputType::keyboard, VK_D}, {InputType::gamepad, XINPUT_RIGHT} };
-    inputActionMap["LEFT"]  = { {InputType::keyboard, VK_A}, {InputType::gamepad, XINPUT_LEFT } };
-    inputActionMap["UP"]   = { {InputType::keyboard, VK_W}, {InputType::gamepad, XINPUT_UP   } };
-    inputActionMap["DOWN"] = { {InputType::keyboard, VK_S}, {InputType::gamepad, XINPUT_DOWN } };
+    inputActionMap["RIGHT"] = { {InputType::keyboard, VK_RIGHT}, {InputType::gamepad, XINPUT_RIGHT} };
+    inputActionMap["LEFT"]  = { {InputType::keyboard, VK_LEFT}, {InputType::gamepad, XINPUT_LEFT } };
+    inputActionMap["UP"]   = { {InputType::keyboard, VK_UP}, {InputType::gamepad, XINPUT_UP   } };
+    inputActionMap["DOWN"] = { {InputType::keyboard, VK_DOWN}, {InputType::gamepad, XINPUT_DOWN } };
     inputActionMap["SPACE"] = { {InputType::keyboard, VK_SPACE}, {InputType::gamepad, XINPUT_B } };
 
 
