@@ -1,6 +1,6 @@
 ﻿#include"Player.h"
 
-Player::Player():x3{ 0.0f }, x4{ 0.0f }, y3{ 0.0f }, y4{ 0.0f }
+Player::Player() :x3{ 0.0f }, x4{ 0.0f }, y3{ 0.0f }, y4{ 0.0f }
 {}
 
 Player::~Player()
@@ -19,11 +19,12 @@ HRESULT	Player::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 {
 	//=======================================
 	//		テスト的に変えている
-	
 
-	this->x3 = 0.5f;
-	this->y3 = 0.5f;
 
+	this->x3 = 0.0f;
+	this->x4 = 0.0f;
+	this->y3 = 0.0f;
+	this->y4 = 0.0f;
 
 	//=======================================
 
@@ -87,7 +88,7 @@ HRESULT	Player::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 	{
 		this->p_vertexBuffer = new  CVertexBuffer;
 		//																									↓ 動的に書き換え可能にしている
-		hr = this->p_vertexBuffer->Create(this->playerVertexList, sizeof(this->playerVertexList) * 9,NULL, D3D11_USAGE_DYNAMIC, D3D11_CPU_ACCESS_WRITE);
+		hr = this->p_vertexBuffer->Create(this->playerVertexList, sizeof(this->playerVertexList) * 9, NULL, D3D11_USAGE_DYNAMIC, D3D11_CPU_ACCESS_WRITE);
 	}
 
 	// テクスチャ読み込み
@@ -103,24 +104,102 @@ HRESULT	Player::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 */
 void	Player::Update()
 {
+	this->playerVertexList[0].u = 0.0f;
+	this->playerVertexList[0].v = 0.0f;
+
+	this->playerVertexList[1].u = 0.5f;
+	this->playerVertexList[1].v = 0.0f;
+
+	this->playerVertexList[2].u = 0.0f;
+	this->playerVertexList[2].v = 0.5f;
+
+	this->playerVertexList[3].u = 0.5f;
+	this->playerVertexList[3].v = 0.5f;
+
+	this->playerVertexList[4].u = 0.5f;
+	this->playerVertexList[4].v = 1.0f;
+
+	this->playerVertexList[5].u = 0.0f;
+	this->playerVertexList[5].v = 0.5f;
+
+	this->playerVertexList[6].u = 0.0f;
+	this->playerVertexList[6].v = 1.0f;
+
+	this->playerVertexList[7].u = 0.5f;
+	this->playerVertexList[7].v = 1.0f;
+
+	this->playerVertexList[8].u = 1.0f;
+	this->playerVertexList[8].v = 1.0f;
+
+	this->playerVertexList[9].u = 0.5f;
+	this->playerVertexList[9].v = 1.0f;
+
+	this->playerVertexList[10].u = 1.0f;
+	this->playerVertexList[10].v = 0.5f;
+
+	this->playerVertexList[11].u = 0.5f;
+	this->playerVertexList[11].v = 0.5f;
+
+	this->playerVertexList[12].u = 0.5f;
+	this->playerVertexList[12].v = 0.0f;
+
+	this->playerVertexList[13].u = 0.5f;
+	this->playerVertexList[13].v = 0.0f;
+
+	this->playerVertexList[14].u = 1.0f;
+	this->playerVertexList[14].v = 0.5f;
+
+	this->playerVertexList[15].u = 1.0f;
+	this->playerVertexList[15].v = 0.0f;
 	// 頂点データの更新
+
 	this->playerVertexList[0].x = -0.5f + 0.6f * x3 + 0.2f * x4;
+	this->playerVertexList[0].y = 0.5f + 0.1f * y3;
+
+	this->playerVertexList[1].x = 0.0f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[1].y = 0.5f + 0.0f * y3;
+
 	this->playerVertexList[2].x = -0.5f + x3 - 0.1f * x4;
-	this->playerVertexList[4].x = -0.5f + 0.6f * x3 + 0.2f * x4;
+	this->playerVertexList[2].y = 0.0f + 0.2f * y3;
 
-	this->playerVertexList[2].y = 0.0f + y3;
-	this->playerVertexList[0].y = 0.5f + 0.5f * y3;
+	this->playerVertexList[3].x = 0.0f + x4 - 0.1f * x3;
+	this->playerVertexList[3].y = 0.0f + 0.2f * y3;
 
+	this->playerVertexList[4].x = 0.0f;
 	this->playerVertexList[4].y = -0.5f + 0.7f * y3;
-	this->playerVertexList[3].y = 0.0f + y4;
-	this->playerVertexList[1].y = 0.5f + 0.5f * y4;
-	this->playerVertexList[5].y = -0.5f + 0.5f * y4;
 
-	this->playerVertexList[1].x = 0.5f + 0.6f * x4 + 0.2f * x3;
-	this->playerVertexList[3].x = 0.5f + x4 - 0.1f * x3;
-	this->playerVertexList[5].x = 0.5f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[5].x = -0.5f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[5].y = 0.0f + 0.2f * y3;
+
+	this->playerVertexList[6].x = -0.5f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[6].y = -0.5f + 0.5f * y3;
+
+	this->playerVertexList[7].x = 0.0f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[7].y = -0.5f + 0.7f * y3;
+
 	this->playerVertexList[8].x = 0.5f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[8].y = -0.5f + 0.5f * y3;
 
+	this->playerVertexList[9].x = 0.0f + x4 - 0.1f * x3;
+	this->playerVertexList[9].y = -0.5f + 0.7f * y3;
+
+	this->playerVertexList[10].x = 0.5f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[10].y = 0.0f + 0.2f * y3;
+
+	this->playerVertexList[11].x = 0.0f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[11].y = 0.0f + 0.2f * y3;
+
+	this->playerVertexList[12].x = 0.0f + x3 - 0.1f * x4;
+	this->playerVertexList[12].y = 0.5f + 0.0f * y3;
+
+	this->playerVertexList[13].x = 0.0f + x3 - 0.1f * x4;
+	this->playerVertexList[13].y = 0.5f + 0.0f * y3;
+
+	this->playerVertexList[14].x = 0.5f + x3 - 0.1f * x4;
+	this->playerVertexList[14].y = 0.0f + 0.2f * y3;
+
+	this->playerVertexList[15].x = 0.5f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[15].y = 0.5f + 0.1f * y3;
 	// デバイスコンテキストの取得
 	CD3D11* cd3d11 = CD3D11::GetInstance();
 	ID3D11DeviceContext* p_deviceContext = cd3d11->GetDeviceContext();
@@ -161,7 +240,7 @@ void	Player::Draw()
 	// シェーダに渡す
 	this->p_constantBuffer->SetConstantBuffer();
 
-	p_deviceContext->Draw(9, 0); // 描画命令
+	p_deviceContext->Draw(16, 0); // 描画命令
 }
 
 /**	@brief 	終了処理
