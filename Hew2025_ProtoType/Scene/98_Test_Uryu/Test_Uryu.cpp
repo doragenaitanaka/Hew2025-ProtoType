@@ -4,7 +4,6 @@
 */
 #include"Test_Uryu.h"
 #include"../../Library/Code/self/03_Windows/WindowSetup.h"
-#include"../../Library/Code/self/GrabBox.h"
 
 #include<Windows.h>
 
@@ -23,8 +22,18 @@ Test_Uryu::Test_Uryu()
     *   @date 2024/12/21
     */
     this->p_TestObject3 = nullptr;
+    /** @brief 四つ目のオブジェクトを出す用
+*   @date 2024/12/26
+*/
+    this->p_TestObject4 = nullptr;
+    /** @brief 五つ目のオブジェクトを出す用
+*   @date 2024/12/27
+*/
+    this->p_TestObject5 = nullptr;
 
-
+    // seesaw の初期化
+    seesaw = new Seesaw(p_TestObject4, p_TestObject2);
+    
     this->p_vertexShader = nullptr;
     this->p_pixelShader = nullptr;
     this->p_inputLayout = nullptr;
@@ -46,6 +55,8 @@ void	Test_Uryu::Initialize(void)
     if (!this->p_TestObject) { this->p_TestObject = new Object; }
     if (!this->p_TestObject2) { this->p_TestObject2 = new Object; }
     if (!this->p_TestObject3) { this->p_TestObject3 = new Object; }
+    if (!this->p_TestObject4) { this->p_TestObject4 = new Object; }
+    if (!this->p_TestObject5) { this->p_TestObject5 = new Object; }
 
     if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
     if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
@@ -56,7 +67,8 @@ void	Test_Uryu::Initialize(void)
     this->p_TestObject->Init(L"Asset/block.png");
     this->p_TestObject2->Init(L"Asset/block.png");
     this->p_TestObject3->Init(L"Asset/block.png");
-
+    this->p_TestObject4->Init(L"Asset/block.png");
+    this->p_TestObject5->Init(L"Asset/block.png");
 
     //--------------------------------------------------------------------------
     //		描画関連の初期化
@@ -163,115 +175,125 @@ void	Test_Uryu::Initialize(void)
     this->p_TestObject->SetPos(TestPos.x, TestPos.y, 0.0f); //初期座標-200.0f
     this->p_TestObject2->SetPos(TestPos2.x, TestPos2.y, 0.0f); //p_objectから400.0f離れた場所に生成
     this->p_TestObject3->SetPos(TestPos3.x, TestPos3.y, 0.0f); //掴めるオブジェクトは中央少し上に生成
+    this->p_TestObject4->SetPos(TestPos4.x, TestPos4.y, 0.0f); //中央寄りに配置
+    this->p_TestObject5->SetPos(TestPos5.x, TestPos5.y, 0.0f); //シーソー本体
     //オブジェクトのサイズを設定
     this->p_TestObject->SetSize(TestSize.x, TestSize.y, 0.0f); // サイズは100.0f×100.0f
     this->p_TestObject2->SetSize(TestSize2.x, TestSize2.y, 0.0f); // ちょっと大きく125.0f × 125.0f
     this->p_TestObject3->SetSize(TestSize3.x, TestSize3.y, 0.0f); // ちょっと大きく125.0f × 125.0f
+    this->p_TestObject4->SetSize(TestSize4.x, TestSize4.y, 0.0f); // ちょっと大きく125.0f × 125.0f
+    this->p_TestObject5->SetSize(TestSize5.x, TestSize5.y, 0.0f);
+    this->p_TestObject5->SetAngle(0.0f);
+
+    seesaw = new Seesaw(p_TestObject4, p_TestObject2);
 }
 /**	@brief 	シーン全体の更新
 *	@date	2024/05/10
 */
-void	Test_Uryu::Update(void)
+void Test_Uryu::Update(void)
 {
+    auto& col1 = p_TestObject->GetCollider();
+    auto& col2 = p_TestObject2->GetCollider();
+    auto& col3 = p_TestObject3->GetCollider();
+    auto& col4 = p_TestObject4->GetCollider();
+    auto& col5 = p_TestObject5->GetCollider();
     static GrabBox grabBox; // GrabBoxのインスタンスを静的に保持
-    if (GetAsyncKeyState(VK_SPACE))
+
+    if (GetAsyncKeyState(VK_CONTROL))
     {
         this->p_sceneManager->ChangeScene(Scene::TEST_URYU);
         return;
     }
-    //右矢印キーで右移動
+    if (GetAsyncKeyState(VK_SHIFT))
+    {
+        MoveSpeed = 10.0f;
+    }
+    else
+    {
+        MoveSpeed = 20.0f;
+    }
+
+    if (GetAsyncKeyState(VK_SPACE))
+    {
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y + 50.0f, 0.0f); // 座標更新
+    }
+
+    // 右矢印キーで右移動
     if (GetAsyncKeyState(VK_RIGHT))
     {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x + 20, p_TestObject->GetPos().y, 0.0f); //座標更新
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x + MoveSpeed, p_TestObject->GetPos().y, 0.0f); // 座標更新
     }
-    //左矢印キーで左移動
+    // 左矢印キーで左移動
     if (GetAsyncKeyState(VK_LEFT))
     {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x - 20, p_TestObject->GetPos().y, 0.0f); //座標更新
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x - MoveSpeed, p_TestObject->GetPos().y, 0.0f); // 座標更新
     }
-    //上矢印キーで上移動
+    // 上矢印キーで上移動
     if (GetAsyncKeyState(VK_UP))
     {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y + 20, 0.0f); //座標更新
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y + MoveSpeed, 0.0f); // 座標更新
     }
-    //下矢印キーで下移動
+    // 下矢印キーで下移動
     if (GetAsyncKeyState(VK_DOWN))
     {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y - 20, 0.0f); //座標更新
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y - MoveSpeed, 0.0f); // 座標更新
     }
 
-    if (this->TestMoveFlg == true)
+    if (GetAsyncKeyState(0x51))
     {
-        this->p_TestObject2->SetPos(p_TestObject2->GetPos().x, p_TestObject2->GetPos().y + 15, 0.0f); //座標更新
-        this->TestMoveCnt++;
-        if (this->TestMoveCnt == 10)
+        p_TestObject3->SetPos(-200.0f, 1000.0f, 0.0f); // 左シーソーに乗るようにリセット
+        OneBoundFlg = true;
+
+    }
+    if (GetAsyncKeyState(0x52))
+    {
+        p_TestObject3->SetPos(200.0f, 1000.0f, 0.0f); // 右シーソーに乗るようにリセット
+        OneBoundFlg = true;
+    }
+
+    if (GravityFlg == true)
+    {
+        if (p_TestObject->GetPos().y != -100.0f)
         {
-            this->TestMoveFlg = false;
-            this->TestMoveCnt = 0;
+            if (p_TestObject->GetPos().y <= -101.0f)
+            {
+                p_TestObject->SetPos(p_TestObject->GetPos().x, -100.0f, 0.0f);
+            }
+            p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y - 20, 0.0f); // 座標更新
         }
     }
-    else
+
+    if (p_TestObject3->GetPos().y != -100.0f)
     {
-        this->p_TestObject2->SetPos(p_TestObject2->GetPos().x, p_TestObject2->GetPos().y - 15, 0.0f); //座標更新
-        this->TestMoveCnt++;
-        if (this->TestMoveCnt == 10)
+        if (p_TestObject3->GetPos().y <= -100.0f)
         {
-            this->TestMoveFlg = true;;
-            this->TestMoveCnt = 0;
+            p_TestObject3->SetPos(p_TestObject3->GetPos().x, -100.0f, 0.0f);
+        }
+        p_TestObject3->SetPos(p_TestObject3->GetPos().x, p_TestObject3->GetPos().y - 20, 0.0f); // 座標更新
+    }
+
+    // シーソーの更新
+    seesaw->CheckCollision(p_TestObject, p_TestObject3);
+    seesaw->Update(p_TestObject5);
+
+    // プレイヤーを投げ飛ばす処理
+    if (seesaw->IsBound() && OneBoundFlg)
+    {
+        p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y + 50.0f, 0.0f); // 上に投げ飛ばす
+        TestCnt++;
+        if (TestCnt == 10)
+        {
+            seesaw->ResetBound();
+            OneBoundFlg = false;
+            TestCnt = 0;
         }
     }
 
-    auto& col1 = p_TestObject->GetCollider();
-    auto& col2 = p_TestObject2->GetCollider();
-    auto& col3 = p_TestObject3->GetCollider();
-    if (col1.CheckCollision(col2))
+    if (p_TestObject->GetPos().y == -120.0f)
     {
-        p_TestObject->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
-        
-        //Eキーが押されたかどうかをチェック
-        if(GetAsyncKeyState(0x45))
-        {
-            if (grabBox.GetGrabState() == 0)
-            {
-                grabBox.Grab(p_TestObject);
-                TestGrabState = 1;
-            }
-            else
-            {
-                grabBox.Release();
-                TestGrabState = 0;
-            }
-        }
-
+        seesaw->ResetBound();
+        OneBoundFlg = true;
     }
-    else if (col1.CheckCollision(col3))
-    {
-        p_TestObject->SetColor(DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f));
-
-        //こっちのコードは掴めるオブジェクトをプレイヤーの子オブジェクトにして持ち運べるようにしたのを間違えて作ったので一応入れときます、不要なら消してください
-        // Eキーが押されたかどうかをチェック
-        if (GetAsyncKeyState(0x45)) //ここを変更
-        {
-            if (grabBox.GetGrabState() == 0)
-            {
-                // Grab()関数を呼び出して箱を掴む
-                grabBox.Grab(p_TestObject3);
-                TestGrabState = 2;
-            }
-            else
-            {
-                // Release()関数を呼び出して箱を離す
-                grabBox.Release();
-                TestGrabState = 0;
-            }
-        }
-    }
-    else
-    {
-        p_TestObject->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
-        TestGrabState = 0;
-    }
-
 
     if (TestGrabState == 1)
     {
@@ -282,12 +304,14 @@ void	Test_Uryu::Update(void)
     {
         grabBox.Move(p_TestObject->GetPos());
     }
-        // オブジェクトの更新
+
+    // オブジェクトの更新
     this->p_TestObject->Update();
     this->p_TestObject2->Update();
     this->p_TestObject3->Update();
+    this->p_TestObject4->Update();
+    this->p_TestObject5->Update();
 }
-
 /**	@brief 	シーン全体の描画
 *	@date	2024/05/10
 */
@@ -322,8 +346,10 @@ void	Test_Uryu::Draw(void)
     //--------------------------------------------------------------------------
     //		オブジェクトの描画
     //--------------------------------------------------------------------------	
+    this->p_TestObject5->Draw();
     this->p_TestObject2->Draw();
     this->p_TestObject3->Draw();
+    this->p_TestObject4->Draw();
     this->p_TestObject->Draw();
 }
 
@@ -350,4 +376,7 @@ void	Test_Uryu::Finalize(void)
     SAFE_DELETE(this->p_TestObject);
     SAFE_DELETE(this->p_TestObject2);
     SAFE_DELETE(this->p_TestObject3);
+    SAFE_DELETE(this->p_TestObject4);
+    SAFE_DELETE(this->p_TestObject5);
+    SAFE_DELETE(this->seesaw);
 }
