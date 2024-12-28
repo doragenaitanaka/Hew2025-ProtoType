@@ -8,7 +8,7 @@
 /**	@brief 	コンストラクタ
 *	@date	2024/05/10
 */
-Test_Ueda::Test_Ueda()
+Test_Ueda::Test_Ueda(): m_pSourceVoice(nullptr)
 {
     //サウンドの取得
 	AudioManager& audioManager = AudioManager::getInstance();
@@ -27,19 +27,24 @@ Test_Ueda::~Test_Ueda()
 */
 void	Test_Ueda::Initialize(void)
 {
+    //サウンドの読み込み
+	AudioManager& audioManager = AudioManager::getInstance();//インスタンスを取得
+    if (!audioManager.loadSound("asset/BGM/Atelier Sophie OST 106 Scenery of the Town _ Morning_4.wav", &m_pSourceVoice))//サウンドを読み込み
+    {
+		std::cerr << "Failed to load sound file." << std::endl;//エラーメッセージ   
+    }
 }
 
 /**	@brief 	シーン全体の更新
-*	@date	2024/05/10
+*	@date	2024/05/10 
 */
 void	Test_Ueda::Update(void)
 {
-    AudioManager& AudioManager = AudioManager::getInstance();
-    IXAudio2SourceVoice* m_pSourceVoice = nullptr;
-    AudioManager.loadsound("asset/BGM/Atelier Sophie OST 106 Scenery of the Town _ Morning_4.wav", &m_pSourceVoice);//サウンドを読み込み
-    AudioManager.setMasterVolume(0.5f);//ボリュームを50%に設定
+    AudioManager& audioManager = AudioManager::getInstance();//インスタンスを取得
     if (GetAsyncKeyState(VK_SPACE))
     {
+        audioManager.setMasterVolume(0.5f);//音量を５０％に設定
+        m_pSourceVoice->Start(0);//サウンドの再生
         this->p_sceneManager->ChangeScene(Scene::TEST_UEDA);
         return;
     }

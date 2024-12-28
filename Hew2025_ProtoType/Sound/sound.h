@@ -4,14 +4,15 @@
 #include <xaudio2fx.h>
 #include <memory>
 #include <vector>
+#include <string>
 
 // サウンドファイル
 typedef enum
 {
 	SOUND_LABEL_BGM000 = 0,		// サンプルBGM
-	SOUND_LABEL_BGM001,			// サンプルBGM
+	SOUND_LABEL_BGM001 = 1,			// サンプルBGM
 	SOUND_LABEL_SE000 = 2,	    // サンプルSE
-	SOUND_LABEL_SE001,			// サンプルSE
+	SOUND_LABEL_SE001 = 3,			// サンプルSE
 
 
 
@@ -109,9 +110,9 @@ public:
 	static AudioManager& getInstance();
 	void init();
 	void Uninit();
-	void loadsound(const char* filename, IXAudio2SourceVoice** sourceVoice);
+	bool loadSound(const std::string& filename, IXAudio2SourceVoice** sourceVoice);
 	void setMasterVolume(float volume);
-	float getMasterVolume()const;
+	float getMasterVolume() const;
 
 	void addSourceVoice(IXAudio2SourceVoice* sourceVoice);
 	IXAudio2* getXAudio2()const;

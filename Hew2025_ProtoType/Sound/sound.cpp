@@ -279,7 +279,10 @@ void AudioManager::setMasterVolume(float volume)
 		//各ソースボイスのボリュームを設定
 		for (auto sourceVoice : sourceVoices)
 		{
-			sourceVoice->SetVolume(volume);
+			if (sourceVoice)//nullptrチェック
+			{
+				sourceVoice->SetVolume(volume);
+			}
 		}
 	}
 	
@@ -309,18 +312,30 @@ IXAudio2* AudioManager::getXAudio2()const
 }
 
 //サウンドの読み込み
-void AudioManager::loadsound(const char* fileName, IXAudio2SourceVoice** sourceVoice)
+bool AudioManager::loadSound(const std::string& fileName, IXAudio2SourceVoice** sourceVoice)
 {
 	//WAVファイルの読み込み
 	std::ifstream file(fileName, std::ios::binary);
 	if (!file)
 	{
 		std::cerr << "Error: file not found" << std::endl;
-		return;
+		return false;
+	}
+
+	//ファイルの状態の確認
+	if (!file.is_open() || file.fail())
+	{
+		std::cerr << "Error: file open failed" << std::endl;
+		return false;
 	}
 	std::vector<char>buffer((std::istreambuf_iterator<char>(file)), std::istreambuf_iterator<char>());
+	if (buffer.empty())
+	{
+		std::cerr << "Error: file is empty" << std::endl;
+		return false;
+	}
 
-	WAVEFORMATEX wf={0};
+	WAVEFORMATEX wf={};
 	wf.wFormatTag = WAVE_FORMAT_PCM;
 	wf.nChannels = 2;
 	wf.nSamplesPerSec = 44100;
@@ -329,27 +344,44 @@ void AudioManager::loadsound(const char* fileName, IXAudio2SourceVoice** sourceV
 	wf.nAvgBytesPerSec = wf.nSamplesPerSec * wf.nBlockAlign;
 
 	HRESULT hr = getXAudio2()->CreateSourceVoice(sourceVoice, &wf);
-	if (FAILED(hr))
+	if (FAILED(hr)||!sourceVoice||*sourceVoice==nullptr)
 	{
 		std::cerr << "Error: CreateSourceVoice" << std::endl;
-		return;
+		return false;
 	}
 
-	XAUDIO2_BUFFER bufferData = { 0 };
+	XAUDIO2_BUFFER bufferData = {};
 	bufferData.AudioBytes = buffer.size();
-	bufferData.pAudioData = reinterpret_cast<BYTE*>(&buffer[0]);
+	bufferData.pAudioData = reinterpret_cast<BYTE*>(buffer.data());
 	bufferData.Flags = XAUDIO2_END_OF_STREAM;
 
-	(*sourceVoice)->SubmitSourceBuffer(&bufferData);
-	addSourceVoice(*sourceVoice);	
+	hr = (*sourceVoice)->SubmitSourceBuffer(&bufferData);
+	if (FAILED(hr))
+	{
+		/*std::cerr << "Error: SubmitSourceBuffer" << std::endl;
+		(*sourceVoice)->DestroyVoice();
+		*sourceVoice = nullptr;*/
+		return false;
+	}
 
-	//再生
-	(*sourceVoice)->Start();
+	addSourceVoice(*sourceVoice);
+	return true;
+
+	
 }
 
 //サウンドの終了
 void AudioManager::Uninit()
 {
+
+	for (auto sourceVoice : sourceVoices)
+	{
+		if (sourceVoice)
+		{
+			sourceVoice->DestroyVoice();
+		}
+	}
+	sourceVoices.clear();
 	if (p_MasterVoice) p_MasterVoice->DestroyVoice();//使用したサウンドの解放
 	if (p_XAudio2) p_XAudio2->Release();//XAudio2の解放
 }

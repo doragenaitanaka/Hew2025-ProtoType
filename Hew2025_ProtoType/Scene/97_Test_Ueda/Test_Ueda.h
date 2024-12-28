@@ -49,5 +49,9 @@ public:
 	void	Finalize(void)override;
 
 private:
+	/** @brief ソースボイスの保持
+	*   @date 2004/12/17
+	*/
+	IXAudio2SourceVoice* m_pSourceVoice;
 	
 };
