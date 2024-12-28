@@ -46,25 +46,14 @@ int InitConsole()
     }
 
     // std入出力のリダイレクト先をコンソール画面にする
-    FILE* fp = nullptr;
-    errno_t err = freopen_s(&fp, "CONOUT$", "w", stdout);
-    if (err != 0) {
-        MessageBox(NULL, L"Failed to redirect stdout to console.", L"Error", MB_OK | MB_ICONERROR);
-        return 1;
-    }
-    err = freopen_s(&fp, "CONIN$", "r", stdin);
-    if (err != 0) {
-        MessageBox(NULL, L"Failed to redirect stdin to console.", L"Error", MB_OK | MB_ICONERROR);
-        return 1;
-    }
-    err = freopen_s(&fp, "CONOUT$", "w", stderr);
-    if (err != 0) {
-        MessageBox(NULL, L"Failed to redirect stderr to console.", L"Error", MB_OK | MB_ICONERROR);
-        return 1;
-    }
+    FILE* fp;
+    freopen_s(&fp, "CONOUT$", "w", stdout);
+    freopen_s(&fp, "CONIN$", "r", stdin);
+    freopen_s(&fp, "CONOUT$", "w", stderr);
 
     // 標準入出力ストリームの同期を有効
-    std::ios::sync_with_stdio();
+    std::ios::sync_with_stdio(true);
+
     // 標準ストリームのクリア
     std::cout.clear();
     std::clog.clear();
@@ -75,7 +64,5 @@ int InitConsole()
     std::wcerr.clear();
     std::wcin.clear();
 
-    // ファイルポインタを閉じる
-    if (fp)fclose(fp);
-    fp = nullptr;
+    return 0;
 }
