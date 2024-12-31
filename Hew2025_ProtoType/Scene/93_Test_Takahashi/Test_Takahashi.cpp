@@ -177,13 +177,28 @@ void	Test_Takahashi::Update(void)
     //右矢印キーで右移動
     if (this->p_input->Press("RIGHT"))
     {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x + 20, p_TestObject->GetPos().y, 0.0f); //座標更新
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x + 5.0f, p_TestObject->GetPos().y, 0.0f); //座標更新
     }
     //左矢印キーで左移動
     if (this->p_input->Press("LEFT"))
     {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x - 20, p_TestObject->GetPos().y, 0.0f); //座標更新
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x - 5.0f, p_TestObject->GetPos().y, 0.0f); //座標更新
     }
+    //右矢印キーで右移動
+    if (this->p_input->Press("DOWN"))
+    {
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y - 5.0f, 0.0f); //座標更新
+    }
+    //左矢印キーで左移動
+    if (this->p_input->Press("UP"))
+    {
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y + 5.0f, 0.0f); //座標更新
+    }
+
+    // p_TestObjectをテスト的に回転させる
+    static float angle = 0.0f;
+    this->p_TestObject->SetAngle(angle);
+    angle += 0.1f;
 
     auto& col1 = p_TestObject->GetCollider();
     auto& col2 = p_TestObject2->GetCollider();

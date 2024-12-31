@@ -285,6 +285,12 @@ void	Object::SetSize(float x, float y, float z)
 void	Object::SetAngle(float angle)
 {
 	this->angle = angle;
+
+	// Boxの場合角度を設定する
+	if (typeid(*this->p_coll) == typeid(BoxCollider))
+	{
+		static_cast<BoxCollider*>(this->p_coll)->SetAngle(angle);
+	}
 }
 
 /**	@brief 	テクスチャをセット

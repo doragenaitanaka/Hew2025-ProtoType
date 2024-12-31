@@ -19,7 +19,7 @@
 */
 class BaseCollider
 {
-private:
+protected:
 		DirectX::XMFLOAT3 position;
 
 public:
