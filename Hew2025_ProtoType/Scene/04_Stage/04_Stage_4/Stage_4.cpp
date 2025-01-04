@@ -23,7 +23,7 @@ Stage_4::Stage_4()
         this->PushObject[n] = nullptr;
     }
 
-    for (n = 0; n < 4; n++)
+    for (n = 0; n < 5; n++)
     {
         this->hook[n] = nullptr;
     }
@@ -68,7 +68,7 @@ void	Stage_4::Initialize(void)
         if (!this->PushObject[n]) { this->PushObject[n] = new Object; }//倒れるオブジェクトの初期化
     }
 
-    for (n = 0; n < 4; n++)
+    for (n = 0; n < 5; n++)
     {
         if (!this->hook[n]) { this->hook[n] = new Object; }//倒れるオブジェクトの初期化
     }
@@ -94,22 +94,22 @@ void	Stage_4::Initialize(void)
     this->player->Init(L"Asset/gumbody2.png");
     this->goal->Init(L"Asset/block.png");
 
-    for (n = 0; n < 8; n++)
+    for (n = 0; n < 8; n++)//当たり判定用のブロック
     {
         this->block[n]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
     }
 
-    for (n = 0; n < 2; n++)
+    for (n = 0; n < 2; n++)//倒れるオブジェクト
     {
         this->PushObject[n]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
     }
 
-    for (n = 0; n < 4; n++)
+    for (n = 0; n < 5; n++)//フック
     {
         this->hook[n]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
     }
 
-    for (n = 0; n < 3; n++)
+    for (n = 0; n < 3; n++)//フックのレール
     {
         this->rail[n]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
     }
@@ -240,6 +240,7 @@ void	Stage_4::Initialize(void)
     this->hook[1]->SetPos(HookPos01.x, HookPos01.y, 0.0f);//当たり判定用ブロックの座標設定
     this->hook[2]->SetPos(HookPos02.x, HookPos02.y, 0.0f);//当たり判定用ブロックの座標設定
     this->hook[3]->SetPos(HookPos03.x, HookPos03.y, 0.0f);//当たり判定用ブロックの座標設定
+    this->hook[4]->SetPos(HookPos04.x, HookPos04.y, 0.0f);//当たり判定用ブロックの座標設定
 
     this->rail[0]->SetPos(RailPos00.x, RailPos00.y, 0.0f);//当たり判定用ブロックの座標設定
     this->rail[1]->SetPos(RailPos01.x, RailPos01.y, 0.0f);//当たり判定用ブロックの座標設定
@@ -273,6 +274,8 @@ void	Stage_4::Initialize(void)
     this->hook[1]->SetSize(HookSize01.x, HookSize01.y, 0.0f);//当たり判定用ブロックの大きさ設定
     this->hook[2]->SetSize(HookSize02.x, HookSize02.y, 0.0f);//当たり判定用ブロックの大きさ設定
     this->hook[3]->SetSize(HookSize03.x, HookSize03.y, 0.0f);//当たり判定用ブロックの大きさ設定
+    this->hook[4]->SetSize(HookSize04.x, HookSize04.y, 0.0f);//当たり判定用ブロックの大きさ設定
+
 
     this->rail[0]->SetSize(RailSize00.x, RailSize00.y, 0.0f);//当たり判定用ブロックの大きさ設定
     this->rail[1]->SetSize(RailSize01.x, RailSize01.y, 0.0f);//当たり判定用ブロックの大きさ設定
@@ -400,6 +403,7 @@ void	Stage_4::Update(void)
     this->hook[1]->SetPos(HookPos01.x - CameraPos.x, HookPos01.y - CameraPos.y, 0.0f);
     this->hook[2]->SetPos(HookPos02.x - CameraPos.x, HookPos02.y - CameraPos.y, 0.0f);
     this->hook[3]->SetPos(HookPos03.x - CameraPos.x, HookPos03.y - CameraPos.y, 0.0f);
+    this->hook[4]->SetPos(HookPos04.x - CameraPos.x, HookPos04.y - CameraPos.y, 0.0f);
 
     this->rail[0]->SetPos(RailPos00.x - CameraPos.x, RailPos00.y - CameraPos.y, 0.0f);
     this->rail[1]->SetPos(RailPos01.x - CameraPos.x, RailPos01.y - CameraPos.y, 0.0f);
@@ -469,7 +473,7 @@ void	Stage_4::Update(void)
             posx = 0.0f;
             posy += 100.0f;;
         }
-        this->blockdraw[drawnum]->SetPos(4550.0f + posx - CameraPos.x, 1550.0f + posy - CameraPos.y, 0.0f);
+        this->blockdraw[drawnum]->SetPos(3650.0f + posx - CameraPos.x, 1550.0f + posy - CameraPos.y, 0.0f);
         posx += 100.0f;
     }
 
@@ -482,7 +486,7 @@ void	Stage_4::Update(void)
             posx = 0.0f;
             posy += 100.0f;
         }
-        this->blockdraw[drawnum]->SetPos(3150.0f + posx - CameraPos.x, 3450.0f + posy - CameraPos.y, 0.0f);
+        this->blockdraw[drawnum]->SetPos(2250.0f + posx - CameraPos.x, 3450.0f + posy - CameraPos.y, 0.0f);
         posx += 100.0f;
     }
 
@@ -495,7 +499,7 @@ void	Stage_4::Update(void)
             posx = 0.0f;
             posy += 100.0f;
         }
-        this->blockdraw[drawnum]->SetPos(4550.0f + posx - CameraPos.x, 1750.0f + posy - CameraPos.y, 0.0f);
+        this->blockdraw[drawnum]->SetPos(3650.0f + posx - CameraPos.x, 1750.0f + posy - CameraPos.y, 0.0f);
         posx += 100.0f;
     }
 
@@ -508,7 +512,7 @@ void	Stage_4::Update(void)
             posx += 100.0f;
             posy += 1200.0f;
         }
-        this->blockdraw[drawnum]->SetPos(4550.0f + posx - CameraPos.x, 3350.0f + posy - CameraPos.y, 0.0f);
+        this->blockdraw[drawnum]->SetPos(3650.0f + posx - CameraPos.x, 3350.0f + posy - CameraPos.y, 0.0f);
         posy -= 100.0f;
     }
 
@@ -595,17 +599,17 @@ void	Stage_4::Update(void)
     {
         if (TurnBackFLG[2])
         {
-            HookPos03.x += HookMoveSpeed;
+            HookPos04.x += HookMoveSpeed;
             HookCnt[2]++;
 
-            if (HookCnt[2] == 300)
+            if (HookCnt[2] == 150)
             {
                 TurnBackFLG[2] = false;
             }
         }
         else
         {
-            HookPos03.x -= HookMoveSpeed;
+            HookPos04.x -= HookMoveSpeed;
             HookCnt[2]--;
 
             if (HookCnt[2] == 0)
@@ -637,6 +641,7 @@ void	Stage_4::Update(void)
     this->hook[1]->SetColliderSize(DirectX::XMFLOAT3(HookSize01.x, HookSize01.y, 0.0f));
     this->hook[2]->SetColliderSize(DirectX::XMFLOAT3(HookSize02.x, HookSize02.y, 0.0f));
     this->hook[3]->SetColliderSize(DirectX::XMFLOAT3(HookSize03.x, HookSize03.y, 0.0f));
+    this->hook[4]->SetColliderSize(DirectX::XMFLOAT3(HookSize04.x, HookSize04.y, 0.0f));
 
     this->rail[0]->SetColliderSize(DirectX::XMFLOAT3(RailSize00.x, RailSize00.y, 0.0f));
     this->rail[1]->SetColliderSize(DirectX::XMFLOAT3(RailSize01.x, RailSize01.y, 0.0f));
@@ -669,6 +674,7 @@ void	Stage_4::Update(void)
      hook[1]->GetCollider(),
      hook[2]->GetCollider(),
      hook[3]->GetCollider(),
+     hook[4]->GetCollider(),
     };
 
     ColliderState = 0;
@@ -695,7 +701,7 @@ void	Stage_4::Update(void)
         }
     }
 
-    for (HookNumber = 0; HookNumber < 4; HookNumber++)
+    for (HookNumber = 0; HookNumber < 5; HookNumber++)
     {
         if (col1.CheckCollision(colHook[HookNumber]))
         {
@@ -710,7 +716,7 @@ void	Stage_4::Update(void)
                 MoveHookFLG[1] = true;
                 break;
 
-            case 3:
+            case 4:
                 MoveHookFLG[2] = true;
                 break;
             }
@@ -794,7 +800,7 @@ void	Stage_4::Update(void)
         this->PushObject[n]->Update();
     }
 
-    for (n = 0; n < 4; n++)//Updateの数
+    for (n = 0; n < 5; n++)//Updateの数
     {
         this->hook[n]->Update();
     }
@@ -856,7 +862,7 @@ void	Stage_4::Draw(void)
         this->rail[n]->Draw();
     }
 
-    for (n = 0; n < 4; n++)//当たり判定用ブロック描画
+    for (n = 0; n < 5; n++)//当たり判定用ブロック描画
     {
         this->hook[n]->Draw();
     }
@@ -899,7 +905,7 @@ void	Stage_4::Finalize(void)
         SAFE_DELETE(this->PushObject[n]);
     }
 
-    for (n = 0; n < 4; n++)
+    for (n = 0; n < 5; n++)
     {
         SAFE_DELETE(this->hook[n]);
     }
