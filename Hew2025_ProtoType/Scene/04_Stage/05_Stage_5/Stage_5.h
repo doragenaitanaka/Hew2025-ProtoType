@@ -47,21 +47,79 @@ public:
 
 	XMFLOAT2 CameraPos = { -700.0f, -150.0f };
 
-	XMFLOAT2 BlockPos00 = { 0.0f,-350.0f };
+	XMFLOAT2 BlockPos00 = { -700.0f,-350.0f };//左床
+	XMFLOAT2 BlockPos01 = { 1700.0f,-350.0f };//右床1(左)
+	XMFLOAT2 BlockPos02 = { 2450.0f,-200.0f };//右床2(右)
+	XMFLOAT2 BlockPos03 = { 950.0f,1550.0f };//空中床1(左)
+	XMFLOAT2 BlockPos04 = { 1500.0f,1400.0f };//空中床2(右)
+	XMFLOAT2 BlockPos05 = { 1250.0f,3050.0f };//ゴール地点床
+
+	XMFLOAT2 HookPos00 = { 3050.0f,-100.0f };//右フック下
+	XMFLOAT2 HookPos01 = { 3050.0f, 100.0f };//右フック上
+	XMFLOAT2 HookPos02 = { 3050.0f,1550.0f };//空中右フック左
+	XMFLOAT2 HookPos03 = { 3250.0f,1550.0f };//空中右フック右
+	XMFLOAT2 HookPos04 = { 550.0f,1650.0f };//空中左フック下
+	XMFLOAT2 HookPos05 = { 550.0f,1850.0f };//空中左フック上
+	XMFLOAT2 HookPos06 = { 550.0f,3300.0f };//空中ゴール左フック
+
+	XMFLOAT2 RailPos00 = { 3050.0f,-500.0f };//右フック下
+	XMFLOAT2 RailPos01 = { 3650.0f,1550.0f };//空中右フック右
+	XMFLOAT2 RailPos02 = { 550.0f,1350.0f };//空中左フック下
+
+	XMFLOAT2 YoyoPos00 = { 300.0f,750.0f };//ヨーヨーの支点
+	XMFLOAT2 YoyoPos01 = { 1300.0f,0.0f };//ヨーヨーの本体
+
+	XMFLOAT2 GoalPos = { 1400.0f,3300.0f }; //ゴール
 
 	//サイズ
 
 	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
 
-	XMFLOAT2 BlockSize00 = { 8000.0f,100.0f };
+	XMFLOAT2 BlockSize00 = { 900.0f,100.0f };
+	XMFLOAT2 BlockSize01 = { 600.0f,100.0f };
+	XMFLOAT2 BlockSize02 = { 900.0f,400.0f };
+	XMFLOAT2 BlockSize03 = { 500.0f,400.0f };
+	XMFLOAT2 BlockSize04 = { 600.0f,100.0f };
+	XMFLOAT2 BlockSize05 = { 1100.0f,200.0f };
+
+	XMFLOAT2 HookSize00 = { 200.0f,200.0f };
+	XMFLOAT2 HookSize01 = { 200.0f,200.0f };
+	XMFLOAT2 HookSize02 = { 200.0f,200.0f };
+	XMFLOAT2 HookSize03 = { 200.0f,200.0f };
+	XMFLOAT2 HookSize04 = { 200.0f,200.0f };
+	XMFLOAT2 HookSize05 = { 200.0f,200.0f };
+	XMFLOAT2 HookSize06 = { 200.0f,200.0f };
+
+	XMFLOAT2 RailSize00 = { 100.0f,800.0f };
+	XMFLOAT2 RailSize01 = { 800.0f,100.0f };
+	XMFLOAT2 RailSize02 = { 100.0f,600.0f };
+
+	XMFLOAT2 YoyoSize00 = { 200.0f,200.0f };
+	XMFLOAT2 YoyoSize01 = { 400.0f,400.0f };
+
+	XMFLOAT2 GoalSize = { 200.0f,300.0f };
+
 
 	int gamemode = 0;
 
 	float posx = 0.0f;
 	float posy = 0.0f;
+	float HookMoveSpeed = 5.0f;
+	float YoyoMoveSpeed = 15.0f;
+	bool StayGround = false;//地面に触れているかの判定
+	bool MoveHookFLG[4] = { false,false,false,false };//フックが動き出すかのフラグ
+	bool TurnBackFLG[4] = { true,true,true,true };//フックが往復するためのフラグ
+	bool YoyoTurnFLG[2] = { true,true };
+	int JumpState = 0;
+	int cnt = 0;
 	int drawnum = 0;//描画用のブロックの番号
 	int n = 0;	//当たり判定用のブロックの番号
 	int BlockNumber = 0;
+	int HookNumber = 0;
+	int YoyoNumber = 0;
+	int HookCnt[4] = { 0,0,0,0 };
+	int YoyoCntX = 0;
+	int YoyoCntY = 0;
 	int ColliderState = 0;
 private:
 	Input input;
@@ -69,6 +127,10 @@ private:
 	Player* player;
 	Object* block[100];
 	Object* blockdraw[10000];
+	Object* hook[7];
+	Object* rail[4];
+	Object* YoyoObject[2]; //YoyObject[0] = ヨーヨーの支点 YoyoObject[1] = ヨーヨーの本体
+	Object* goal;
 
 	//--------------------------------------------------------------------------
 	//		描画関連
