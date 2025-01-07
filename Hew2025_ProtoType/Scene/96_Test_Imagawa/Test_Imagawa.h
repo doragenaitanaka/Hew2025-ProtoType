@@ -13,6 +13,7 @@
 #include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
 #include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../Library/Code/self/imagawa_Input/input.h"
+#include"../../Library/Code/self/Ball.h"
 #include<iostream>
 
 
@@ -58,12 +59,30 @@ public:
 	*   @memo　flame：振動する長さ　
 	*   @memo　power：振動の強さ
 	*/
+
+	// 変数の定義
 	int flame = 0;
 	float power = 0;
+	float gravity = 0.1f; // 重力の強さ
+	float velocityY = 0.0f; // Y方向の速度（初期速度は0）
+	float maxVelocityY = 10.0f; // 最大速度（任意設定）
+	float floorY = -600.0f; // 地面のY座標（ボールが落ちる床の位置）
+
+	//テスト用の座標変数
+	XMFLOAT2 TestPos = { -200.0f, 0.0f };
+	XMFLOAT2 TestPos2 = { 0.0f, 200.0f };
+	XMFLOAT2 BallPos = { 0.0f, 200.0f };
+
+	//サイズ
+	XMFLOAT2 TestSize = { 100.0f,100.0f };
+	XMFLOAT2 TestSize2 = { 100.0f,100.0f };
+	XMFLOAT2 BallSize = { 100.0f,100.0f };
 
 private:
 	Input input;
 	Object* p_object;
+	Object* p_object2;
+	Ball* ball;
 
 	//--------------------------------------------------------------------------
 	//		描画関連
