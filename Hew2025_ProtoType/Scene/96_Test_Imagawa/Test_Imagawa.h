@@ -13,7 +13,7 @@
 #include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
 #include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../Library/Code/self/imagawa_Input/input.h"
-#include"../../Library/Code/self/Ball.h"
+#include"../../Library/Code/self/14_Ball/Ball.h"
 #include<iostream>
 
 

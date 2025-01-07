@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "10_Object/Object.h"
+#include "../10_Object/Object.h"
 
 // Ball クラス: ボールオブジェクトの状態管理と物理演算を担当
 class Ball : public Object
