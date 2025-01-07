@@ -3,7 +3,7 @@
 *	@date	2024/12/27
 */
 #include "Seesaw.h"
-#include "../../../Scene/98_Test_Uryu/Test_Uryu.h"
+//#include "../../../../Scene/98_Test_Uryu/Test_Uryu.h"
 
 /**	@brief 	コンストラクタ
 * @date 2024/12/27

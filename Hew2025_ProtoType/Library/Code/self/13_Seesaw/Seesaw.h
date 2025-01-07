@@ -4,7 +4,7 @@
 */
 #pragma once
 //インクルード
-#include"10_Object/Object.h"
+#include"../10_Object/Object.h"
 /**	@file 	Seesaw.h
 *	@brief  シーソーのクラス
 *	@date	2024/12/27

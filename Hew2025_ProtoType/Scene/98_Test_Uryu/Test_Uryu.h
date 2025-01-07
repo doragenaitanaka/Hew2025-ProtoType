@@ -8,8 +8,8 @@
 // インクルード
 #include"../00_BaseScene/BaseScene.h"
 #include"../../Library/Code/self/10_Object/Object.h"
-#include"../../Library/Code/self/GrabBox.h"
-#include"../../Library/Code/self/Seesaw.h"
+#include"../../Library/Code/self/12_GrabBox/GrabBox.h"
+#include"../../Library/Code/self/13_Seesaw/Seesaw.h"
 
 #include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
