@@ -4,7 +4,7 @@
 */
 #include"Test_Uryu.h"
 #include"../../Library/Code/self/03_Windows/WindowSetup.h"
-#include"../../Library/Code/self/GrabBox.h"
+#include"../../Library/Code/self/12_GrabBox/GrabBox.h"
 
 #include<Windows.h>
 

@@ -4,7 +4,7 @@
 */
 #pragma once
 //インクルード
-#include"10_Object/Object.h"
+#include"../10_Object/Object.h"
 
 /**	@file 	GrabBox.h
 *	@brief  掴めるオブジェクトのクラス
