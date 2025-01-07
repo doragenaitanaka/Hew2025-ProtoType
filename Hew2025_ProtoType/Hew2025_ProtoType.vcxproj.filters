@@ -222,6 +222,9 @@
     <ClCompile Include="Scene\93_Test_Takahashi\Test_Takahashi.cpp">
       <Filter>ソース ファイル\Scene\Test</Filter>
     </ClCompile>
+    <ClCompile Include="Library\Code\self\Ball.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h">
@@ -373,6 +376,9 @@
     </ClInclude>
     <ClInclude Include="Scene\93_Test_Takahashi\Test_Takahashi.h">
       <Filter>ヘッダー ファイル\Scene\Test</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\Ball.h">
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
