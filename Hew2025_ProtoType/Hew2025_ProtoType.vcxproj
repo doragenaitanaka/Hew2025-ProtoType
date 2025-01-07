@@ -161,6 +161,7 @@
     <ClCompile Include="Library\Code\self\11_Player\Player.cpp" />
     <ClCompile Include="Library\Code\self\12_GrabBox\GrabBox.cpp" />
     <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp" />
+    <ClCompile Include="Library\Code\self\Seesaw.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp" />
     <ClCompile Include="Scene\01_SplashScreanScene\SplashScreanScene.cpp" />
@@ -215,6 +216,7 @@
     <ClInclude Include="Library\Code\self\12_GrabBox\GrabBox.h" />
     <ClInclude Include="Library\Code\self\imagawa_Input\input.h" />
     <ClInclude Include="Library\Code\self\SafePointers.h" />
+    <ClInclude Include="Library\Code\self\Seesaw.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h" />
     <ClInclude Include="Scene\01_SplashScreanScene\SplashScreanScene.h" />
