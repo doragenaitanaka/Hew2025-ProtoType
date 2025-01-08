@@ -32,7 +32,7 @@ Test_Uryu::Test_Uryu()
     this->p_TestObject5 = nullptr;
 
     // seesaw の初期化
-    seesaw = new Seesaw(p_TestObject4, p_TestObject2);
+    //seesaw = new Seesaw(p_TestObject4, p_TestObject2);
     
     this->p_vertexShader = nullptr;
     this->p_pixelShader = nullptr;
@@ -185,7 +185,7 @@ void	Test_Uryu::Initialize(void)
     this->p_TestObject5->SetSize(TestSize5.x, TestSize5.y, 0.0f);
     this->p_TestObject5->SetAngle(0.0f);
 
-    seesaw = new Seesaw(p_TestObject4, p_TestObject2);
+ //   seesaw = new Seesaw(p_TestObject4, p_TestObject2);
 }
 /**	@brief 	シーン全体の更新
 *	@date	2024/05/10
@@ -273,8 +273,8 @@ void Test_Uryu::Update(void)
     }
 
     // シーソーの更新
-    seesaw->CheckCollision(p_TestObject, p_TestObject3);
-    seesaw->Update(p_TestObject5);
+    //seesaw->CheckCollision(p_TestObject, p_TestObject3);
+    //seesaw->Update(p_TestObject5);
 
     // プレイヤーを投げ飛ばす処理
     if (seesaw->IsBound() && OneBoundFlg)
@@ -298,11 +298,11 @@ void Test_Uryu::Update(void)
     if (TestGrabState == 1)
     {
         // 掴んだオブジェクトの位置をプレイヤーの位置に追従させる
-        grabBox.Move(p_TestObject2->GetPos());
+    ////    grabBox.Move(p_TestObject2->GetPos());
     }
     else if (TestGrabState == 2)
     {
-        grabBox.Move(p_TestObject->GetPos());
+     //   grabBox.Move(p_TestObject->GetPos());
     }
 
     // オブジェクトの更新

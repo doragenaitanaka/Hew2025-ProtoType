@@ -46,7 +46,7 @@ public:
 	/**	@brief 	掴んだ箱を運ぶ処理
 	* @date 2024/12/21
 	*/
-	void Move(const DirectX::XMFLOAT3& playerPos);
+	void Move(const DirectX::XMFLOAT3 objectPos);
 
 	/**	@brief 	GrabStateのゲッター
 	* @date 2024/12/21
