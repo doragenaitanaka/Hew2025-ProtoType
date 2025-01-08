@@ -228,7 +228,13 @@
     <ClCompile Include="Library\Code\self\12_GrabBox\GrabBox.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Library\Code\self\Seesaw.cpp">
+    <ClCompile Include="Library\Code\self\13_Seesaw\Seesaw.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\14_Ball\Ball.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\Pendulum.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -389,7 +395,13 @@
     <ClInclude Include="Library\Code\self\12_GrabBox\GrabBox.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Code\self\Seesaw.h">
+    <ClInclude Include="Library\Code\self\13_Seesaw\Seesaw.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\14_Ball\Ball.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\Pendulum.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

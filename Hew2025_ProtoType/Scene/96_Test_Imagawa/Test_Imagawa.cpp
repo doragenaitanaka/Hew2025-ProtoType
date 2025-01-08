@@ -15,6 +15,7 @@ Test_Imagawa::Test_Imagawa()
     this->p_object = nullptr;
     this->p_object2 = nullptr;
     this->ball = nullptr;
+    this->pendulum = nullptr;
 
     this->p_vertexShader = nullptr;
     this->p_pixelShader = nullptr;
@@ -37,6 +38,7 @@ void	Test_Imagawa::Initialize(void)
     if (!this->p_object) { this->p_object = new Object; }
     if (!this->p_object2) { this->p_object2 = new Object; }
     if (!this->ball) { this->ball = new Ball; }
+    if (!this->pendulum) { this->pendulum = new Pendulum(500.0f, 0.5f, 0.0f, 250.0f, 300.0f); }// 中心(250, 300), 振り幅500, 振動数0.5
 
     if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
     if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
@@ -47,6 +49,9 @@ void	Test_Imagawa::Initialize(void)
     this->p_object->Init(L"Asset/block.png");
     this->p_object2->Init(L"Asset/block.png");
     this->ball->Init(L"Asset/block.png");
+    this->pendulum->Init(L"Asset/block.png", 1, 1, 1, 0.0f);
+   
+
 
    
 
@@ -158,11 +163,15 @@ void	Test_Imagawa::Initialize(void)
     this->p_object->SetPos(TestPos.x, TestPos.y, 0.0f); //初期座標-200.0f
     this->p_object2->SetPos(TestPos2.x, TestPos2.y, 0.0f); //p_objectから400.0f離れた場所に生成
     this->ball->SetPos(BallPos.x, BallPos.y, 0.0f);
+    this->pendulum->SetPos(300.0f, 400.0f, 0.0f); // 振り子の初期位置を設定
 
     //オブジェクトのサイズを設定
     this->p_object->SetSize(TestSize.x, TestSize.y, 0.0f); // サイズは100.0f×100.0f
     this->p_object2->SetSize(TestSize2.x, TestSize2.y, 0.0f); // 同上
     this->ball->SetSize(BallSize.x, BallSize.y, 0.0f);
+
+   
+
 
     ball->SetFriction(0.95f); // 摩擦係数
     ball->SetState(Ball::STOP);
@@ -177,7 +186,7 @@ void Test_Imagawa::Update(void)
 {
     /*@brief　input更新*/
     input.Update();
-
+   
     /**@brief　振動の長さ：５秒*/
     flame = 5;
 
@@ -267,6 +276,8 @@ void Test_Imagawa::Update(void)
     this->p_object->Update();
     this->p_object2->Update();
     this->ball->Update();
+    this->pendulum->Update();
+   
 }
 
 
@@ -308,6 +319,7 @@ void	Test_Imagawa::Draw(void)
     this->p_object->Draw();
     this->p_object2->Draw();
     this->ball->Draw();
+    this->pendulum->Draw();
 }
 
 /**	@brief 	シーン全体の終了処理
@@ -360,5 +372,6 @@ void	Test_Imagawa::Finalize(void)
     SAFE_DELETE(this->p_object);
     SAFE_DELETE(this->p_object2);
     SAFE_DELETE(this->ball);
+    SAFE_DELETE(this->pendulum);
 
 }
