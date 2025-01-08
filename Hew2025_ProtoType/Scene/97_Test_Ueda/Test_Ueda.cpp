@@ -29,7 +29,7 @@ void	Test_Ueda::Initialize(void)
 {
     //サウンドの読み込み
 	AudioManager& audioManager = AudioManager::getInstance();//インスタンスを取得
-    if (!audioManager.loadSound("asset/BGM/Atelier Sophie OST 106 Scenery of the Town _ Morning_4.wav", &m_pSourceVoice))//サウンドを読み込み
+    if (!audioManager.loadSound("asset/BGM/Goal-Wo-Nerae.wav", &m_pSourceVoice))//サウンドを読み込み
     {
 		std::cerr << "Failed to load sound file." << std::endl;//エラーメッセージ   
     }
