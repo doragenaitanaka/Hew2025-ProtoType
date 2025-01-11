@@ -14,6 +14,7 @@
 #include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../Library/Code/self/imagawa_Input/input.h"
 #include"../../Library/Code/self/14_Ball/Ball.h"
+#include"../../Library/Code/self/Pendulum.h"
 #include<iostream>
 
 
@@ -83,6 +84,8 @@ private:
 	Object* p_object;
 	Object* p_object2;
 	Ball* ball;
+	Pendulum* pendulum; // 振り子オブジェクト
+
 
 	//--------------------------------------------------------------------------
 	//		描画関連

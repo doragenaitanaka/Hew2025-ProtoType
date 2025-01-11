@@ -163,6 +163,7 @@
     <ClCompile Include="Library\Code\self\13_Seesaw\Seesaw.cpp" />
     <ClCompile Include="Library\Code\self\14_Ball\Ball.cpp" />
     <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp" />
+    <ClCompile Include="Library\Code\self\Pendulum.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp" />
     <ClCompile Include="Scene\01_SplashScreanScene\SplashScreanScene.cpp" />
@@ -218,6 +219,7 @@
     <ClInclude Include="Library\Code\self\13_Seesaw\Seesaw.h" />
     <ClInclude Include="Library\Code\self\14_Ball\Ball.h" />
     <ClInclude Include="Library\Code\self\imagawa_Input\input.h" />
+    <ClInclude Include="Library\Code\self\Pendulum.h" />
     <ClInclude Include="Library\Code\self\SafePointers.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h" />
