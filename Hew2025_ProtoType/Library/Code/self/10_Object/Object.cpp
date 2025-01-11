@@ -80,8 +80,16 @@ HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 	// 頂点バッファの作成
 	if (!this->p_vertexBuffer)
 	{
-		this->p_vertexBuffer = new  CVertexBuffer;
-		hr = this->p_vertexBuffer->Create(this->vertexList, sizeof(this->vertexList) * 4);
+		this->p_vertexBuffer = new CVertexBuffer;
+		// 頂点リストのサイズを取得
+		UINT vertexListSize = sizeof(this->vertexList) / sizeof(Vertex); // Vertexは頂点の型
+		HRESULT hr = this->p_vertexBuffer->Create(this->vertexList, vertexListSize * sizeof(Vertex));
+		if (FAILED(hr))
+		{
+			// エラー処理
+			delete this->p_vertexBuffer;
+			this->p_vertexBuffer = nullptr;
+		}
 	}
 
 	// テクスチャ読み込み
