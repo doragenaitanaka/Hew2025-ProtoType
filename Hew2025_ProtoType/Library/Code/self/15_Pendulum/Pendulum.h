@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include "10_Object/Object.h"
+#include "../10_Object/Object.h"
 #include <cmath> // sin, cos
 
 class Pendulum : public Object
