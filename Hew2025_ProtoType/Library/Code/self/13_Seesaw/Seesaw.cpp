@@ -5,13 +5,7 @@
 #include "Seesaw.h"
 //#include "../../../../Scene/98_Test_Uryu/Test_Uryu.h"
 
-/**	@brief 	コンストラクタ
-* @date 2024/12/27
-*/
-Seesaw::Seesaw(Object* left, Object* right)
-    : p_Left(left), p_Right(right), SeesawMoveFlg(false), SeesawDirection(false),
-    PlayerOnSeesawL(false), PlayerOnSeesawR(false), BoundFlg(false), OneBoundFlg(false),
-    TestCnt(0), seesawSpeed(1.0f)
+Seesaw::Seesaw()
 {
 }
 
@@ -22,21 +16,26 @@ Seesaw::~Seesaw()
 {
 }
 
+
 /**	@brief 	更新
 * @date 2024/12/27
 */
-void Seesaw::Update(Object* visualObject)
+void Seesaw::Update(Object* visualObject,Object* p_Right,Object* p_Left,XMFLOAT3 camerapos)
 {
     if (SeesawMoveFlg)
     {
-        if (SeesawDirection)
+        if (Direction)
         {
             // シーソーの左端が上がり、右端が下がる
             if (p_Left->GetPos().y < 0.0f && p_Right->GetPos().y > -100.0f)
             {
-                p_Left->SetPos(p_Left->GetPos().x, p_Left->GetPos().y + 20.0f, 0.0f);
-                p_Right->SetPos(p_Right->GetPos().x, p_Right->GetPos().y - 20.0f, 0.0f);
-                visualObject->SetAngle(angle -= 4.0f);
+                p_Left->SetPos(p_Left->GetPos().x - camerapos.x, p_Left->GetPos().y - camerapos.y + 20.0, 0.0f);
+                p_Right->SetPos(p_Right->GetPos().x - camerapos.x, p_Right->GetPos().y - camerapos.y - 20.0f, 0.0f);
+                if (Seesawcnt != 5)
+                {
+                    visualObject->SetAngle(angle -= 2.0f);
+                    Seesawcnt++;
+                }
             }
             else
             {
@@ -52,9 +51,13 @@ void Seesaw::Update(Object* visualObject)
             // シーソーの右端が上がり、左端が下がる
             if (p_Right->GetPos().y < 0.0f && p_Left->GetPos().y > -100.0f)
             {
-                p_Right->SetPos(p_Right->GetPos().x, p_Right->GetPos().y + 20.0f, 0.0f);
-                p_Left->SetPos(p_Left->GetPos().x, p_Left->GetPos().y - 20.0f, 0.0f);
-                visualObject->SetAngle(angle += 4.0f);
+                p_Right->SetPos(p_Right->GetPos().x - camerapos.x, p_Right->GetPos().y - camerapos.y + 20.0f, 0.0f);
+                p_Left->SetPos(p_Left->GetPos().x - camerapos.x, p_Left->GetPos().y - camerapos.y - 20.0f, 0.0f);
+                if (Seesawcnt != 5)
+                {
+                    visualObject->SetAngle(angle += 2.0f);
+                    Seesawcnt++;
+                }
             }
             else
             {
@@ -65,6 +68,7 @@ void Seesaw::Update(Object* visualObject)
                 }
             }
         }
+        JumpFlg = true;
     }
 
     if (BoundFlg && OneBoundFlg)
@@ -79,21 +83,21 @@ void Seesaw::Update(Object* visualObject)
         }
     }
 
-    // シーソーが下がりきった状態でもプレイヤーが触れられるようにする
-    if (p_Left->GetPos().y <= -100.0f)
-    {
-        p_Left->SetPos(p_Left->GetPos().x, -100.0f, 0.0f);
-    }
-    if (p_Right->GetPos().y <= -100.0f)
-    {
-        p_Right->SetPos(p_Right->GetPos().x, -100.0f, 0.0f);
-    }
+    //// シーソーが下がりきった状態でもプレイヤーが触れられるようにする
+    //if (p_Left->GetPos().y <= -100.0f)
+    //{
+    //    p_Left->SetPos(p_Left->GetPos().x, -100.0f, 0.0f);
+    //}
+    //if (p_Right->GetPos().y <= -100.0f)
+    //{
+    //    p_Right->SetPos(p_Right->GetPos().x, -100.0f, 0.0f);
+    //}
 }
 
 /**	@brief 	当たり判定の確認
 * @date 2024/12/27
 */
-void Seesaw::CheckCollision(Object* player, Object* box)
+void Seesaw::CheckCollision(Object* player, Object* box,Object* p_Right,Object*p_Left)
 {
     auto& col1 = player->GetCollider();
     auto& col2 = p_Right->GetCollider();
@@ -106,19 +110,19 @@ void Seesaw::CheckCollision(Object* player, Object* box)
         if (player->GetPos().y > p_Right->GetPos().y)
         {
             PlayerOnSeesawR = true;
-            player->SetPos(player->GetPos().x, p_Right->GetPos().y + 110.0f, 0.0f);
+            player->SetPos(player->GetPos().x , p_Right->GetPos().y + 110.0f , 0.0f);
         }
-        else
-        {
-            if (player->GetPos().x < p_Right->GetPos().x)
-            {
-                player->SetPos(p_Right->GetPos().x - 100.0f, player->GetPos().y, 0.0f);
-            }
-            else
-            {
-                player->SetPos(p_Right->GetPos().x + 100.0f, player->GetPos().y, 0.0f);
-            }
-        }
+        //else
+        //{
+        //    if (player->GetPos().x < p_Right->GetPos().x)
+        //    {
+        //       player->SetPos(p_Right->GetPos().x - 100.0f , player->GetPos().y , 0.0f);
+        //    }
+        //    else
+        //    {
+        //        player->SetPos(p_Right->GetPos().x + 100.0f , player->GetPos().y , 0.0f);
+        //    }
+        //}
     }
     // シーソーの左端の当たり判定
     else if (col1.CheckCollision(col4) && p_Left->GetPos().y >= -100.0f)
@@ -126,19 +130,19 @@ void Seesaw::CheckCollision(Object* player, Object* box)
         if (player->GetPos().y > p_Left->GetPos().y)
         {
             PlayerOnSeesawL = true;
-            player->SetPos(player->GetPos().x, p_Left->GetPos().y + 110.0f, 0.0f);
+            player->SetPos(player->GetPos().x , p_Left->GetPos().y + 110.0f , 0.0f);
         }
-        else
-        {
-            if (player->GetPos().x < p_Left->GetPos().x)
-            {
-                player->SetPos(p_Left->GetPos().x - 100.0f, player->GetPos().y, 0.0f);
-            }
-            else
-            {
-                player->SetPos(p_Left->GetPos().x + 100.0f, player->GetPos().y, 0.0f);
-            }
-        }
+        //else
+        //{
+        //    if (player->GetPos().x < p_Left->GetPos().x)
+        //    {
+        //        player->SetPos(p_Left->GetPos().x  - 100.0f, player->GetPos().y , 0.0f);
+        //    }
+        //    else
+        //    {
+        //        player->SetPos(p_Left->GetPos().x + 100.0f , player->GetPos().y , 0.0f);
+        //    }
+        //}
     }
     else
     {
@@ -151,14 +155,14 @@ void Seesaw::CheckCollision(Object* player, Object* box)
     {
         box->SetColor(DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f));
         SeesawMoveFlg = true;
-        SeesawDirection = true;
+        Direction = true;
         box->SetPos(box->GetPos().x, p_Right->GetPos().y + 100.0f, 0.0f);
     }
     else if (col4.CheckCollision(col3))
     {
         box->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
         SeesawMoveFlg = true;
-        SeesawDirection = false;
+        Direction = false;
         box->SetPos(box->GetPos().x, p_Left->GetPos().y + 100.0f, 0.0f);
     }
     else

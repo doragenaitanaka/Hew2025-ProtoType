@@ -65,7 +65,7 @@ void GrabBox::Release()
 /**	@brief 	掴んだ持ち運び処理
 * @date 2024/12/21
 */
-void GrabBox::Move(const DirectX::XMFLOAT3& objectPos)
+void GrabBox::Move(const DirectX::XMFLOAT3 objectPos)
 {
     if (p_Player)
     {

@@ -16,8 +16,8 @@ public:
     /**	@brief 	コンストラクタ
     * @date 2024/12/27
     */
-    Seesaw(Object* left, Object* right);
-  
+    Seesaw();
+
     /**	@brief 	デストラクタ
     * @date 2024/12/27
     */
@@ -31,12 +31,12 @@ public:
     /**	@brief 	更新
     * @date 2024/12/27
     */
-    void Update(Object* visualObject);
+    void Update(Object* visualObject,Object*p_Right,Object* p_Left,XMFLOAT3 camerapos);
 
     /**	@brief 	当たり判定確認
     * @date 2024/12/27
     */
-    void CheckCollision(Object* player, Object* box);
+    void CheckCollision(Object* player, Object* box,Object* p_Right,Object* p_Left);
     
     /**	@brief 	左のシーソーに乗っているか
     * @date 2024/12/27
@@ -58,16 +58,24 @@ public:
     */
     void ResetBound() { BoundFlg = false; }
 
+    /**	@brief 	ジャンプフラグを返す
+    * @date 2024/12/27
+    */
+    bool CheckJump() { return JumpFlg; }
+
+
+    bool SeesawMoveFlg = false; //シーソーが動いているかの判定
+    bool Direction = false;   //シーソーのどちらが動いているかの判定
+    bool PlayerOnSeesawL = false;   //左のシーソーに乗っているか
+    bool PlayerOnSeesawR = false;   //右のシーソーに乗っているか
+    bool BoundFlg = false;  //跳ね上がるための判定
+    bool OneBoundFlg = false;   //何度も跳ね上がらないようにする判定
+    bool JumpFlg = false;
+    int TestCnt = 0;    //count
+    int Seesawcnt = 0;
+    float seesawSpeed = 1.0f;  //シーソーの速度
+
 private:
     Object* p_Left;
     Object* p_Right;
-
-    bool SeesawMoveFlg; //シーソーが動いているかの判定
-    bool SeesawDirection;   //シーソーのどちらが動いているかの判定
-    bool PlayerOnSeesawL;   //左のシーソーに乗っているか
-    bool PlayerOnSeesawR;   //右のシーソーに乗っているか
-    bool BoundFlg;  //跳ね上がるための判定
-    bool OneBoundFlg;   //何度も跳ね上がらないようにする判定
-    int TestCnt;    //count
-    float seesawSpeed;  //シーソーの速度
 };
