@@ -261,6 +261,22 @@ void Test_Imagawa::Update(void)
     pos.x += leftStick.x * moveSpeed;
     pos.y += leftStick.y * moveSpeed;
 
+    /*@brief コントローラーのinputの入力の有無のチェック*/
+    const float DEAD_ZONE = 0.2f; // デッドゾーンを設定
+    if (input.IsStickCheck(leftStick, DEAD_ZONE))
+    {
+        /////////////////////////////////////////
+        //           入力がある場合　　　　　　//
+        /////////////////////////////////////////
+    }
+    else
+    {
+       /////////////////////////////////////////
+       //           入力がない場合　　　　　　//
+       /////////////////////////////////////////
+    }
+        
+
     // オブジェクトの位置を更新
     this->p_object->SetPos(pos.x, pos.y, pos.z);
     this->p_object2->SetPos(pos2.x, pos2.y, pos2.z);
