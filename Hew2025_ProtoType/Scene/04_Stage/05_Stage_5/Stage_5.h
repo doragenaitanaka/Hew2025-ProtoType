@@ -9,6 +9,8 @@
 #include"../../../Library/Code/self/02_SceneManager/SceneManager.h"
 #include"../../../Library/Code/self/10_Object/Object.h"
 #include"../../../Library/Code/self/11_Player/Player.h"
+#include"../../../Library/Code/self/12_GrabBox/GrabBox.h"
+#include"../../../Library/Code/self/15_Pendulum/Pendulum.h"
 #include"../../../Library/Code/self/imagawa_Input/input.h"
 #include"../../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
@@ -45,7 +47,7 @@ public:
 
 	//座標
 
-	XMFLOAT2 CameraPos = { -700.0f, -150.0f };
+	XMFLOAT3 CameraPos = { -700.0f, -150.0f,0.0f };
 
 	XMFLOAT2 BlockPos00 = { -700.0f,-350.0f };//左床
 	XMFLOAT2 BlockPos01 = { 1700.0f,-350.0f };//右床1(左)
@@ -67,7 +69,9 @@ public:
 	XMFLOAT2 RailPos02 = { 550.0f,1350.0f };//空中左フック下
 
 	XMFLOAT2 YoyoPos00 = { 300.0f,750.0f };//ヨーヨーの支点
-	XMFLOAT2 YoyoPos01 = { 1300.0f,0.0f };//ヨーヨーの本体
+	XMFLOAT2 YoyoPos01 = { 1550.0f,100.0f };//ヨーヨーの本体
+
+	XMFLOAT3 GrabboxPos = { 1550.0f,100.0f,0.0f };//振り子の当たり判定用
 
 	XMFLOAT2 GoalPos = { 1400.0f,3300.0f }; //ゴール
 
@@ -97,6 +101,8 @@ public:
 	XMFLOAT2 YoyoSize00 = { 200.0f,200.0f };
 	XMFLOAT2 YoyoSize01 = { 400.0f,400.0f };
 
+	XMFLOAT2 GrabboxSize = { 400.0f,400.0f };
+
 	XMFLOAT2 GoalSize = { 200.0f,300.0f };
 
 
@@ -106,6 +112,7 @@ public:
 	float posy = 0.0f;
 	float HookMoveSpeed = 5.0f;
 	float YoyoMoveSpeed = 15.0f;
+	bool GrabFlg = false;
 	bool StayGround = false;//地面に触れているかの判定
 	bool MoveHookFLG[4] = { false,false,false,false };//フックが動き出すかのフラグ
 	bool TurnBackFLG[4] = { true,true,true,true };//フックが往復するためのフラグ
@@ -120,6 +127,7 @@ public:
 	int HookCnt[4] = { 0,0,0,0 };
 	int YoyoCntX = 0;
 	int YoyoCntY = 0;
+	int grabState = 0;
 	int ColliderState = 0;
 private:
 	Input input;
@@ -130,6 +138,8 @@ private:
 	Object* hook[7];
 	Object* rail[4];
 	Object* YoyoObject[2]; //YoyObject[0] = ヨーヨーの支点 YoyoObject[1] = ヨーヨーの本体
+	GrabBox* grabbox;
+	Pendulum* pendulum; // 振り子オブジェクト
 	Object* goal;
 
 	//--------------------------------------------------------------------------

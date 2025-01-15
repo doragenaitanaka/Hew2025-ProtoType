@@ -27,10 +27,10 @@ void Seesaw::Update(Object* visualObject,Object* p_Right,Object* p_Left,XMFLOAT3
         if (Direction)
         {
             // シーソーの左端が上がり、右端が下がる
-            if (p_Left->GetPos().y < 0.0f && p_Right->GetPos().y > -100.0f)
+            if (p_Right->GetPos().y > p_Left->GetPos().y)
             {
-                p_Left->SetPos(p_Left->GetPos().x - camerapos.x, p_Left->GetPos().y - camerapos.y + 20.0, 0.0f);
-                p_Right->SetPos(p_Right->GetPos().x - camerapos.x, p_Right->GetPos().y - camerapos.y - 20.0f, 0.0f);
+                p_Left->SetPos(p_Left->GetPos().x, p_Left->GetPos().y + 250.0, 0.0f);
+                p_Right->SetPos(p_Right->GetPos().x, p_Right->GetPos().y - 250.0f, 0.0f);
                 if (Seesawcnt != 5)
                 {
                     visualObject->SetAngle(angle -= 2.0f);
@@ -49,10 +49,10 @@ void Seesaw::Update(Object* visualObject,Object* p_Right,Object* p_Left,XMFLOAT3
         else
         {
             // シーソーの右端が上がり、左端が下がる
-            if (p_Right->GetPos().y < 0.0f && p_Left->GetPos().y > -100.0f)
+            if (p_Right->GetPos().y < p_Left->GetPos().y)
             {
-                p_Right->SetPos(p_Right->GetPos().x - camerapos.x, p_Right->GetPos().y - camerapos.y + 20.0f, 0.0f);
-                p_Left->SetPos(p_Left->GetPos().x - camerapos.x, p_Left->GetPos().y - camerapos.y - 20.0f, 0.0f);
+                p_Right->SetPos(p_Right->GetPos().x, p_Right->GetPos().y + 250.0f, 0.0f);
+                p_Left->SetPos(p_Left->GetPos().x, p_Left->GetPos().y - 250.0f, 0.0f);
                 if (Seesawcnt != 5)
                 {
                     visualObject->SetAngle(angle += 2.0f);

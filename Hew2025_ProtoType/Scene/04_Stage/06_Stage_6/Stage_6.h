@@ -11,6 +11,7 @@
 #include"../../../Library/Code/self/11_Player/Player.h"
 #include"../../../Library/Code/self/12_GrabBox/GrabBox.h"
 #include"../../../Library/Code/self/13_Seesaw/Seesaw.h"
+#include"../../../Library/Code/self/14_Ball/Ball.h"
 #include"../../../Library/Code/self/imagawa_Input/input.h"
 #include"../../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
@@ -142,7 +143,7 @@ private:
 	Object* goal;
 	Object* SeesawHead[2];
 	Object* Connector;
-	Object* BallObject;
+	Ball* BallObject;
 	GrabBox* grabbox;
 	Seesaw* seesaw;
 	//--------------------------------------------------------------------------

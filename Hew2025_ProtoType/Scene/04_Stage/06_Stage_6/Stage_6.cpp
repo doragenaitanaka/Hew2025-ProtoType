@@ -64,7 +64,7 @@ void	Stage_6::Initialize(void)
     if (!this->SeesawHead[0]) { this->SeesawHead[0] = new Object; }//倒れるオブジェクトの初期化
     if (!this->SeesawHead[1]) { this->SeesawHead[1] = new Object; }//倒れるオブジェクトの初期化
 
-    if (!this->BallObject) { this->BallObject = new Object; }//倒れるオブジェクトの初期化
+    if (!this->BallObject) { this->BallObject = new Ball; }//倒れるオブジェクトの初期化
     if (!this->seesaw) { this->seesaw = new Seesaw; }//倒れるオブジェクトの初期化
     if (!this->grabbox) { this->grabbox = new GrabBox; }//倒れるオブジェクトの初期化
 
@@ -282,6 +282,10 @@ void	Stage_6::Initialize(void)
     this->Connector->SetAngle(ConnectorAngle);//シーソーの角度
 
     this->goal->SetSize(GoalSize.x, GoalSize.y, 0.0f);//当たり判定用ブロックの大きさ設定
+    
+    BallObject->SetFriction(0.95f); // 摩擦係数
+    BallObject->SetState(Ball::STOP);
+
 }
 
 /**	@brief 	シーン全体の更新
@@ -421,8 +425,6 @@ void	Stage_6::Update(void)
     this->block[10]->SetPos(BlockPos10.x - CameraPos.x, BlockPos10.y - CameraPos.y, 0.0f);
     this->block[11]->SetPos(BlockPos11.x - CameraPos.x, BlockPos11.y - CameraPos.y, 0.0f);
 
-    this->grabbox->SetPos(GrabboxPos.x - CameraPos.x, GrabboxPos.y - CameraPos.y, 0.0f);
-
     this->hook[0]->SetPos(HookPos00.x - CameraPos.x, HookPos00.y - CameraPos.y, 0.0f);
     this->hook[1]->SetPos(HookPos01.x - CameraPos.x, HookPos01.y - CameraPos.y, 0.0f);
     this->hook[2]->SetPos(HookPos02.x - CameraPos.x, HookPos02.y - CameraPos.y, 0.0f);
@@ -432,7 +434,6 @@ void	Stage_6::Update(void)
 
     this->PushObject->SetPos(PushObjectPos00.x - CameraPos.x, PushObjectPos00.y - CameraPos.y, 0.0f);
     this->Connector->SetPos(SeesawConnectPos.x - CameraPos.x, SeesawConnectPos.y - CameraPos.y, 0.0f);
-    this->BallObject->SetPos(BallPos.x - CameraPos.x, BallPos.y - CameraPos.y, 0.0f);
 
     this->goal->SetPos(GoalPos.x - CameraPos.x, GoalPos.y - CameraPos.y, 0.0f);
 
@@ -597,27 +598,30 @@ void	Stage_6::Update(void)
     //-----------------------------------
     //ボール処理
     //-----------------------------------
-    if (BallState == 0)
-    {
-        BallPos.y -= 10.0f;
-    }
-
-    if (BallState == 2)
-    {
-        BallPos.y -= 5.0f;
-    }
-
     if (BallState != 3)
     {
+        if (BallState == 0)
+        {
+            BallPos.y -= 10.0f;
+        }
+
+        if (BallState == 2)
+        {
+            BallPos.y -= 5.0f;
+        }
+
+
         if (BallMoveFLG[0])
         {
             if (BallMoveFLG[1])
             {
+                BallObject->SetState(Ball::ROLL);
                 BallPos.x += BallSpeed;
                 BallAngle--;
             }
             else
             {
+                BallObject->SetState(Ball::ROLL);
                 BallPos.x -= BallSpeed;
                 BallAngle++;
             }
@@ -888,6 +892,13 @@ void	Stage_6::Update(void)
         this->blockdraw[drawnum]->Update();
 
     }
+
+    //ボールの座標更新はボールのアップデート後に行わないとプレイヤーに追従するためここへ移動
+    this->BallObject->SetPos(BallPos.x - CameraPos.x, BallPos.y - CameraPos.y, 0.0f);
+    //掴まれるオブジェクトも同様
+    this->grabbox->SetPos(GrabboxPos.x - CameraPos.x, GrabboxPos.y - CameraPos.y, 0.0f);
+
+
 }
 
 /**	@brief 	シーン全体の描画
