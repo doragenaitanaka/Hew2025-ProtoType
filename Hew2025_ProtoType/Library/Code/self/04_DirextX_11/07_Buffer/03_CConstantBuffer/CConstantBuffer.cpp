@@ -1,5 +1,5 @@
 ﻿#include"CConstantBuffer.h"
-
+#include<iostream>
 /**	@brief 	コンストラクタ
 *	@date	2024/05/24
 */
@@ -21,7 +21,7 @@ CConstantBuffer::~CConstantBuffer()
 *	@return	HRESULT
 *	@date	2024/05/24
 */
-HRESULT	CConstantBuffer::Create(const void* p_SysMem, UINT	byteWidth, UINT	nothing, D3D11_USAGE _usage, UINT _cpuAccessFlags)
+HRESULT CConstantBuffer::Create(const void* p_SysMem, UINT  byteWidth, UINT nothing, D3D11_USAGE _usage, UINT _cpuAccessFlags)
 {
     //バッファの作成
     D3D11_BUFFER_DESC cbDesc;
@@ -30,42 +30,34 @@ HRESULT	CConstantBuffer::Create(const void* p_SysMem, UINT	byteWidth, UINT	nothi
     cbDesc.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
     cbDesc.CPUAccessFlags = _cpuAccessFlags;
     cbDesc.MiscFlags = 0;
-	cbDesc.StructureByteStride = 0;
+    cbDesc.StructureByteStride = 0;
 
     //バッファ情報を取得
-    ID3D11Buffer* p_vertexBuffer = this->GetBuffer();
     ID3D11Device* device = cd3d11->GetDevice();
-	if (!this->p_buffer)
-	{
-		//デバイスの取得
-		ID3D11Device* device = this->cd3d11->GetDevice();
-		HRESULT	hr;
-		//コンスタントバッファの作成
-		hr = device->CreateBuffer(&cbDesc, NULL, &this->p_buffer);
-		if (FAILED(hr))
-		{
-			//メモリの解放
-			if (this->p_buffer)
-			{
-				this->Release();
-			}
-		}
-		return  hr;
-	}
-	return  S_OK;
+    if (!device) { std::cerr << "deviceがnullptrです。" << std::endl; }
+    if (!this->p_buffer)
+    {
+        HRESULT hr = device->CreateBuffer(&cbDesc, NULL, &this->p_buffer);
+        if (FAILED(hr))
+        {
+            this->Release();
+            return hr;
+        }
+    }
+    return S_OK;
 }
 
 /**	@brief 	バッファの更新
 *	@param	_In_  const void* pSrcData 反映データ
 *	@date	2024/05/24
 */
-void	CConstantBuffer::Update(_In_  const void* pSrcData)
+void CConstantBuffer::Update(_In_  const void* pSrcData)
 {
-	if (this->cd3d11)
-	{
-		ID3D11DeviceContext* context = this->cd3d11->GetDeviceContext();	// コンテキスト取得
-		context->UpdateSubresource(this->p_buffer, 0, NULL, pSrcData, 0, 0);			// 定数バッファをGPU側に渡す
-	}
+    if (this->cd3d11 && this->p_buffer)
+    {
+        ID3D11DeviceContext* context = this->cd3d11->GetDeviceContext();
+        context->UpdateSubresource(this->p_buffer, 0, NULL, pSrcData, 0, 0);
+    }
 }
 
 /**	@brief	使用するコンスタントバッファを設定

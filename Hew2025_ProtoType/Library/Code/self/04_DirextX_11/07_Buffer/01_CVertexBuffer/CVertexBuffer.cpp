@@ -23,38 +23,39 @@ CVertexBuffer::~CVertexBuffer()
 *	@date	2024/05/23
 *	@memo
 */
-HRESULT	CVertexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing, D3D11_USAGE _usage, UINT _cpuAccessFlags)
+HRESULT CVertexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing, D3D11_USAGE _usage, UINT _cpuAccessFlags)
 {
-	// 頂点バッファの設定
-	D3D11_BUFFER_DESC vbDesc = {};
-	vbDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;	//  デバイスにバインドするときの種類(頂点バッファ、インデックスバッファ、定数バッファなど)
-	vbDesc.Usage = _usage;							//  作成するバッファの使用法
-	vbDesc.ByteWidth = byteWidth;				    //  作成するバッファのバイトサイズ
-	vbDesc.MiscFlags = 0;							//  その他のフラグ
-	vbDesc.StructureByteStride = 0;					//  構造化バッファの場合、その構造体のサイズ
-	vbDesc.CPUAccessFlags = _cpuAccessFlags;
+    // 頂点バッファの設定
+    D3D11_BUFFER_DESC vbDesc = {};
+    vbDesc.BindFlags = D3D11_BIND_VERTEX_BUFFER;
+    vbDesc.Usage = _usage;
+    vbDesc.ByteWidth = byteWidth;
+    vbDesc.MiscFlags = 0;
+    vbDesc.StructureByteStride = 0;
+    vbDesc.CPUAccessFlags = _cpuAccessFlags;
 
-	//頂点バッファがなければ
-	if (!this->p_buffer)
-	{
-		//書き込むデータ
-		D3D11_SUBRESOURCE_DATA initData = { p_SysMem, 0, 0 };	//1Dリソースの初期化時は2,3個目のやつ使わない（0をいれる）
-		//デバイスの取得
-		ID3D11Device* device = this->cd3d11->GetDevice();
-		// 頂点バッファの作成
-		HRESULT	hr;
-		hr = device->CreateBuffer(&vbDesc, &initData, &this->p_buffer);
-		if (FAILED(hr))
-		{
-			//メモリの解放
-			if (this->p_buffer)
-			{
-				this->Release();
-			}
-		}
-		return  hr;
-	}
-	return  S_OK;
+    // デバイスの取得
+    ID3D11Device* device = this->cd3d11->GetDevice();
+    // エラーハンドリング
+    if (!device) { return E_FAIL; }
+
+    // 頂点バッファがなければ
+    if (!this->p_buffer)
+    {
+        // 書き込むデータ
+        D3D11_SUBRESOURCE_DATA initData = { p_SysMem, 0, 0 };
+
+        // 頂点バッファの作成
+        HRESULT hr = device->CreateBuffer(&vbDesc, &initData, &this->p_buffer);
+        
+        if (FAILED(hr))
+        {
+            // メモリの解放
+            this->Release();
+            return hr;
+        }
+    }
+    return S_OK;
 }
 
 /**	@brief 	入力アセンブラステージに紐づける
