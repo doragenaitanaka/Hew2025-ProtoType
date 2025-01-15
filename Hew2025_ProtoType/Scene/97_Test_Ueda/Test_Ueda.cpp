@@ -8,12 +8,9 @@
 /**	@brief 	コンストラクタ
 *	@date	2024/05/10
 */
-Test_Ueda::Test_Ueda(): m_pSourceVoice(nullptr)
+Test_Ueda::Test_Ueda()
 {
-    //サウンドの取得
-	AudioManager& audioManager = AudioManager::getInstance();
-	audioManager.init();//サウンドの初期化
-
+	this->Initialize();
 }
 /**	@brief 	デストラクタ
 *	@date	2024/05/10
@@ -27,12 +24,8 @@ Test_Ueda::~Test_Ueda()
 */
 void	Test_Ueda::Initialize(void)
 {
-    //サウンドの読み込み
-	AudioManager& audioManager = AudioManager::getInstance();//インスタンスを取得
-    if (!audioManager.loadSound("asset/BGM/Goal-Wo-Nerae.wav", &m_pSourceVoice))//サウンドを読み込み
-    {
-		std::cerr << "Failed to load sound file." << std::endl;//エラーメッセージ   
-    }
+	//サウンドの初期化
+    
 }
 
 /**	@brief 	シーン全体の更新
@@ -40,12 +33,10 @@ void	Test_Ueda::Initialize(void)
 */
 void	Test_Ueda::Update(void)
 {
-    AudioManager& audioManager = AudioManager::getInstance();//インスタンスを取得
+    
     if (GetAsyncKeyState(VK_SPACE))
     {
-        audioManager.setMasterVolume(0.5f);//音量を５０％に設定
-        m_pSourceVoice->Start(0);//サウンドの再生
-        this->p_sceneManager->ChangeScene(Scene::TEST_UEDA);
+        
         return;
     }
 }
@@ -63,6 +54,5 @@ void	Test_Ueda::Draw(void)
 void	Test_Ueda::Finalize(void)
 {
   //サウンドの終了
-	AudioManager& audioManager = AudioManager::getInstance();
-	audioManager.Uninit();
+	
 }
