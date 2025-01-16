@@ -47,8 +47,8 @@ public:
 
 	XMFLOAT2 CameraPos = { -100.0f, -150.0f };
 
-	XMFLOAT2 BlockPos00 = { 3800.0f,-700.0f }; //左床
-	XMFLOAT2 BlockPos01 = { -1000.0f,-700.0f }; //右床
+	XMFLOAT2 BlockPos00 = { 3800.0f,-700.0f }; //右床
+	XMFLOAT2 BlockPos01 = { -1000.0f,-700.0f }; //左床
 	XMFLOAT2 BlockPos02 = { -1800.0f,1800.0f };	//左壁
 	XMFLOAT2 BlockPos03 = { 2150.0f,1600.0f }; //空中左床
 	XMFLOAT2 BlockPos04 = { 4250.0f,1600.0f }; //空中右床(下)
@@ -64,6 +64,7 @@ public:
 	XMFLOAT2 HookPos02 = { 1900.0f,2100.0f };	//空中左フック(下)
 	XMFLOAT2 HookPos03 = { 1900.0f,2950.0f }; //空中左フック(中)
 	XMFLOAT2 HookPos04 = { 1900.0f,3800.0f }; //空中左フック(上)
+	XMFLOAT2 HookPos05 = { 250.0f,100.0f }; //地上左フック(追加)
 
 	XMFLOAT2 RailPos00 = { 3250.0f,1300.0f }; //地上右フック用
 	XMFLOAT2 RailPos01 = { 4150.0f,2900.0f }; //空中右フック用
@@ -92,6 +93,7 @@ public:
 	XMFLOAT2 HookSize02 = { 200.0f,200.0f };
 	XMFLOAT2 HookSize03 = { 200.0f,200.0f };
 	XMFLOAT2 HookSize04 = { 200.0f,200.0f };
+	XMFLOAT2 HookSize05 = { 200.0f,200.0f };
 
 	XMFLOAT2 RailSize00 = { 100.0f,2600.0f };
 	XMFLOAT2 RailSize01 = { 100.0f,2000.0f };
@@ -124,7 +126,7 @@ private:
 	Player* player;
 	Object* block[100];
 	Object* blockdraw[10000];
-	Object* hook[5];
+	Object* hook[6];
 	Object* PushObject[2];
 	Object* rail[3];
 	Object* goal;

@@ -65,7 +65,7 @@ public:
 
 	XMFLOAT3 GrabboxPos = { 2800.0f,200.0f,0.0f };//消しゴム
 
-	XMFLOAT2 HookPos00 = { 590.0f,700.0f };//左フック
+	XMFLOAT2 HookPos00 = { 590.0f,200.0f };//左フック
 	XMFLOAT2 HookPos01 = { 2500.0f, 1100.0f };//右フック
 	XMFLOAT2 HookPos02 = { 2800.0f, 2100.0f };//ゴール横
 

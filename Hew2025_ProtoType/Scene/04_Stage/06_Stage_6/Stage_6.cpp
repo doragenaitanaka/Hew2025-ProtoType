@@ -630,7 +630,7 @@ void	Stage_6::Update(void)
     //-----------------------------------
     if (seesaw->CheckJump())
     {
-        if (seesawcnt != 50)
+        if (seesawcnt != 70)
         {
             GrabboxPos.y += 75.0f;
             seesawcnt++;
@@ -639,7 +639,7 @@ void	Stage_6::Update(void)
 
     if (grabState != 1)
     {
-        GrabboxPos.y -= 10.0f;
+        GrabboxPos.y -= 25.0f;
     }
 
     if (GrabFlg)
@@ -812,7 +812,7 @@ void	Stage_6::Update(void)
         {
             player->SetColor(DirectX::XMFLOAT4(0.0f, 1.0f, 1.0f, 1.0f));
         }
-        else if (ColliderState == 6)//if ColliderState == 6 ->ブルーベリー色の怪物になる
+        else if (ColliderState == 6)//if ColliderState == 6 ->ブルーベリー色になる
         {
             player->SetColor(DirectX::XMFLOAT4(0.5f, 0.5f, 1.0f, 1.0f));
         }
@@ -848,7 +848,7 @@ void	Stage_6::Update(void)
         {
             player->SetColor(DirectX::XMFLOAT4(0.0f, 1.0f, 1.0f, 1.0f));
         }
-        else if (ColliderState == 6)//if ColliderState == 6 ->ブルーベリー色の怪物になる
+        else if (ColliderState == 6)//if ColliderState == 6 ->ブルーベリー色になる
         {
             player->SetColor(DirectX::XMFLOAT4(0.5f, 0.5f, 1.0f, 1.0f));
         }
