@@ -157,6 +157,7 @@
     <ClCompile Include="Library\Code\self\05_Collider\00_BaseCollider\BaseCollider.cpp" />
     <ClCompile Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.cpp" />
     <ClCompile Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.cpp" />
+    <ClCompile Include="Library\Code\self\06_TileMap\TileMap.cpp" />
     <ClCompile Include="Library\Code\self\10_Object\Object.cpp" />
     <ClCompile Include="Library\Code\self\11_Player\Player.cpp" />
     <ClCompile Include="Library\Code\self\12_GrabBox\GrabBox.cpp" />
@@ -213,6 +214,7 @@
     <ClInclude Include="Library\Code\self\05_Collider\00_BaseCollider\BaseCollider.h" />
     <ClInclude Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.h" />
     <ClInclude Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.h" />
+    <ClInclude Include="Library\Code\self\06_TileMap\TileMap.h" />
     <ClInclude Include="Library\Code\self\10_Object\Object.h" />
     <ClInclude Include="Library\Code\self\11_Player\Player.h" />
     <ClInclude Include="Library\Code\self\12_GrabBox\GrabBox.h" />
