@@ -157,38 +157,93 @@
     <ClCompile Include="Library\Code\self\05_Collider\00_BaseCollider\BaseCollider.cpp" />
     <ClCompile Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.cpp" />
     <ClCompile Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.cpp" />
+    <ClCompile Include="Library\Code\self\07_Camera\Camera.cpp" />
     <ClCompile Include="Library\Code\self\10_Object\Object.cpp" />
-    <ClCompile Include="Library\Code\self\11_Player\Player.cpp" />
-    <ClCompile Include="Library\Code\self\12_GrabBox\GrabBox.cpp" />
-    <ClCompile Include="Library\Code\self\13_Seesaw\Seesaw.cpp" />
-    <ClCompile Include="Library\Code\self\14_Ball\Ball.cpp" />
-    <ClCompile Include="Library\Code\self\15_Pendulum\Pendulum.cpp" />
+    <ClCompile Include="Library\Code\self\11_Player\Player.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\12_GrabBox\GrabBox.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\13_Seesaw\Seesaw.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\14_Ball\Ball.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Library\Code\self\15_Pendulum\Pendulum.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp" />
-    <ClCompile Include="Scene\01_SplashScreanScene\SplashScreanScene.cpp" />
-    <ClCompile Include="Scene\02_TitleScene\TitleScene.cpp" />
-    <ClCompile Include="Scene\03_StageSelectScene\StageSelectScene.cpp" />
-    <ClCompile Include="Scene\04_Stage\01_Stage_1\Stage_1.cpp" />
-    <ClCompile Include="Scene\04_Stage\02_Stage_2\Stage_2.cpp" />
-    <ClCompile Include="Scene\04_Stage\03_Stage_3\Stage_3.cpp" />
-    <ClCompile Include="Scene\04_Stage\04_Stage_4\Stage_4.cpp" />
-    <ClCompile Include="Scene\04_Stage\05_Stage_5\Stage_5.cpp" />
-    <ClCompile Include="Scene\04_Stage\06_Stage_6\Stage_6.cpp" />
-    <ClCompile Include="Scene\04_Stage\07_Stage_7\Stage_7.cpp" />
-    <ClCompile Include="Scene\04_Stage\08_Stage_8\Stage_8.cpp" />
-    <ClCompile Include="Scene\04_Stage\09_Stage_9\Stage_9.cpp" />
-    <ClCompile Include="Scene\04_Stage\10_Stage_10\Stage_10.cpp" />
-    <ClCompile Include="Scene\04_Stage\11_Stage_11\Stage_11.cpp" />
-    <ClCompile Include="Scene\04_Stage\12_Stage_12\Stage_12.cpp" />
-    <ClCompile Include="Scene\05_EndingScene\EndingScene.cpp" />
+    <ClCompile Include="Scene\01_SplashScreanScene\SplashScreanScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\02_TitleScene\TitleScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\03_StageSelectScene\StageSelectScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\01_Stage_1\Stage_1.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\02_Stage_2\Stage_2.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\03_Stage_3\Stage_3.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\04_Stage_4\Stage_4.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\05_Stage_5\Stage_5.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\06_Stage_6\Stage_6.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\07_Stage_7\Stage_7.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\08_Stage_8\Stage_8.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\09_Stage_9\Stage_9.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\10_Stage_10\Stage_10.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\11_Stage_11\Stage_11.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\04_Stage\12_Stage_12\Stage_12.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\05_EndingScene\EndingScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Scene\93_Test_Takahashi\Test_Takahashi.cpp" />
-    <ClCompile Include="Scene\94_Test_Otani\Test_Otani.cpp" />
-    <ClCompile Include="Scene\95_Test_Ri\Test_Ri.cpp" />
-    <ClCompile Include="Scene\96_Test_Imagawa\Test_Imagawa.cpp" />
-    <ClCompile Include="Scene\97_Test_Ueda\Test_Ueda.cpp" />
-    <ClCompile Include="Scene\98_Test_Uryu\Test_Uryu.cpp" />
-    <ClCompile Include="Scene\99_TestScene\TestScene.cpp" />
+    <ClCompile Include="Scene\94_Test_Otani\Test_Otani.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\95_Test_Ri\Test_Ri.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\96_Test_Imagawa\Test_Imagawa.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\97_Test_Ueda\Test_Ueda.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\98_Test_Uryu\Test_Uryu.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="Scene\99_TestScene\TestScene.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.h" />
@@ -213,6 +268,7 @@
     <ClInclude Include="Library\Code\self\05_Collider\00_BaseCollider\BaseCollider.h" />
     <ClInclude Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.h" />
     <ClInclude Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.h" />
+    <ClInclude Include="Library\Code\self\07_Camera\Camera.h" />
     <ClInclude Include="Library\Code\self\10_Object\Object.h" />
     <ClInclude Include="Library\Code\self\11_Player\Player.h" />
     <ClInclude Include="Library\Code\self\12_GrabBox\GrabBox.h" />
@@ -223,22 +279,54 @@
     <ClInclude Include="Library\Code\self\SafePointers.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h" />
-    <ClInclude Include="Scene\01_SplashScreanScene\SplashScreanScene.h" />
-    <ClInclude Include="Scene\02_TitleScene\TitleScene.h" />
-    <ClInclude Include="Scene\03_StageSelectScene\StageSelectScene.h" />
-    <ClInclude Include="Scene\04_Stage\01_Stage_1\Stage_1.h" />
-    <ClInclude Include="Scene\04_Stage\02_Stage_2\Stage_2.h" />
-    <ClInclude Include="Scene\04_Stage\03_Stage_3\Stage_3.h" />
-    <ClInclude Include="Scene\04_Stage\04_Stage_4\Stage_4.h" />
-    <ClInclude Include="Scene\04_Stage\05_Stage_5\Stage_5.h" />
-    <ClInclude Include="Scene\04_Stage\06_Stage_6\Stage_6.h" />
-    <ClInclude Include="Scene\04_Stage\07_Stage_7\Stage_7.h" />
-    <ClInclude Include="Scene\04_Stage\08_Stage_8\Stage_8.h" />
-    <ClInclude Include="Scene\04_Stage\09_Stage_9\Stage_9.h" />
-    <ClInclude Include="Scene\04_Stage\10_Stage_10\Stage_10.h" />
-    <ClInclude Include="Scene\04_Stage\11_Stage_11\Stage_11.h" />
-    <ClInclude Include="Scene\04_Stage\12_Stage_12\Stage_12.h" />
-    <ClInclude Include="Scene\05_EndingScene\EndingScene.h" />
+    <ClInclude Include="Scene\01_SplashScreanScene\SplashScreanScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\02_TitleScene\TitleScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\03_StageSelectScene\StageSelectScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\01_Stage_1\Stage_1.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\02_Stage_2\Stage_2.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\03_Stage_3\Stage_3.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\04_Stage_4\Stage_4.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\05_Stage_5\Stage_5.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\06_Stage_6\Stage_6.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\07_Stage_7\Stage_7.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\08_Stage_8\Stage_8.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\09_Stage_9\Stage_9.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\10_Stage_10\Stage_10.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\11_Stage_11\Stage_11.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\04_Stage\12_Stage_12\Stage_12.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
+    <ClInclude Include="Scene\05_EndingScene\EndingScene.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Scene\93_Test_Takahashi\Test_Takahashi.h" />
     <ClInclude Include="Scene\94_Test_Otani\Test_Otani.h" />
     <ClInclude Include="Scene\95_Test_Ri\Test_Ri.h" />

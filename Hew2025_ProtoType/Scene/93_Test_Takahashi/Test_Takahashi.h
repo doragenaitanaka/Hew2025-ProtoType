@@ -14,6 +14,7 @@
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
+#include"../../Library/Code/self/07_Camera/Camera.h"
 
 /**	@file	Test_Takahashi.h
 *	@brief 	髙橋用のテストシーンクラス
@@ -54,6 +55,8 @@ public:
 	XMFLOAT2 TestSize2 = { 100.0f,100.0f };
 
 private:
+	// カメラ
+	Camera* p_camera;
 
 	//--------------------------------------------------------------------------
 	//		オブジェクト
