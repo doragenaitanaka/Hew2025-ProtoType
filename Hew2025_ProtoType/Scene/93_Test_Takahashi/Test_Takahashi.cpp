@@ -143,7 +143,7 @@ void	Test_Takahashi::Initialize(void)
     if (!this->tileMap)
     {
         this->tileMap = new TileMap; 
-        this->tileMap->GenerateMap("Stage_Test.csv");
+        this->tileMap->GenerateMap("Stage1.csv");
     }
 }
 

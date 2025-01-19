@@ -46,7 +46,7 @@ void TileMap::GenerateMap(const std::string& _stageFile)
                 newTile->SetPos(TileMap::tileWidth * j, TileMap::tileHeight * (-i), 0.0f);
                 newTile->SetSize(TileMap::tileWidth, TileMap::tileHeight, 0.0f);
             }
-            std::cout << "j:" << j << std::endl;
+            //std::cout << "j:" << j << std::endl;
         }
     }
 }
@@ -110,18 +110,18 @@ std::vector<Object*>& TileMap::GetTiles()
     return this->tiles;
 }
 
-/**
- * @brief ファイルからステージデータを読み込む
- * @param const std::string _stageFile ステージファイルのパス
- * @param std::vector<int>& _stageData ステージ情報
- * @return bool true: 読み込み成功
- */
+ /**
+  * @brief ファイルからステージデータを読み込む
+  * @param const std::string& _stageFile ステージファイルのパス
+  * @param std::vector<int>& _stageData ステージ情報
+  * @return 読み込み成功の場合 true を返す
+  */
 bool TileMap::LoadStageFile(const std::string& _stageFile, std::vector<int>& _stageData)
 {
     // ファイルストリームを開く
     std::ifstream file(_stageFile);
 
-    // ファイルが開けない場合エラー
+    // ファイルが開けない場合エラーを出力し、falseを返す
     if (!file.is_open())
     {
         std::cerr << "Could not open file: " << _stageFile << std::endl;
@@ -143,7 +143,10 @@ bool TileMap::LoadStageFile(const std::string& _stageFile, std::vector<int>& _st
         TileMap::stageHeight = std::stoi(line); // 行全体を整数に変換
     }
 
+    // _stageData のメモリを事前に確保
+    _stageData.reserve(TileMap::stageWidth * TileMap::stageHeight);
     int rowCount = 0;
+
     // ステージデータの読み込み
     while (std::getline(file, line) && rowCount < TileMap::stageHeight)
     {
@@ -154,27 +157,32 @@ bool TileMap::LoadStageFile(const std::string& _stageFile, std::vector<int>& _st
         // 指定列数まで読み込み
         while (std::getline(ss, value, ',') && colCount < TileMap::stageWidth)
         {
-            try
+            if (value.empty())
             {
-                int intValue = std::stoi(value);    // 文字列を整数に変換
-                _stageData.push_back(intValue);     // 変換した値を追加
+                _stageData.push_back(0); // 値が空の場合、0を追加
             }
-            // エラー
-            catch (const std::invalid_argument& e)
+            else
             {
-                std::cerr << "Invalid value: " << value << std::endl;
-            }
-            catch (const std::out_of_range& e)
-            {
-                std::cerr << "Value out of range: " << value << std::endl;
+                try
+                {
+                    int intValue = std::stoi(value); // 文字列を整数に変換
+                    _stageData.push_back(intValue);  // 変換した値を追加
+                }
+                // 無効な値の場合や範囲外の値の場合、0を追加
+                catch (const std::exception&)
+                {
+                    std::cerr << "Invalid value: " << value << std::endl;
+                    _stageData.push_back(0);
+                }
             }
             ++colCount;
         }
         ++rowCount;
     }
 
+    // ファイルを閉じる
     file.close();
-    return true;
+    return true; // 読み込み成功
 }
 
 /** @brief タイルを生成する
