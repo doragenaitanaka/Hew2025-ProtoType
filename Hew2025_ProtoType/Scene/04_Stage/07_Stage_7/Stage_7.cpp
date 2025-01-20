@@ -41,6 +41,8 @@ void	Stage_7::Initialize(void)
 {
     if (!this->background) { this->background = new Object; }
     if (!this->player) { this->player = new Player; }
+    if (!this->goal) { this->goal = new Object; }
+
 
     for (n = 0; n < 100; n++)
     {
@@ -60,7 +62,9 @@ void	Stage_7::Initialize(void)
 
     //オブジェクト
     this->background->Init(L"Asset/back_img_01.png");
-    this->player->Init(L"Asset/block.png");
+    this->player->Init(L"Asset/gumbody2.png");
+    this->goal->Init(L"Asset/goal1.png");
+
 
     for (n = 0; n < 100; n++)
     {
@@ -178,6 +182,17 @@ void	Stage_7::Initialize(void)
     this->player->SetPos(0.0f, -100.0f, 0.0f);
 
     this->block[0]->SetPos(BlockPos00.x, BlockPos00.y, 0.0f);//当たり判定用ブロックの座標設定
+    this->block[1]->SetPos(BlockPos01.x, BlockPos01.y+400, 0.0f);//当たり判定用ブロックの座標設定
+    this->block[2]->SetPos(BlockPos02.x, BlockPos02.y + 400, 0.0f);//当たり判定用ブロックの座標設定
+    this->block[3]->SetPos(BlockPos03.x, BlockPos03.y + 400, 0.0f);//当たり判定用ブロックの座標設定
+    this->block[4]->SetPos(BlockPos04.x, BlockPos04.y + 400, 0.0f);//当たり判定用ブロックの座標設定
+    this->block[5]->SetPos(BlockPos05.x, BlockPos05.y + 400, 0.0f);//当たり判定用ブロックの座標設定
+    this->block[6]->SetPos(BlockPos06.x, BlockPos06.y + 400, 0.0f);//当たり判定用ブロックの座標設定
+    this->block[7]->SetPos(BlockPos07.x, BlockPos07.y + 400, 0.0f);//当たり判定用ブロックの座標設定
+    this->block[8]->SetPos(BlockPos08.x, BlockPos08.y + 400, 0.0f);//当たり判定用ブロックの座標設定
+    this->block[9]->SetPos(BlockPos09.x, BlockPos09.y + 400, 0.0f);//当たり判定用ブロックの座標設定
+    this->block[10]->SetPos(BlockPos10.x, BlockPos10.y + 400, 0.0f);//当たり判定用ブロックの座標設定
+    this->block[11]->SetPos(BlockPos11.x, BlockPos11.y + 400, 0.0f);//当たり判定用ブロックの座標設定
 
 
     for (drawnum = 0; drawnum < 1500; drawnum++)
@@ -190,6 +205,17 @@ void	Stage_7::Initialize(void)
     this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
 
     this->block[0]->SetSize(BlockSize00.x, BlockSize00.y, 0.0f);//当たり判定用ブロックの大きさ設定
+    this->block[1]->SetSize(BlockSize01.x, BlockSize01.y, 0.0f);//当たり判定用ブロックの大きさ設定
+    this->block[2]->SetSize(BlockSize02.x, BlockSize02.y, 0.0f);//当たり判定用ブロックの大きさ設
+    this->block[3]->SetSize(BlockSize03.x, BlockSize03.y, 0.0f);//当たり判定用ブロックの大きさ設
+    this->block[4]->SetSize(BlockSize04.x, BlockSize04.y, 0.0f);//当たり判定用ブロックの大きさ設
+    this->block[5]->SetSize(BlockSize05.x, BlockSize05.y, 0.0f);//当たり判定用ブロックの大きさ設
+    this->block[6]->SetSize(BlockSize06.x, BlockSize06.y, 0.0f);//当たり判定用ブロックの大きさ設
+    this->block[7]->SetSize(BlockSize07.x, BlockSize07.y, 0.0f);//当たり判定用ブロックの大きさ設
+    this->block[8]->SetSize(BlockSize08.x, BlockSize08.y, 0.0f);//当たり判定用ブロックの大きさ設
+    this->block[9]->SetSize(BlockSize09.x, BlockSize09.y, 0.0f);//当たり判定用ブロックの大きさ設
+    this->block[10]->SetSize(BlockSize10.x, BlockSize10.y, 0.0f);//当たり判定用ブロックの大きさ設
+    this->block[11]->SetSize(BlockSize11.x, BlockSize11.y, 0.0f);//当たり判定用ブロックの大きさ設
 
 
     for (drawnum = 0; drawnum < 1500; drawnum++)
@@ -266,16 +292,66 @@ void	Stage_7::Update(void)
     //当たり判定用ブロックの座標更新
 
     this->block[0]->SetPos(BlockPos00.x - CameraPos.x, BlockPos00.y - CameraPos.y, 0.0f);
+    this->block[1]->SetPos(BlockPos01.x - CameraPos.x, BlockPos01.y - CameraPos.y, 0.0f);
+    this->block[2]->SetPos(BlockPos02.x - CameraPos.x, BlockPos02.y - CameraPos.y, 0.0f);
+    this->block[3]->SetPos(BlockPos03.x - CameraPos.x, BlockPos03.y - CameraPos.y, 0.0f);
+    this->block[4]->SetPos(BlockPos04.x - CameraPos.x, BlockPos04.y - CameraPos.y, 0.0f);
+    this->block[5]->SetPos(BlockPos05.x - CameraPos.x, BlockPos05.y - CameraPos.y, 0.0f);
+    this->block[6]->SetPos(BlockPos06.x - CameraPos.x, BlockPos06.y - CameraPos.y, 0.0f);
+    this->block[7]->SetPos(BlockPos07.x - CameraPos.x, BlockPos07.y - CameraPos.y, 0.0f);
+    this->block[8]->SetPos(BlockPos08.x - CameraPos.x, BlockPos08.y - CameraPos.y, 0.0f);
+    this->block[9]->SetPos(BlockPos09.x - CameraPos.x, BlockPos09.y - CameraPos.y, 0.0f);
+    this->block[10]->SetPos(BlockPos10.x - CameraPos.x, BlockPos10.y - CameraPos.y, 0.0f);
+    this->block[11]->SetPos(BlockPos11.x - CameraPos.x, BlockPos11.y - CameraPos.y, 0.0f);
 
     //描画用ブロックの座標更新
 
     posx = 0.0f;
     posy = 0.0f;
-    for (drawnum = 0; drawnum < 100; drawnum++)//当たり判定ブロックのblock[0]の範囲で小ブロックを描画
+    for (drawnum = 0; drawnum < 11; drawnum++)//当たり判定ブロックのblock[0]の範囲で小ブロックを描画
     {
-        this->blockdraw[drawnum]->SetPos(-2950.0f + posx - CameraPos.x, -350.0f + posy - CameraPos.y, 0.0f);
-        posx += 100.0f;
+        
+            this->blockdraw[drawnum]->SetPos(-500.0f + posx - CameraPos.x, -350.0f + posy - CameraPos.y, 0.0f);
+            posx += 100.0f;
+        
     }
+
+    posx = 0.0f;
+    posy = 0.0f;
+    for (drawnum = 11; drawnum <36 ; drawnum++)//当たり判定ブロックのblock[0]の範囲で小ブロックを描画
+    {
+        if (drawnum ==16  || drawnum == 21 || drawnum == 26||drawnum==31)
+        {
+            posx = 0.0f;
+        }
+        if (drawnum < 16)
+        {
+            this->blockdraw[drawnum]->SetPos(-500.0f + posx - CameraPos.x, 250.0f + posy - CameraPos.y, 0.0f);
+            posx += 100.0f;
+       }
+        else if (drawnum >= 16 && drawnum < 21)
+        {
+            this->blockdraw[drawnum]->SetPos(-500.0f + posx - CameraPos.x, 350.0f + posy - CameraPos.y, 0.0f);
+            posx += 100.0f;
+        }
+        else if (drawnum >= 21 && drawnum < 26)
+        {
+            this->blockdraw[drawnum]->SetPos(-500.0f + posx - CameraPos.x, 450.0f + posy - CameraPos.y, 0.0f);
+            posx += 100.0f;
+        }
+        else if (drawnum >= 26 && drawnum < 31)
+        {
+            this->blockdraw[drawnum]->SetPos(-500.0f + posx - CameraPos.x, 550.0f + posy - CameraPos.y, 0.0f);
+            posx += 100.0f;
+        }
+
+    }
+
+    posx = 0.0f;
+    posy = 0.0f;
+
+
+
 
     //-----------------------------------
     //Collider更新
@@ -284,11 +360,45 @@ void	Stage_7::Update(void)
 
     this->block[0]->SetColliderSize(DirectX::XMFLOAT3(BlockSize00.x, BlockSize00.y, 0.0f));
 
+    this->block[1]->SetColliderSize(DirectX::XMFLOAT3(BlockSize01.x, BlockSize01.y, 0.0f));
+
+    this->block[2]->SetColliderSize(DirectX::XMFLOAT3(BlockSize02.x, BlockSize02.y, 0.0f));
+
+    this->block[3]->SetColliderSize(DirectX::XMFLOAT3(BlockSize03.x, BlockSize03.y, 0.0f));
+
+    this->block[4]->SetColliderSize(DirectX::XMFLOAT3(BlockSize04.x, BlockSize04.y, 0.0f));
+
+    this->block[5]->SetColliderSize(DirectX::XMFLOAT3(BlockSize05.x, BlockSize05.y, 0.0f));
+
+    this->block[6]->SetColliderSize(DirectX::XMFLOAT3(BlockSize06.x, BlockSize06.y, 0.0f));
+
+    this->block[7]->SetColliderSize(DirectX::XMFLOAT3(BlockSize07.x, BlockSize07.y, 0.0f));
+
+    this->block[8]->SetColliderSize(DirectX::XMFLOAT3(BlockSize08.x, BlockSize08.y, 0.0f));
+
+    this->block[9]->SetColliderSize(DirectX::XMFLOAT3(BlockSize09.x, BlockSize09.y, 0.0f));
+
+    this->block[10]->SetColliderSize(DirectX::XMFLOAT3(BlockSize10.x, BlockSize10.y, 0.0f));
+
+    this->block[11]->SetColliderSize(DirectX::XMFLOAT3(BlockSize11.x, BlockSize11.y, 0.0f));
+
     auto& col1 = player->GetCollider();
 
 
     std::vector<std::reference_wrapper<BaseCollider>> colblock = {//当たり判定を入れる
          block[0]->GetCollider(),
+         block[1]->GetCollider(),
+         block[2]->GetCollider(),
+         block[3]->GetCollider(),
+         block[4]->GetCollider(),
+         block[5]->GetCollider(),
+         block[6]->GetCollider(),
+         block[7]->GetCollider(),
+         block[8]->GetCollider(),
+         block[9]->GetCollider(),
+         block[10]->GetCollider(),
+         block[11]->GetCollider(),
+
     };
 
 
@@ -319,7 +429,7 @@ void	Stage_7::Update(void)
     this->background->Update();
     this->player->Update();
 
-    for (n = 0; n < 1; n++)//Updateの数
+    for (n = 0; n < 12; n++)//Updateの数
     {
         this->block[n]->Update();
     }
@@ -366,7 +476,7 @@ void	Stage_7::Draw(void)
     //		オブジェクトの描画
     //--------------------------------------------------------------------------
     this->background->Draw();
-    for (n = 0; n < 1; n++)//当たり判定用ブロック描画
+    for (n = 0; n < 12; n++)//当たり判定用ブロック描画
     {
         this->block[n]->Draw();
     }
