@@ -156,49 +156,49 @@ void	Player::Update()
 	this->playerVertexList[0].x = -0.5f + 0.6f * x3 + 0.2f * x4;
 	this->playerVertexList[0].y = 0.5f + 0.1f * y3;
 
-	this->playerVertexList[1].x = 0.0f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[1].x = 0.0f + 0.4f * x3 + 0.4f * x4;
 	this->playerVertexList[1].y = 0.5f + 0.0f * y3;
 
-	this->playerVertexList[2].x = -0.5f + x3 - 0.1f * x4;
-	this->playerVertexList[2].y = 0.0f + 0.2f * y3;
+	this->playerVertexList[2].x = -0.5f + 0.8f * x3 - 0.2f * x4;
+	this->playerVertexList[2].y = 0.0f + 0.3f * y3;
 
-	this->playerVertexList[3].x = 0.0f + x4 - 0.1f * x3;
-	this->playerVertexList[3].y = 0.0f + 0.2f * y3;
+	this->playerVertexList[3].x = 0.0f + 0.4f * x3 + 0.4f * x4;
+	this->playerVertexList[3].y = 0.0f + 0.3f * y3;
 
-	this->playerVertexList[4].x = 0.0f;
+	this->playerVertexList[4].x = 0.0f + 0.4f * x3 + 0.4f * x4;
 	this->playerVertexList[4].y = -0.5f + 0.7f * y3;
 
-	this->playerVertexList[5].x = -0.5f + 0.6f * x4 + 0.2f * x3;
-	this->playerVertexList[5].y = 0.0f + 0.2f * y3;
+	this->playerVertexList[5].x = -0.5f + 0.8f * x3 - 0.2f * x4;
+	this->playerVertexList[5].y = 0.0f + 0.3f * y3;
 
-	this->playerVertexList[6].x = -0.5f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[6].x = -0.5f + 0.6f * x3 + 0.2f * x4;
 	this->playerVertexList[6].y = -0.5f + 0.5f * y3;
 
-	this->playerVertexList[7].x = 0.0f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[7].x = 0.0f + 0.4f * x3 + 0.4f * x4;
 	this->playerVertexList[7].y = -0.5f + 0.7f * y3;
 
-	this->playerVertexList[8].x = 0.5f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[8].x = 0.5f + 0.2f * x3 + 0.6f * x4;
 	this->playerVertexList[8].y = -0.5f + 0.5f * y3;
 
-	this->playerVertexList[9].x = 0.0f + x4 - 0.1f * x3;
+	this->playerVertexList[9].x = 0.0f + 0.4 * x3 + 0.4f * x4;
 	this->playerVertexList[9].y = -0.5f + 0.7f * y3;
 
-	this->playerVertexList[10].x = 0.5f + 0.6f * x4 + 0.2f * x3;
-	this->playerVertexList[10].y = 0.0f + 0.2f * y3;
+	this->playerVertexList[10].x = 0.5f - 0.2f * x3 + 0.8f * x4;
+	this->playerVertexList[10].y = 0.0f + 0.3f * y3;
 
-	this->playerVertexList[11].x = 0.0f + 0.6f * x4 + 0.2f * x3;
-	this->playerVertexList[11].y = 0.0f + 0.2f * y3;
+	this->playerVertexList[11].x = 0.0f + 0.4f * x3 + 0.4f * x4;
+	this->playerVertexList[11].y = 0.0f + 0.3f * y3;
 
-	this->playerVertexList[12].x = 0.0f + x3 - 0.1f * x4;
+	this->playerVertexList[12].x = 0.0f + 0.4 * x3 + 0.4f * x4;
 	this->playerVertexList[12].y = 0.5f + 0.0f * y3;
 
-	this->playerVertexList[13].x = 0.0f + x3 - 0.1f * x4;
+	this->playerVertexList[13].x = 0.0f + 0.4 * x3 + 0.4f * x4;
 	this->playerVertexList[13].y = 0.5f + 0.0f * y3;
 
-	this->playerVertexList[14].x = 0.5f + x3 - 0.1f * x4;
-	this->playerVertexList[14].y = 0.0f + 0.2f * y3;
+	this->playerVertexList[14].x = 0.5f - 0.2f * x3 + 0.8f * x4;
+	this->playerVertexList[14].y = 0.0f + 0.3f * y3;
 
-	this->playerVertexList[15].x = 0.5f + 0.6f * x4 + 0.2f * x3;
+	this->playerVertexList[15].x = 0.5f + 0.2f * x3 + 0.6f * x4;
 	this->playerVertexList[15].y = 0.5f + 0.1f * y3;
 	// デバイスコンテキストの取得
 	CD3D11* cd3d11 = CD3D11::GetInstance();

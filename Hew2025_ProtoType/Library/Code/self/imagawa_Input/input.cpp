@@ -14,9 +14,11 @@ Input::Input()
     inputActionMap["LEFT"]  = { {InputType::keyboard, VK_LEFT}, {InputType::gamepad, XINPUT_LEFT } };
     inputActionMap["UP"]   = { {InputType::keyboard, VK_UP}, {InputType::gamepad, XINPUT_UP   } };
     inputActionMap["DOWN"] = { {InputType::keyboard, VK_DOWN}, {InputType::gamepad, XINPUT_DOWN } };
-    inputActionMap["SPACE"] = { {InputType::keyboard, VK_SPACE}, {InputType::gamepad, XINPUT_B } };
-    inputActionMap["SHIFT"] = { {InputType::keyboard, VK_SHIFT}, {InputType::gamepad, XINPUT_A } };
-
+    inputActionMap["SPACE"] = { {InputType::keyboard, VK_SPACE}, {InputType::gamepad, XINPUT_A } };
+    inputActionMap["SHIFT"] = { {InputType::keyboard, VK_SHIFT},  };
+    inputActionMap["CHANGEMODE0"] = { {InputType::keyboard, VK_A},};
+    inputActionMap["CHANGEMODE1"] = { {InputType::keyboard, VK_D}, };
+    inputActionMap["SUPERJUMP"] = { {InputType::keyboard, VK_CONTROL}, {InputType::gamepad, XINPUT_LEFT_SHOULDER  } };
 
 
     /*@brief　入力状態を初期化*/
