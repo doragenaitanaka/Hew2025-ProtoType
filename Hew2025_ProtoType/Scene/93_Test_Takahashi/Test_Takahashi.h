@@ -15,7 +15,7 @@
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
 #include"../../Library/Code/self/06_TileMap/TileMap.h"
-#include"../../Library/Code/self/07_Camera/Camera.h"
+#include"../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
 
 /**	@file	Test_Takahashi.h
 *	@brief 	髙橋用のテストシーンクラス
@@ -57,7 +57,7 @@ public:
 
 private:
 	// カメラ
-	Camera* p_camera;
+	TrackingCamera* p_camera;
 
 	//タイルマップ
 	TileMap* p_tileMap;

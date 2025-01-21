@@ -12,11 +12,16 @@ Camera::Camera()
 Camera::~Camera()
 {}
 
+/**	@brief 	更新
+*/
 void Camera::Update()
 {
 	//this->SetPosition(this->pos.x + 10.0f, this->pos.y + 10.0f);
 }
 
+/**	@brief 	ビュー変換行列の取得
+*   @return DirectX::XMMATRIX   ビュー変換行列
+*/
 DirectX::XMMATRIX Camera::GetViewMat()
 {
     DirectX::XMVECTOR posVector = DirectX::XMLoadFloat3(&this->pos);
@@ -27,6 +32,9 @@ DirectX::XMMATRIX Camera::GetViewMat()
     return DirectX::XMMatrixTranspose(viewMatrix); // トランスポーズ
 }
 
+/**	@brief 	プロジェクション変換行列の取得
+*   @return DirectX::XMMATRIX   プロジェクション変換行列
+*/
 DirectX::XMMATRIX Camera::GetProjectionMat()
 {
     DirectX::XMMATRIX projectionMatrix = DirectX::XMMatrixOrthographicLH(static_cast<float>(SCREEN_WIDTH),
