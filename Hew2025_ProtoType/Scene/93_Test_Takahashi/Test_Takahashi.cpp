@@ -8,9 +8,13 @@
 */
 Test_Takahashi::Test_Takahashi()
 {
+    this->p_camera = nullptr;
+    this->p_tileMap = nullptr;
+
     //--------------------------------------------------------------------------
     //		 オブジェクト
     //--------------------------------------------------------------------------	
+    this->p_camera= nullptr;
     this->p_TestObject = nullptr;
     this->p_TestObject2 = nullptr;
     this->p_player = nullptr;
@@ -34,26 +38,19 @@ Test_Takahashi::~Test_Takahashi()
 */
 void	Test_Takahashi::Initialize(void)
 {
+    // カメラ
+    if (!this->p_camera) { this->p_camera = new Camera; }
+
+    // タイルマップの生成
+    if (!this->p_tileMap)
+    {
+        this->p_tileMap = new TileMap(this->p_camera);
+        this->p_tileMap->GenerateMap("Stage1.csv");
+    }
+
     //--------------------------------------------------------------------------
     //		 オブジェクト
     //--------------------------------------------------------------------------	
-    if (!this->p_camera) { this->p_camera = new Camera; 
-        this->p_camera->SetPosition(0.0f, 0.0f);
-    }
-    if (!this->p_TestObject) { this->p_TestObject = new Object(this->p_camera); }
-    if (!this->p_TestObject2) { this->p_TestObject2 = new Object(this->p_camera); }
-    this->p_TestObject->Init(L"Asset/block.png");
-    this->p_TestObject2->Init(L"Asset/block.png");
-
-    // 座標を設定
-    this->p_TestObject->SetPos(TestPos.x, TestPos.y, 0.0f);     //初期座標-200.0f
-    this->p_TestObject2->SetPos(TestPos2.x, TestPos2.y, 0.0f);  //p_objectから400.0f離れた場所に生成
-
-    // サイズを設定
-    this->p_TestObject->SetSize(TestSize.x, TestSize.y, 0.0f);      // サイズは100.0f×100.0f
-    this->p_TestObject2->SetSize(TestSize2.x, TestSize2.y, 0.0f);   // 同上
-
-    this->p_TestObject->SetColliderSize(DirectX::XMFLOAT3(TestSize.x, TestSize.y, 0.0f)); 
 
     //--------------------------------------------------------------------------
     //		描画関連
@@ -196,25 +193,7 @@ void	Test_Takahashi::Update(void)
         //this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y + 5.0f, 0.0f); //座標更新
     }
 
-    // p_TestObjectをテスト的に回転させる
-    static float angle = 0.0f;
-    this->p_TestObject->SetAngle(angle);
-    angle += 0.1f;
-
-    auto& col1 = p_TestObject->GetCollider();
-    auto& col2 = p_TestObject2->GetCollider();
-    if (col1.CheckCollision(col2))
-    {
-        p_TestObject->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
-    }
-    else
-    {
-        p_TestObject->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
-    }
-
-    // オブジェクトの更新
-    this->p_TestObject->Update();
-    this->p_TestObject2->Update();
+    this->p_tileMap->Update();
 }
 
 /**	@brief 	シーン全体の描画
@@ -249,8 +228,7 @@ void	Test_Takahashi::Draw(void)
     //--------------------------------------------------------------------------
     //		オブジェクトの描画
     //--------------------------------------------------------------------------	
-    this->p_TestObject2->Draw();
-    this->p_TestObject->Draw();
+    this->p_tileMap->Draw();
 }
 
 /**	@brief 	シーン全体の終了処理
@@ -273,7 +251,5 @@ void	Test_Takahashi::Finalize(void)
     //--------------------------------------------------------------------------
     //		オブジェクト
     //--------------------------------------------------------------------------	
-    SAFE_DELETE(this->p_TestObject);
-    SAFE_DELETE(this->p_TestObject2);
-    SAFE_DELETE(this->p_player);
+    SAFE_DELETE(this->p_tileMap);  // タイルマップ
 }

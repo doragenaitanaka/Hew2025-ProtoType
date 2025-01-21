@@ -14,7 +14,7 @@ Camera::~Camera()
 
 void Camera::Update()
 {
-	this->SetPosition(this->pos.x + 1.0f, 0.0f);
+	//this->SetPosition(this->pos.x + 10.0f, this->pos.y + 10.0f);
 }
 
 DirectX::XMMATRIX Camera::GetViewMat()

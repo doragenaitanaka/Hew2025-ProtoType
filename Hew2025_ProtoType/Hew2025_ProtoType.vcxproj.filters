@@ -237,8 +237,11 @@
     <ClCompile Include="Library\Code\self\15_Pendulum\Pendulum.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Library\Code\self\07_Camera\Camera.cpp">
+      <Filter>ソース ファイル</Filter>
+    </ClCompile>
     <ClCompile Include="Library\Code\self\06_TileMap\TileMap.cpp">
-      <Filter>ソース ファイル\Manager</Filter>
+      <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -407,8 +410,11 @@
     <ClInclude Include="Library\Code\self\15_Pendulum\Pendulum.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
+    <ClInclude Include="Library\Code\self\07_Camera\Camera.h">
+      <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
     <ClInclude Include="Library\Code\self\06_TileMap\TileMap.h">
-      <Filter>ヘッダー ファイル\Manager</Filter>
+      <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

@@ -12,6 +12,10 @@
 
 Object::Object(Camera* _p_camera):p_camera{_p_camera }
 {
+	this->isActive = true;
+
+	this->istextureShared = false;
+
 	this->pos = { 0.0f,0.0f,0.0f };
 	this->angle = 0.0f;
 
@@ -105,6 +109,7 @@ HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 */
 void	Object::Update(void)
 {
+	if (!this->isActive) { return; }
 
 	// アニメーションの更新
 	//this->AnimUpdate();
@@ -150,14 +155,6 @@ void	Object::AnimUpdate(void)
 	}
 }
 
-// ========================================================================
-// 
-//			Objectのコンストラクタにカメラを入れて実行確認しよう！！！！
-// 
-// ========================================================================
-
-
-
 /**	@brief	定数バッファの更新
 *	@date	2024/06/12
 */
@@ -198,6 +195,8 @@ void	Object::ConstantBufferUpdate(void)
 */
 void	Object::Draw()
 {
+	if (!this->isActive) { return; }
+
 	UINT offsets = 0;
 	UINT strides = sizeof(Vertex);
 	this->p_vertexBuffer->SetVertexBuffer(0, 1, &strides, &offsets);	// 頂点バッファをIAに渡す
@@ -220,8 +219,26 @@ void	Object::UnInit(void)
 	}
 
 	SAFE_RELEASE(this->p_vertexBuffer);
-	SAFE_RELEASE(this->p_textureView);
 	SAFE_RELEASE(this->p_constantBuffer);
+
+	// テクスチャが共有されていなければ解放処理を行う
+	if (!this->istextureShared) { SAFE_RELEASE(this->p_textureView); }
+}
+
+/**	@brief 	オブジェクトが有効かどうか
+*	@param	bool _isActive
+*/
+void	Object::SetIsActive(bool _isActive)
+{
+	this->isActive = _isActive;
+}
+
+/**	@brief 	オブジェクトが有効かどうか返す
+*	@return	bool _isActive
+*/
+bool	Object::GetIsActive(void)
+{
+	return this->isActive;
 }
 
 /**	@brief 	座標を設定
@@ -317,6 +334,9 @@ void	Object::SetAngle(float angle)
 void	Object::SetTexture(ID3D11ShaderResourceView* _p_texture)
 {
 	this->p_textureView = _p_texture;
+
+	// テクスチャを外部から読み込んで共有している
+	this->istextureShared = true;
 }
 
 /**	@brief 	映すテクスチャのヨコの場所を設定

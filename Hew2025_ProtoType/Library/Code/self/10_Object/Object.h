@@ -38,7 +38,7 @@ public:
 	Object(Camera* _p_camera);
 	virtual~Object();
 	/**	@brief 	オブジェクトの初期化
-	*	@param	const wchar_t* _p_fileName ファイルパス
+	*	@param	const wchar_t* _p_fileName = nullptr ファイルパス
 	*	@param	int	_splitX = 1		タテに何分割するのか
 	*	@param	int	_splitY = 1		ヨコに何分割するのか
 	*	@param	int	_changeFrame = 1	何フレームで切り替えるか
@@ -46,7 +46,7 @@ public:
 	*	@return	HRESULT
 	*	@date	2024/06/06
 	*/
-	virtual HRESULT	Init(const wchar_t* _p_fileName, int	_splitX = 1, int	_splitY = 1, int	_changeFrame = 1, float	_moveUPos = 0.0f);
+	virtual HRESULT	Init(const wchar_t* _p_fileName = nullptr, int	_splitX = 1, int	_splitY = 1, int	_changeFrame = 1, float	_moveUPos = 0.0f);
 
 	/**	@brief 	オブジェクトの更新
 	*	@date	2024/06/12
@@ -71,6 +71,16 @@ public:
 	*	@date  	2024/05/23
 	*/
 	virtual void	UnInit(void);
+
+	/**	@brief 	オブジェクトが有効かどうか
+	*	@param	bool _isActive
+	*/
+	void	SetIsActive(bool _isActive);
+
+	/**	@brief 	オブジェクトが有効かどうか返す
+	*	@return	bool _isActive
+	*/
+	bool	GetIsActive(void);
 
 	/**	@brief 	座標を設定
 	*	@param	float x
@@ -173,7 +183,12 @@ public:
 	*	@date	2024/09/17
 	*/
 	static ID3D11ShaderResourceView* LoadTexture(const wchar_t* fileName);
+
+private:
+	bool istextureShared;	// true:テクスチャが共有されている
 protected:
+	bool isActive;		// true:オブジェクトが有効
+
 	Camera* p_camera;	// カメラ
 
 	// 表示テクスチャの頂点座標

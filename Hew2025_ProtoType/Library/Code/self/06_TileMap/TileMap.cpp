@@ -11,8 +11,19 @@ float TileMap::tileHeight = 100.0f;
 float TileMap::stageWidth = 0.0f;
 float TileMap::stageHeight = 0.0f;
 
-TileMap::TileMap() :tiles{std::vector<Object*>()}
-{
+TileMap::TileMap(Camera* _p_camera) :p_camera{ _p_camera }, tiles{std::vector<Object*>()}
+{        
+    // タイルのテクスチャパスの設定
+    this->texturePathList[static_cast<int>(TileType::FLOOR) - 1] = L"Asset/Tile/light wood 2.png";
+    this->texturePathList[static_cast<int>(TileType::SHELF) - 1] = L"Asset/Tile/dark wood 2.png";
+
+    // タイルのテクスチャパスの読み込み
+    for (int i = 0; i < static_cast<int>(TileType::NUM); i++)
+    {
+        ID3D11ShaderResourceView* tex = Object::LoadTexture(this->texturePathList[i].c_str());
+        if (!tex) { std::cerr << "タイルマップテクスチャの読み込みに失敗" << std::endl; }
+        this->tilesTextureList.push_back(tex);
+    }
 }
 
 TileMap::~TileMap()
@@ -75,11 +86,19 @@ void TileMap::Draw()
 */
 void TileMap::UnInit() 
 {
-    for (auto tile : tiles)
+    // タイルマップの削除
+    for (auto tile : this->tiles)
     {
         SAFE_DELETE(tile);
     }
-    tiles.clear();
+    this->tiles.clear();
+
+    // テクスチャの解放
+    for (auto tex : this->tilesTextureList)
+    {
+        SAFE_RELEASE(tex);
+    }
+    this->tilesTextureList.clear();
 }
 
 /** @brief ステージの大きさ
@@ -197,13 +216,15 @@ Object* TileMap::CreateTiles(const int& _tileNum)
     switch (static_cast<TileType>(_tileNum))
     {
     case TileType::FLOOR:    
-        newObj = new Object();
-        newObj->Init(L"Asset/Tile/light wood 2.png");
+        newObj = new Object(this->p_camera);
+        newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::FLOOR)-1]);
+        newObj->Init();
         this->tiles.push_back(newObj);
         break;
     case TileType::SHELF:
-        newObj = new Object();
-        newObj->Init(L"Asset/Tile/dark wood 2.png");
+        newObj = new Object(this->p_camera);
+        newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::SHELF)-1]);
+        newObj->Init();
         this->tiles.push_back(newObj);
         break;
     default:

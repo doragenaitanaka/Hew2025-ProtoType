@@ -18,22 +18,34 @@
 #include"../10_Object/Object.h"
 #include<vector>
 #include <string>
+#include"../07_Camera/Camera.h"
+#include <array>
 
-enum class TileType 
+
+enum class TileType
 {
     EMPTY = 0,
     FLOOR,
     SHELF,
+
+    NUM= SHELF,
+    MAX,
 };
+
+constexpr int ToIndex(TileType type) { return static_cast<int>(type); }
 
 class TileMap
 {
 public:
-    TileMap();
+    /** @brief マップ生成
+    *   @param  Camera*     _p_camera
+    */
+    TileMap(Camera* _p_camera);
+
     ~TileMap();
 
     /** @brief マップ生成
-    *   @param std::string _stageFile
+    *   @param std::string  _stageFile
     */
     void GenerateMap(const std::string& _stageFile);
 
@@ -62,7 +74,7 @@ public:
     static void SetTileSize(const float& _tileWidth, const float& _tileHeight);
 
     /** @brief タイルの取得
-    *   @return std::vector<Object*>& tiles  
+    *   @return std::vector<Object*>& tiles
     */
     std::vector<Object*>& GetTiles();
 
@@ -80,6 +92,9 @@ private:
     */
     Object* CreateTiles(const int& _tileNum);
 
+    // 使用するカメラ
+    Camera* p_camera;
+
     // タイルオブジェクト
     std::vector<Object*> tiles;
 
@@ -90,5 +105,8 @@ private:
     // マップの広さ
     static float stageWidth;
     static float stageHeight;
-};
 
+    // タイルのテクスチャ
+    std::vector<ID3D11ShaderResourceView*> tilesTextureList;
+    std::array<std::wstring, ToIndex(TileType::NUM)> texturePathList;
+};
