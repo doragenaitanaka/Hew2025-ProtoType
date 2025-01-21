@@ -1,8 +1,8 @@
 ﻿#include "Pendulum.h"
 #include <DirectXMath.h> // DirectX::XM_PI
 
-Pendulum::Pendulum(float _amplitude, float _frequency, float _phase, float _centerX, float _centerY)
-    : amplitude(_amplitude), frequency(_frequency), phase(_phase), elapsedTime(0.0f), centerX(_centerX), centerY(_centerY)
+Pendulum::Pendulum(Camera* _p_camera,float _amplitude, float _frequency, float _phase, float _centerX, float _centerY)
+    :Object( _p_camera ), amplitude(_amplitude), frequency(_frequency), phase(_phase), elapsedTime(0.0f), centerX(_centerX), centerY(_centerY)
 {
 }
 

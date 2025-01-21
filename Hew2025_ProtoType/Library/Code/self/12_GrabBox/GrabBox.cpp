@@ -9,7 +9,7 @@
 * @date 2024/12/21
 * @memo grabbedObjectを初期化している
 */
-GrabBox::GrabBox() :p_GrabbedObject(nullptr), p_Player(nullptr)
+GrabBox::GrabBox(Camera* _p_camera) :Object(_p_camera),p_GrabbedObject(nullptr), p_Player(nullptr)
 {
 }
 

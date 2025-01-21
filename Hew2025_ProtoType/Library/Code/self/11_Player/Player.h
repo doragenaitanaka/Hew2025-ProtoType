@@ -4,7 +4,7 @@
 class Player :public Object
 {
 public:
-	Player();
+	Player(Camera* _p_camera);
 	~Player()override;
 
 	// プレイヤー用の表示テクスチャの頂点座標

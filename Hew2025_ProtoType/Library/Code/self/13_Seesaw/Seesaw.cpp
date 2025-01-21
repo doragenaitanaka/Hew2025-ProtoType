@@ -5,7 +5,7 @@
 #include "Seesaw.h"
 //#include "../../../../Scene/98_Test_Uryu/Test_Uryu.h"
 
-Seesaw::Seesaw()
+Seesaw::Seesaw(Camera* _p_camera):Object(_p_camera)
 {
 }
 

@@ -1,6 +1,6 @@
 ﻿#include"Player.h"
 
-Player::Player() :x3{ 0.0f }, x4{ 0.0f }, y3{ 0.0f }, y4{ 0.0f }
+Player::Player(Camera* _p_camera) :Object{_p_camera}, x3{0.0f}, x4{0.0f}, y3{0.0f}, y4{0.0f}
 {}
 
 Player::~Player()

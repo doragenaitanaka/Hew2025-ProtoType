@@ -12,6 +12,7 @@ public:
         STOP  // 停止状態
     };
 
+    Ball(Camera* _p_camera);
     // デストラクタ
     ~Ball();
 

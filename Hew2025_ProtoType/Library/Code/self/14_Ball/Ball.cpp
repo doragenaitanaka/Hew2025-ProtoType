@@ -84,3 +84,8 @@ void Ball::Uninit(void)
 Ball::~Ball()
 {
 }
+
+// デストラクタ
+Ball::Ball(Camera* _p_camera):Object( _p_camera)
+{
+}

@@ -16,7 +16,7 @@ public:
     /**	@brief 	コンストラクタ
     * @date 2024/12/27
     */
-    Seesaw();
+    Seesaw(Camera* _p_camera);
 
     /**	@brief 	デストラクタ
     * @date 2024/12/27

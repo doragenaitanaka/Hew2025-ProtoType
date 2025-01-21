@@ -13,7 +13,7 @@ public:
      * @param _centerX 中心X座標
      * @param _centerY 中心Y座標
      */
-    Pendulum(float _amplitude = 50.0f, float _frequency = 1.0f, float _phase = 0.0f, float _centerX = 0.0f, float _centerY = 0.0f);
+    Pendulum(Camera* _p_camera,float _amplitude = 50.0f, float _frequency = 1.0f, float _phase = 0.0f, float _centerX = 0.0f, float _centerY = 0.0f);
 
     /**
      * @brief デストラクタ
