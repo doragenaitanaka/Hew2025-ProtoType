@@ -9,12 +9,12 @@
 #include"../00_BaseScene/BaseScene.h"
 #include"../../Library/Code/self/10_Object/Object.h"
 #include"../../Library/Code/self/11_Player/Player.h"
-#include"../../Library/Code/self/06_TileMap/TileMap.h"
 
 #include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
+#include"../../Library/Code/self/07_Camera/Camera.h"
 
 /**	@file	Test_Takahashi.h
 *	@brief 	髙橋用のテストシーンクラス
@@ -55,11 +55,15 @@ public:
 	XMFLOAT2 TestSize2 = { 100.0f,100.0f };
 
 private:
-	TileMap* tileMap;	// タイルマップ
+	// カメラ
+	Camera* p_camera;
 
 	//--------------------------------------------------------------------------
 	//		オブジェクト
 	//--------------------------------------------------------------------------	
+	Object* p_TestObject;
+	Object* p_TestObject2;
+	Player* p_player;
 
 	//--------------------------------------------------------------------------
 	//		描画関連

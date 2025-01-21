@@ -6,6 +6,7 @@
 #include "../05_Collider/00_BaseCollider/BaseCollider.h"
 #include "../05_Collider/01_BoxCollider/BoxCollider.h"
 #include "../05_Collider/02_CircleCollider/CircleCollider.h"
+#include"../07_Camera/Camera.h"
 
 #include<DirectXMath.h> //  DirectX::XMFLOAT3に必要
 
@@ -13,6 +14,7 @@
 struct ConstBuffer
 {
 	DirectX::XMMATRIX   matrixWorld;	// ワールド変換行列
+	DirectX::XMMATRIX   matrixView;		// ビュー変換行列
 	DirectX::XMMATRIX   matrixProj;		// プロジェクション変換行列 
 	DirectX::XMMATRIX   matrixTex;		// UV座標移動行列 
 	DirectX::XMFLOAT4	color;			// 頂点カラー行列
@@ -33,7 +35,7 @@ struct Vertex
 class Object
 {
 public:
-	Object();
+	Object(Camera* _p_camera);
 	virtual~Object();
 	/**	@brief 	オブジェクトの初期化
 	*	@param	const wchar_t* _p_fileName ファイルパス
@@ -172,6 +174,8 @@ public:
 	*/
 	static ID3D11ShaderResourceView* LoadTexture(const wchar_t* fileName);
 protected:
+	Camera* p_camera;	// カメラ
+
 	// 表示テクスチャの頂点座標
 	Vertex	vertexList[4]
 	{

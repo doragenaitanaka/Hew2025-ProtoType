@@ -10,7 +10,7 @@
 
 #include".././03_Windows/WindowSetup.h"	// スクリーンの大きさ貰う　(ここにサイズ置くべきでないのかも)
 
-Object::Object()
+Object::Object(Camera* _p_camera):p_camera{_p_camera }
 {
 	this->pos = { 0.0f,0.0f,0.0f };
 	this->angle = 0.0f;
@@ -150,17 +150,26 @@ void	Object::AnimUpdate(void)
 	}
 }
 
+// ========================================================================
+// 
+//			Objectのコンストラクタにカメラを入れて実行確認しよう！！！！
+// 
+// ========================================================================
+
+
+
 /**	@brief	定数バッファの更新
 *	@date	2024/06/12
 */
 void	Object::ConstantBufferUpdate(void)
 {
-	// 定数バッファを更新
 	ConstBuffer	cb;
-	// プロジェクション変換座標の作成
-	// 画面の大きさ基準をスクリーンと同じにする
-	cb.matrixProj = DirectX::XMMatrixOrthographicLH(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 3.0f);
-	cb.matrixProj = DirectX::XMMatrixTranspose(cb.matrixProj);
+
+	// ビュー変換行列の作成
+	cb.matrixView = this->p_camera->GetViewMat();
+
+	// プロジェクション変換行列の作成
+	cb.matrixProj = this->p_camera->GetProjectionMat();
 
 	// ワールド変換行列の作成
 	// →オブジェクトの位置、大きさ、向きを指定
