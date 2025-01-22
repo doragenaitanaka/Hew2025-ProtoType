@@ -224,3 +224,12 @@ void Input::SetVibration(int frame, float powor)
     /**@brief　振動継続時間を代入*/
     VibrationTime = frame;
 }
+
+bool Input::IsStickCheck(const DirectX::XMFLOAT2& stick, float deadZone)
+{
+    // ベクトルの長さを計算
+    float magnitude = std::sqrt(stick.x * stick.x + stick.y * stick.y);
+
+    // デッドゾーンを超えているかを判定
+    return magnitude > deadZone;
+}
