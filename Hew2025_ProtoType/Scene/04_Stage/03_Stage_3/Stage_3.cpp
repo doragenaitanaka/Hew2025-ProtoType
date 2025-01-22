@@ -11,18 +11,18 @@
 */
 Stage_3::Stage_3()
 {
+    this->p_camera = nullptr;
+    this->p_tileMap = nullptr;
+
+    //--------------------------------------------------------------------------
+    //		 オブジェクト
+    //--------------------------------------------------------------------------	
     this->background = nullptr;
     this->player = nullptr;
-    for (n = 0; n < 100; n++)//当たり判定用ブロックの初期化
-    {
-        this->block[n] = nullptr;
-    }
 
-    for (drawnum = 0; drawnum < 1500; drawnum++)//描画用ブロックの初期化
-    {
-        this->blockdraw[drawnum] = nullptr;
-    }
-
+    //--------------------------------------------------------------------------
+    //		描画関連
+    //--------------------------------------------------------------------------
     this->p_vertexShader = nullptr;
     this->p_pixelShader = nullptr;
     this->p_inputLayout = nullptr;
@@ -39,41 +39,38 @@ Stage_3::~Stage_3()
 */
 void	Stage_3::Initialize(void)
 {
-    if (!this->background) { this->background = new Object; }
-    if (!this->player) { this->player = new Player; }
 
-    for (n = 0; n < 100; n++)
+    // カメラ
+    if (!this->p_camera) { this->p_camera = new TrackingCamera; }
+
+    // タイルマップの生成
+    if (!this->p_tileMap)
     {
-        if (!this->block[n]) { this->block[n] = new Object; }//当たり判定用ブロックの初期化
+        this->p_tileMap = new TileMap(this->p_camera);
+        this->p_tileMap->GenerateMap("Stage3.csv");
     }
 
-    for (drawnum = 0; drawnum < 1500; drawnum++)
-    {
-        if (!this->blockdraw[drawnum]) { this->blockdraw[drawnum] = new Object; }//描画用ブロックの初期化
-    }
+    //--------------------------------------------------------------------------
+    //		 オブジェクト
+    //--------------------------------------------------------------------------	
+    if (!this->background) { this->background = new Object(this->p_camera); }
+    this->background->Init(L"Asset/back_img_01.png");
+    this->background->SetPos(0.0f, 0.0f, 0.0f);
 
+    if (!this->player) { this->player = new Player(this->p_camera); }
+    this->player->Init(L"Asset/block.png");
+    this->player->SetPos(0.0f, -100.0f, 0.0f);
 
+    // プレイヤーをターゲットに設定
+    this->p_camera->SetTarget(this->player);
+
+    //--------------------------------------------------------------------------
+    //		描画関連の初期化
+    //--------------------------------------------------------------------------	
     if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
     if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
     if (!this->p_inputLayout) { this->p_inputLayout = new CInputLayout; }               // 入力レイアウト
     if (!this->p_sampler) { this->p_sampler = new CSampler; }                           // サンプラー
-
-    //オブジェクト
-    this->background->Init(L"Asset/back_img_01.png");
-    this->player->Init(L"Asset/block.png");
-
-    for (n = 0; n < 100; n++)
-    {
-        this->block[n]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
-    }
-
-    for (drawnum = 0; drawnum < 1500; drawnum++)//最大値は3000くらい
-    {
-        this->blockdraw[drawnum]->Init(L"Asset/block.png");//描画用ブロックのテクスチャ
-    }
-    //--------------------------------------------------------------------------
-    //		描画関連の初期化
-    //--------------------------------------------------------------------------	
 
     HRESULT hr;
     // シェーダ
@@ -171,30 +168,6 @@ void	Stage_3::Initialize(void)
                 p_deviceContext->OMSetDepthStencilState(p_dSState, 1);
             }
         }
-    }
-
-    // オブジェクトの座標を設定
-    this->background->SetPos(0.0f, 0.0f, 0.0f);
-    this->player->SetPos(0.0f, -100.0f, 0.0f);
-
-    this->block[0]->SetPos(BlockPos00.x, BlockPos00.y, 0.0f);//当たり判定用ブロックの座標設定
-
-
-    for (drawnum = 0; drawnum < 1500; drawnum++)
-    {
-        this->blockdraw[drawnum]->SetPos(0.0f, -10000.0f, 0.0f);//描画用ブロックの座標設定
-    }
-
-    //オブジェクトのサイズを設定
-    this->background->SetSize(1920.0f, 1080.0f, 0.0f);
-    this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
-
-    this->block[0]->SetSize(BlockSize00.x, BlockSize00.y, 0.0f);//当たり判定用ブロックの大きさ設定
-
-
-    for (drawnum = 0; drawnum < 1500; drawnum++)
-    {
-        this->blockdraw[drawnum]->SetSize(100.0f, 100.0f, 0.0f);//描画用ブロックの大きさ設定
     }
 }
 

@@ -7,13 +7,17 @@
 //インクルード
 #include"../../00_BaseScene/BaseScene.h"
 #include"../../../Library/Code/self/02_SceneManager/SceneManager.h"
-#include"../../../Library/Code/self/10_Object/Object.h"
-#include"../../../Library/Code/self/11_Player/Player.h"
+
 #include"../../../Library/Code/self/imagawa_Input/input.h"
 #include"../../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
+
+#include"../../../Library/Code/self/06_TileMap/TileMap.h"
+#include"../../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
+#include"../../../Library/Code/self/10_Object/Object.h"
+#include"../../../Library/Code/self/11_Player/Player.h"
 /**	@file	Stage_3.h
 *	@brief	起動時にロゴとか出るシーン
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している
@@ -43,32 +47,19 @@ public:
 	*/
 	void	Finalize(void)override;
 
-	//座標
-
-	XMFLOAT2 CameraPos = { -700.0f, -150.0f };
-
-	XMFLOAT2 BlockPos00 = { 0.0f,-350.0f };
-
-	//サイズ
-
+private:
+	int gamemode = 0;
+	int ColliderState = 0;
 	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
 
-	XMFLOAT2 BlockSize00 = { 8000.0f,100.0f };
+	TrackingCamera* p_camera;	// カメラ
+	TileMap* p_tileMap;			//タイルマップ
 
-	int gamemode = 0;
-
-	float posx = 0.0f;
-	float posy = 0.0f;
-	int drawnum = 0;//描画用のブロックの番号
-	int n = 0;	//当たり判定用のブロックの番号
-	int BlockNumber = 0;
-	int ColliderState = 0;
-private:
-	Input input;
+	//--------------------------------------------------------------------------
+	//		オブジェクト
+	//--------------------------------------------------------------------------
 	Object* background;
 	Player* player;
-	Object* block[100];
-	Object* blockdraw[10000];
 
 	//--------------------------------------------------------------------------
 	//		描画関連

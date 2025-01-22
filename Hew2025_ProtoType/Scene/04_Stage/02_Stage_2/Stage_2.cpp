@@ -20,16 +20,6 @@ Stage_2::Stage_2()
     this->background = nullptr;
     this->player = nullptr;
 
-    //for (n = 0; n < 100; n++)//当たり判定用ブロックの初期化
-    //{
-    //    this->block[n] = nullptr;
-    //}
-
-    //for (drawnum = 0; drawnum < 1500; drawnum++)//描画用ブロックの初期化
-    //{
-    //    this->blockdraw[drawnum] = nullptr;
-    //}
-
     //--------------------------------------------------------------------------
     //		描画関連
     //--------------------------------------------------------------------------
@@ -59,15 +49,24 @@ void	Stage_2::Initialize(void)
         this->p_tileMap->GenerateMap("Stage2.csv");
     }
 
+    //--------------------------------------------------------------------------
+    //		 オブジェクト
+    //--------------------------------------------------------------------------	
+
+    // 背景
     if (!this->background) { this->background = new Object(this->p_camera); }
+    this->background->Init(L"Asset/back_img_01.png");
+    this->background->SetPos(0.0f, 0.0f, 0.0f);
+    this->background->SetSize(1920.0f, 1080.0f, 0.0f);
+
+    // プレイヤー
     if (!this->player) { this->player = new Player(this->p_camera); }
+    this->player->Init(L"Asset/block.png");
+    this->player->SetPos(0.0f, -100.0f, 0.0f);
+    this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
 
     // プレイヤーをターゲットに設定
     this->p_camera->SetTarget(this->player);
-
-    //オブジェクト
-    this->background->Init(L"Asset/back_img_01.png");
-    this->player->Init(L"Asset/block.png");
 
     //--------------------------------------------------------------------------
     //		描画関連の初期化
@@ -175,14 +174,6 @@ void	Stage_2::Initialize(void)
             }
         }
     }
-
-    // オブジェクトの座標を設定
-    this->background->SetPos(0.0f, 0.0f, 0.0f);
-    this->player->SetPos(0.0f, -100.0f, 0.0f);
-
-    //オブジェクトのサイズを設定
-    this->background->SetSize(1920.0f, 1080.0f, 0.0f);
-    this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
 }
 
 /**	@brief 	シーン全体の更新
