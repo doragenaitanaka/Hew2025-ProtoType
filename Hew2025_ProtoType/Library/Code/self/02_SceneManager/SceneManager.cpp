@@ -96,9 +96,9 @@ void	SceneManager::CreateScene(Scene sceneName)
 		//case Scene::Stage_1:
 		//	this->nowScene = new	Stage_1;
 		//	break;
-		//case Scene::Stage_2:
-		//	this->nowScene = new	Stage_2;
-		//	break;
+		case Scene::Stage_2:
+			this->nowScene = new	Stage_2;
+			break;
 		//case Scene::Stage_3:
 		//	this->nowScene = new	Stage_3;
 		//	break;
