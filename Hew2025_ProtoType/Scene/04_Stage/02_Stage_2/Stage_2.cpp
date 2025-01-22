@@ -46,7 +46,7 @@ void	Stage_2::Initialize(void)
     if (!this->p_tileMap)
     {
         this->p_tileMap = new TileMap(this->p_camera);
-        this->p_tileMap->GenerateMap("Stage7.csv");
+        this->p_tileMap->GenerateMap("Stage12.csv");
     }
 
     //--------------------------------------------------------------------------

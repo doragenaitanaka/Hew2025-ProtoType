@@ -5,8 +5,8 @@
 #include <sstream>
 
 // 初期化
-float TileMap::tileWidth = 100.0f;
-float TileMap::tileHeight = 100.0f;
+float TileMap::tileWidth = 10.0f;
+float TileMap::tileHeight = 10.0f;
 
 float TileMap::stageWidth = 0.0f;
 float TileMap::stageHeight = 0.0f;
@@ -129,7 +129,7 @@ std::vector<Object*>& TileMap::GetTiles()
     return this->tiles;
 }
 
- /**
+/**
   * @brief ファイルからステージデータを読み込む
   * @param const std::string& _stageFile ステージファイルのパス
   * @param std::vector<int>& _stageData ステージ情報
@@ -174,7 +174,7 @@ bool TileMap::LoadStageFile(const std::string& _stageFile, std::vector<int>& _st
         int colCount = 0;
 
         // 指定列数まで読み込み
-        while (std::getline(ss, value, ',') && colCount < TileMap::stageWidth)
+        while (std::getline(ss, value, ','))
         {
             if (value.empty())
             {
@@ -195,6 +195,23 @@ bool TileMap::LoadStageFile(const std::string& _stageFile, std::vector<int>& _st
                 }
             }
             ++colCount;
+        }
+
+        // 不足分をデフォルト値で埋める
+        while (colCount < TileMap::stageWidth)
+        {
+            _stageData.push_back(0);
+            ++colCount;
+        }
+        ++rowCount;
+    }
+
+    // 不足分をデフォルト値で埋める（行が不足している場合）
+    while (rowCount < TileMap::stageHeight)
+    {
+        for (int colCount = 0; colCount < TileMap::stageWidth; ++colCount)
+        {
+            _stageData.push_back(0);
         }
         ++rowCount;
     }
