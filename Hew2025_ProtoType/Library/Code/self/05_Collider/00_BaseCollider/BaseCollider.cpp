@@ -1,6 +1,7 @@
 ﻿#include "BaseCollider.h"
 #include "../01_BoxCollider/BoxCollider.h"
 #include "../02_CircleCollider/CircleCollider.h"
+#include "../03_PointCollider/PointCollider.h"
 
 ///**	@brief 	コンストラクタ
 //	*	@date	2024/12/15
@@ -50,6 +51,10 @@ bool BaseCollider::CheckCollision(BaseCollider& _other)
     else if (typeid(_other) == typeid(CircleCollider)) 
     {
         return CheckCollisionCircle(_other);
+    }
+    else if (typeid(_other) == typeid(PointCollider))
+    {
+        return CheckCollisionPoint(_other);
     }
     return false;
 }

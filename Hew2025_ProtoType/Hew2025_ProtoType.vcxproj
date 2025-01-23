@@ -157,6 +157,7 @@
     <ClCompile Include="Library\Code\self\05_Collider\00_BaseCollider\BaseCollider.cpp" />
     <ClCompile Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.cpp" />
     <ClCompile Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.cpp" />
+    <ClCompile Include="Library\Code\self\05_Collider\03_PointCollider\PointCollider.cpp" />
     <ClCompile Include="Library\Code\self\06_TileMap\TileMap.cpp" />
     <ClCompile Include="Library\Code\self\07_Camera\01_TrackingCamera\TrackingCamera.cpp" />
     <ClCompile Include="Library\Code\self\07_Camera\Camera.cpp" />
@@ -186,7 +187,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Scene\03_StageSelectScene\StageSelectScene.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="Scene\04_Stage\01_Stage_1\Stage_1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
@@ -270,6 +271,7 @@
     <ClInclude Include="Library\Code\self\05_Collider\00_BaseCollider\BaseCollider.h" />
     <ClInclude Include="Library\Code\self\05_Collider\01_BoxCollider\BoxCollider.h" />
     <ClInclude Include="Library\Code\self\05_Collider\02_CircleCollider\CircleCollider.h" />
+    <ClInclude Include="Library\Code\self\05_Collider\03_PointCollider\PointCollider.h" />
     <ClInclude Include="Library\Code\self\06_TileMap\TileMap.h" />
     <ClInclude Include="Library\Code\self\07_Camera\01_TrackingCamera\TrackingCamera.h" />
     <ClInclude Include="Library\Code\self\07_Camera\Camera.h" />
@@ -290,7 +292,7 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Scene\03_StageSelectScene\StageSelectScene.h">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
     <ClInclude Include="Scene\04_Stage\01_Stage_1\Stage_1.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>

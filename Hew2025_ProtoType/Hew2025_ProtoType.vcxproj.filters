@@ -246,6 +246,9 @@
     <ClCompile Include="Library\Code\self\07_Camera\01_TrackingCamera\TrackingCamera.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
+    <ClCompile Include="Library\Code\self\05_Collider\03_PointCollider\PointCollider.cpp">
+      <Filter>ソース ファイル\Collider</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h">
@@ -421,6 +424,9 @@
     </ClInclude>
     <ClInclude Include="Library\Code\self\07_Camera\01_TrackingCamera\TrackingCamera.h">
       <Filter>ヘッダー ファイル</Filter>
+    </ClInclude>
+    <ClInclude Include="Library\Code\self\05_Collider\03_PointCollider\PointCollider.h">
+      <Filter>ヘッダー ファイル\Collider</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

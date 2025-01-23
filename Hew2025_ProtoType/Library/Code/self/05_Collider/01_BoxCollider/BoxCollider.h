@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "../00_BaseCollider/BaseCollider.h"
 #include "../02_CircleCollider/CircleCollider.h"
+#include "../03_PointCollider/PointCollider.h"
 class BoxCollider : public BaseCollider
 {
 private:
@@ -17,14 +18,6 @@ private:
 		return _a.x * _b.y - _a.y * _b.x;
 	}
 
-	/** @brief  2D回転行列を用いて点を回転させる
-	 *  @param  point 回転させる点
-	 *  @param  origin 原点となる点
-	 *  @param  angle 回転角
-	 *  @return 回転後の点
-	 */
-	DirectX::XMFLOAT3 RotatePoint(const DirectX::XMFLOAT3& point, const DirectX::XMFLOAT3& origin, float angle);
-
 	/**	@brief  ポリゴンの頂点を指定された軸に投影し、投影範囲を計算する
 	 *	@param  std::array<Vector2D, 4>& _vertices ポリゴンの頂点配列
 	 *	@param  Vector2D& _axis 投影軸
@@ -33,6 +26,15 @@ private:
 	std::pair<float, float> ProjectPolygon(const std::array<DirectX::XMFLOAT3, 4>& _vertices, const DirectX::XMFLOAT3& _axis);
 
 public:
+
+	/** @brief  2D回転行列を用いて点を回転させる
+	 *  @param  point 回転させる点
+	 *  @param  origin 原点となる点
+	 *  @param  angle 回転角
+	 *  @return 回転後の点
+	 */
+	static DirectX::XMFLOAT3 RotatePoint(const DirectX::XMFLOAT3& point, const DirectX::XMFLOAT3& origin, float angle);
+
 	/**	@brief  コンストラクタ
 	*/
 	BoxCollider(DirectX::XMFLOAT3 _pos, DirectX::XMFLOAT3 _size, float _angle = 0);
@@ -72,6 +74,10 @@ public:
 	*	@return	bool idk 接触しているか
 	*/
 	bool CheckCollisionRectangle(BaseCollider& _other) override;
+
+	/** @brief  点との当たり判定
+	*   @param  BaseCollider& _other 接触判定を取る対象オブジェクト
+	*   @return bool 接触しているか
+	*/
+	bool CheckCollisionPoint(BaseCollider& _other) override;
 };
-
-

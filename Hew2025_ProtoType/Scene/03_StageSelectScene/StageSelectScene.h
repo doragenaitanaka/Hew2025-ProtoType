@@ -4,6 +4,15 @@
 */
 #pragma once
 #include"../00_BaseScene/BaseScene.h"
+#include"../../Library/Code/self/10_Object/Object.h"
+#include"../../Library/Code/self/11_Player/Player.h"
+#include"../../Library/Code/self/imagawa_Input/input.h"
+#include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
+#include"../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
+#include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
+#include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
+#include"../../Library/Code/self/07_Camera/Camera.h"
+#include"../../Library/Code/self/05_Collider/03_PointCollider/PointCollider.h"
 
 /**	@file	StageSelectScene.h
 *	@brief	ステージセレクト
@@ -34,4 +43,21 @@ public:
 	*/
 	void	Finalize(void)override;
 private:
+	Camera* p_camera;	// カメラ
+
+	//--------------------------------------------------------------------------
+	//		オブジェクト
+	//--------------------------------------------------------------------------
+	Object* p_background;	// 背景
+	Object* p_obj;	
+	PointCollider* p_point;	// ポインター
+
+	//--------------------------------------------------------------------------
+	//		描画関連
+	//--------------------------------------------------------------------------	
+	CInputLayout* p_inputLayout;		//  入力レイアウト
+	CVertexShader* p_vertexShader;		//  頂点シェーダ
+	CPixelShader* p_pixelShader;		//  ピクセルシェーダ
+	CSampler* p_sampler;				// サンプラー
+	ID3D11BlendState* p_brendState;		// アルファブレンディング用ステート
 };
