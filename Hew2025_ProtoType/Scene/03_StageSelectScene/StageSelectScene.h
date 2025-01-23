@@ -14,6 +14,8 @@
 #include"../../Library/Code/self/07_Camera/Camera.h"
 #include"../../Library/Code/self/05_Collider/03_PointCollider/PointCollider.h"
 
+#include<string>
+
 /**	@file	StageSelectScene.h
 *	@brief	ステージセレクト
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している
@@ -43,6 +45,32 @@ public:
 	*/
 	void	Finalize(void)override;
 private:
+	float space = 200.0f;			// 幅
+	float UISize = 330.0f;			// UIサイズ
+	BaseCollider* p_leftUI;			// UIの左端
+	BaseCollider* p_rightUI;		// UIの右端
+
+	DirectX::XMFLOAT3 leftUIPos;	// UIの左端
+	DirectX::XMFLOAT3 rightUIPos;  // UIの右端
+
+	enum class Stage
+	{
+		STAGE_1,
+		STAGE_2,
+		STAGE_3,
+		STAGE_4,
+		STAGE_5,
+		STAGE_6,
+		STAGE_7,
+		STAGE_8,
+		STAGE_9,
+		STAGE_10,
+		STAGE_11,
+		STAGE_12,
+		NUM = STAGE_12,
+		MAX,
+	};
+
 	Camera* p_camera;	// カメラ
 
 	//--------------------------------------------------------------------------
@@ -50,7 +78,24 @@ private:
 	//--------------------------------------------------------------------------
 	Object* p_background;	// 背景
 	Object* p_obj;	
-	PointCollider* p_point;	// ポインター
+	Object* p_stageUI[static_cast<int>(Stage::MAX)];	// ステージUI
+
+	// ステージUIファイルパス
+	std::wstring stageUIPath[static_cast<int>(Stage::MAX)] = {
+		L"Asset/UI/bangou1.png",
+		L"Asset/UI/bangou2.png",
+		L"Asset/UI/bangou3.png",
+		L"Asset/UI/bangou4.png",
+		L"Asset/UI/bangou5.png",
+		L"Asset/UI/bangou6.png",
+		L"Asset/UI/bangou7.png",
+		L"Asset/UI/bangou8.png",
+		L"Asset/UI/bangou9.png",
+		L"Asset/UI/bangou10.png",
+		L"Asset/UI/bangou11.png",
+		L"Asset/UI/bangou12.png"
+	};
+	PointCollider* p_point;			// ポインター
 
 	//--------------------------------------------------------------------------
 	//		描画関連

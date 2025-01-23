@@ -186,7 +186,6 @@ void	SceneManager::Run(void)
  		this->nowScene->Initialize();	//	初期化処理
 		this->isChangedScene = false;	//　シーン遷移していない
 		this->isInitialized = true;		//	初期済
-
 	}
 
 	this->nowScene->Update();			//	更新処理
