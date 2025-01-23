@@ -1,61 +1,61 @@
-#pragma once
+ï»¿#pragma once
 /**	@file 	Seesaw.h
-*	@brief  ƒyƒ“ƒNƒ‰ƒX
+*	@brief  ãƒšãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/12/24
 */
 #pragma once
-//ƒCƒ“ƒNƒ‹[ƒh
+//ã‚¤ãƒ³ã‚¯ãƒ«ãƒ¼ãƒ‰
 #include"../Hew2025_ProtoType/Library/Code/self/10_Object/Object.h"
 /**	@file 	Seesaw.h
-*	@brief  ƒyƒ“ƒNƒ‰ƒX
+*	@brief  ãƒšãƒ³ã‚¯ãƒ©ã‚¹
 *	@date	2024/12/24
 */
 
 class Pen : public Object
 {
 public:
-    /**	@brief 	ƒRƒ“ƒXƒgƒ‰ƒNƒ^
+    /**	@brief 	ã‚³ãƒ³ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     * @date 2024/12/24
     */
     Pen();
 
-    /**	@brief 	ƒfƒXƒgƒ‰ƒNƒ^
+    /**	@brief 	ãƒ‡ã‚¹ãƒˆãƒ©ã‚¯ã‚¿
     * @date 2024/12/24
     */
     ~Pen() override;
 
-    /**	@brief 	‰Šú‰»
+    /**	@brief 	åˆæœŸåŒ–
     * @date 2024/12/24
     */
     void Uninit();
 
-    /**	@brief 	XV
+    /**	@brief 	æ›´æ–°
     * @date 2024/12/24
     */
     void Update(Object* visualObject, Object* p_Right, Object* p_Left, XMFLOAT3 camerapos);
 
-    /**	@brief 	“–‚½‚è”»’èŠm”F
+    /**	@brief 	å½“ãŸã‚Šåˆ¤å®šç¢ºèª
     * @date 2024/12/24
     */
     void CheckCollision(Object* player, Object* box, Object* p_Right, Object* p_Left);
 
-    /**	@brief 	ƒyƒ“‚ğ’Í‚ñ‚Å‚¢‚é‚©
+    /**	@brief 	ãƒšãƒ³ã‚’æ´ã‚“ã§ã„ã‚‹ã‹
     * @date 2024/12/24
     */
 	bool Havepen() const { return HavePen; }
 
 
-	bool HavePen = false;   //ƒyƒ“‚ğ‚Á‚Ä‚¢‚é‚©‚Ì”»’è
-    bool SeesawMoveFlg = false; //ƒV[ƒ\[‚ª“®‚¢‚Ä‚¢‚é‚©‚Ì”»’è
-    bool Direction = false;   //ƒV[ƒ\[‚Ì‚Ç‚¿‚ç‚ª“®‚¢‚Ä‚¢‚é‚©‚Ì”»’è
-    bool PlayerOnSeesawL = false;   //¶‚ÌƒV[ƒ\[‚Éæ‚Á‚Ä‚¢‚é‚©
-    bool PlayerOnSeesawR = false;   //‰E‚ÌƒV[ƒ\[‚Éæ‚Á‚Ä‚¢‚é‚©
-    bool BoundFlg = false;  //’µ‚Ëã‚ª‚é‚½‚ß‚Ì”»’è
-    bool OneBoundFlg = false;   //‰½“x‚à’µ‚Ëã‚ª‚ç‚È‚¢‚æ‚¤‚É‚·‚é”»’è
+	bool HavePen = false;   //ãƒšãƒ³ã‚’æŒã£ã¦ã„ã‚‹ã‹ã®åˆ¤å®š
+    bool SeesawMoveFlg = false; //ã‚·ãƒ¼ã‚½ãƒ¼ãŒå‹•ã„ã¦ã„ã‚‹ã‹ã®åˆ¤å®š
+    bool Direction = false;   //ã‚·ãƒ¼ã‚½ãƒ¼ã®ã©ã¡ã‚‰ãŒå‹•ã„ã¦ã„ã‚‹ã‹ã®åˆ¤å®š
+    bool PlayerOnSeesawL = false;   //å·¦ã®ã‚·ãƒ¼ã‚½ãƒ¼ã«ä¹—ã£ã¦ã„ã‚‹ã‹
+    bool PlayerOnSeesawR = false;   //å³ã®ã‚·ãƒ¼ã‚½ãƒ¼ã«ä¹—ã£ã¦ã„ã‚‹ã‹
+    bool BoundFlg = false;  //è·³ã­ä¸ŠãŒã‚‹ãŸã‚ã®åˆ¤å®š
+    bool OneBoundFlg = false;   //ä½•åº¦ã‚‚è·³ã­ä¸ŠãŒã‚‰ãªã„ã‚ˆã†ã«ã™ã‚‹åˆ¤å®š
     bool JumpFlg = false;
     int TestCnt = 0;    //count
     int Seesawcnt = 0;
-    float seesawSpeed = 1.0f;  //ƒV[ƒ\[‚Ì‘¬“x
+    float seesawSpeed = 1.0f;  //ã‚·ãƒ¼ã‚½ãƒ¼ã®é€Ÿåº¦
 
 private:
     Object* p_Left;
