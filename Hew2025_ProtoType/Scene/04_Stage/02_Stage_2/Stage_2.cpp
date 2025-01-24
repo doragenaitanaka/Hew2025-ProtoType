@@ -3,10 +3,9 @@
 *	@date 2024/12/19
 */
 #include"Stage_2.h"
-
 #include"../../../Library/Code/self/03_Windows/WindowSetup.h"
-
 #include<Windows.h>
+
 /**	@brief 	コンストラクタ
 */
 Stage_2::Stage_2()
@@ -51,7 +50,7 @@ void	Stage_2::Initialize(void)
 
     //--------------------------------------------------------------------------
     //		 オブジェクト
-    //--------------------------------------------------------------------------	
+    //--------------------------------------------------------------------------
 
     // 背景
     if (!this->background) { this->background = new Object(this->p_camera); }

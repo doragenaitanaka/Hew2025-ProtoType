@@ -13,9 +13,8 @@ StageSelectScene::StageSelectScene()
 
     //--------------------------------------------------------------------------
     //		 オブジェクト
-    //--------------------------------------------------------------------------	
+    //--------------------------------------------------------------------------
     this->p_background = nullptr;
-    this->p_obj = nullptr;
     this->p_point = nullptr;
     this->p_leftUI = nullptr;
     this->p_rightUI = nullptr;
@@ -49,7 +48,7 @@ void	StageSelectScene::Initialize(void)
 
     // 背景
     if (!this->p_background) { this->p_background = new Object(this->p_camera); }
-    this->p_background->Init(L"Asset/UI/stageselect_artbord.png");
+    this->p_background->Init(L"Asset/back_img_01.png");
     this->p_background->SetPos(0.0f, 0.0f, 0.0f);
     this->p_background->SetSize(1920.0f, 1080.0f, 0.0f);
 
@@ -60,16 +59,16 @@ void	StageSelectScene::Initialize(void)
 	this->p_stageUI[static_cast<int>(Stage::STAGE_1)] = new Object(this->p_camera);
     this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->Init(this->stageUIPath[static_cast<int>(Stage::STAGE_1)].c_str());
 	this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->SetPos(0.0f, -50.0f, 0.0f);
-    this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->SetSize(UISize, UISize, 0.0f);
+    this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->SetSize(stageUISize, stageUISize, 0.0f);
 
     // 前半（右側）
-	for (int i = static_cast<int>(Stage::STAGE_2); i <= half; i++)
+	for (int i = static_cast<int>(Stage::STAGE_2); i <= half; ++i)
 	{
 		this->p_stageUI[i] = new Object(this->p_camera);
         this->p_stageUI[i]->Init(this->stageUIPath[i].c_str());
 		// 均等に配置
-        this->p_stageUI[i]->SetPos(i * (UISize + space), -50.0f, 0.0f);
-        this->p_stageUI[i]->SetSize(UISize, UISize, 0.0f);
+        this->p_stageUI[i]->SetPos(i * (stageUISize + space), -50.0f, 0.0f);
+        this->p_stageUI[i]->SetSize(stageUISize, stageUISize, 0.0f);
 	}
 
     // 後半（左側）
@@ -79,25 +78,32 @@ void	StageSelectScene::Initialize(void)
         this->p_stageUI[i] = new Object(this->p_camera);
         this->p_stageUI[i]->Init(this->stageUIPath[i].c_str());
         // 均等に配置
-        this->p_stageUI[i]->SetPos(-index * (UISize + space), -50.0f, 0.0f);
-        this->p_stageUI[i]->SetSize(UISize, UISize, 0.0f);
+        this->p_stageUI[i]->SetPos(-index * (stageUISize + space), -50.0f, 0.0f);
+        this->p_stageUI[i]->SetSize(stageUISize, stageUISize, 0.0f);
     }
 
-    // 左端と右端を保持
-    this->leftUIPos = DirectX::XMFLOAT3(-(half - 1) * (UISize + space), -50.0f, 0.0f);
-    this->rightUIPos = DirectX::XMFLOAT3((half - 1) * (UISize + space), -50.0f, 0.0f);
-    this->p_leftUI = new PointCollider(DirectX::XMFLOAT3(-(half + 1) * (UISize + space), -50.0f, 0.0f));
-    this->p_rightUI = new PointCollider(DirectX::XMFLOAT3((half + 1) * (UISize + space), -50.0f, 0.0f));
+    // 左端と右端の座標を当たり判定として保持
+    this->leftUIPos = DirectX::XMFLOAT3(-(half - 1) * (stageUISize + space), -50.0f, 0.0f);
+    this->rightUIPos = DirectX::XMFLOAT3((half - 1) * (stageUISize + space), -50.0f, 0.0f);
+    this->p_leftUI = new PointCollider(DirectX::XMFLOAT3(-(half + 1) * (stageUISize + space), -50.0f, 0.0f));
+    this->p_rightUI = new PointCollider(DirectX::XMFLOAT3((half + 1) * (stageUISize + space), -50.0f, 0.0f));
+
+    // UI
+    for (int i = static_cast<int>(SelectUI::FRAME); i < static_cast<int>(SelectUI::MAX); ++i)
+    {
+        this->p_UI[i] = new Object(this->p_camera);
+        this->p_UI[i]->Init(this->UIPath[i].c_str());
+        auto pos = this->UIPos[i];
+        auto size = this->UISize[i];
+        this->p_UI[i]->SetPos(pos.x, pos.y, pos.z);
+        this->p_UI[i]->SetSize(size.x, size.y, size.z);
+    }
+
+    // ビヨンド君傾ける
+    this->p_UI[static_cast<int>(SelectUI::BIYOND)]->SetAngle(-40.0f);
 
     // ポインター
     if (!this->p_point) { this->p_point = new PointCollider(DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f)); }
-
-    // テストオブジェクト
-    if (!this->p_obj) { this->p_obj = new Object(this->p_camera); }
-    this->p_obj->Init(L"Asset/UI/bangou1.png");
-    this->p_obj->SetPos(0.0f, -50.0f, 0.0f);
-    this->p_obj->SetSize(400.0f, 400.0f, 0.0f);
-    this->p_obj->SetIsActive(false);
 
     //--------------------------------------------------------------------------
     //		描画関連の初期化
@@ -212,7 +218,35 @@ void	StageSelectScene::Update(void)
 {
     this->p_input->Update();
 
-    // 当たっていたら色変る
+    // ステージUIの移動
+    float movePos = 0.0f;
+    if (this->p_input->Trigger("LEFT"))
+    {
+        movePos = this->stageUISize + this->space;
+    }
+    else if (this->p_input->Trigger("RIGHT"))
+    {
+        movePos = -this->stageUISize - this->space;
+    }
+    for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
+    {
+        auto pos = this->p_stageUI[i]->GetPos();
+        this->p_stageUI[i]->SetPos(pos.x + movePos, pos.y, pos.z);
+
+        auto& coll = this->p_stageUI[i]->GetCollider();
+        // 左端なら右端に
+        if(coll.CheckCollision(*this->p_leftUI))
+        { 
+            this->p_stageUI[i]->SetPos(rightUIPos.x, rightUIPos.y, rightUIPos.z);
+        }
+        // 右端なら左端に
+        else if (coll.CheckCollision(*this->p_rightUI))
+        {
+            this->p_stageUI[i]->SetPos(leftUIPos.x, leftUIPos.y, leftUIPos.z);
+        }
+    }
+
+    // 選択中のステージ
     int sceneNum = 0;
     for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
     {
@@ -220,15 +254,21 @@ void	StageSelectScene::Update(void)
 
         if (this->p_point->CheckCollision(coll))
         {
-            std::cout << std::to_string(i+1) << "ステージ" << std::endl;
-            this->p_stageUI[i]->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f));
+            //std::cout << std::to_string(i+1) << "ステージ" << std::endl;
+            // 選択中のステージを大きくする
+            this->p_stageUI[i]->SetSize(this->stageUISizeSelect, this->stageUISizeSelect, 0.0f);
+            this->p_stageUI[i]->SetPos(0.0f,(this->stageUISizeSelect - this->stageUISize) / 2.0f - 50.0f, 0.0f);
             sceneNum = i;
         }
-        else {
-            this->p_stageUI[i]->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
+        // サイズリセット
+        else 
+        { 
+            this->p_stageUI[i]->SetSize(this->stageUISize, this->stageUISize, 0.0f);
+            this->p_stageUI[i]->SetPos(this->p_stageUI[i]->GetPos().x, -50.0f, 0.0f);
         }
     }
 
+    // 選択中のステージに飛ぶ
     if (this->p_input->Press("SPACE"))
     {
         //this->p_point->SetPosition(DirectX::XMFLOAT3(300.0f, 300.0f, 0.0f));
@@ -286,47 +326,18 @@ void	StageSelectScene::Update(void)
             break;
         }
     }
-    else
-    {
-        this->p_point->SetPosition(DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f));
-    }
-
-    // 移動
-    float movePos = 0.0f;
-    if (this->p_input->Trigger("LEFT"))
-    {
-        movePos = this->UISize + this->space;
-    }
-    else if (this->p_input->Trigger("RIGHT"))
-    {
-        movePos = -this->UISize - this->space;
-    }
-    for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
-    {
-        auto pos = this->p_stageUI[i]->GetPos();
-        this->p_stageUI[i]->SetPos(pos.x + movePos, pos.y, pos.z);
-
-        auto& coll = this->p_stageUI[i]->GetCollider();
-        // 左端なら右端に
-        if(coll.CheckCollision(*this->p_leftUI))
-        { 
-            this->p_stageUI[i]->SetPos(rightUIPos.x, rightUIPos.y, rightUIPos.z);
-        }
-        // 右端なら左端に
-        else if (coll.CheckCollision(*this->p_rightUI))
-        {
-            this->p_stageUI[i]->SetPos(leftUIPos.x, leftUIPos.y, leftUIPos.z);
-        }
-    }
 
     //--------------------------------------------------------------------------
     //		オブジェクトの更新
     //--------------------------------------------------------------------------	
     this->p_background->Update();
-    this->p_obj->Update();
     for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
     {
         this->p_stageUI[i]->Update();
+    }
+    for (int i = static_cast<int>(SelectUI::FRAME); i < static_cast<int>(SelectUI::MAX); ++i)
+    {
+        this->p_UI[i]->Update();
     }
 
     // カメラの更新
@@ -366,11 +377,15 @@ void	StageSelectScene::Draw(void)
     //		オブジェクト
     //--------------------------------------------------------------------------
     this->p_background->Draw();
-    this->p_obj->Draw();
 
     for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
     {
         this->p_stageUI[i]->Draw();
+    }
+
+    for (int i = static_cast<int>(SelectUI::FRAME); i < static_cast<int>(SelectUI::MAX); ++i)
+    {
+        this->p_UI[i]->Draw();
     }
 }
 
@@ -384,8 +399,8 @@ void	StageSelectScene::Finalize(void)
     //		オブジェクト
     //--------------------------------------------------------------------------
     SAFE_DELETE(this->p_background);
-    SAFE_DELETE(this->p_obj);
     for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++) { SAFE_DELETE(this->p_stageUI[i]); }
+    for (int i = static_cast<int>(SelectUI::LEFT_ARROW); i < static_cast<int>(SelectUI::MAX); ++i) { SAFE_DELETE(this->p_UI[i]); }
     SAFE_DELETE(this->p_point);
 
     //--------------------------------------------------------------------------

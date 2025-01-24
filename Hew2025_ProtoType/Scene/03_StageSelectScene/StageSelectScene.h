@@ -15,6 +15,7 @@
 #include"../../Library/Code/self/05_Collider/03_PointCollider/PointCollider.h"
 
 #include<string>
+#include<array>
 
 /**	@file	StageSelectScene.h
 *	@brief	ステージセレクト
@@ -45,13 +46,14 @@ public:
 	*/
 	void	Finalize(void)override;
 private:
-	float space = 200.0f;			// 幅
-	float UISize = 330.0f;			// UIサイズ
+	float space = 250.0f;			// 幅
+	float stageUISize = 270.0f;			// UIサイズ
+	float stageUISizeSelect = 350.0f;	// 選択時のUIサイズ
 	BaseCollider* p_leftUI;			// UIの左端
 	BaseCollider* p_rightUI;		// UIの右端
 
 	DirectX::XMFLOAT3 leftUIPos;	// UIの左端
-	DirectX::XMFLOAT3 rightUIPos;  // UIの右端
+	DirectX::XMFLOAT3 rightUIPos;	// UIの右端
 
 	enum class Stage
 	{
@@ -67,18 +69,34 @@ private:
 		STAGE_10,
 		STAGE_11,
 		STAGE_12,
+
 		NUM = STAGE_12,
 		MAX,
 	};
 
-	Camera* p_camera;	// カメラ
+	enum class SelectUI
+	{
+		FRAME,
+		LEFT_ARROW,
+		RIGHT_ARROW,
+		L1,
+		R1,
+		STAGE_LOGO,
+		BIYOND,
+
+		NUM = BIYOND,
+		MAX,
+	};
+
+	Camera* p_camera;		// カメラ
+	PointCollider* p_point;	// ポインター
 
 	//--------------------------------------------------------------------------
 	//		オブジェクト
 	//--------------------------------------------------------------------------
-	Object* p_background;	// 背景
-	Object* p_obj;	
+	Object* p_background;								// 背景
 	Object* p_stageUI[static_cast<int>(Stage::MAX)];	// ステージUI
+	Object* p_UI[static_cast<int>(SelectUI::MAX)];		// セレクト画面のUI
 
 	// ステージUIファイルパス
 	std::wstring stageUIPath[static_cast<int>(Stage::MAX)] = {
@@ -95,7 +113,47 @@ private:
 		L"Asset/UI/bangou11.png",
 		L"Asset/UI/bangou12.png"
 	};
-	PointCollider* p_point;			// ポインター
+	
+	// ステージセレクトUIのファイルパス
+	std::wstring UIPath[static_cast<int>(SelectUI::MAX)] = {
+				L"Asset/UI/waku.png",
+				L"Asset/UI/hidari.png",
+				L"Asset/UI/migi.png",
+				L"Asset/UI/l1.png",
+				L"Asset/UI/r1.png",
+				L"Asset/UI/stage select.png",
+				L"Asset/UI/biyond.png",
+	};
+
+	// ステージセレクトUIの座標
+	std::array<DirectX::XMFLOAT3, static_cast<int>(SelectUI::MAX)>UIPos = {
+		DirectX::XMFLOAT3(0.0f,0.0f,0.0f),
+
+		DirectX::XMFLOAT3(-750.0f,-380.0f,0.0f),
+		DirectX::XMFLOAT3(750.0f,-380.0f,0.0f),
+
+		DirectX::XMFLOAT3(-400.0f,-380.0f,0.0f),
+		DirectX::XMFLOAT3(400.0f,-380.0f,0.0f),
+
+		DirectX::XMFLOAT3(0.0f,300.0f,0.0f),
+
+		DirectX::XMFLOAT3(-810.0f,450.0f,0.0f),
+	};
+
+	// ステージセレクトUIのサイズ
+	std::array<DirectX::XMFLOAT3, static_cast<int>(SelectUI::MAX)>UISize = {
+		DirectX::XMFLOAT3(1920.0f, 1080.0f,0.0f),
+
+		DirectX::XMFLOAT3(125.0f,150.0f,0.0f),
+		DirectX::XMFLOAT3(125.0f,150.0f,0.0f),
+
+		DirectX::XMFLOAT3(150.0f,175.0f,0.0f),
+		DirectX::XMFLOAT3(150.0f,175.0f,0.0f),
+
+		DirectX::XMFLOAT3(1100.0f,200.0f,0.0f),
+
+		DirectX::XMFLOAT3(900.0f,500.0f,0.0f),
+	};
 
 	//--------------------------------------------------------------------------
 	//		描画関連

@@ -5,8 +5,8 @@
 #include <sstream>
 
 // 初期化
-float TileMap::tileWidth = 10.0f;
-float TileMap::tileHeight = 10.0f;
+float TileMap::tileWidth = 100.0f;
+float TileMap::tileHeight = 100.0f;
 
 float TileMap::stageWidth = 0.0f;
 float TileMap::stageHeight = 0.0f;
