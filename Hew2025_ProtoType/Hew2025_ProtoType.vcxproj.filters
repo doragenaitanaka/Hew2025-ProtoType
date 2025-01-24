@@ -237,7 +237,7 @@
     <ClCompile Include="Library\Code\self\15_Pendulum\Pendulum.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="FallObject.cpp">
+    <ClCompile Include="Library\Code\self\17_FallObject\FallObject.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -407,7 +407,7 @@
     <ClInclude Include="Library\Code\self\15_Pendulum\Pendulum.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="FallObject.h">
+    <ClInclude Include="Library\Code\self\17_FallObject\FallObject.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

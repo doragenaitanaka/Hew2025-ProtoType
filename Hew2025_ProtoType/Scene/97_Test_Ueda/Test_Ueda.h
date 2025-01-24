@@ -15,7 +15,7 @@
 #include"../../Library/Code/self/imagawa_Input/input.h"
 #include"../../Library/Code/self/14_Ball/Ball.h"
 #include"../../Library/Code/self/15_Pendulum/Pendulum.h"
-#include "../../FallObject.h"
+#include"../../Library/Code/self/17_FallObject/FallObject.h"
 #include<iostream>
 
 
