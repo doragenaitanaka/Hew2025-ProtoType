@@ -5,8 +5,9 @@ Camera::Camera()
 	:pos{ DirectX::XMFLOAT3(0.0f, 0.0f, -10.0f) },
 	tgt{ DirectX::XMFLOAT3(0.0f, 0.0f, -1.0f) },
 	up{ DirectX::XMFLOAT3(0.0f, 1.0f, 0.0f) },
-	nearPlane{ 1.0f },
-	farPlane{ 1000.0f }
+	nearPlane{ 0.1f },
+	farPlane{ 1000.0f },
+    zoomFactor{1.0f}
 {}
 
 Camera::~Camera()
@@ -16,7 +17,6 @@ Camera::~Camera()
 */
 void Camera::Update()
 {
-	//this->SetPosition(this->pos.x + 10.0f, this->pos.y + 10.0f);
 }
 
 /**	@brief 	ビュー変換行列の取得
@@ -37,8 +37,19 @@ DirectX::XMMATRIX Camera::GetViewMat()
 */
 DirectX::XMMATRIX Camera::GetProjectionMat()
 {
-    DirectX::XMMATRIX projectionMatrix = DirectX::XMMatrixOrthographicLH(static_cast<float>(SCREEN_WIDTH),
-        static_cast<float>(SCREEN_HEIGHT),
+    DirectX::XMMATRIX projectionMatrix = DirectX::XMMatrixOrthographicLH(
+        static_cast<float>(SCREEN_WIDTH) / this->zoomFactor,
+        static_cast<float>(SCREEN_HEIGHT) / this->zoomFactor,
         this->nearPlane, this->farPlane);
     return DirectX::XMMatrixTranspose(projectionMatrix); // トランスポーズ
+}
+
+/**	@brief 	画面シェイク
+*   @param float _intensity	揺れる強さ
+*/
+void Camera::Shake(float _intensity)
+{
+    float offsetX = (rand() % 1000 / 500.0f - 1.0f) * _intensity;
+    float offsetY = (rand() % 1000 / 500.0f - 1.0f) * _intensity;
+    this->SetPosition(this->pos.x + offsetX, this->pos.y + offsetY);
 }

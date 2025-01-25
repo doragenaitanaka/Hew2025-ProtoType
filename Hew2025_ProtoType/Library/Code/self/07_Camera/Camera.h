@@ -26,12 +26,28 @@ public:
 	*/
 	DirectX::XMMATRIX GetProjectionMat();
 
-	// カメラの位置を設定するメソッド
-	void SetPosition(float x, float y)
+	/**	@brief 	カメラの位置を設定するメソッド
+	*   @param float _x
+	*   @param float _y
+	*/
+	inline void SetPosition(float _x, float _y)
 	{
-		pos = DirectX::XMFLOAT3(x, y, -10.0f); // z座標を固定
-		tgt = DirectX::XMFLOAT3(x, y, 0.0f);   // ターゲットのz座標も固定
+		pos = DirectX::XMFLOAT3(_x, _y, -10.0f);	// z座標を固定
+		tgt = DirectX::XMFLOAT3(_x, _y, 10.0f);		// ターゲットのz座標も固定
 	}
+
+	/**	@brief 	カメラのズーム倍率の設定
+	*   @param float _zoomFactor	ズームする倍率
+	*/
+	inline void SetZoom(float _zoomFactor)
+	{
+		this->zoomFactor = _zoomFactor;
+	}
+
+	/**	@brief 	画面シェイク
+	*   @param float _intensity	揺れる強さ
+	*/
+	void Shake(float _intensity);
 
 protected:
 	DirectX::XMFLOAT3 pos;
@@ -40,4 +56,6 @@ protected:
 
 	float nearPlane;	// ニアクリップ
 	float farPlane;		// ファークリップ
+
+	float zoomFactor;	// ズーム倍率
 };
