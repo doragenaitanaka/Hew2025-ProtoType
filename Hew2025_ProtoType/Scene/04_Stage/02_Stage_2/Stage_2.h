@@ -16,6 +16,7 @@
 #include"../../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
 #include"../../../Library/Code/self/10_Object/Object.h"
 #include"../../../Library/Code/self/11_Player/Player.h"
+#include"../../../Library/Code/self/16_Background/Background.h"
 
 /**	@file	Stage_2.h
 *	@brief	起動時にロゴとか出るシーン
@@ -58,7 +59,7 @@ private:
 	//--------------------------------------------------------------------------
 	//		オブジェクト
 	//--------------------------------------------------------------------------
-	Object* background;
+	Background * background;
 	Player* player;
 	//Object* block[100];
 	//Object* blockdraw[10000];

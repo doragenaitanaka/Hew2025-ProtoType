@@ -61,7 +61,7 @@ public:
 	/**	@brief	定数バッファの更新
 	*	@date	2024/06/12
 	*/
-	void	ConstantBufferUpdate(void);
+	virtual void	ConstantBufferUpdate(void);
 
 	/**	@brief 	描画関数
 	*	@date	2024/05/23

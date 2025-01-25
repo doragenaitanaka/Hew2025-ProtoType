@@ -54,7 +54,7 @@ void	Stage_2::Initialize(void)
     //--------------------------------------------------------------------------	
 
     // 背景
-    if (!this->background) { this->background = new Object(this->p_camera); }
+    if (!this->background) { this->background = new Background(this->p_camera); }
     this->background->Init(L"Asset/back_img_01.png");
     this->background->SetPos(0.0f, 0.0f, 0.0f);
     this->background->SetSize(1920.0f, 1080.0f, 0.0f);
