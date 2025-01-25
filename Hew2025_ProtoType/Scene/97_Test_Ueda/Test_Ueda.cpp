@@ -225,16 +225,7 @@ void Test_Ueda::Update(void)
     {
         this->p_TestObject->SetPos(p_TestObject->GetPos().x - MoveSpeed, p_TestObject->GetPos().y, 0.0f); // 座標更新
     }
-    // 上矢印キーで上移動
-    if (GetAsyncKeyState(VK_UP))
-    {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y + MoveSpeed, 0.0f); // 座標更新
-    }
-    // 下矢印キーで下移動
-    if (GetAsyncKeyState(VK_DOWN))
-    {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y - MoveSpeed, 0.0f); // 座標更新
-    }
+   
 
     if (GravityFlg == true)
     {
@@ -262,14 +253,7 @@ void Test_Ueda::Update(void)
             {
                 this->p_TestObject->SetPos(p_TestObject->GetPos().x + MoveSpeed, p_TestObject->GetPos().y, 0.0f); //座標更新
             }
-            if (GetAsyncKeyState(VK_UP))
-            {
-                this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y - MoveSpeed, 0.0f); //座標更新
-            }
-            if (GetAsyncKeyState(VK_DOWN))
-            {
-                this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y + MoveSpeed, 0.0f); //座標更新
-            }
+            
             if (GravityFlg == true)
             {
             
@@ -346,14 +330,7 @@ void Test_Ueda::Update(void)
             {
                 this->p_TestObject->SetPos(p_TestObject->GetPos().x + MoveSpeed, p_TestObject->GetPos().y, 0.0f); //座標更新
             }
-            if (GetAsyncKeyState(VK_UP))
-            {
-                this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y - MoveSpeed, 0.0f); //座標更新
-            }
-            if (GetAsyncKeyState(VK_DOWN))
-            {
-                this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y + MoveSpeed, 0.0f); //座標更新
-            }
+            
             if (GravityFlg == true)
             {
 
@@ -365,7 +342,7 @@ void Test_Ueda::Update(void)
 			{
 				TestPenState = 1;
 				pen.have(p_TestObject2);
-				p_TestObject2->SetAngle(-90.f);
+				p_TestObject2->SetAngle(+90.f);
 			}
 
         }

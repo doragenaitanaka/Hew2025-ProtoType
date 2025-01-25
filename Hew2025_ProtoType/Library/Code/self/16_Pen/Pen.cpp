@@ -64,6 +64,14 @@ void Pen::Move(const DirectX::XMFLOAT3 objectPos)
     }
 }
 
+//void Pen::Rotate(const DirectX::XMFLOAT3 objectangle)
+//{
+//    if (p_Player)
+//    {
+//		p_Player->SetAngle(objectangle);
+//    }
+//}
+
 /**	@brief 	ペンを発射する処理
 */
 void Pen::Shoot(const DirectX::XMFLOAT3 objectPos)
