@@ -16,6 +16,7 @@
 
 #include<string>
 #include<array>
+#include<chrono>
 
 /**	@file	StageSelectScene.h
 *	@brief	ステージセレクト
@@ -45,16 +46,37 @@ public:
 	/**	@brief 	シーン全体の終了処理
 	*/
 	void	Finalize(void)override;
+
 private:
-	float space = 250.0f;			// 幅
-	float stageUISize = 270.0f;			// UIサイズ
-	float stageUISizeSelect = 350.0f;	// 選択時のUIサイズ
+	/**	@brief 	ステージの選択
+	*	@param	in&t _stageNum
+	*/
+	void SelectStage(int& _stageNum);
+
+	/**	@brief 	ステージUIのアニメーション
+	*	@param	in&t _stageNum
+	*/
+	void AnimateUI();
+private:
+	std::chrono::time_point<std::chrono::steady_clock> lastUpdateTime;
+	std::chrono::milliseconds interval{ 500 };			// 時間間隔
+	std::chrono::steady_clock::duration elapsedTime;	// 経過時間
+		
+	float space = 250.0f;				// 幅
+	float stageUISize = 250.0f;			// UIサイズ
+	float stageUISizeSelect = 330.0f;	// 選択時のUIサイズ
+	int stageNum = 0;					// ステージの番号
+
 	BaseCollider* p_leftUI;			// UIの左端
 	BaseCollider* p_rightUI;		// UIの右端
 
 	DirectX::XMFLOAT3 leftUIPos;	// UIの左端
 	DirectX::XMFLOAT3 rightUIPos;	// UIの右端
 
+	bool isSelect = true;			// 選んだか
+	bool isStretch = false;			// 伸びきったか
+
+	// ステージUI
 	enum class Stage
 	{
 		STAGE_1,
@@ -73,7 +95,8 @@ private:
 		NUM = STAGE_12,
 		MAX,
 	};
-
+	
+	// セレクト画面UI
 	enum class SelectUI
 	{
 		FRAME,

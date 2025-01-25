@@ -28,29 +28,34 @@ StageSelectScene::StageSelectScene()
     this->p_sampler = nullptr;
     this->p_brendState = nullptr;
 }
+
 /**	@brief 	デストラクタ
 */
 StageSelectScene::~StageSelectScene()
 {
 	this->Finalize();
 }
+
 /**	@brief 	シーン全体の初期化
 */
 void	StageSelectScene::Initialize(void)
 {    
+    // 時刻の設定
+    this->lastUpdateTime = std::chrono::steady_clock::now();
+
     // カメラ
     if (!this->p_camera) { this->p_camera = new Camera; }
     this->p_camera->SetPosition(0.0f, 0.0f);
 
     //--------------------------------------------------------------------------
     //		 オブジェクト
-    //--------------------------------------------------------------------------	
+    //--------------------------------------------------------------------------
 
     // 背景
     if (!this->p_background) { this->p_background = new Object(this->p_camera); }
-    this->p_background->Init(L"Asset/back_img_01.png");
-    this->p_background->SetPos(0.0f, 0.0f, 0.0f);
-    this->p_background->SetSize(1920.0f, 1080.0f, 0.0f);
+    this->p_background->Init(L"Asset/background.png");
+    this->p_background->SetPos(-200.0f, 0.0f, 0.0f);
+    this->p_background->SetSize(1920.0f*2, 1080.0f*2, 0.0f);
 
     // ステージUI
 	int half = static_cast<int>(Stage::MAX) / 2;
@@ -100,7 +105,7 @@ void	StageSelectScene::Initialize(void)
     }
 
     // ビヨンド君傾ける
-    this->p_UI[static_cast<int>(SelectUI::BIYOND)]->SetAngle(-40.0f);
+    this->p_UI[static_cast<int>(SelectUI::BIYOND)]->SetAngle(-35.0f);
 
     // ポインター
     if (!this->p_point) { this->p_point = new PointCollider(DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f)); }
@@ -212,10 +217,14 @@ void	StageSelectScene::Initialize(void)
     }
 }
 
-/**	@brief 	シーン全体の更新
+/** @brief  シーン全体の更新
 */
-void	StageSelectScene::Update(void)
+void StageSelectScene::Update(void)
 {
+    // 経過時間の計測
+    auto currentTime = std::chrono::steady_clock::now();
+    this->elapsedTime = currentTime - this->lastUpdateTime;
+
     this->p_input->Update();
 
     // ステージUIの移動
@@ -223,11 +232,15 @@ void	StageSelectScene::Update(void)
     if (this->p_input->Trigger("LEFT"))
     {
         movePos = this->stageUISize + this->space;
+        this->isSelect = true;
     }
     else if (this->p_input->Trigger("RIGHT"))
     {
         movePos = -this->stageUISize - this->space;
+        this->isSelect = true;
     }
+
+    // ステージがループするように処理
     for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
     {
         auto pos = this->p_stageUI[i]->GetPos();
@@ -235,8 +248,8 @@ void	StageSelectScene::Update(void)
 
         auto& coll = this->p_stageUI[i]->GetCollider();
         // 左端なら右端に
-        if(coll.CheckCollision(*this->p_leftUI))
-        { 
+        if (coll.CheckCollision(*this->p_leftUI))
+        {
             this->p_stageUI[i]->SetPos(rightUIPos.x, rightUIPos.y, rightUIPos.z);
         }
         // 右端なら左端に
@@ -246,90 +259,49 @@ void	StageSelectScene::Update(void)
         }
     }
 
-    // 選択中のステージ
-    int sceneNum = 0;
-    for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
+    // 選択中のステージを保持
+    if (this->isSelect)
     {
-        auto& coll = this->p_stageUI[i]->GetCollider();
-
-        if (this->p_point->CheckCollision(coll))
+        for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
         {
-            //std::cout << std::to_string(i+1) << "ステージ" << std::endl;
-            // 選択中のステージを大きくする
-            this->p_stageUI[i]->SetSize(this->stageUISizeSelect, this->stageUISizeSelect, 0.0f);
-            this->p_stageUI[i]->SetPos(0.0f,(this->stageUISizeSelect - this->stageUISize) / 2.0f - 50.0f, 0.0f);
-            sceneNum = i;
+            auto& coll = this->p_stageUI[i]->GetCollider();
+
+            if (this->p_point->CheckCollision(coll))
+            {
+                // 選択中のステージを大きくする
+                this->p_stageUI[i]->SetSize(this->stageUISizeSelect, this->stageUISizeSelect, 0.0f);
+                this->p_stageUI[i]->SetPos(0.0f, (this->stageUISizeSelect - this->stageUISize) / 2.0f - 50.0f, 0.0f);
+                this->stageNum = i;
+            }
+            // サイズリセット
+            else
+            {
+                this->p_stageUI[i]->SetSize(this->stageUISize, this->stageUISize, 0.0f);
+                this->p_stageUI[i]->SetPos(this->p_stageUI[i]->GetPos().x, -50.0f, 0.0f);
+            }
         }
-        // サイズリセット
-        else 
-        { 
-            this->p_stageUI[i]->SetSize(this->stageUISize, this->stageUISize, 0.0f);
-            this->p_stageUI[i]->SetPos(this->p_stageUI[i]->GetPos().x, -50.0f, 0.0f);
-        }
+        this->isSelect = false;
+        this->isStretch = false;
+        this->lastUpdateTime = std::chrono::steady_clock::now();
+
+        // ビヨンド君のリサイズ
+        auto sizeBiyond = this->UISize[static_cast<int>(SelectUI::BIYOND)];
+        this->p_UI[static_cast<int>(SelectUI::BIYOND)]->SetSize(sizeBiyond.x, sizeBiyond.y, sizeBiyond.z);
     }
 
     // 選択中のステージに飛ぶ
     if (this->p_input->Press("SPACE"))
     {
-        //this->p_point->SetPosition(DirectX::XMFLOAT3(300.0f, 300.0f, 0.0f));
-        switch (static_cast<StageSelectScene::Stage>(sceneNum))
-        {
-        case StageSelectScene::Stage::STAGE_1:
-            this->p_sceneManager->ChangeScene(Scene::Stage_1);
-            return;
-            break;
-        case StageSelectScene::Stage::STAGE_2:
-            this->p_sceneManager->ChangeScene(Scene::Stage_2);
-            return;
-            break;
-        case StageSelectScene::Stage::STAGE_3:
-            this->p_sceneManager->ChangeScene(Scene::Stage_3);
-            return;
-            break;
-        case StageSelectScene::Stage::STAGE_4:
-            this->p_sceneManager->ChangeScene(Scene::Stage_4);
-            return;
-            break;
-        case StageSelectScene::Stage::STAGE_5:
-            this->p_sceneManager->ChangeScene(Scene::Stage_5);
-            return;
-            break;
-        case StageSelectScene::Stage::STAGE_6:
-            this->p_sceneManager->ChangeScene(Scene::Stage_6);
-            return;
-            break;
-        case StageSelectScene::Stage::STAGE_7:
-            this->p_sceneManager->ChangeScene(Scene::Stage_7);
-            return;
-            break;
-        case StageSelectScene::Stage::STAGE_8:
-            this->p_sceneManager->ChangeScene(Scene::Stage_8);
-            return;
-            break;
-        case StageSelectScene::Stage::STAGE_9:
-            this->p_sceneManager->ChangeScene(Scene::Stage_9);
-            return;
-            break;
-        case StageSelectScene::Stage::STAGE_10:
-            this->p_sceneManager->ChangeScene(Scene::Stage_10);
-            return;
-            break;
-        case StageSelectScene::Stage::STAGE_11:
-            this->p_sceneManager->ChangeScene(Scene::Stage_11);
-            return;
-            break;
-        case StageSelectScene::Stage::STAGE_12:
-            this->p_sceneManager->ChangeScene(Scene::Stage_12);
-            return;
-            break;
-        default:
-            break;
-        }
+        this->SelectStage(this->stageNum);
+        return;
     }
 
+    // アニメーション
+    this->AnimateUI();
+
     //--------------------------------------------------------------------------
-    //		オブジェクトの更新
-    //--------------------------------------------------------------------------	
+    //      オブジェクトの更新
+    //--------------------------------------------------------------------------    
     this->p_background->Update();
     for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
     {
@@ -342,6 +314,40 @@ void	StageSelectScene::Update(void)
 
     // カメラの更新
     this->p_camera->Update();
+}
+
+/** @brief UIのアニメーション処理 
+*/
+void StageSelectScene::AnimateUI()
+{
+    // 伸ばす
+    if (!this->isStretch)
+    {
+        auto sizeStage = this->p_stageUI[this->stageNum]->GetSize();
+        auto sizeBiyond = this->p_UI[static_cast<int>(SelectUI::BIYOND)]->GetSize();
+
+        this->p_stageUI[stageNum]->SetSize(sizeStage.x + 2.5f, sizeStage.y + 2.5f, sizeStage.z);
+        this->p_UI[static_cast<int>(SelectUI::BIYOND)]->SetSize(sizeBiyond.x + 4.0f, sizeBiyond.y + 2.0f, sizeBiyond.z);
+
+    }
+
+    // 縮める
+    else
+    {
+        auto sizeStage = this->p_stageUI[stageNum]->GetSize();
+        auto sizeBiyond = this->p_UI[static_cast<int>(SelectUI::BIYOND)]->GetSize();
+
+        this->p_stageUI[stageNum]->SetSize(sizeStage.x - 2.5f, sizeStage.y - 2.5f, sizeStage.z);
+        this->p_UI[static_cast<int>(SelectUI::BIYOND)]->SetSize(sizeBiyond.x - 4.0f, sizeBiyond.y - 2.0f, sizeBiyond.z);
+
+    }
+
+    // 経過時間のリセット
+    if (this->elapsedTime > this->interval)
+    {
+        this->isStretch = !this->isStretch;
+        this->lastUpdateTime = std::chrono::steady_clock::now();
+    }
 }
 
 /**	@brief 	シーン全体の描画
@@ -412,4 +418,53 @@ void	StageSelectScene::Finalize(void)
     SAFE_DELETE(this->p_sampler);       // サンプラー
 
     SAFE_RELEASE(this->p_brendState);   // ブレンドステート
+}
+
+/**	@brief 	ステージの選択
+*	@param	in&t _stageNum
+*/
+void StageSelectScene::SelectStage(int& _stageNum)
+{
+    switch (static_cast<StageSelectScene::Stage>(_stageNum))
+    {
+    case StageSelectScene::Stage::STAGE_1:
+        this->p_sceneManager->ChangeScene(Scene::Stage_1);
+        break;
+    case StageSelectScene::Stage::STAGE_2:
+        this->p_sceneManager->ChangeScene(Scene::Stage_2);
+        break;
+    case StageSelectScene::Stage::STAGE_3:
+        this->p_sceneManager->ChangeScene(Scene::Stage_3);
+        break;
+    case StageSelectScene::Stage::STAGE_4:
+        this->p_sceneManager->ChangeScene(Scene::Stage_4);
+        break;
+    case StageSelectScene::Stage::STAGE_5:
+        this->p_sceneManager->ChangeScene(Scene::Stage_5);
+        break;
+    case StageSelectScene::Stage::STAGE_6:
+        this->p_sceneManager->ChangeScene(Scene::Stage_6);
+        break;
+    case StageSelectScene::Stage::STAGE_7:
+        this->p_sceneManager->ChangeScene(Scene::Stage_7);
+        break;
+    case StageSelectScene::Stage::STAGE_8:
+        this->p_sceneManager->ChangeScene(Scene::Stage_8);
+        break;
+    case StageSelectScene::Stage::STAGE_9:
+        this->p_sceneManager->ChangeScene(Scene::Stage_9);
+        break;
+    case StageSelectScene::Stage::STAGE_10:
+        this->p_sceneManager->ChangeScene(Scene::Stage_10);
+        break;
+    case StageSelectScene::Stage::STAGE_11:
+        this->p_sceneManager->ChangeScene(Scene::Stage_11);
+        break;
+    case StageSelectScene::Stage::STAGE_12:
+        this->p_sceneManager->ChangeScene(Scene::Stage_12);
+        break;
+    default:
+        break;
+    }
+    return;
 }
