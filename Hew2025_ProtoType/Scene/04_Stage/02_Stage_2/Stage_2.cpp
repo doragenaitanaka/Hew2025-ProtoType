@@ -46,7 +46,7 @@ void	Stage_2::Initialize(void)
     if (!this->p_tileMap)
     {
         this->p_tileMap = new TileMap(this->p_camera);
-        this->p_tileMap->GenerateMap("Stage12.csv");
+        this->p_tileMap->GenerateMap("Stage1.csv");
     }
 
     //--------------------------------------------------------------------------
@@ -67,6 +67,7 @@ void	Stage_2::Initialize(void)
 
     // プレイヤーをターゲットに設定
     this->p_camera->SetTarget(this->player);
+    this->p_camera->SetOffset(DirectX::XMFLOAT3(0.0f, 150.0f, 0.0f));
 
     //--------------------------------------------------------------------------
     //		描画関連の初期化
