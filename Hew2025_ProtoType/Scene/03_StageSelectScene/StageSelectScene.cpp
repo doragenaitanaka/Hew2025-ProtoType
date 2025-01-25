@@ -233,12 +233,15 @@ void StageSelectScene::Update(void)
     {
         movePos = this->stageUISize + this->space;
         this->isSelect = true;
+        this->isPushL1 = true;
     }
     else if (this->p_input->Trigger("RIGHT"))
     {
         movePos = -this->stageUISize - this->space;
         this->isSelect = true;
+        this->isPushR1 = true;
     }
+    this->ButtonUpdate();
 
     // ステージがループするように処理
     for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
@@ -347,6 +350,63 @@ void StageSelectScene::AnimateUI()
     {
         this->isStretch = !this->isStretch;
         this->lastUpdateTime = std::chrono::steady_clock::now();
+    }
+}
+
+/**	@brief 	ボタンを押したときのアニメーション
+*/
+void StageSelectScene::ButtonUpdate()
+{
+    // L1を押したとき
+    auto pushSize = this->p_UI[static_cast<int>(SelectUI::L1)]->GetSize();
+    // 縮小
+    if (this->isPushL1)
+    {
+        if (pushSize.x > this->UISize[static_cast<int>(SelectUI::L1)].x * 0.9f)
+        {
+            this->p_UI[static_cast<int>(SelectUI::L1)]->SetSize(pushSize.x - 2.0f, pushSize.y - 2.0f, pushSize.z);
+        }
+        else { this->isPushL1 = false; }
+
+        // 矢印の色変更
+        this->p_UI[static_cast<int>(SelectUI::LEFT_ARROW)]->SetColor(DirectX::XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f));
+    }
+    // 拡大(元の大きさにする)
+    else
+    {
+        if (pushSize.x < this->UISize[static_cast<int>(SelectUI::L1)].x)
+        {
+            this->p_UI[static_cast<int>(SelectUI::L1)]->SetSize(pushSize.x + 2.0f, pushSize.y + 2.0f, pushSize.z);
+        }
+
+        // 矢印の色変更
+        this->p_UI[static_cast<int>(SelectUI::LEFT_ARROW)]->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
+    }
+
+    // R1を押したとき
+    pushSize = this->p_UI[static_cast<int>(SelectUI::R1)]->GetSize();
+    // 縮小
+    if (this->isPushR1)
+    {
+        if (pushSize.x > this->UISize[static_cast<int>(SelectUI::R1)].x * 0.9f)
+        {
+            this->p_UI[static_cast<int>(SelectUI::R1)]->SetSize(pushSize.x - 2.0f, pushSize.y - 2.0f, pushSize.z);
+        }
+        else { this->isPushR1 = false; }
+
+        // 矢印の色変更
+        this->p_UI[static_cast<int>(SelectUI::RIGHT_ARROW)]->SetColor(DirectX::XMFLOAT4(0.3f, 0.3f, 0.3f, 1.0f));
+    }
+    // 拡大(元の大きさにする)
+    else
+    {
+        if (pushSize.x < this->UISize[static_cast<int>(SelectUI::R1)].x)
+        {
+            this->p_UI[static_cast<int>(SelectUI::R1)]->SetSize(pushSize.x + 2.0f, pushSize.y + 2.0f, pushSize.z);
+        }
+
+        // 矢印の色変更
+        this->p_UI[static_cast<int>(SelectUI::RIGHT_ARROW)]->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
     }
 }
 

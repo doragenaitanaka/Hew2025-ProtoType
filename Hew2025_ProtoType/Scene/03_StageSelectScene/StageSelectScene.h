@@ -54,9 +54,12 @@ private:
 	void SelectStage(int& _stageNum);
 
 	/**	@brief 	ステージUIのアニメーション
-	*	@param	in&t _stageNum
 	*/
 	void AnimateUI();
+
+	/**	@brief 	ボタンを押したときの処理
+	*/
+	void ButtonUpdate();
 private:
 	std::chrono::time_point<std::chrono::steady_clock> lastUpdateTime;
 	std::chrono::milliseconds interval{ 500 };			// 時間間隔
@@ -75,6 +78,9 @@ private:
 
 	bool isSelect = true;			// 選んだか
 	bool isStretch = false;			// 伸びきったか
+
+	bool isPushL1 = false;	
+	bool isPushR1 = false;
 
 	// ステージUI
 	enum class Stage
