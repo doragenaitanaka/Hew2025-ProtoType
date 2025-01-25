@@ -79,6 +79,7 @@ public:
 	int TestPenState = 0;
 	int TestCnt = 0;
 	float MoveSpeed = 20.0f;
+	float PenAngle = 0.0f;
 private:
 	Object* p_TestObject;
 
