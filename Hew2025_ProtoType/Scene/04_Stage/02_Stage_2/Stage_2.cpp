@@ -67,16 +67,9 @@ void	Stage_2::Initialize(void)
 
     // プレイヤーをターゲットに設定
     this->p_camera->SetTarget(this->player);
-<<<<<<< Updated upstream
-    this->p_camera->SetOffset(DirectX::XMFLOAT3(0.0f, 150.0f, 0.0f));
-=======
-<<<<<<< HEAD
-    //this->p_camera->SetOffset(DirectX::XMFLOAT3(300.0f, 300.0f, 0.0f));
-    
-=======
-    this->p_camera->SetOffset(DirectX::XMFLOAT3(0.0f, 150.0f, 0.0f));
->>>>>>> 090e7ff4c65770c6ebda99ba5353e3789f03df44
->>>>>>> Stashed changes
+
+    //// カメラの倍率変更(1.0fがデフォ)
+    //this->p_camera->SetZoom(1.0f);
 
     //--------------------------------------------------------------------------
     //		描画関連の初期化
@@ -194,16 +187,8 @@ void	Stage_2::Update(void)
     this->p_input->Update();
     this->p_input->GetLeftAnalogStick();
 
-    static float zoom = 1.0f;
-    if (this->p_input->Press("SPACE"))
-    {
-        zoom -= 0.005f;
-    }
-    else{ zoom += 0.005f; }
-
-    //this->p_camera->SetZoom(zoom);
-
-    this->p_camera->Shake(10.0f);
+    //// 画面揺らせる
+    //this->p_camera->Shake(10.0f);
 
 
     //----------------------------------------------
