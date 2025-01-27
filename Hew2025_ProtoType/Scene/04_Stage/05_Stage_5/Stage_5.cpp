@@ -541,10 +541,6 @@ void	Stage_5::Update(void)
     //-----------------------------------
     this->player->SetColliderSize(DirectX::XMFLOAT3(PlayerSize.x, PlayerSize.y, 0.0f));
  
-    this->rail[0]->SetColliderSize(DirectX::XMFLOAT3(RailSize00.x, RailSize00.y, 0.0f));
-    this->rail[1]->SetColliderSize(DirectX::XMFLOAT3(RailSize01.x, RailSize01.y, 0.0f));
-    this->rail[2]->SetColliderSize(DirectX::XMFLOAT3(RailSize02.x, RailSize02.y, 0.0f));
-    
     this->pendulum->SetColliderSize(DirectX::XMFLOAT3(GrabboxSize.x, GrabboxSize.y, 0.0f));
 
     this->grabbox->SetColliderSize(DirectX::XMFLOAT3(GrabboxSize.x, GrabboxSize.y, 0.0f));
@@ -675,6 +671,11 @@ void	Stage_5::Update(void)
     for (n = 0; n < 7; n++)//Updateの数
     {
         this->hook[n]->Update();
+    }
+
+    for (n = 0; n < 3; n++)//Updateの数
+    {
+        this->rail[n]->Update();
     }
 
     for (n = 0; n < 2; n++)//Updateの数

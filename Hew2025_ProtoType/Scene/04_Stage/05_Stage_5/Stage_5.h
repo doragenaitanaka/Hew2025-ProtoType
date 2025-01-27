@@ -60,9 +60,9 @@ public:
 	XMFLOAT2 HookPos05 = { 2150.0f,-2550.0f };//空中左フック下
 	XMFLOAT2 HookPos06 = { 2150.0f,-200.0f };//空中ゴール左フック
 
-	XMFLOAT2 RailPos00 = { 3050.0f,-500.0f };//右フック下
-	XMFLOAT2 RailPos01 = { 3650.0f,1550.0f };//空中右フック右
-	XMFLOAT2 RailPos02 = { 550.0f,1350.0f };//空中左フック下
+	XMFLOAT2 RailPos00 = { 5850,-5150.0f };//右フック下
+	XMFLOAT2 RailPos01 = { 6350.0f,-2500.0f };//空中右フック右
+	XMFLOAT2 RailPos02 = { 2150.0f,-2850.0f };//空中左フック下
 
 	XMFLOAT2 YoyoPos = { 2600.0f,-3400.0f };//ヨーヨーの支点
 
@@ -78,7 +78,7 @@ public:
 
 	XMFLOAT2 RailSize00 = { 100.0f,800.0f };
 	XMFLOAT2 RailSize01 = { 800.0f,100.0f };
-	XMFLOAT2 RailSize02 = { 100.0f,600.0f };
+	XMFLOAT2 RailSize02 = { 100.0f,800.0f };
 
 	XMFLOAT2 GrabboxSize = { 400.0f,400.0f };
 
