@@ -1,5 +1,18 @@
 ﻿#pragma once
 #include"../10_Object/Object.h"
+#include<cmath>
+
+
+
+//2Dベクトル構造体
+struct Vector2
+{
+	float x;
+	float y;
+
+	Vector2(): x(0), y(0) {}
+	Vector2(float x,float y):x(x),y(y){}
+};
 
 /**	@file 	Pen.h
 */
@@ -37,7 +50,7 @@ public:
 	void Reset(Object* objectangle);
 
 	//ペンを発射する処理
-	void Shoot(const DirectX::XMFLOAT3 objectPos);
+	void Shoot(const Vector2& startPos,float speed,float angle,float DeltaTime);
 
 	/**	@brief 	GrabStateのゲッター
 	* @date 2024/12/21
@@ -48,9 +61,14 @@ public:
 	* @date 2024/12/21
 	*/
 	void SetGrabState(int state); //セッター
+
+	Vector2 p_position;
+	Vector2 p_velocity;
+
 protected:
 	Object* p_GrabbedObject; //プレイヤーがオブジェクトを掴んで運ぶ用
 	Object* p_Player; //プレイヤーがオブジェクトに捕まる時用
 	int h_flag = 0;
+	static float DegToRed(float degrees);
 };
 

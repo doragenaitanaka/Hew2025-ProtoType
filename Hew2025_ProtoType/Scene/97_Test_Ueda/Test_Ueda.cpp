@@ -181,7 +181,8 @@ void	Test_Ueda::Initialize(void)
 	this->p_TestObject5->SetSize(TestSize5.x, TestSize5.y, 0.0f);
 	this->p_TestObject6->SetSize(TestSize6.x, TestSize6.y, 0.0f);
 
-    
+	//ペンの角度を設定
+	this->p_TestObject2->SetAngle(PenAngle);
     
 
 }
@@ -284,7 +285,7 @@ void Test_Ueda::Update(void)
             TestPenState = 1;
             pen.have(p_TestObject2);
 		    //ペンを回転させる
-            p_TestObject2->SetAngle(-90.0f);
+            p_TestObject2->SetAngle(PenAngle=-90.0f);
             
         }
         else if (GetAsyncKeyState(VK_W) && TestPenState == 1)//ペンを持っている状態でWキーを押すとペンを離す
@@ -307,10 +308,10 @@ void Test_Ueda::Update(void)
 	
 
 
-    if (TestPenState == 1)
-    {
-     //掴んだオブジェクトの位置をプレイヤーの位置に追従させる
-        pen.Move(p_TestObject->GetPos()); 
+   if (TestPenState == 1)
+   {
+            //掴んだオブジェクトの位置をプレイヤーの位置に追従させる
+            pen.Move(p_TestObject->GetPos()); // ペンの移動
 
 
         //ペンの上のアングルの上限を設定
@@ -329,9 +330,10 @@ void Test_Ueda::Update(void)
         
 
     }
-    else if (TestPenState == 2)//ペンを投げる処理
+    else if (TestPenState == 2)
     {
-        this->p_TestObject2->SetPos(p_TestObject2->GetPos().x + 10, p_TestObject2->GetPos().y, 0.0f);
+        //ペンを投げる処理
+		pen.Shoot(PenPos, speed,PenAngle , deltaTime);
 		if (col2.CheckCollision(col3) || col2.CheckCollision(col4) || col2.CheckCollision(col5) || col2.CheckCollision(col6))//ペンとObject3,4,5,6が当たっているか
         {
 			TestPenState = 3;
@@ -361,7 +363,7 @@ void Test_Ueda::Update(void)
 				TestPenState = 1;
 				pen.have(p_TestObject2);
 				//ペンを回転させる
-				p_TestObject2->SetAngle(-90);
+				p_TestObject2->SetAngle(-90.0f);
 			}
 
         }

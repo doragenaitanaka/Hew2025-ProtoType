@@ -1,5 +1,14 @@
 ﻿#include "Pen.h"
 
+//円周率
+constexpr float PI=DirectX::XM_PI;
+
+//角度をラジアンに変換するヘルパー関数
+float Pen::DegToRed(float degrees)
+{
+    return degrees * (PI / 180.0f);
+}
+
 //コンストラクタ
 Pen::Pen() :p_GrabbedObject(nullptr), p_Player(nullptr)
 {
@@ -93,10 +102,19 @@ void Pen::Reset(Object* objectangle)
 
 /**	@brief 	ペンを発射する処理
 */
-void Pen::Shoot(const DirectX::XMFLOAT3 objectPos)
+void Pen::Shoot(const Vector2& startPos, float speed, float angle, float DeltaTime)
 {
-	//ペンのx座標を-10ずつしていく
-    p_Player->SetPos(-10,0,0);
+    p_position = startPos;
+    p_velocity.x = speed * cos(DegToRed(angle));
+    p_velocity.y = speed * sin(DegToRed(angle));
+
+    p_position.x += p_velocity.x * DeltaTime;
+    p_position.y += p_velocity.y * DeltaTime;
+
+	////ペンの位置を更新
+ //   SetPos(p_position.x, p_position.y, 0.0f);
+
+
 }
 
 /**	@brief 	GrabStateのゲッター

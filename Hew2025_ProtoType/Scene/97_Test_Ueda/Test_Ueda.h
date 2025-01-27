@@ -80,6 +80,12 @@ public:
 	int TestCnt = 0;
 	float MoveSpeed = 20.0f;
 	float PenAngle = 0.0f;
+	float speed = 10.0f;
+	float deltaTime = 1.0f;
+
+	Vector2 PenPos = { TestPos2.x,TestPos2.y };
+
+	
 private:
 	Object* p_TestObject;
 
