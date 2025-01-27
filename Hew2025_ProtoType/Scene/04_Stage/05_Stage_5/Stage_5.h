@@ -7,15 +7,19 @@
 //インクルード
 #include"../../00_BaseScene/BaseScene.h"
 #include"../../../Library/Code/self/02_SceneManager/SceneManager.h"
-#include"../../../Library/Code/self/10_Object/Object.h"
-#include"../../../Library/Code/self/11_Player/Player.h"
-#include"../../../Library/Code/self/12_GrabBox/GrabBox.h"
-#include"../../../Library/Code/self/15_Pendulum/Pendulum.h"
+
 #include"../../../Library/Code/self/imagawa_Input/input.h"
 #include"../../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
+
+#include"../../../Library/Code/self/06_TileMap/TileMap.h"
+#include"../../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
+#include"../../../Library/Code/self/10_Object/Object.h"
+#include"../../../Library/Code/self/11_Player/Player.h"
+#include"../../../Library/Code/self/12_GrabBox/GrabBox.h"
+#include"../../../Library/Code/self/15_Pendulum/Pendulum.h"
 /**	@file	Stage_5.h
 *	@brief	起動時にロゴとか出るシーン
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している
@@ -46,60 +50,35 @@ public:
 	void	Finalize(void)override;
 
 	//座標
+	XMFLOAT3 playerPos = { 300.0f,-5000.0f,0.0f };
 
-	XMFLOAT3 CameraPos = { -700.0f, -150.0f,0.0f };
-
-	XMFLOAT2 BlockPos00 = { -700.0f,-350.0f };//左床
-	XMFLOAT2 BlockPos01 = { 1700.0f,-350.0f };//右床1(左)
-	XMFLOAT2 BlockPos02 = { 2450.0f,-200.0f };//右床2(右)
-	XMFLOAT2 BlockPos03 = { 950.0f,1550.0f };//空中床1(左)
-	XMFLOAT2 BlockPos04 = { 1500.0f,1400.0f };//空中床2(右)
-	XMFLOAT2 BlockPos05 = { 1250.0f,3050.0f };//ゴール地点床
-
-	XMFLOAT2 HookPos00 = { 3050.0f,-100.0f };//右フック下
-	XMFLOAT2 HookPos01 = { 3050.0f, 100.0f };//右フック上
-	XMFLOAT2 HookPos02 = { 3050.0f,1550.0f };//空中右フック左
-	XMFLOAT2 HookPos03 = { 3250.0f,1550.0f };//空中右フック右
-	XMFLOAT2 HookPos04 = { 550.0f,1650.0f };//空中左フック下
-	XMFLOAT2 HookPos05 = { 550.0f,1850.0f };//空中左フック上
-	XMFLOAT2 HookPos06 = { 550.0f,3300.0f };//空中ゴール左フック
+	XMFLOAT2 HookPos00 = { 5850.0f,-4850.0f };//右フック下
+	XMFLOAT2 HookPos01 = { 5850.0f,-4650.0f };//右フック上
+	XMFLOAT2 HookPos02 = { 5850.0f,-2500.0f };//空中右フック左
+	XMFLOAT2 HookPos03 = { 6050.0f,-2500.0f };//空中右フック右
+	XMFLOAT2 HookPos04 = { 2150.0f,-2350.0f };//空中左フック上
+	XMFLOAT2 HookPos05 = { 2150.0f,-2550.0f };//空中左フック下
+	XMFLOAT2 HookPos06 = { 2150.0f,-200.0f };//空中ゴール左フック
 
 	XMFLOAT2 RailPos00 = { 3050.0f,-500.0f };//右フック下
 	XMFLOAT2 RailPos01 = { 3650.0f,1550.0f };//空中右フック右
 	XMFLOAT2 RailPos02 = { 550.0f,1350.0f };//空中左フック下
 
-	XMFLOAT2 YoyoPos00 = { 300.0f,750.0f };//ヨーヨーの支点
-	XMFLOAT2 YoyoPos01 = { 1550.0f,100.0f };//ヨーヨーの本体
+	XMFLOAT2 YoyoPos = { 2600.0f,-3400.0f };//ヨーヨーの支点
 
-	XMFLOAT3 GrabboxPos = { 1550.0f,100.0f,0.0f };//振り子の当たり判定用
+	XMFLOAT3 GrabboxPos = { 4500.0f,-4800.0f,0.0f };//振り子の当たり判定用
 
-	XMFLOAT2 GoalPos = { 1400.0f,3300.0f }; //ゴール
+	XMFLOAT2 GoalPos = { 3000.0f,-100.0f }; //ゴール
 
 	//サイズ
 
 	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
 
-	XMFLOAT2 BlockSize00 = { 900.0f,100.0f };
-	XMFLOAT2 BlockSize01 = { 600.0f,100.0f };
-	XMFLOAT2 BlockSize02 = { 900.0f,400.0f };
-	XMFLOAT2 BlockSize03 = { 500.0f,400.0f };
-	XMFLOAT2 BlockSize04 = { 600.0f,100.0f };
-	XMFLOAT2 BlockSize05 = { 1100.0f,200.0f };
-
-	XMFLOAT2 HookSize00 = { 200.0f,200.0f };
-	XMFLOAT2 HookSize01 = { 200.0f,200.0f };
-	XMFLOAT2 HookSize02 = { 200.0f,200.0f };
-	XMFLOAT2 HookSize03 = { 200.0f,200.0f };
-	XMFLOAT2 HookSize04 = { 200.0f,200.0f };
-	XMFLOAT2 HookSize05 = { 200.0f,200.0f };
-	XMFLOAT2 HookSize06 = { 200.0f,200.0f };
+	XMFLOAT2 HookSize = { 200.0f,200.0f };
 
 	XMFLOAT2 RailSize00 = { 100.0f,800.0f };
 	XMFLOAT2 RailSize01 = { 800.0f,100.0f };
 	XMFLOAT2 RailSize02 = { 100.0f,600.0f };
-
-	XMFLOAT2 YoyoSize00 = { 200.0f,200.0f };
-	XMFLOAT2 YoyoSize01 = { 400.0f,400.0f };
 
 	XMFLOAT2 GrabboxSize = { 400.0f,400.0f };
 
@@ -133,14 +112,15 @@ private:
 	Input input;
 	Object* background;
 	Player* player;
-	Object* block[100];
-	Object* blockdraw[10000];
 	Object* hook[7];
 	Object* rail[4];
 	Object* YoyoObject[2]; //YoyObject[0] = ヨーヨーの支点 YoyoObject[1] = ヨーヨーの本体
 	GrabBox* grabbox;
 	Pendulum* pendulum; // 振り子オブジェクト
 	Object* goal;
+
+	TrackingCamera* p_camera;	// カメラ
+	TileMap* p_tileMap;			//タイルマップ
 
 	//--------------------------------------------------------------------------
 	//		描画関連

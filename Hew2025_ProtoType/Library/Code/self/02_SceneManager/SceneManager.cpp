@@ -13,7 +13,7 @@
 #include"../../../../Scene/04_Stage/02_Stage_2/Stage_2.h"
 #include"../../../../Scene/04_Stage/03_Stage_3/Stage_3.h"
 //#include"../../../../Scene/04_Stage/04_Stage_4/Stage_4.h"
-//#include"../../../../Scene/04_Stage/05_Stage_5/Stage_5.h"
+#include"../../../../Scene/04_Stage/05_Stage_5/Stage_5.h"
 //#include"../../../../Scene/04_Stage/06_Stage_6/Stage_6.h"
 //#include"../../../../Scene/04_Stage/07_Stage_7/Stage_7.h"
 //#include"../../../../Scene/04_Stage/08_Stage_8/Stage_8.h"
@@ -105,9 +105,9 @@ void	SceneManager::CreateScene(Scene sceneName)
 		//case Scene::Stage_4:
 		//	this->nowScene = new	Stage_4;
 		//	break;
-		//case Scene::Stage_5:
-		//	this->nowScene = new	Stage_5;
-		//	break;
+		case Scene::Stage_5:
+			this->nowScene = new	Stage_5;
+			break;
 		//case Scene::Stage_6:
 		//	this->nowScene = new	Stage_6;
 		//	break;
