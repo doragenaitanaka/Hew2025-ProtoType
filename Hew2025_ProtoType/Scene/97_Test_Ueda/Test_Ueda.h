@@ -75,10 +75,10 @@ public:
 private:
 	Input input;
 	Object* p_object;
-	Object* p_object2;
+    FallObject* p_object2;
 	Ball* ball;
 	Pendulum* pendulum; // 振り子オブジェクト
-	FallObject* fallobject; // 落下オブジェクト
+	
 
 	
 

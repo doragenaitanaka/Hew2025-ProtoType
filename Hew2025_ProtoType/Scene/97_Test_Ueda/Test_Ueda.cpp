@@ -13,6 +13,7 @@
 Test_Ueda::Test_Ueda()
 {
     this->p_object = nullptr;
+	this->p_object2 = nullptr;
 
     this->p_vertexShader = nullptr;
     this->p_pixelShader = nullptr;
@@ -36,24 +37,14 @@ Test_Ueda::~Test_Ueda()
 void	Test_Ueda::Initialize(void)
 {
     if (!this->p_object) { this->p_object = new Object; }
-    if (!this->p_object2) { this->p_object2 = new Object; }
+    if (!this->p_object2) { this->p_object2 = new FallObject; }
 
     if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
     if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
     if (!this->p_inputLayout) { this->p_inputLayout = new CInputLayout; }               // 入力レイアウト
     if (!this->p_sampler) { this->p_sampler = new CSampler; }
 
-    // オブジェクト
-    this->p_object->Init(L"Asset/block.png");
-    this->p_object2->Init(L"Asset/block.png");
-
-    // オブジェクトの座標を設定
-    this->p_object->SetPos(TestPos.x, TestPos.y, 0.0f); //初期座標-200.0f
-    this->p_object2->SetPos(TestPos.x+500, TestPos.y, 0.0f); //p_objectから400.0f離れた場所に生成
-
-    //オブジェクトのサイズを設定
-    this->p_object->SetSize(TestSize.x, TestSize.y, 0.0f); // サイズは100.0f×100.0f
-    this->p_object2->SetSize(TestSize2.x+100, TestSize2.y+500, 0.0f); // 同上 
+    
     
     
 
@@ -159,6 +150,18 @@ void	Test_Ueda::Initialize(void)
             }
         }
     }
+
+    // オブジェクト
+    this->p_object->Init(L"Asset/block.png");
+    this->p_object2->Init(L"Asset/block.png");
+
+    // オブジェクトの座標を設定
+    this->p_object->SetPos(TestPos.x, TestPos.y, 0.0f); //初期座標-200.0f
+    this->p_object2->SetPos(TestPos.x + 500, TestPos.y, 0.0f); //p_objectから400.0f離れた場所に生成
+
+    //オブジェクトのサイズを設定
+    this->p_object->SetSize(TestSize.x, TestSize.y, 0.0f); // サイズは100.0f×100.0f
+    this->p_object2->SetSize(TestSize2.x + 100, TestSize2.y + 500, 0.0f); // 同上 
 }
 
 /**	@brief 	シーン全体の更新
@@ -181,9 +184,9 @@ void	Test_Ueda::Update(void)
     auto& col2 = p_object2->GetCollider();
      
 
-    this->fallobject->SetFallObject(10.0f, 0.0f, f_objangle);//倒れるオブジェクトの初期高さ、初期速度、初期角度を設定
+    p_object2->SetFallObject(10.0f, 0.0f, f_objangle);//倒れるオブジェクトの初期高さ、初期速度、初期角度を設定
     
-	this->fallobject->Update();//倒れるオブジェクトの更新
+	
 
 	// オブジェクトの角度を更新
 	f_objangle += 0.1f;
@@ -313,6 +316,5 @@ void	Test_Ueda::Finalize(void)
     //--------------------------------------------------------------------------	
     SAFE_DELETE(this->p_object);
     SAFE_DELETE(this->p_object2);
-    SAFE_DELETE(this->ball);
-    SAFE_DELETE(this->pendulum);
+    
 }

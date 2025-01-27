@@ -18,7 +18,8 @@ public:
 	FallObject();//コンストラクタ
 	~FallObject();//デストラクタ
 
-	void Update();//更新処理
+	void Update(void)override;//更新処理
+	void Draw(void)override;//描画処理
 	double GetHeight() const;//高さのゲッター
 	double GetAngle() const;//角度のゲッター
 
