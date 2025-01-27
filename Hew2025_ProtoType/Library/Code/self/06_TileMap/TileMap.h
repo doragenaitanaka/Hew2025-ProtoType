@@ -27,8 +27,9 @@ enum class TileType
     EMPTY = 0,
     FLOOR,
     SHELF,
+    WALL,
 
-    NUM= SHELF,
+    NUM= WALL,
     MAX,
 };
 

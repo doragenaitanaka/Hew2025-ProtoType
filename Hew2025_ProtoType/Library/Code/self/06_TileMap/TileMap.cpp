@@ -5,8 +5,8 @@
 #include <sstream>
 
 // 初期化
-float TileMap::tileWidth = 10.0f;
-float TileMap::tileHeight = 10.0f;
+float TileMap::tileWidth = 100.0f;
+float TileMap::tileHeight = 100.0f;
 
 float TileMap::stageWidth = 0.0f;
 float TileMap::stageHeight = 0.0f;
@@ -16,6 +16,7 @@ TileMap::TileMap(Camera* _p_camera) :p_camera{ _p_camera }, tiles{std::vector<Ob
     // タイルのテクスチャパスの設定
     this->texturePathList[static_cast<int>(TileType::FLOOR) - 1] = L"Asset/Tile/light wood 2.png";
     this->texturePathList[static_cast<int>(TileType::SHELF) - 1] = L"Asset/Tile/dark wood 2.png";
+    this->texturePathList[static_cast<int>(TileType::WALL) - 1] = L"Asset/Tile/wall .png";
 
     // タイルのテクスチャパスの読み込み
     for (int i = 0; i < static_cast<int>(TileType::NUM); i++)
@@ -241,6 +242,12 @@ Object* TileMap::CreateTiles(const int& _tileNum)
     case TileType::SHELF:
         newObj = new Object(this->p_camera);
         newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::SHELF)-1]);
+        newObj->Init();
+        this->tiles.push_back(newObj);
+        break;
+    case TileType::WALL:
+        newObj = new Object(this->p_camera);
+        newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::WALL) - 1]);
         newObj->Init();
         this->tiles.push_back(newObj);
         break;
