@@ -17,7 +17,6 @@ BoxCollider::BoxCollider(DirectX::XMFLOAT3 _pos, DirectX::XMFLOAT3 _size, float 
 */
 BoxCollider::~BoxCollider()
 {
-    
 }
 
 /**	@brief  サイズの変更
@@ -198,4 +197,22 @@ bool BoxCollider::CheckCollisionRectangle(BaseCollider& _other)
 
     // すべての軸に対して投影範囲が重なっている場合、衝突していると判定
     return true; 
+}
+
+/** @brief  点との当たり判定
+*   @date   2025/01/23
+*   @param  BaseCollider& _other 接触判定を取る対象オブジェクト
+*   @return bool 接触しているか
+*/
+bool BoxCollider::CheckCollisionPoint(BaseCollider& _other)
+{
+    PointCollider& otherPoint = static_cast<PointCollider&>(_other);
+    DirectX::XMFLOAT3 pointPos = otherPoint.GetPosition();
+
+    // 点を矩形の座標系に変換
+    DirectX::XMFLOAT3 relativePos = RotatePoint(pointPos, this->position, -this->angle);
+
+    // 矩形の範囲内にあるか確認
+    return (relativePos.x >= this->position.x - this->size.x / 2 && relativePos.x <= this->position.x + this->size.x / 2 &&
+        relativePos.y >= this->position.y - this->size.y / 2 && relativePos.y <= this->position.y + this->size.y / 2);
 }

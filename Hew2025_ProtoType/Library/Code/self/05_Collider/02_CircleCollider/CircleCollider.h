@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include "../00_BaseCollider/BaseCollider.h"
 #include "../01_BoxCollider/BoxCollider.h"
+#include "../03_PointCollider/PointCollider.h"
 class CircleCollider :
     public BaseCollider
 {
@@ -48,6 +49,11 @@ public:
 	*	@return	bool idk 接触しているか
 	*/
 	bool CheckCollisionRectangle(BaseCollider& _other) override;
+
+	/** @brief  点との当たり判定
+	*   @date   2025/01/23
+	*   @param  BaseCollider& _other 接触判定を取る対象オブジェクト
+	*   @return bool 接触しているか
+	*/
+	bool CheckCollisionPoint(BaseCollider& _other)override;
 };
-
-

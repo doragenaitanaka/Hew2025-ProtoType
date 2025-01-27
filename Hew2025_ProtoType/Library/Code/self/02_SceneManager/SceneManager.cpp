@@ -86,9 +86,9 @@ void	SceneManager::CreateScene(Scene sceneName)
 		//case Scene::TitleScene:
 		//	this->nowScene = new	TitleScene;
 		//	break;
-		//case Scene::StageSelectScene:
-		//	this->nowScene = new	StageSelectScene;
-		//	break;
+		case Scene::StageSelectScene:
+			this->nowScene = new	StageSelectScene;
+			break;
 
 		////=====================
 		////		ステージ
@@ -186,7 +186,6 @@ void	SceneManager::Run(void)
  		this->nowScene->Initialize();	//	初期化処理
 		this->isChangedScene = false;	//　シーン遷移していない
 		this->isInitialized = true;		//	初期済
-
 	}
 
 	this->nowScene->Update();			//	更新処理
