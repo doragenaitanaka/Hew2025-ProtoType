@@ -65,21 +65,30 @@ void Pen::Move(const DirectX::XMFLOAT3 objectPos)
 }
 
 //ペンのアングルを変える処理
-void Pen::Rotate(float objectangle)
+void Pen::Rotate(Object* objectangle)
 {
-    if (p_Player)
+    if (angle!=0.0f)
     {
-		p_Player->SetAngle(+10);
+        objectangle->SetAngle(angle += 3.0f);
     }
+
+
 }
 
 //ペンのアングルを変える処理
-void Pen::Rotate2(float objectangle)
+void Pen::Rotate2(Object* objectangle)
 {
-	if (p_Player)
-	{
-		p_Player->SetAngle(-10);
-	}
+    if (angle!=-90.0f)
+    {
+        objectangle->SetAngle(angle -= 3.0f);
+    }
+
+}
+
+//ペンのアングルを初期化する処理
+void Pen::Reset(Object* objectangle)
+{
+    objectangle->SetAngle(angle = 0.0f);
 }
 
 /**	@brief 	ペンを発射する処理

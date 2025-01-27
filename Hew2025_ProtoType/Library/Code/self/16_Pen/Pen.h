@@ -28,10 +28,13 @@ public:
 	void Move(const DirectX::XMFLOAT3 objectPos);
 
 	//ペンのアングルを+する処理
-	void Rotate(float objectangle);
+	void Rotate(Object* objectangle);
 
 	//ペンのアングルを-する処理
-	void Rotate2(float objectangle);
+	void Rotate2(Object* objectangle);
+
+	//ペンのアングルをリセットする処理
+	void Reset(Object* objectangle);
 
 	//ペンを発射する処理
 	void Shoot(const DirectX::XMFLOAT3 objectPos);
