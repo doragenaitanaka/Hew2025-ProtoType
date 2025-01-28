@@ -10,7 +10,6 @@
 */
 Stage_4::Stage_4()
 {
-
     this->p_camera = nullptr;
     this->p_tileMap = nullptr;
 
@@ -71,8 +70,8 @@ void	Stage_4::Initialize(void)
     DirectX::XMFLOAT3 playerPos = this->player->GetPos();
 
     if (!this->goal) { this->goal = new Object(this->p_camera); }
-    this->goal->Init(L"Asset/goal.png");
-    this->goal->SetSize(200.0f, 300.0f, 0.0f);
+    this->goal->Init(L"Asset/Gimmick/goal.png");
+    this->goal->SetSize(200.0f, 200.0f, 0.0f);
     this->goal->SetPos(GoalPos.x, GoalPos.y, 0.0f);
 
     if (!this->PushObject[0]) { this->PushObject[0] = new Object(this->p_camera); }
@@ -104,11 +103,13 @@ void	Stage_4::Initialize(void)
         this->rail[n]->Init(L"Asset/Gimmick/rail_02.png");
     }
     this->rail[0]->SetSize(RailSize00.x, RailSize00.y, 0.0f);
-    this->rail[1]->SetSize(RailSize01.x, RailSize01.y, 0.0f);
-    this->rail[2]->SetSize(RailSize02.x, RailSize02.y, 0.0f);
     this->rail[0]->SetPos(RailPos00.x, RailPos00.y, 0.0f);
+
+    this->rail[1]->SetSize(RailSize01.x, RailSize01.y, 0.0f);
     this->rail[1]->SetPos(RailPos01.x, RailPos01.y, 0.0f);
+
     this->rail[2]->SetPos(RailPos02.x, RailPos02.y, 0.0f);
+    this->rail[2]->SetSize(RailSize02.x, RailSize02.y, 0.0f);
     this->rail[2]->SetAngle(90.0f);
 
     // プレイヤーをターゲットに設定
@@ -281,6 +282,7 @@ void	Stage_4::Update(void)
         if (this->p_input->Press("SPACE"))
         {
             gamemode = 1;
+            //std::cout << "x:" << std::to_string(playerPos.x) << " y:" << std::to_string(playerPos.y) << std::endl;
         }
     }
 
@@ -627,14 +629,11 @@ void	Stage_4::Draw(void)
     //		オブジェクトの描画
     //--------------------------------------------------------------------------
     this->background->Draw();
-    this->p_tileMap->Draw();
-    this->goal->Draw();
 
     for (n = 0; n < 2; n++)//当たり判定用ブロック描画
     {
         this->PushObject[n]->Draw();
     }
-
     for (n = 0; n < 3; n++)//当たり判定用ブロック描画
     {
         this->rail[n]->Draw();
@@ -644,7 +643,8 @@ void	Stage_4::Draw(void)
     {
         this->hook[n]->Draw();
     }
-
+    this->goal->Draw();
+    this->p_tileMap->Draw();
     this->player->Draw();
 }
 
@@ -652,7 +652,7 @@ void	Stage_4::Draw(void)
 */
 void	Stage_4::Finalize(void)
 {
-    //--------------------------------------------------------------------------
+   //--------------------------------------------------------------------------
    //		描画関連
    //--------------------------------------------------------------------------	
     SAFE_DELETE(this->p_vertexShader);  // 頂点シェーダ
@@ -686,5 +686,4 @@ void	Stage_4::Finalize(void)
     SAFE_DELETE(this->goal);
 
     SAFE_DELETE(this->player);
-
 }
