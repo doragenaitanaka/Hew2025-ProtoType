@@ -108,7 +108,14 @@ void	Stage_9::Initialize(void)
     for (n = 0; n < 4; n++)
     {
         if (!this->Slope[n]) { this->Slope[n] = new Object(this->p_camera); }
-        this->Slope[n]->Init(L"Asset/block.png");
+        if (n < 2)
+        {
+            this->Slope[n]->Init(L"Asset/lightwood2.png");
+        }
+        else
+        {
+            this->Slope[n]->Init(L"Asset/darkwood2.png");
+        }
     }
 
     this->Slope[0]->SetPos(SlopePos00.x, SlopePos00.y, 0.0f);
@@ -344,10 +351,14 @@ void	Stage_9::Update(void)
         }
         if (this->p_input->Press("RIGHT"))
         {
-            playerPos.x += 10.0f;
             if (ColliderState == 5 && !SlopeState)
             {
-                playerPos.y += 5.0f;
+                playerPos.x += 5.0f;
+                playerPos.y += 1.0f;
+            }
+            else
+            {
+                playerPos.x += 10.0f;
             }
         }
 
@@ -361,7 +372,7 @@ void	Stage_9::Update(void)
             else if (!SlopeState)
             {
                 playerPos.x -= 15.0f;
-                playerPos.y -= 10.0f;
+                playerPos.y -= 20.0f;
             }
         }
 

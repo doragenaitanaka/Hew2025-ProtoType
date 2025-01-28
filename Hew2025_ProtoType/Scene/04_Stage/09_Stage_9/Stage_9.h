@@ -56,8 +56,8 @@ public:
 	XMFLOAT2 HookPos00 = { 1500.0f,-5200.0f }; //地上フック
 	XMFLOAT2 HookPos01 = { 5200, -1400.0f }; //空中フック
 
-	XMFLOAT2 SlopePos00 = {1005.0f,-5095.0f }; //坂道左下
-	XMFLOAT2 SlopePos01 = {2000.0f,-4955.0f }; //坂道右下
+	XMFLOAT2 SlopePos00 = {955.0f,-5095.0f }; //坂道左下
+	XMFLOAT2 SlopePos01 = {2050.0f,-4955.0f }; //坂道右下
 	XMFLOAT2 SlopePos02 = { 1425.0f,-3800.0f }; //坂道左上
 	XMFLOAT2 SlopePos03 = { 2910.0f,-2900.0f }; //坂道右上
 
@@ -75,7 +75,7 @@ public:
 	XMFLOAT2 HookSize = { 200.0f,200.0f };
 
 	XMFLOAT2 SlopeSize00 = { 100.0f,1100.0f }; //坂道左下
-	XMFLOAT2 SlopeSize01 = { 100.0f,1200.0f }; //坂道右下
+	XMFLOAT2 SlopeSize01 = { 100.0f,1000.0f }; //坂道右下
 	XMFLOAT2 SlopeSize02 = { 100.0f,400.0f }; //坂道左上
 	XMFLOAT2 SlopeSize03 = { 100.0f,3000.0f }; //坂道右上
 
