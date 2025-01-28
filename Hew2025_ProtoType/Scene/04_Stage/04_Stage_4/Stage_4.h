@@ -61,8 +61,8 @@ private:
 	XMFLOAT2 BlockPos06 = { 3700.0f,2800.0f }; //空中壁2
 	XMFLOAT2 BlockPos07 = { 3000.0f,3500.0f }; //空中右床上
 
-	XMFLOAT2 PushObjectPos00 = { 3600.0f,-3750.0f }; //倒れるオブジェクト(下)
-	XMFLOAT2 PushObjectPos01 = { 5300.0f,-1750.0f }; //倒れるオブジェクト(上)
+	XMFLOAT2 PushObjectPos00 = { 3600.0f,-3900.0f }; //倒れるオブジェクト(下)
+	XMFLOAT2 PushObjectPos01 = { 5300.0f,-1900.0f }; //倒れるオブジェクト(上)
 
 	XMFLOAT2 HookPos00 = { 6250.0f,-4000.0f };	//地上右フック
 	XMFLOAT2 HookPos01 = { 7800, -1950 };		//空中右フック
@@ -75,7 +75,7 @@ private:
 	XMFLOAT2 RailPos01 = { 7800.0f,-1050.0f }; //空中右フック用
 	XMFLOAT2 RailPos02 = { 5200.0f,-150.0f };	//空中左フック(上)用
 
-	XMFLOAT2 GoalPos = { 6300,-100.0f }; //ゴール
+	XMFLOAT2 GoalPos = { 6300,-150.0f }; //ゴール
 
 	//サイズ
 	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
