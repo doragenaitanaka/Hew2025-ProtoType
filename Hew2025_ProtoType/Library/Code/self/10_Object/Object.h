@@ -128,6 +128,12 @@ public:
 	*/
 	void	SetAngle(float angle);
 
+	/**	@brief 	角度を取得
+	*	@return	float angle
+	*	@date	2024/05/30
+	*/
+	float GetAngle();
+
 	/**	@brief 	映すテクスチャのヨコのU座標を設定
 	*	@param	int	numU
 	*	@date	2024/06/06

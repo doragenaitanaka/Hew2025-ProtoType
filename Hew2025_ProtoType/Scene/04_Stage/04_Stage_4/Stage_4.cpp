@@ -49,10 +49,8 @@ Stage_4::~Stage_4()
 */
 void	Stage_4::Initialize(void)
 {
-
     // カメラ
     if (!this->p_camera) { this->p_camera = new TrackingCamera; }
-
 
     // タイルマップの生成
     if (!this->p_tileMap)
@@ -61,9 +59,8 @@ void	Stage_4::Initialize(void)
         this->p_tileMap->GenerateMap("Stage4.csv");
     }
 
-
-    if (!this->background) { this->background = new Object(this->p_camera); }
-    this->background->Init(L"Asset/back_img_01.png");
+    if (!this->background) { this->background = new Background(this->p_camera); }
+    this->background->Init(L"Asset/background.png");
     this->background->SetSize(1920.0f, 1080.0f, 0.0f);
     this->background->SetPos(0.0f, 0.0f, 0.0f);
 
@@ -74,24 +71,24 @@ void	Stage_4::Initialize(void)
     DirectX::XMFLOAT3 playerPos = this->player->GetPos();
 
     if (!this->goal) { this->goal = new Object(this->p_camera); }
-    this->goal->Init(L"Asset/block.png");
+    this->goal->Init(L"Asset/goal.png");
     this->goal->SetSize(200.0f, 300.0f, 0.0f);
     this->goal->SetPos(GoalPos.x, GoalPos.y, 0.0f);
 
     if (!this->PushObject[0]) { this->PushObject[0] = new Object(this->p_camera); }
-    this->PushObject[0]->Init(L"Asset/block.png");
+    this->PushObject[0]->Init(L"Asset/Gimmick/pencase.png");
     this->PushObject[0]->SetSize(PushObjectSize.x, PushObjectSize.y, 0.0f);
     this->PushObject[0]->SetPos(PushObjectPos00.x, PushObjectPos00.y, 0.0f);
 
     if (!this->PushObject[1]) { this->PushObject[1] = new Object(this->p_camera); }
-    this->PushObject[1]->Init(L"Asset/block.png");
+    this->PushObject[1]->Init(L"Asset/Gimmick/pencase.png");
     this->PushObject[1]->SetSize(PushObjectSize.x, PushObjectSize.y, 0.0f);
     this->PushObject[1]->SetPos(PushObjectPos01.x, PushObjectPos01.y, 0.0f);
 
     for (n = 0; n < 6; n++)
     {
         if (!this->hook[n]) { this->hook[n] = new Object(this->p_camera); }
-        this->hook[n]->Init(L"Asset/block.png");
+        this->hook[n]->Init(L"Asset/Gimmick/hook.png");
         this->hook[n]->SetSize(HookSize.x, HookSize.y, 0.0f);
     }
     this->hook[0]->SetPos(HookPos00.x, HookPos00.y, 0.0f);
@@ -101,11 +98,10 @@ void	Stage_4::Initialize(void)
     this->hook[4]->SetPos(HookPos04.x, HookPos04.y, 0.0f);
     this->hook[5]->SetPos(HookPos05.x, HookPos05.y, 0.0f);
 
-
     for (n = 0; n < 3; n++)
     {
         if (!this->rail[n]) { this->rail[n] = new Object(this->p_camera); }
-        this->rail[n]->Init(L"Asset/block.png");
+        this->rail[n]->Init(L"Asset/Gimmick/rail_02.png");
     }
     this->rail[0]->SetSize(RailSize00.x, RailSize00.y, 0.0f);
     this->rail[1]->SetSize(RailSize01.x, RailSize01.y, 0.0f);
@@ -113,7 +109,7 @@ void	Stage_4::Initialize(void)
     this->rail[0]->SetPos(RailPos00.x, RailPos00.y, 0.0f);
     this->rail[1]->SetPos(RailPos01.x, RailPos01.y, 0.0f);
     this->rail[2]->SetPos(RailPos02.x, RailPos02.y, 0.0f);
-
+    this->rail[2]->SetAngle(90.0f);
 
     // プレイヤーをターゲットに設定
     this->p_camera->SetTarget(this->player);
@@ -333,7 +329,6 @@ void	Stage_4::Update(void)
         {
             JumpState = 1;
         }
-
     }
 
 

@@ -18,6 +18,7 @@
 #include"../../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
 #include"../../../Library/Code/self/10_Object/Object.h"
 #include"../../../Library/Code/self/11_Player/Player.h"
+#include"../../../Library/Code/self/16_Background/Background.h"
 /**	@file	Stage_4.h
 *	@brief	起動時にロゴとか出るシーン
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している
@@ -47,6 +48,7 @@ public:
 	*/
 	void	Finalize(void)override;
 
+private:
 	//座標
 	XMFLOAT3 playerPos = { 2500.0f,-4200.0f,0.0f };
 
@@ -62,12 +64,12 @@ public:
 	XMFLOAT2 PushObjectPos00 = { 3600.0f,-3750.0f }; //倒れるオブジェクト(下)
 	XMFLOAT2 PushObjectPos01 = { 5300.0f,-1750.0f }; //倒れるオブジェクト(上)
 
-	XMFLOAT2 HookPos00 = { 6250.0f,-4000.0f }; //地上右フック
-	XMFLOAT2 HookPos01 = { 7800, -1950 }; //空中右フック
+	XMFLOAT2 HookPos00 = { 6250.0f,-4000.0f };	//地上右フック
+	XMFLOAT2 HookPos01 = { 7800, -1950 };		//空中右フック
 	XMFLOAT2 HookPos02 = { 4500.0f,-1850.0f };	//空中左フック(下)
-	XMFLOAT2 HookPos03 = { 4500.0f,-1050.0f }; //空中左フック(中)
-	XMFLOAT2 HookPos04 = { 4500.0f,-150.0f }; //空中左フック(上)
-	XMFLOAT2 HookPos05 = { 3000.0f,-3850.0f }; //地上左フック(追加)
+	XMFLOAT2 HookPos03 = { 4500.0f,-1050.0f };	//空中左フック(中)
+	XMFLOAT2 HookPos04 = { 4500.0f,-150.0f };	//空中左フック(上)
+	XMFLOAT2 HookPos05 = { 3000.0f,-3850.0f };	//地上左フック(追加)
 
 	XMFLOAT2 RailPos00 = { 6250.0f,-2800.0f }; //地上右フック用
 	XMFLOAT2 RailPos01 = { 7800.0f,-1050.0f }; //空中右フック用
@@ -86,13 +88,13 @@ public:
 	XMFLOAT2 BlockSize06 = { 200.0f,1200.0f };
 	XMFLOAT2 BlockSize07 = { 1600.0f,200.0f };
 
-	XMFLOAT2 PushObjectSize = { 300.0f,1000.0f };
+	XMFLOAT2 PushObjectSize = { 300.0f,800.0f };
 
 	XMFLOAT2 HookSize = { 200.0f,200.0f };
 
 	XMFLOAT2 RailSize00 = { 100.0f,2600.0f };
 	XMFLOAT2 RailSize01 = { 100.0f,2000.0f };
-	XMFLOAT2 RailSize02 = { 1500.0f,100.0f };
+	XMFLOAT2 RailSize02 = { 100.0f,1500.0f };
 
 	int gamemode = 0;
 
@@ -113,9 +115,9 @@ public:
 	int RailNumber = 0;
 	int RailCnt[3] = { 0,0,0 };
 	int ColliderState = 0;
-private:
+
 	Input input;
-	Object* background;
+	Background* background;
 	Player* player;
 	Object* hook[6];
 	Object* PushObject[2];

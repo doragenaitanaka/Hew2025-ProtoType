@@ -327,6 +327,15 @@ void	Object::SetAngle(float angle)
 	}
 }
 
+/**	@brief 	角度を取得
+*	@return	float angle
+*	@date	2024/05/30
+*/
+float Object::GetAngle()
+{
+	return this->angle;
+}
+
 /**	@brief 	テクスチャをセット
 *	@param	ID3D11ShaderResourceView* _p_texture	テクスチャ
 *	@date	2024/09/17
