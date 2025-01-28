@@ -43,6 +43,14 @@ public:
 	{
 		this->zoomFactor = _zoomFactor;
 	}
+	/**	@brief 	カメラのズーム倍率の取得
+	*   @return float zoomFactor	ズームする倍率
+	*/
+	inline float GetZoom()const 
+	{
+		return this->zoomFactor;
+	}
+
 
 	/**	@brief 	画面シェイク
 	*   @param float _intensity	揺れる強さ
