@@ -79,7 +79,7 @@ void	Stage_6::Initialize(void)
     // プレイヤー
     if (!this->player) { this->player = new Player(this->p_camera); }
     this->player->Init(L"Asset/gumbody2.png");
-    this->player->SetPos(620.0f, -4200.0f, 0.0f);
+    this->player->SetPos(1680.0f, -4200.0f, 0.0f);
     this->player->SetSize(this->PlayerSize.x, this->PlayerSize.y, 0.0f);
     
     // プレイヤーをターゲットに設定

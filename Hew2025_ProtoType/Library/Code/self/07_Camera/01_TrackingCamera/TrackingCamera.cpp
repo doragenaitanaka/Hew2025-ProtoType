@@ -1,7 +1,11 @@
 ﻿#include"TrackingCamera.h"
 
 TrackingCamera::TrackingCamera():p_target{nullptr}, offset{DirectX::XMFLOAT3()}
-{}
+{
+	// 画角の設定
+	this->SetZoom(0.70f);
+	this->SetOffset(DirectX::XMFLOAT3(0.0f, 250.0f, 0.0f));
+}
 
 TrackingCamera::~TrackingCamera(){}
 

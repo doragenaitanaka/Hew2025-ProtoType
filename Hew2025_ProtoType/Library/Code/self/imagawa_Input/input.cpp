@@ -10,7 +10,7 @@ Input::Input()
       @memo　 キー入力、パッド入力の定数定義は"input.h"の一番上を参考に
       @memo　テンプレート：inputActionMap["アクション名"] = { {InputType::keyboard, VK_}, {InputType::gamepad, XINPUT_} };
     */
-    inputActionMap["RIGHT"] = { {InputType::keyboard, VK_RIGHT}, {InputType::gamepad, XINPUT_RIGHT} };
+    inputActionMap["RIGHT"] = { {InputType::keyboard, VK_RIGHT}, {InputType::gamepad, XINPUT_RIGHT},{InputType::gamepad, XINPUT_RIGHT} };
     inputActionMap["LEFT"]  = { {InputType::keyboard, VK_LEFT}, {InputType::gamepad, XINPUT_LEFT } };
     inputActionMap["UP"]   = { {InputType::keyboard, VK_UP}, {InputType::gamepad, XINPUT_UP   } };
     inputActionMap["DOWN"] = { {InputType::keyboard, VK_DOWN}, {InputType::gamepad, XINPUT_DOWN } };
@@ -19,6 +19,9 @@ Input::Input()
     inputActionMap["CHANGEMODE0"] = { {InputType::keyboard, VK_A},};
     inputActionMap["CHANGEMODE1"] = { {InputType::keyboard, VK_D}, };
     inputActionMap["SUPERJUMP"] = { {InputType::keyboard, VK_CONTROL}, {InputType::gamepad, XINPUT_LEFT_SHOULDER  } };
+
+    inputActionMap["L1"] = { {InputType::keyboard, VK_LEFT}, {InputType::gamepad, XINPUT_LEFT_SHOULDER  } };
+    inputActionMap["R1"] = { {InputType::keyboard, VK_RIGHT}, {InputType::gamepad, XINPUT_RIGHT_SHOULDER  } };
 
 
     /*@brief　入力状態を初期化*/
@@ -32,7 +35,6 @@ Input::Input()
         lastInput[mapInfo.first] = false;
 
     }
-
 }
 
 /*@brief　デストラクタ*/

@@ -229,13 +229,13 @@ void StageSelectScene::Update(void)
 
     // ステージUIの移動
     float movePos = 0.0f;
-    if (this->p_input->Trigger("LEFT"))
+    if (this->p_input->Trigger("L1"))
     {
         movePos = this->stageUISize + this->space;
         this->isSelect = true;
         this->isPushL1 = true;
     }
-    else if (this->p_input->Trigger("RIGHT"))
+    else if (this->p_input->Trigger("R1"))
     {
         movePos = -this->stageUISize - this->space;
         this->isSelect = true;
