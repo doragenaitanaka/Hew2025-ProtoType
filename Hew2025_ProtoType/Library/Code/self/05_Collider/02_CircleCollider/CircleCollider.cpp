@@ -70,16 +70,4 @@ bool CircleCollider::CheckCollisionRectangle(BaseCollider& _other)
     return otherBox.CheckCollisionCircle(*this);
 }
 
-/** @brief  点との当たり判定
-*   @date   2025/01/23
-*   @param  BaseCollider& _other 接触判定を取る対象オブジェクト
-*   @return bool 接触しているか
-*/
-bool CircleCollider::CheckCollisionPoint(BaseCollider& _other)
-{
-    PointCollider& otherPoint = static_cast<PointCollider&>(_other);
-    DirectX::XMFLOAT3 pointPos = otherPoint.GetPosition();
-    float distX = position.x - pointPos.x;
-    float distY = position.y - pointPos.y;
-    return(distX * distX + distY * distY) <= (radius * radius);
-}
+

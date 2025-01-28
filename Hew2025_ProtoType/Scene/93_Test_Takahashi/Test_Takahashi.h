@@ -14,8 +14,6 @@
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
-#include"../../Library/Code/self/06_TileMap/TileMap.h"
-#include"../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
 
 /**	@file	Test_Takahashi.h
 *	@brief 	髙橋用のテストシーンクラス
@@ -55,17 +53,14 @@ public:
 	XMFLOAT2 TestSize = { 100.0f,100.0f };
 	XMFLOAT2 TestSize2 = { 100.0f,100.0f };
 
+	int n = 0;
 private:
-	// カメラ
-	TrackingCamera* p_camera;
-
-	//タイルマップ
-	TileMap* p_tileMap;
 
 	//--------------------------------------------------------------------------
 	//		オブジェクト
 	//--------------------------------------------------------------------------	
 	Object* p_TestObject;
+	Object* p_TestObject3[19];
 	Object* p_TestObject2;
 	Player* p_player;
 

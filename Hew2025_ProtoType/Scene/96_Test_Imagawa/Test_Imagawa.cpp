@@ -13,9 +13,6 @@ Test_Imagawa::Test_Imagawa()
 {
     
     this->p_object = nullptr;
-    this->p_object2 = nullptr;
-    this->ball = nullptr;
-    this->pendulum = nullptr;
 
     this->p_vertexShader = nullptr;
     this->p_pixelShader = nullptr;
@@ -36,9 +33,6 @@ Test_Imagawa::~Test_Imagawa()
 void	Test_Imagawa::Initialize(void)
 {
     if (!this->p_object) { this->p_object = new Object; }
-    if (!this->p_object2) { this->p_object2 = new Object; }
-    if (!this->ball) { this->ball = new Ball; }
-    if (!this->pendulum) { this->pendulum = new Pendulum(500.0f, 0.5f, 0.0f, 250.0f, 300.0f); }// 中心(250, 300), 振り幅500, 振動数0.5
 
     if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
     if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
@@ -47,11 +41,6 @@ void	Test_Imagawa::Initialize(void)
 
     // オブジェクト
     this->p_object->Init(L"Asset/block.png");
-    this->p_object2->Init(L"Asset/block.png");
-    this->ball->Init(L"Asset/block.png");
-    this->pendulum->Init(L"Asset/block.png", 1, 1, 1, 0.0f);
-   
-
 
    
 
@@ -156,131 +145,46 @@ void	Test_Imagawa::Initialize(void)
             }
         }
     }
-
-      
-
-    // オブジェクトの座標を設定
-    this->p_object->SetPos(TestPos.x, TestPos.y, 0.0f); //初期座標-200.0f
-    this->p_object2->SetPos(TestPos2.x, TestPos2.y, 0.0f); //p_objectから400.0f離れた場所に生成
-    this->ball->SetPos(BallPos.x, BallPos.y, 0.0f);
-    this->pendulum->SetPos(300.0f, 400.0f, 0.0f); // 振り子の初期位置を設定
-
-    //オブジェクトのサイズを設定
-    this->p_object->SetSize(TestSize.x, TestSize.y, 0.0f); // サイズは100.0f×100.0f
-    this->p_object2->SetSize(TestSize2.x, TestSize2.y, 0.0f); // 同上
-    this->ball->SetSize(BallSize.x, BallSize.y, 0.0f);
-
-   
-
-
-    ball->SetFriction(0.95f); // 摩擦係数
-    ball->SetState(Ball::STOP);
-   
 }
-
 
 /**	@brief 	シーン全体の更新
 *	@date	2024/05/10
 */
-void Test_Imagawa::Update(void)
+void	Test_Imagawa::Update(void)
 {
+  
     /*@brief　input更新*/
     input.Update();
-   
+
     /**@brief　振動の長さ：５秒*/
     flame = 5;
 
     /**@brief　振動の強さ：３*/
-    power = 0.5f; // ボールの初期速度設定
-    ball->SetVelocity(1.0f, velocityY, 0.0f);  // 初期速度設定
-    
+    power = 0.5f;
 
-    // ボールの位置取得
-    DirectX::XMFLOAT3 ball_pos = this->ball->GetPos();
-    // ボールの状態更新
-    if (ball->GetState() == Ball::ROLL)
-    {
-        // 摩擦を加える処理
-        ball->ApplyFriction(0.98f);  // 摩擦係数を適用、減速
-    }
- 
-
-    // 重力の影響を加えて速度を更新
-    velocityY += gravity;
-
-    // 最大落下速度に制限をかける（終端速度のようなもの）
-    if (velocityY > maxVelocityY) 
-    {
-        velocityY = maxVelocityY;
-    }
-
-    // ボールの位置をY軸方向に更新
-    ball_pos.y -= velocityY;
-
-    // ボールが地面に到達した場合、地面に接触させる
-    if (ball_pos.y <= floorY)
-    {
-        ball_pos.y = floorY;
-        velocityY = 0.0f; // 地面に着いたら速度を0にする
-    }
-    
-    auto& col1 = p_object->GetCollider();
-    auto& col2 = p_object2->GetCollider();
-    auto& col3 = ball->GetCollider();
-    if (col1.CheckCollision(col3))
-    {
-        p_object->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
-        if (input.Trigger("UP")) 
-        {
-            ball->SetState(Ball::ROLL);
-        }
-    }
-    else
-    {
-        p_object->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
-    }
-
-    if (ball_pos.x >= 250)
-    {
-        ball->SetState(Ball::STOP);
-    }
-
-    // オブジェクトの位置更新
+    // 現在のオブジェクトの位置を取得
     DirectX::XMFLOAT3 pos = this->p_object->GetPos();
-    DirectX::XMFLOAT3 pos2 = this->p_object2->GetPos();
 
-    // 入力に応じた位置の更新
-    if (input.Press("LEFT")) { pos.x -= 2.0f; input.SetVibration(flame, power); }
-    if (input.Press("RIGHT")) { pos.x += 2.0f; input.SetVibration(flame, power); }
-  
-    if (input.Press("DOWN")) { pos.y -= 2.0f; input.SetVibration(flame, power); }
+    // 入力に応じた位置の更新＆振動の処理
+    if (input.Press("LEFT")) {{pos.x -= 2.0f;input.SetVibration(flame, power);}}
+    if (input.Press("RIGHT")){{pos.x += 2.0f;input.SetVibration(flame, power);}}
+    if (input.Press("UP"))   {{pos.y += 2.0f;input.SetVibration(flame, power);}}
+    if (input.Press("DOWN")) {{pos.y -= 2.0f;input.SetVibration(flame, power);}}
 
-    // プレイヤーを動かす処理
+    /*@memo　コントローラーの動作確認*/
+
+    /*@brief　leftStickに代入*/
     DirectX::XMFLOAT2 leftStick = input.GetLeftAnalogStick();
+
+    /*@brief　スティックのスピード*/
     float moveSpeed = 5.0f;
+
+    /*@brief　プレイヤーを動かす処理*/
     pos.x += leftStick.x * moveSpeed;
     pos.y += leftStick.y * moveSpeed;
 
-    /*@brief コントローラーのinputの入力の有無のチェック*/
-    const float DEAD_ZONE = 0.2f; // デッドゾーンを設定
-    if (input.IsStickCheck(leftStick, DEAD_ZONE))
-    {
-        /////////////////////////////////////////
-        //           入力がある場合　　　　　　//
-        /////////////////////////////////////////
-    }
-    else
-    {
-       /////////////////////////////////////////
-       //           入力がない場合　　　　　　//
-       /////////////////////////////////////////
-    }
-        
-
     // オブジェクトの位置を更新
     this->p_object->SetPos(pos.x, pos.y, pos.z);
-    this->p_object2->SetPos(pos2.x, pos2.y, pos2.z);
-    this->ball->SetPos(ball_pos.x, ball_pos.y, ball_pos.z);
 
     if (GetAsyncKeyState(VK_SPACE))
     {
@@ -290,12 +194,7 @@ void Test_Imagawa::Update(void)
 
     // オブジェクトを更新
     this->p_object->Update();
-    this->p_object2->Update();
-    this->ball->Update();
-    this->pendulum->Update();
-   
 }
-
 
 
 
@@ -333,9 +232,6 @@ void	Test_Imagawa::Draw(void)
     //		オブジェクトの描画
     //--------------------------------------------------------------------------	
     this->p_object->Draw();
-    this->p_object2->Draw();
-    this->ball->Draw();
-    this->pendulum->Draw();
 }
 
 /**	@brief 	シーン全体の終了処理
@@ -343,7 +239,7 @@ void	Test_Imagawa::Draw(void)
 */
 void	Test_Imagawa::Finalize(void)
 {
-    /*// 頂点シェーダ
+    // 頂点シェーダ
     if (this->p_vertexShader) {
         delete   this->p_vertexShader;
         this->p_vertexShader = nullptr;
@@ -370,24 +266,5 @@ void	Test_Imagawa::Finalize(void)
     // ブレンドステート
     if (this->p_brendState) {
         this->p_brendState->Release();
-    }*/
-    //--------------------------------------------------------------------------
-   //		描画関連
-   //--------------------------------------------------------------------------	
-    SAFE_DELETE(this->p_vertexShader);  // 頂点シェーダ
-    SAFE_DELETE(this->p_pixelShader);   // ピクセルシェーダ
-    SAFE_DELETE(this->p_inputLayout);   // 入力レイアウト
-    SAFE_DELETE(this->p_sampler);       // サンプラー
-
-    SAFE_RELEASE(this->p_brendState); // ブレンドステート
-
-
-    //--------------------------------------------------------------------------
-    //		オブジェクト
-    //--------------------------------------------------------------------------	
-    SAFE_DELETE(this->p_object);
-    SAFE_DELETE(this->p_object2);
-    SAFE_DELETE(this->ball);
-    SAFE_DELETE(this->pendulum);
-
+    }
 }

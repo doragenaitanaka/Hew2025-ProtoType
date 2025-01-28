@@ -19,7 +19,7 @@
 */
 class BaseCollider
 {
-protected:
+private:
 		DirectX::XMFLOAT3 position;
 
 public:
@@ -62,18 +62,10 @@ public:
 	*/
 	virtual bool CheckCollisionRectangle(BaseCollider& _other) = 0;
 
-	/** @brief  点との当たり判定
-	*   @date   2025/01/23
-	*   @param  BaseCollider& _other 接触判定を取る対象オブジェクト
-	*   @return bool 接触しているか
-	*/
-	virtual bool CheckCollisionPoint(BaseCollider& _other) = 0;
-
 	/**	@brief  当たり判定
-	*	@date	2024/12/15
-	*	@param  BaseCollider& _other 接触判定を取る対象オブジェクト
-	*	@return	bool idk 接触しているか
-	*/
+*	@date	2024/12/15
+*	@param  BaseCollider& _other 接触判定を取る対象オブジェクト
+*	@return	bool idk 接触しているか
+*/
 	bool CheckCollision(BaseCollider& _other);
-
 };

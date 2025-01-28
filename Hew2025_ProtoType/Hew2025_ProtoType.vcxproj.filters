@@ -225,30 +225,6 @@
     <ClCompile Include="Library\Code\self\11_Player\Player.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="Library\Code\self\12_GrabBox\GrabBox.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Code\self\13_Seesaw\Seesaw.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Code\self\14_Ball\Ball.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Code\self\15_Pendulum\Pendulum.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Code\self\07_Camera\Camera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Code\self\06_TileMap\TileMap.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Code\self\07_Camera\01_TrackingCamera\TrackingCamera.cpp">
-      <Filter>ソース ファイル</Filter>
-    </ClCompile>
-    <ClCompile Include="Library\Code\self\05_Collider\03_PointCollider\PointCollider.cpp">
-      <Filter>ソース ファイル\Collider</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h">
@@ -404,33 +380,5 @@
     <ClInclude Include="Library\Code\self\11_Player\Player.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="Library\Code\self\12_GrabBox\GrabBox.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Code\self\13_Seesaw\Seesaw.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Code\self\14_Ball\Ball.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Code\self\15_Pendulum\Pendulum.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Code\self\07_Camera\Camera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Code\self\06_TileMap\TileMap.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Code\self\07_Camera\01_TrackingCamera\TrackingCamera.h">
-      <Filter>ヘッダー ファイル</Filter>
-    </ClInclude>
-    <ClInclude Include="Library\Code\self\05_Collider\03_PointCollider\PointCollider.h">
-      <Filter>ヘッダー ファイル\Collider</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="Shader\PixelShader.hlsl" />
-    <FxCompile Include="Shader\VertexShader.hlsl" />
   </ItemGroup>
 </Project>

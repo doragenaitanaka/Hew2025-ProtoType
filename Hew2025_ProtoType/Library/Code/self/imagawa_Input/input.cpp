@@ -10,16 +10,16 @@ Input::Input()
       @memo　 キー入力、パッド入力の定数定義は"input.h"の一番上を参考に
       @memo　テンプレート：inputActionMap["アクション名"] = { {InputType::keyboard, VK_}, {InputType::gamepad, XINPUT_} };
     */
-    inputActionMap["RIGHT"] = { {InputType::keyboard, VK_RIGHT}, {InputType::gamepad, XINPUT_RIGHT} };
-    inputActionMap["LEFT"]  = { {InputType::keyboard, VK_LEFT}, {InputType::gamepad, XINPUT_LEFT } };
-    inputActionMap["UP"]   = { {InputType::keyboard, VK_UP}, {InputType::gamepad, XINPUT_UP   } };
-    inputActionMap["DOWN"] = { {InputType::keyboard, VK_DOWN}, {InputType::gamepad, XINPUT_DOWN } };
+    inputActionMap["RIGHT"] = { {InputType::keyboard, VK_RIGHT},  };
+    inputActionMap["LEFT"]  = { {InputType::keyboard, VK_LEFT}, };
+    inputActionMap["UP"]   = { {InputType::keyboard, VK_UP},  };
+    inputActionMap["DOWN"] = { {InputType::keyboard, VK_DOWN}, };
     inputActionMap["SPACE"] = { {InputType::keyboard, VK_SPACE}, {InputType::gamepad, XINPUT_A } };
-    inputActionMap["SHIFT"] = { {InputType::keyboard, VK_SHIFT},  };
-    inputActionMap["CHANGEMODE0"] = { {InputType::keyboard, VK_A},};
-    inputActionMap["CHANGEMODE1"] = { {InputType::keyboard, VK_D}, };
+    inputActionMap["RIGHT2"] = { {InputType::keyboard, VK_C},  };
+    inputActionMap["LEFT2"] = { {InputType::keyboard, VK_Z},  };
+    inputActionMap["CHANGEMODE0"] = { {InputType::keyboard, VK_A}, {InputType::gamepad, XINPUT_BACK } };
+    inputActionMap["CHANGEMODE1"] = { {InputType::keyboard, VK_D}, {InputType::gamepad, XINPUT_START   } };
     inputActionMap["SUPERJUMP"] = { {InputType::keyboard, VK_CONTROL}, {InputType::gamepad, XINPUT_LEFT_SHOULDER  } };
-
 
     /*@brief　入力状態を初期化*/
     for (const auto& mapInfo : inputActionMap)
@@ -223,13 +223,4 @@ void Input::SetVibration(int frame, float powor)
 
     /**@brief　振動継続時間を代入*/
     VibrationTime = frame;
-}
-
-bool Input::IsStickCheck(const DirectX::XMFLOAT2& stick, float deadZone)
-{
-    // ベクトルの長さを計算
-    float magnitude = std::sqrt(stick.x * stick.x + stick.y * stick.y);
-
-    // デッドゾーンを超えているかを判定
-    return magnitude > deadZone;
 }

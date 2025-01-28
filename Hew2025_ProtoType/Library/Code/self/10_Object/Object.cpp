@@ -10,12 +10,8 @@
 
 #include".././03_Windows/WindowSetup.h"	// スクリーンの大きさ貰う　(ここにサイズ置くべきでないのかも)
 
-Object::Object(Camera* _p_camera):p_camera{_p_camera }
+Object::Object()
 {
-	this->isActive = true;
-
-	this->istextureShared = false;
-
 	this->pos = { 0.0f,0.0f,0.0f };
 	this->angle = 0.0f;
 
@@ -84,16 +80,8 @@ HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 	// 頂点バッファの作成
 	if (!this->p_vertexBuffer)
 	{
-		this->p_vertexBuffer = new CVertexBuffer;
-		// 頂点リストのサイズを取得
-		UINT vertexListSize = sizeof(this->vertexList) / sizeof(Vertex); // Vertexは頂点の型
-		HRESULT hr = this->p_vertexBuffer->Create(this->vertexList, vertexListSize * sizeof(Vertex));
-		if (FAILED(hr))
-		{
-			// エラー処理
-			delete this->p_vertexBuffer;
-			this->p_vertexBuffer = nullptr;
-		}
+		this->p_vertexBuffer = new  CVertexBuffer;
+		hr = this->p_vertexBuffer->Create(this->vertexList, sizeof(this->vertexList) * 4);
 	}
 
 	// テクスチャ読み込み
@@ -109,7 +97,6 @@ HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 */
 void	Object::Update(void)
 {
-	if (!this->isActive) { return; }
 
 	// アニメーションの更新
 	//this->AnimUpdate();
@@ -160,13 +147,12 @@ void	Object::AnimUpdate(void)
 */
 void	Object::ConstantBufferUpdate(void)
 {
+	// 定数バッファを更新
 	ConstBuffer	cb;
-
-	// ビュー変換行列の作成
-	cb.matrixView = this->p_camera->GetViewMat();
-
-	// プロジェクション変換行列の作成
-	cb.matrixProj = this->p_camera->GetProjectionMat();
+	// プロジェクション変換座標の作成
+	// 画面の大きさ基準をスクリーンと同じにする
+	cb.matrixProj = DirectX::XMMatrixOrthographicLH(SCREEN_WIDTH, SCREEN_HEIGHT, 0.0f, 3.0f);
+	cb.matrixProj = DirectX::XMMatrixTranspose(cb.matrixProj);
 
 	// ワールド変換行列の作成
 	// →オブジェクトの位置、大きさ、向きを指定
@@ -195,8 +181,6 @@ void	Object::ConstantBufferUpdate(void)
 */
 void	Object::Draw()
 {
-	if (!this->isActive) { return; }
-
 	UINT offsets = 0;
 	UINT strides = sizeof(Vertex);
 	this->p_vertexBuffer->SetVertexBuffer(0, 1, &strides, &offsets);	// 頂点バッファをIAに渡す
@@ -219,26 +203,8 @@ void	Object::UnInit(void)
 	}
 
 	SAFE_RELEASE(this->p_vertexBuffer);
+	SAFE_RELEASE(this->p_textureView);
 	SAFE_RELEASE(this->p_constantBuffer);
-
-	// テクスチャが共有されていなければ解放処理を行う
-	if (!this->istextureShared) { SAFE_RELEASE(this->p_textureView); }
-}
-
-/**	@brief 	オブジェクトが有効かどうか
-*	@param	bool _isActive
-*/
-void	Object::SetIsActive(bool _isActive)
-{
-	this->isActive = _isActive;
-}
-
-/**	@brief 	オブジェクトが有効かどうか返す
-*	@return	bool _isActive
-*/
-bool	Object::GetIsActive(void)
-{
-	return this->isActive;
 }
 
 /**	@brief 	座標を設定
@@ -319,21 +285,6 @@ void	Object::SetSize(float x, float y, float z)
 void	Object::SetAngle(float angle)
 {
 	this->angle = angle;
-
-	// Boxの場合角度を設定する
-	if (typeid(*this->p_coll) == typeid(BoxCollider))
-	{
-		static_cast<BoxCollider*>(this->p_coll)->SetAngle(angle);
-	}
-}
-
-/**	@brief 	角度を取得
-*	@return	float angle
-*	@date	2024/05/30
-*/
-float Object::GetAngle()
-{
-	return this->angle;
 }
 
 /**	@brief 	テクスチャをセット
@@ -343,9 +294,6 @@ float Object::GetAngle()
 void	Object::SetTexture(ID3D11ShaderResourceView* _p_texture)
 {
 	this->p_textureView = _p_texture;
-
-	// テクスチャを外部から読み込んで共有している
-	this->istextureShared = true;
 }
 
 /**	@brief 	映すテクスチャのヨコの場所を設定

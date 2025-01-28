@@ -6,7 +6,6 @@
 #include "../05_Collider/00_BaseCollider/BaseCollider.h"
 #include "../05_Collider/01_BoxCollider/BoxCollider.h"
 #include "../05_Collider/02_CircleCollider/CircleCollider.h"
-#include"../07_Camera/Camera.h"
 
 #include<DirectXMath.h> //  DirectX::XMFLOAT3に必要
 
@@ -14,7 +13,6 @@
 struct ConstBuffer
 {
 	DirectX::XMMATRIX   matrixWorld;	// ワールド変換行列
-	DirectX::XMMATRIX   matrixView;		// ビュー変換行列
 	DirectX::XMMATRIX   matrixProj;		// プロジェクション変換行列 
 	DirectX::XMMATRIX   matrixTex;		// UV座標移動行列 
 	DirectX::XMFLOAT4	color;			// 頂点カラー行列
@@ -35,10 +33,10 @@ struct Vertex
 class Object
 {
 public:
-	Object(Camera* _p_camera);
+	Object();
 	virtual~Object();
 	/**	@brief 	オブジェクトの初期化
-	*	@param	const wchar_t* _p_fileName = nullptr ファイルパス
+	*	@param	const wchar_t* _p_fileName ファイルパス
 	*	@param	int	_splitX = 1		タテに何分割するのか
 	*	@param	int	_splitY = 1		ヨコに何分割するのか
 	*	@param	int	_changeFrame = 1	何フレームで切り替えるか
@@ -46,7 +44,7 @@ public:
 	*	@return	HRESULT
 	*	@date	2024/06/06
 	*/
-	virtual HRESULT	Init(const wchar_t* _p_fileName = nullptr, int	_splitX = 1, int	_splitY = 1, int	_changeFrame = 1, float	_moveUPos = 0.0f);
+	virtual HRESULT	Init(const wchar_t* _p_fileName, int	_splitX = 1, int	_splitY = 1, int	_changeFrame = 1, float	_moveUPos = 0.0f);
 
 	/**	@brief 	オブジェクトの更新
 	*	@date	2024/06/12
@@ -61,7 +59,7 @@ public:
 	/**	@brief	定数バッファの更新
 	*	@date	2024/06/12
 	*/
-	virtual void	ConstantBufferUpdate(void);
+	void	ConstantBufferUpdate(void);
 
 	/**	@brief 	描画関数
 	*	@date	2024/05/23
@@ -71,16 +69,6 @@ public:
 	*	@date  	2024/05/23
 	*/
 	virtual void	UnInit(void);
-
-	/**	@brief 	オブジェクトが有効かどうか
-	*	@param	bool _isActive
-	*/
-	void	SetIsActive(bool _isActive);
-
-	/**	@brief 	オブジェクトが有効かどうか返す
-	*	@return	bool _isActive
-	*/
-	bool	GetIsActive(void);
 
 	/**	@brief 	座標を設定
 	*	@param	float x
@@ -127,12 +115,6 @@ public:
 	*	@date	2024/05/30
 	*/
 	void	SetAngle(float angle);
-
-	/**	@brief 	角度を取得
-	*	@return	float angle
-	*	@date	2024/05/30
-	*/
-	float GetAngle();
 
 	/**	@brief 	映すテクスチャのヨコのU座標を設定
 	*	@param	int	numU
@@ -190,13 +172,15 @@ public:
 	*/
 	static ID3D11ShaderResourceView* LoadTexture(const wchar_t* fileName);
 
-private:
-	bool istextureShared;	// true:テクスチャが共有されている
+	// テクスチャを何分割するのか
+	int	splitX;
+	int	splitY;
+
+	// 左上から何段目を切り抜いて表示するのか
+	float	numU;
+	float	numV;
+
 protected:
-	bool isActive;		// true:オブジェクトが有効
-
-	Camera* p_camera;	// カメラ
-
 	// 表示テクスチャの頂点座標
 	Vertex	vertexList[4]
 	{
@@ -214,13 +198,8 @@ protected:
 	BaseCollider* p_coll;
 
 
-	// テクスチャを何分割するのか
-	int	splitX;
-	int	splitY;
-	// 左上から何段目を切り抜いて表示するのか
-	float	numU;
-	float	numV;
-
+	
+	
 	int	frameCount;									// アニメーション用カウント変数
 	int	changeFrame;								// 切り替えフレーム数
 	float	moveUPos;								// U座標の移動量

@@ -67,7 +67,7 @@ void	Stage_11::Initialize(void)
         this->block[n]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
     }
 
-    for (drawnum = 0; drawnum < 1500; drawnum++)//最大値は3000くらい
+    for (drawnum = 0; drawnum < 1500; drawnum++)//最大値は1500くらい
     {
         this->blockdraw[drawnum]->Init(L"Asset/block.png");//描画用ブロックのテクスチャ
     }

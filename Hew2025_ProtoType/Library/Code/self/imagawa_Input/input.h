@@ -159,9 +159,4 @@ public:
 
 	/*@brief　Release（離した瞬間）*/
 	bool Release(const std::string& action)const;
-
-	// スティックのデッドゾーン
-	static const float DEAD_ZONE;
-
-	bool IsStickCheck(const DirectX::XMFLOAT2& stick, float deadZone);
 };

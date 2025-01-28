@@ -80,22 +80,22 @@ void	SceneManager::CreateScene(Scene sceneName)
 		//引数に合わせてシーンを生成する
 		switch (sceneName)
 		{
-		//case Scene::SplashScreanScene:
-		//	this->nowScene = new	SplashScreanScene;
-		//	break;
-		//case Scene::TitleScene:
-		//	this->nowScene = new	TitleScene;
-		//	break;
+		case Scene::SplashScreanScene:
+			this->nowScene = new	SplashScreanScene;
+			break;
+		case Scene::TitleScene:
+			this->nowScene = new	TitleScene;
+			break;
 		case Scene::StageSelectScene:
 			this->nowScene = new	StageSelectScene;
 			break;
 
-		////=====================
-		////		ステージ
-		////=====================
-		//case Scene::Stage_1:
-		//	this->nowScene = new	Stage_1;
-		//	break;
+		//=====================
+		//		ステージ
+		//=====================
+		case Scene::Stage_1:
+			this->nowScene = new	Stage_1;
+			break;
 		case Scene::Stage_2:
 			this->nowScene = new	Stage_2;
 			break;
@@ -105,53 +105,53 @@ void	SceneManager::CreateScene(Scene sceneName)
 		case Scene::Stage_4:
 			this->nowScene = new	Stage_4;
 			break;
-		//case Scene::Stage_5:
-		//	this->nowScene = new	Stage_5;
-		//	break;
+		case Scene::Stage_5:
+			this->nowScene = new	Stage_5;
+			break;
 		case Scene::Stage_6:
 			this->nowScene = new	Stage_6;
 			break;
-		//case Scene::Stage_7:
-		//	this->nowScene = new	Stage_7;
-		//	break;
-		//case Scene::Stage_8:
-		//	this->nowScene = new	Stage_8;
-		//	break;
-		//case Scene::Stage_9:
-		//	this->nowScene = new	Stage_9;
-		//	break;
-		//case Scene::Stage_10:
-		//	this->nowScene = new	Stage_10;
-		//	break;
-		//case Scene::Stage_11:
-		//	this->nowScene = new	Stage_11;
-		//	break;
-		//case Scene::Stage_12:
-		//	this->nowScene = new	Stage_12;
-		//	break;
+		case Scene::Stage_7:
+			this->nowScene = new	Stage_7;
+			break;
+		case Scene::Stage_8:
+			this->nowScene = new	Stage_8;
+			break;
+		case Scene::Stage_9:
+			this->nowScene = new	Stage_9;
+			break;
+		case Scene::Stage_10:
+			this->nowScene = new	Stage_10;
+			break;
+		case Scene::Stage_11:
+			this->nowScene = new	Stage_11;
+			break;
+		case Scene::Stage_12:
+			this->nowScene = new	Stage_12;
+			break;
 
-		////=====================
-		////		テスト
-		////=====================
-		//case Scene::TEST:
-		//	this->nowScene = new	TestScene;
-		//	break;
+		//=====================
+		//		テスト
+		//=====================
+		case Scene::TEST:
+			this->nowScene = new	TestScene;
+			break;
 
-		//case Scene::TEST_IMAGAWA:
-		//	this->nowScene = new	Test_Imagawa;
-		//	break;
-		//case Scene::TEST_UEDA:
-		//	this->nowScene = new	Test_Ueda;
-		//	break;
-		//case Scene::TEST_URYU:
-		//	this->nowScene = new	Test_Uryu;
-		//	break;
-		//case Scene::TEST_RI:
-		//	this->nowScene = new	Test_Ri;
-		//	break;	
-		//case Scene::TEST_OTANI:
-		//	this->nowScene = new	Test_Otani;
-		//	break;
+		case Scene::TEST_IMAGAWA:
+			this->nowScene = new	Test_Imagawa;
+			break;
+		case Scene::TEST_UEDA:
+			this->nowScene = new	Test_Ueda;
+			break;
+		case Scene::TEST_URYU:
+			this->nowScene = new	Test_Uryu;
+			break;
+		case Scene::TEST_RI:
+			this->nowScene = new	Test_Ri;
+			break;	
+		case Scene::TEST_OTANI:
+			this->nowScene = new	Test_Otani;
+			break;
 		case Scene::TEST_TAKAHASHI:
 			this->nowScene = new	Test_Takahashi;
 			break;
@@ -186,6 +186,7 @@ void	SceneManager::Run(void)
  		this->nowScene->Initialize();	//	初期化処理
 		this->isChangedScene = false;	//　シーン遷移していない
 		this->isInitialized = true;		//	初期済
+
 	}
 
 	this->nowScene->Update();			//	更新処理

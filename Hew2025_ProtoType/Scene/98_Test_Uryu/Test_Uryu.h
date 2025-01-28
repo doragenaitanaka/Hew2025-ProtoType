@@ -8,8 +8,6 @@
 // インクルード
 #include"../00_BaseScene/BaseScene.h"
 #include"../../Library/Code/self/10_Object/Object.h"
-#include"../../Library/Code/self/12_GrabBox/GrabBox.h"
-#include"../../Library/Code/self/13_Seesaw/Seesaw.h"
 
 #include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
@@ -54,53 +52,17 @@ public:
 
 	//テスト用の座標変数
 	XMFLOAT2 TestPos = { -200.0f, 0.0f };
-	XMFLOAT2 TestPos2 = { 200.0f, -50.0f };
-	XMFLOAT2 TestPos3 = { 200.0f, 1000.0f };
-	XMFLOAT2 TestPos4 = { -200.0f, -50.0f };
-	XMFLOAT2 TestPos5 = { 0.0f, -50.0f };
+	XMFLOAT2 TestPos2 = { 200.0f, 0.0f };
 	//サイズ
 	XMFLOAT2 TestSize = { 100.0f,100.0f };
-	XMFLOAT2 TestSize2 = { 125.0f,125.0f };
-	XMFLOAT2 TestSize3 = { 125.0f,125.0f };
-	XMFLOAT2 TestSize4 = { 125.0f,125.0f };
-	XMFLOAT2 TestSize5 = { 500.0f,50.0f };
-	
-	bool TestMoveFlg = true;
-	bool TestProcessing = false;
-	bool GravityFlg = true;
-	bool TouchFlg = false;
-	bool SeesawMoveFlg = false;
-	bool SeesawDirection = false; //falseなら左が下がる、trueなら右が下がる
-	bool PlayerOnSeesawL = false; //シーソーの左に乗っているか
-	bool PlayerOnSeesawR = false; //シーソーの右に乗っているか
-	bool BoundFlg = false;
-	bool OneBoundFlg = true;
-	int TestMoveCnt = 0;
-	int TestGrabState = 0;
-	int TestCnt = 0;
-	float MoveSpeed = 20.0f;
+	XMFLOAT2 TestSize2 = { 100.0f,100.0f };
 private:
-	Object* p_TestObject;
-	/** @brief 二つ目のオブジェクト/シーソーのオブジェクトが乗るほう
+	Object* p_object;
+	/** @brief 二つ目のオブジェクト用
 	*   @date  2024/12/11
 	*/
-	Object* p_TestObject2;
-	/** @brief 三つ目のオブジェクト/シーソーに乗せるオブジェクト
-	*	@date  2024/12/21
-	*/
-	Object* p_TestObject3;
-	/** @brief 四つ目のオブジェクト/シーソーのプレイヤーが乗るほう
-	*	@date  2024/12/26
-	*/
-	Object* p_TestObject4;
-	/** @brief 五つ目のオブジェクト/シーソーの見た目を繋ぐ用
-	*	@date  2024/12/27
-	*/
-	Object* p_TestObject5;
-	/** @brief シーソーのインスタンス
-*	@date  2024/12/27
-*/
-	Seesaw* seesaw;
+	Object* p_object2;
+
 	//--------------------------------------------------------------------------
 	//		描画関連
 	//--------------------------------------------------------------------------	

@@ -14,15 +14,15 @@
 
 //  ウィンドウ画面を出すのに必要な情報をとる関数
 int APIENTRY wWinMain(
-	_In_ HINSTANCE hInstance,			//  アプリの情報を格納したメモリ領域ポインタ(実行する各アプリ、OSのハンドル)
-	_In_opt_ HINSTANCE hPrevInstance,	//  今は使われていないのでnullが入る
-	_In_ LPWSTR    lpCmdLine,			//  アプリケーション起動時にコマンドラインで指定された引数が入る
-	_In_ int       nCmdShow)			//  表示方法,ウィンドウが表示される時の状態
+    _In_ HINSTANCE hInstance,			//  アプリの情報を格納したメモリ領域ポインタ(実行する各アプリ、OSのハンドル)
+    _In_opt_ HINSTANCE hPrevInstance,	//  今は使われていないのでnullが入る
+    _In_ LPWSTR    lpCmdLine,			//  アプリケーション起動時にコマンドラインで指定された引数が入る
+    _In_ int       nCmdShow)			//  表示方法,ウィンドウが表示される時の状態
 {
 #ifdef DEBUG
     // コンソールウィンドウの初期化
     if (InitConsole() != 0) {
-        return 1; 
+        return 1;
     }
 #endif // DEBUG
 

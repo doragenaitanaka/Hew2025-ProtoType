@@ -50,7 +50,7 @@ public:
 	XMFLOAT2 PlayerSize = { 120.0f,120.0f };
 	float PlayerAngle = 0.0f;
 
-	XMFLOAT2 PlayerDrawPos = { 0.0f, 40.0f };
+		XMFLOAT2 PlayerDrawPos = { 0.0f, 40.0f };
 	XMFLOAT2 PlayerDrawSize = { 140.0f,140.0f };
 
 
@@ -90,13 +90,13 @@ public:
 	XMFLOAT2 HookPos03 = { 2250.0f, 800.0f };
 	XMFLOAT2 HookPos04 = { 1800.0f, 1300.0f };
 
-	XMFLOAT2 GoalPos = { 600.0f, 1400.0f };
+	XMFLOAT2 GoalPos = { 600.0f, 1380.0f };
 
 	//サイズ
 	XMFLOAT2 TestSize = { 100.0f,100.0f };
-
-
-
+	
+	
+	
 	XMFLOAT2 BlockDrawSize = { 0.0f,0.0f };
 	XMFLOAT2 BlockSize01 = { 8000.0f,100.0f };
 	XMFLOAT2 BlockSize02 = { 800.0f,200.0f };
@@ -108,10 +108,11 @@ public:
 	XMFLOAT2 BlockSize08 = { 800.0f,100.0f };
 
 	XMFLOAT2 HookSize01 = { 100.0f, 100.0f };
-	XMFLOAT2 HookSize02 = { 100.0f, 100.0f };
+	XMFLOAT2 HookSize02 = { 150.0f, 220.0f };
 	XMFLOAT2 HookSize03 = { 100.0f, 100.0f };
 	XMFLOAT2 HookColSize01 = { 80.0f, 80.0f };
 
+	XMFLOAT2 HookDrawSize = { 150.0f, 250.0f };
 	XMFLOAT2 GoalSize = { 200.0f, 200.0f };
 
 	XMFLOAT2 LefthandPos = { -62.0f,14.0f };
@@ -127,9 +128,11 @@ public:
 	XMFLOAT2 RightlegSize = { 125.0f,125.0f };
 
 	XMFLOAT2 IdlePos = { 0.0f,0.0f };
-	XMFLOAT2 IdleSize = { 140.0f,140.0f };
+	XMFLOAT2 IdleSize = { 170.0f,170.0f };
 
-	float eyesy = 90.0f;
+	int idletime = 0;
+	float u = 0.0f;
+	float eyesy =90.0f;
 	float eyesx = 0.0f;
 	float lefthandx = -62.0f;
 	float lefthandy = 14.0f;
@@ -145,13 +148,13 @@ public:
 	float Camera2ydelta = 0.0f;
 	int t3 = 0;
 	int pullstate = 0;
-	int gamemode = 1;
+	int gamemode=1;
 	int superjumpstate = 0;
-	float t2 = 0.0f;
-	float a = 90.0f;
+	float t2=0.0f;
+	float a = 90.0f; 
 	float Vypower = 0.0f;
 	float Vxpower = 0.0f;
-	double radians = 0.0f;
+	double radians=0.0f;
 	int powerstate = 0;
 	float g = 5.2f;
 	float power = -0.1f;
@@ -175,6 +178,7 @@ public:
 	int drawnum = 0;
 	int n = 0;
 	int m = 0;
+	int ustate = 0;
 	int BlockNumber = 0;
 	int HookCameraState = 0;
 	int HookNumber = 0;
@@ -182,9 +186,11 @@ public:
 	int ColliderState = 0;
 	int HookColliderState = -1;
 	bool ScenechangeState = false;
+	int ScenechangeState2 = 0;
 	std::shared_ptr<Object> blockdraw[768];
 	std::shared_ptr<Object> block[8];
 	std::shared_ptr<Object> hook[4];
+	std::shared_ptr<Object> hookdraw[4];
 private:
 	Input input;
 	Object* background;
@@ -201,8 +207,13 @@ private:
 	Object* rightleg;
 
 	Object* idle;
+	Object* walking2;
+
 	Object* walking;
 
+	Object* jump;
+
+	Object* jump2;
 	//Object* block[8];
 	////Object* blockdraw[1000];
 	//

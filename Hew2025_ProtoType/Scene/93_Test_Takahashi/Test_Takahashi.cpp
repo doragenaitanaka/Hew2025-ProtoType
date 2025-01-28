@@ -8,20 +8,20 @@
 */
 Test_Takahashi::Test_Takahashi()
 {
-    this->p_camera = nullptr;
-    this->p_tileMap = nullptr;
-
     //--------------------------------------------------------------------------
     //		 オブジェクト
     //--------------------------------------------------------------------------	
-    this->p_camera= nullptr;
     this->p_TestObject = nullptr;
     this->p_TestObject2 = nullptr;
     this->p_player = nullptr;
 
+    for (n = 0; n < 19; n++)
+    {
+        this->p_TestObject3[n] = nullptr;
+    }
     //--------------------------------------------------------------------------
     //		描画関連
-    //--------------------------------------------------------------------------
+    //--------------------------------------------------------------------------	
     this->p_vertexShader = nullptr;
     this->p_pixelShader = nullptr;
     this->p_inputLayout = nullptr;
@@ -38,28 +38,38 @@ Test_Takahashi::~Test_Takahashi()
 */
 void	Test_Takahashi::Initialize(void)
 {
-    // カメラ
-    if (!this->p_camera) { this->p_camera = new TrackingCamera; }
-
-    // タイルマップの生成
-    if (!this->p_tileMap)
-    {
-        this->p_tileMap = new TileMap(this->p_camera);
-        this->p_tileMap->GenerateMap("Stage1.csv");
-    }
-
     //--------------------------------------------------------------------------
     //		 オブジェクト
     //--------------------------------------------------------------------------	
-    if (!this->p_TestObject) {
-        this->p_TestObject = new Object(this->p_camera); 
-        this->p_TestObject->Init(L"Asset/block.png");
-        this->p_TestObject->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f));
+    if (!this->p_TestObject) { this->p_TestObject = new Object; }
+    if (!this->p_TestObject2) { this->p_TestObject2 = new Object; }
+    if (!this->p_player) { this->p_player = new Player; }
+
+    for (n = 0; n < 19; n++)
+    {
+        if (!this->p_TestObject3[n]) { this->p_TestObject3[n] = new Object; }
     }
 
-    // オブジェクトをターゲットに設定
-    this->p_camera->SetTarget(this->p_TestObject);
-    //this->p_camera->SetOffset(DirectX::XMFLOAT3(50.0f,-200.0f,0.0f));
+
+    this->p_TestObject->Init(L"Asset/block.png");
+    this->p_TestObject2->Init(L"Asset/block.png");
+    this->p_player->Init(L"Asset/block.png");
+
+    for (n = 0; n < 19; n++)
+    {
+        this->p_TestObject3[n]->Init(L"Asset/block.png");
+    }
+    // 座標を設定
+    this->p_TestObject->SetPos(TestPos.x, TestPos.y, 0.0f);     //初期座標-200.0f
+    this->p_TestObject2->SetPos(TestPos2.x, TestPos2.y, 0.0f);  //p_objectから400.0f離れた場所に生成
+    this->p_player->SetPos(100.0f, 100.0f, 0.0f);
+
+    // サイズを設定
+    this->p_TestObject->SetSize(TestSize.x, TestSize.y, 0.0f);      // サイズは100.0f×100.0f
+    this->p_TestObject2->SetSize(TestSize2.x, TestSize2.y, 0.0f);   // 同上
+    this->p_player->SetSize(TestSize2.x, TestSize2.y, 0.0f); // 同上
+
+    this->p_TestObject->SetColliderSize(DirectX::XMFLOAT3(TestSize.x, TestSize.y, 0.0f)); 
 
     //--------------------------------------------------------------------------
     //		描画関連
@@ -172,7 +182,6 @@ void	Test_Takahashi::Initialize(void)
 */
 void	Test_Takahashi::Update(void)
 {
-    this->p_camera->Update(); // カメラ
     this->p_input->Update();
 
     if (this->p_input->Trigger("SPACE"))
@@ -180,45 +189,43 @@ void	Test_Takahashi::Update(void)
         this->p_sceneManager->ChangeScene(Scene::TEST_TAKAHASHI);
         return;
     }
-    if (this->p_input->Trigger("CHANGEMODE0"))
-    {
-        this->p_camera->ClearTarget();
-    }
-    if (this->p_input->Trigger("CHANGEMODE1"))
-    {
-        this->p_camera->SetTarget(this->p_TestObject);
-    }
-
-    static float a = 0.01f;
     //右矢印キーで右移動
     if (this->p_input->Press("RIGHT"))
     {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x + 5.0f, p_TestObject->GetPos().y, 0.0f); //座標更新
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x + 20, p_TestObject->GetPos().y, 0.0f); //座標更新
     }
     //左矢印キーで左移動
     if (this->p_input->Press("LEFT"))
     {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x - 5.0f, p_TestObject->GetPos().y, 0.0f); //座標更新
-    }
-    //右矢印キーで右移動
-    if (this->p_input->Press("DOWN"))
-    {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y - 5.0f, 0.0f); //座標更新
-    }
-    //左矢印キーで左移動
-    if (this->p_input->Press("UP"))
-    {
-        this->p_TestObject->SetPos(p_TestObject->GetPos().x, p_TestObject->GetPos().y + 5.0f, 0.0f); //座標更新
+        this->p_TestObject->SetPos(p_TestObject->GetPos().x - 20, p_TestObject->GetPos().y, 0.0f); //座標更新
     }
 
-    this->p_tileMap->Update();
+    auto& col1 = p_TestObject->GetCollider();
+    auto& col2 = p_TestObject2->GetCollider();
+    if (col1.CheckCollision(col2))
+    {
+        p_TestObject->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
+    }
+    else
+    {
+        p_TestObject->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
+    }
+
+    // オブジェクトの更新
     this->p_TestObject->Update();
+    this->p_TestObject2->Update();
+    this->p_player->Update();
+    for (n = 0; n < 19; n++)
+    {
+        this->p_TestObject3[n]->Update();
+    }
 }
 
 /**	@brief 	シーン全体の描画
 */
 void	Test_Takahashi::Draw(void)
 {
+
     //--------------------------------------------------------------------------
     //		描画関連(そんな頻繁に変えることはないと思う)
     //--------------------------------------------------------------------------	
@@ -247,16 +254,20 @@ void	Test_Takahashi::Draw(void)
     //--------------------------------------------------------------------------
     //		オブジェクトの描画
     //--------------------------------------------------------------------------	
-    this->p_tileMap->Draw();
+    this->p_TestObject2->Draw();
+    for (n = 0; n < 19; n++)
+    {
+        this->p_TestObject3[n]->Draw();
+    }
     this->p_TestObject->Draw();
+    this->p_player->Draw();
 }
 
 /**	@brief 	シーン全体の終了処理
 */
 void	Test_Takahashi::Finalize(void)
 {
-    SAFE_DELETE(this->p_camera);  // カメラ
-
+    
     //--------------------------------------------------------------------------
     //		描画関連
     //--------------------------------------------------------------------------	
@@ -271,6 +282,11 @@ void	Test_Takahashi::Finalize(void)
     //--------------------------------------------------------------------------
     //		オブジェクト
     //--------------------------------------------------------------------------	
-    SAFE_DELETE(this->p_tileMap);  // タイルマップ
-    SAFE_DELETE(this->p_TestObject); 
+    SAFE_DELETE(this->p_TestObject);
+    SAFE_DELETE(this->p_TestObject2);
+    for (n = 0; n < 19; n++)
+    {
+        SAFE_DELETE(this->p_TestObject3[n]);
+    }
+    SAFE_DELETE(this->p_player);
 }

@@ -3,25 +3,26 @@
 *	@date 2024/12/19
 */
 #include"Stage_2.h"
-#include"../../../Library/Code/self/03_Windows/WindowSetup.h"
-#include<Windows.h>
 
+#include"../../../Library/Code/self/03_Windows/WindowSetup.h"
+
+#include<Windows.h>
 /**	@brief 	コンストラクタ
 */
 Stage_2::Stage_2()
 {
-    this->p_camera = nullptr;
-    this->p_tileMap = nullptr;
-
-    //--------------------------------------------------------------------------
-    //		 オブジェクト
-    //--------------------------------------------------------------------------	
     this->background = nullptr;
     this->player = nullptr;
+    for (n = 0; n < 100; n++)//当たり判定用ブロックの初期化
+    {
+        this->block[n] = nullptr;
+    }
 
-    //--------------------------------------------------------------------------
-    //		描画関連
-    //--------------------------------------------------------------------------
+    for (drawnum = 0; drawnum < 1500; drawnum++)//描画用ブロックの初期化
+    {
+        this->blockdraw[drawnum] = nullptr;
+    }
+
     this->p_vertexShader = nullptr;
     this->p_pixelShader = nullptr;
     this->p_inputLayout = nullptr;
@@ -38,46 +39,41 @@ Stage_2::~Stage_2()
 */
 void	Stage_2::Initialize(void)
 {
-    // カメラ
-    if (!this->p_camera) { this->p_camera = new TrackingCamera; }
+    if (!this->background) { this->background = new Object; }
+    if (!this->player) { this->player = new Player; }
 
-    // タイルマップの生成
-    if (!this->p_tileMap)
+    for (n = 0; n < 100; n++)
     {
-        this->p_tileMap = new TileMap(this->p_camera);
-        this->p_tileMap->GenerateMap("Stage1.csv");
+        if (!this->block[n]) { this->block[n] = new Object; }//当たり判定用ブロックの初期化
     }
 
-    //--------------------------------------------------------------------------
-    //		 オブジェクト
-    //--------------------------------------------------------------------------
+    for (drawnum = 0; drawnum < 1500; drawnum++)
+    {
+        if (!this->blockdraw[drawnum]) { this->blockdraw[drawnum] = new Object; }//描画用ブロックの初期化
+    }
 
-    // 背景
-    if (!this->background) { this->background = new Background(this->p_camera); }
-    this->background->Init(L"Asset/background.png");
-    this->background->SetPos(0.0f, 0.0f, 0.0f);
-    this->background->SetSize(1920.0f, 1080.0f, 0.0f);
-
-    // プレイヤー
-    if (!this->player) { this->player = new Player(this->p_camera); }
-    this->player->Init(L"Asset/block.png");
-    this->player->SetPos(0.0f, -100.0f, 100.0f);
-    this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
-
-    // プレイヤーをターゲットに設定
-    this->p_camera->SetTarget(this->player);
-
-    //// カメラの倍率変更(1.0fがデフォ)
-    //this->p_camera->SetZoom(1.0f);
-
-    //--------------------------------------------------------------------------
-    //		描画関連の初期化
-    //--------------------------------------------------------------------------	
 
     if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
     if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
     if (!this->p_inputLayout) { this->p_inputLayout = new CInputLayout; }               // 入力レイアウト
     if (!this->p_sampler) { this->p_sampler = new CSampler; }                           // サンプラー
+
+    //オブジェクト
+    this->background->Init(L"Asset/back_img_01.png");
+    this->player->Init(L"Asset/block.png");
+
+    for (n = 0; n < 100; n++)
+    {
+        this->block[n]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
+    }
+
+    for (drawnum = 0; drawnum < 1500; drawnum++)//最大値は1500くらい
+    {
+        this->blockdraw[drawnum]->Init(L"Asset/block.png");//描画用ブロックのテクスチャ
+    }
+    //--------------------------------------------------------------------------
+    //		描画関連の初期化
+    //--------------------------------------------------------------------------	
 
     HRESULT hr;
     // シェーダ
@@ -176,62 +172,78 @@ void	Stage_2::Initialize(void)
             }
         }
     }
+
+    // オブジェクトの座標を設定
+    this->background->SetPos(0.0f, 0.0f, 0.0f);
+    this->player->SetPos(0.0f, -100.0f, 0.0f);
+
+    this->block[0]->SetPos(BlockPos00.x, BlockPos00.y, 0.0f);//当たり判定用ブロックの座標設定
+
+
+    for (drawnum = 0; drawnum < 1500; drawnum++)
+    {
+        this->blockdraw[drawnum]->SetPos(0.0f, -10000.0f, 0.0f);//描画用ブロックの座標設定
+    }
+
+    //オブジェクトのサイズを設定
+    this->background->SetSize(1920.0f, 1080.0f, 0.0f);
+    this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
+
+    this->block[0]->SetSize(BlockSize00.x, BlockSize00.y, 0.0f);//当たり判定用ブロックの大きさ設定
+
+
+    for (drawnum = 0; drawnum < 1500; drawnum++)
+    {
+        this->blockdraw[drawnum]->SetSize(100.0f, 100.0f, 0.0f);//描画用ブロックの大きさ設定
+    }
 }
 
 /**	@brief 	シーン全体の更新
 */
 void	Stage_2::Update(void)
 {
-    // 入力更新
     this->p_input->Update();
-    this->p_input->GetLeftAnalogStick();
 
-    //// 画面揺らせる
-    //this->p_camera->Shake(10.0f);
-
+    p_input->GetLeftAnalogStick();
 
     //----------------------------------------------
     // Creative Mode
     //----------------------------------------------
     if (gamemode == 0)
     {
-        DirectX::XMFLOAT3 playerPos = this->player->GetPos();
-
         if (p_input->GetLeftAnalogStick().x * 10.0f <= 2.0f && p_input->GetLeftAnalogStick().x * 10.0f >= -2.0f)
         {
-            this->player->SetPos(playerPos.x + 0.0f, playerPos.y, playerPos.z);
+            CameraPos.x += 0.0f;
         }
         else
         {
-            float movePosX = this->p_input->GetLeftAnalogStick().x * 10.0f;
-            this->player->SetPos(playerPos.x + movePosX, playerPos.y, playerPos.z);
-
+            CameraPos.x += p_input->GetLeftAnalogStick().x * 10.0f;
         }
         if (p_input->GetLeftAnalogStick().y * 10.0f <= 2.0f && p_input->GetLeftAnalogStick().y * 10.0f >= -2.0f)
         {
-            this->player->SetPos(playerPos.x, playerPos.y + 0.0f, playerPos.z);
+            CameraPos.y += 0.0f;
         }
         else
         {
-            float movePosX = this->p_input->GetLeftAnalogStick().y * 10.0f;
-            this->player->SetPos(playerPos.x, playerPos.y + movePosX, playerPos.z);
+            CameraPos.y += p_input->GetLeftAnalogStick().y * 10.0f;
         }
 
         if (this->p_input->Press("LEFT"))
-        {         
-            this->player->SetPos(playerPos.x - 10.0f, playerPos.y, playerPos.z);
+        {
+
+            CameraPos.x -= 10.0f;
         }
         if (this->p_input->Press("RIGHT"))
         {
-            this->player->SetPos(playerPos.x + 10.0f, playerPos.y, playerPos.z);
+            CameraPos.x += 10.0f;
         }
         if (this->p_input->Press("UP"))
         {
-            this->player->SetPos(playerPos.x, playerPos.y + 10.0f, playerPos.z);
+            CameraPos.y += 10.0f;
         }
         if (this->p_input->Press("DOWN"))
         {
-            this->player->SetPos(playerPos.x, playerPos.y - 10.0f, playerPos.z);
+            CameraPos.y -= 10.0f;
         }
     }
 
@@ -240,6 +252,29 @@ void	Stage_2::Update(void)
     //----------------------------------------------
     if (gamemode == 1)
     {
+
+
+    }
+
+
+
+    //-----------------------------------------------------
+    //  座標更新
+    //-----------------------------------------------------
+    //全てのブロックの座標は(BlockPosXX.x - CameraPos.x, BlockPosXX.y - CameraPos.yが必要です。
+
+    //当たり判定用ブロックの座標更新
+
+    this->block[0]->SetPos(BlockPos00.x - CameraPos.x, BlockPos00.y - CameraPos.y, 0.0f);
+
+    //描画用ブロックの座標更新
+
+    posx = 0.0f;
+    posy = 0.0f;
+    for (drawnum = 0; drawnum < 100; drawnum++)//当たり判定ブロックのblock[0]の範囲で小ブロックを描画
+    {
+        this->blockdraw[drawnum]->SetPos(-2950.0f + posx - CameraPos.x, -350.0f + posy - CameraPos.y, 0.0f);
+        posx += 100.0f;
     }
 
     //-----------------------------------
@@ -247,17 +282,25 @@ void	Stage_2::Update(void)
     //-----------------------------------
     this->player->SetColliderSize(DirectX::XMFLOAT3(PlayerSize.x, PlayerSize.y, 0.0f));
 
-    // タイルマップとの衝突判定
+    this->block[0]->SetColliderSize(DirectX::XMFLOAT3(BlockSize00.x, BlockSize00.y, 0.0f));
+
+    auto& col1 = player->GetCollider();
+
+
+    std::vector<std::reference_wrapper<BaseCollider>> colblock = {//当たり判定を入れる
+         block[0]->GetCollider(),
+    };
+
+
+
     ColliderState = 0;
-    auto& playerColl = this->player->GetCollider();
-    auto& tiles = this->p_tileMap->GetTiles();
-    for (auto& tile : tiles)
+
+    for (BlockNumber = 0; BlockNumber < 1; BlockNumber++)//当たり判定用ブロックの数
     {
-        auto& tileColl = tile->GetCollider();
-        if (playerColl.CheckCollision(tileColl))
+        if (col1.CheckCollision(colblock[BlockNumber]))
         {
-            //std::cout << "当たった" << std::endl;
             ColliderState = 1;
+
         }
     }
 
@@ -273,15 +316,20 @@ void	Stage_2::Update(void)
         }
     }
 
-    //--------------------------------------------------------------------------
-    //		オブジェクトの更新
-    //--------------------------------------------------------------------------	
     this->background->Update();
-    this->p_tileMap->Update();
     this->player->Update();
 
-    // カメラの更新
-    this->p_camera->Update();
+    for (n = 0; n < 1; n++)//Updateの数
+    {
+        this->block[n]->Update();
+    }
+
+
+    for (drawnum = 0; drawnum < 100; drawnum++)//Updateの数
+    {
+        this->blockdraw[drawnum]->Update();
+
+    }
 }
 
 /**	@brief 	シーン全体の描画
@@ -318,7 +366,17 @@ void	Stage_2::Draw(void)
     //		オブジェクトの描画
     //--------------------------------------------------------------------------
     this->background->Draw();
-    this->p_tileMap->Draw();
+    for (n = 0; n < 1; n++)//当たり判定用ブロック描画
+    {
+        this->block[n]->Draw();
+    }
+
+    for (drawnum = 0; drawnum < 100; drawnum++)//描画用ブロック描画
+    {
+        this->blockdraw[drawnum]->Draw();
+
+    }
+
     this->player->Draw();
 }
 
@@ -326,12 +384,9 @@ void	Stage_2::Draw(void)
 */
 void	Stage_2::Finalize(void)
 {
-    SAFE_DELETE(this->p_camera);    // カメラ
-    SAFE_DELETE(this->p_tileMap);   // タイルマップ
-
     //--------------------------------------------------------------------------
-    //		描画関連
-    //--------------------------------------------------------------------------	
+   //		描画関連
+   //--------------------------------------------------------------------------	
     SAFE_DELETE(this->p_vertexShader);  // 頂点シェーダ
     SAFE_DELETE(this->p_pixelShader);   // ピクセルシェーダ
     SAFE_DELETE(this->p_inputLayout);   // 入力レイアウト
@@ -342,6 +397,21 @@ void	Stage_2::Finalize(void)
     //--------------------------------------------------------------------------
     //		オブジェクト
     //--------------------------------------------------------------------------
-    SAFE_DELETE(this->background);
+    SAFE_DELETE(this->background);//Delete Object
+
+    for (n = 0; n < 100; n++)
+    {
+        SAFE_DELETE(this->block[n]);
+    }
+
+
+
+    for (drawnum = 0; drawnum < 1500; drawnum++)
+    {
+        SAFE_DELETE(this->blockdraw[drawnum]);
+
+
+    }
     SAFE_DELETE(this->player);
+
 }

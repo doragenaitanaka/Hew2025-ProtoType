@@ -4,7 +4,7 @@
 class Player :public Object
 {
 public:
-	Player(Camera* _p_camera);
+	Player();
 	~Player()override;
 
 	// プレイヤー用の表示テクスチャの頂点座標
@@ -53,7 +53,7 @@ public:
 *	@date  	2024/05/23
 */
 	void	UnInit()override;
-	float x3, y3, x4, y4;
+	float x3, y3, x4, y4 ;
 private:
 
 };
