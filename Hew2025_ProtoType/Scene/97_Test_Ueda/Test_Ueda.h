@@ -63,7 +63,7 @@ public:
 	XMFLOAT2 TestPos6 = { 330.0f, 0.0f };
 	//サイズ
 	XMFLOAT2 TestSize = { 100.0f,100.0f };
-	XMFLOAT2 TestSize2 = { 50.0f,200.0f };
+	XMFLOAT2 TestSize2 = { 200.0f,50.0f };
 	XMFLOAT2 TestSize3 = { 130.0f,100.0f };
 	XMFLOAT2 TestSize4 = { 130.0f,100.0f };
 	XMFLOAT2 TestSize5 = { 130.0f,100.0f };
@@ -79,8 +79,8 @@ public:
 	int TestPenState = 0;
 	int TestCnt = 0;
 	float MoveSpeed = 20.0f;
-	float PenAngle = 0.0f;
-	float speed = 10.0f;
+	float PenAngle =0.0f;
+	float speed = 30.0f;
 	float deltaTime = 1.0f;
 
 	Vector2 PenPos = { TestPos2.x,TestPos2.y };
@@ -89,7 +89,7 @@ public:
 private:
 	Object* p_TestObject;
 
-	Object* p_TestObject2;
+    Pen* penobject;
 
 	Object* p_TestObject3;
 
@@ -98,6 +98,8 @@ private:
 	Object* p_TestObject5;
 
 	Object* p_TestObject6;
+
+	
 
 
 	//--------------------------------------------------------------------------

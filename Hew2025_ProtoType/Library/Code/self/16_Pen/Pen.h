@@ -46,11 +46,17 @@ public:
 	//ペンのアングルを-する処理
 	void Rotate2(Object* objectangle);
 
+	/*//ペンのアングルを変える処理
+	void Rotate(float angle);
+
+	//ペンのアングルを変える処理
+	void Rotate2(float angle);*/
+
 	//ペンのアングルをリセットする処理
 	void Reset(Object* objectangle);
 
 	//ペンを発射する処理
-	void Shoot(const Vector2& startPos,float speed,float angle,float DeltaTime);
+	void Shoot(float speed,float DeltaTime);
 
 	/**	@brief 	GrabStateのゲッター
 	* @date 2024/12/21
@@ -64,6 +70,7 @@ public:
 
 	Vector2 p_position;
 	Vector2 p_velocity;
+	float Angle;
 
 protected:
 	Object* p_GrabbedObject; //プレイヤーがオブジェクトを掴んで運ぶ用

@@ -14,7 +14,7 @@ Test_Ueda::Test_Ueda()
 {
     this->p_TestObject = nullptr;
     
-    this->p_TestObject2 = nullptr;
+    this->penobject = nullptr;
 
     this->p_TestObject3 = nullptr;
 
@@ -44,7 +44,7 @@ Test_Ueda::~Test_Ueda()
 void	Test_Ueda::Initialize(void)
 {
     if (!this->p_TestObject) { this->p_TestObject = new Object; }
-    if (!this->p_TestObject2) { this->p_TestObject2 = new Object; }
+    if (!this->penobject) { this->penobject = new Pen; }
 	if (!this->p_TestObject3) { this->p_TestObject3 = new Object; }
     if (!this->p_TestObject4) { this->p_TestObject4 = new Object; }
     if (!this->p_TestObject5) { this->p_TestObject5 = new Object; }
@@ -58,7 +58,7 @@ void	Test_Ueda::Initialize(void)
 
     // オブジェクト
     this->p_TestObject->Init(L"Asset/block.png");
-    this->p_TestObject2->Init(L"Asset/block.png");
+    this->penobject->Init(L"Asset/block.png");
 	this->p_TestObject3->Init(L"Asset/block.png");
     this->p_TestObject4->Init(L"Asset/block.png");
     this->p_TestObject5->Init(L"Asset/block.png");
@@ -167,7 +167,7 @@ void	Test_Ueda::Initialize(void)
     }
     // オブジェクトの座標を設定
     this->p_TestObject->SetPos(TestPos.x, TestPos.y, 0.0f); //初期座標-200.0f
-    this->p_TestObject2->SetPos(TestPos2.x, TestPos2.y, 0.0f); //p_objectから400.0f離れた場所に生成
+    this->penobject->SetPos(TestPos2.x, TestPos2.y, 0.0f); //p_objectから400.0f離れた場所に生成
 	this->p_TestObject3->SetPos(TestPos3.x, TestPos3.y, 0.0f); 
     this->p_TestObject4->SetPos(TestPos4.x, TestPos4.y, 0.0f);
     this->p_TestObject5->SetPos(TestPos5.x, TestPos5.y, 0.0f);
@@ -175,14 +175,13 @@ void	Test_Ueda::Initialize(void)
 
     //オブジェクトのサイズを設定
     this->p_TestObject->SetSize(TestSize.x, TestSize.y, 0.0f); // サイズは100.0f×100.0f
-    this->p_TestObject2->SetSize(TestSize2.x, TestSize2.y, 0.0f); 
+    this->penobject->SetSize(TestSize2.x, TestSize2.y, 0.0f); 
 	this->p_TestObject3->SetSize(TestSize3.x, TestSize3.y, 0.0f);
 	this->p_TestObject4->SetSize(TestSize4.x, TestSize4.y, 0.0f);
 	this->p_TestObject5->SetSize(TestSize5.x, TestSize5.y, 0.0f);
 	this->p_TestObject6->SetSize(TestSize6.x, TestSize6.y, 0.0f);
 
-	//ペンの角度を設定
-	this->p_TestObject2->SetAngle(PenAngle);
+	this->penobject->SetAngle(PenAngle);
     
 
 }
@@ -192,14 +191,15 @@ void	Test_Ueda::Initialize(void)
 void Test_Ueda::Update(void)
 {
     auto& col1 = p_TestObject->GetCollider();
-    auto& col2 = p_TestObject2->GetCollider();
+    auto& col2 = penobject->GetCollider();
 	auto& col3 = p_TestObject3->GetCollider();
 	auto& col4 = p_TestObject4->GetCollider();
 	auto& col5 = p_TestObject5->GetCollider();
 	auto& col6 = p_TestObject6->GetCollider();
-    static Pen pen; // Penのインスタンスを静的に保持
+    //static Pen pen; // Penのインスタンスを静的に保持
+
     
-   
+    
 	
 
     if (GetAsyncKeyState(VK_CONTROL))
@@ -274,7 +274,7 @@ void Test_Ueda::Update(void)
 	}
 
 
-	pen.Update(); // ペンの更新
+	penobject->Update(); // ペンの更新
 
 	//オブジェクトを掴む
     
@@ -283,15 +283,14 @@ void Test_Ueda::Update(void)
         if (GetAsyncKeyState(VK_W) && TestPenState == 0)//Wキーを押したらペンを持つ
         {
             TestPenState = 1;
-            pen.have(p_TestObject2);
-		    //ペンを回転させる
-            p_TestObject2->SetAngle(PenAngle=-90.0f);
+            penobject->have(penobject);
+		    
             
         }
         else if (GetAsyncKeyState(VK_W) && TestPenState == 1)//ペンを持っている状態でWキーを押すとペンを離す
         {
             TestPenState = 0;
-            pen.Release();
+            penobject->Release();
             
 
         }
@@ -302,7 +301,7 @@ void Test_Ueda::Update(void)
 		if (TestPenState == 1 && GetAsyncKeyState(VK_E))//ペンをもっている状態でEキーを押すとペンを投げる
         {
 			TestPenState = 2;
-			pen.Release();
+			penobject->Release();
 		}
       
 	
@@ -311,18 +310,20 @@ void Test_Ueda::Update(void)
    if (TestPenState == 1)
    {
             //掴んだオブジェクトの位置をプレイヤーの位置に追従させる
-            pen.Move(p_TestObject->GetPos()); // ペンの移動
+            penobject->Move(p_TestObject->GetPos()); // ペンの移動
 
 
         //ペンの上のアングルの上限を設定
         
             if (GetAsyncKeyState(VK_UP))//UPキーを押すとペンのアングルを変える
             {
-				pen.Rotate(p_TestObject2);
+				penobject->Rotate(penobject);
+                
             }
             if (GetAsyncKeyState(VK_DOWN))//DOWNキーを押すとペンのアングルを変える
             {
-				pen.Rotate2(p_TestObject2);
+				penobject->Rotate2(penobject);
+               
             }
         
 		
@@ -333,15 +334,17 @@ void Test_Ueda::Update(void)
     else if (TestPenState == 2)
     {
         //ペンを投げる処理
-		pen.Shoot(PenPos, speed,PenAngle , deltaTime);
+		penobject->Shoot( speed, deltaTime);
+        
+	  
 		if (col2.CheckCollision(col3) || col2.CheckCollision(col4) || col2.CheckCollision(col5) || col2.CheckCollision(col6))//ペンとObject3,4,5,6が当たっているか
         {
 			TestPenState = 3;
-            p_TestObject2->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f));
+            penobject->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 0.0f, 1.0f));
 		}
 		else
 		{
-			p_TestObject2->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
+			penobject->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
 		}
     }
     else if (TestPenState == 3)
@@ -361,9 +364,8 @@ void Test_Ueda::Update(void)
 			if (GetAsyncKeyState(VK_W) && TestPenState == 3)
 			{
 				TestPenState = 1;
-				pen.have(p_TestObject2);
-				//ペンを回転させる
-				p_TestObject2->SetAngle(-90.0f);
+				penobject->have(penobject);
+				
 			}
 
         }
@@ -375,7 +377,7 @@ void Test_Ueda::Update(void)
 
     // オブジェクトの更新
     this->p_TestObject->Update();
-    this->p_TestObject2->Update();
+    this->penobject->Update();
 	this->p_TestObject3->Update();
 	this->p_TestObject4->Update();
 	this->p_TestObject5->Update();
@@ -415,7 +417,7 @@ void	Test_Ueda::Draw(void)
     //--------------------------------------------------------------------------
     //		オブジェクトの描画
     //--------------------------------------------------------------------------	
-    this->p_TestObject2->Draw();
+    this->penobject->Draw();
     this->p_TestObject->Draw();
 	this->p_TestObject3->Draw();
 	this->p_TestObject4->Draw();
@@ -444,7 +446,7 @@ void	Test_Ueda::Finalize(void)
     //		オブジェクト
     //--------------------------------------------------------------------------	
     SAFE_DELETE(this->p_TestObject);
-    SAFE_DELETE(this->p_TestObject2);
+    SAFE_DELETE(this->penobject);
 	SAFE_DELETE(this->p_TestObject3);
 	SAFE_DELETE(this->p_TestObject4);
 	SAFE_DELETE(this->p_TestObject5);

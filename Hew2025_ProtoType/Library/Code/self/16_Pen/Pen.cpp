@@ -1,4 +1,5 @@
 ﻿#include "Pen.h"
+#include<string>
 
 //円周率
 constexpr float PI=DirectX::XM_PI;
@@ -12,6 +13,7 @@ float Pen::DegToRed(float degrees)
 //コンストラクタ
 Pen::Pen() :p_GrabbedObject(nullptr), p_Player(nullptr)
 {
+
 }
 
 
@@ -50,6 +52,7 @@ void Pen::have(Object* object)
 
     p_Player = object;
     h_flag = 1;//掴んだ状態にする
+    
 }
 
 /**	@brief 	離す処理
@@ -71,12 +74,13 @@ void Pen::Move(const DirectX::XMFLOAT3 objectPos)
         // プレイヤーを掴んだオブジェクトの位置に追従させる
         p_Player->SetPos(objectPos.x, objectPos.y, objectPos.z);
     }
+
 }
 
 //ペンのアングルを変える処理
 void Pen::Rotate(Object* objectangle)
 {
-    if (angle!=0.0f)
+    if (angle!=90.0f)
     {
         objectangle->SetAngle(angle += 3.0f);
     }
@@ -87,12 +91,24 @@ void Pen::Rotate(Object* objectangle)
 //ペンのアングルを変える処理
 void Pen::Rotate2(Object* objectangle)
 {
-    if (angle!=-90.0f)
+    if (angle!=0.0f)
     {
         objectangle->SetAngle(angle -= 3.0f);
     }
 
 }
+
+////ペンのアングルを変える処理
+//void Pen::Rotate(float angle)
+//{
+//	angle += 3.0f;
+//}
+//
+////ペンのアングルを変える処理
+//void Pen::Rotate2(float angle)
+//{
+//	angle -= 3.0f;
+//}
 
 //ペンのアングルを初期化する処理
 void Pen::Reset(Object* objectangle)
@@ -102,19 +118,18 @@ void Pen::Reset(Object* objectangle)
 
 /**	@brief 	ペンを発射する処理
 */
-void Pen::Shoot(const Vector2& startPos, float speed, float angle, float DeltaTime)
+void Pen::Shoot(float speed, float DeltaTime)
 {
-    p_position = startPos;
+    
     p_velocity.x = speed * cos(DegToRed(angle));
     p_velocity.y = speed * sin(DegToRed(angle));
 
     p_position.x += p_velocity.x * DeltaTime;
     p_position.y += p_velocity.y * DeltaTime;
-
-	////ペンの位置を更新
- //   SetPos(p_position.x, p_position.y, 0.0f);
-
-
+	this->SetPos(this->GetPos().x + p_position.x, this->GetPos().y + p_position.y, 0.0f);
+	p_position.x = 0;
+	p_position.y = 0;
+	
 }
 
 /**	@brief 	GrabStateのゲッター
