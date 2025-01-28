@@ -38,18 +38,19 @@ void Ball::Update(void)
     }
 
     // 地面 (y = 0) との衝突処理
-    if (this->pos.y <= -600.0f)
+   if (this->pos.y <= -5000.0f)
     {
-        this->pos.y = 200.0f;       // ボールを地面に固定
+        this->pos.y =-1600.0f; // ボールを地面に固定
+        this->pos.x = 1800.0f;
         this->velocity.y = 0.0f;  // 垂直方向の速度をゼロに
     }
 
     // 地面 (y = 0) との衝突処理
-    if (this->pos.y <= 0.0f)
-    {
-        this->pos.y = 0.0f;       // ボールを地面に固定
-        this->velocity.y = 0.0f;  // 垂直方向の速度をゼロに
-    }
+    //if (this->pos.y <= 0.0f)
+    //{
+    //    this->pos.y = 0.0f;       // ボールを地面に固定
+    //    this->velocity.y = 0.0f;  // 垂直方向の速度をゼロに
+   // }
 
     // 親クラスの更新処理を呼び出す
     Object::Update();

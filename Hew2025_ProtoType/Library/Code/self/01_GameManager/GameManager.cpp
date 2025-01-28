@@ -7,7 +7,7 @@
 
 //==================最初に実行されるシーン(ここしかいじっちゃダメ！！！！！！)========================
 
-Scene GameManager::startScene = Scene::Stage_11;
+Scene GameManager::startScene = Scene::Stage_7;
 
 //====================================================================================================
 GameManager* GameManager::gameManager = nullptr;
