@@ -5,11 +5,24 @@
 // サウンドファイル
 typedef enum
 {
-	SOUND_LABEL_BGM_TITLE = 0,		// サンプルBGM
+	BGM_TITLE = 0,		// サンプルBGM
+	BGM_GAME,
 
-	SOUND_LABEL_SE_SHOT01,
+	SE_GOAL,
+	SE_UI_CLICK,
+	SE_PLAYR_JUMP,
+	SE_PLAYR_LEAP,
+	SE_PLAYR_PICK,
+	SE_PLAYR_DROP,
+	SE_PLAYR_DEAD,
+	SE_PLAYR_FALLDEAD,
+	SE_PLAYR_FALLDOWN,
+	SE_PLAYR_MOVEHOOK,
+	SE_PLAYR_PENSHOT,
 
-	SOUND_LABEL_MAX,
+	SE_GMMICK_PENHIT,
+
+	SOUND_LABEL_MAX
 } SOUND_LABEL;
 
 class Sound {
@@ -23,11 +36,47 @@ private:
 
 	PARAM m_param[SOUND_LABEL_MAX] =
 	{
-		// サンプルBGM（ループさせる場合true設定）
-		{"Asset/SE/Age_of_Discovery.wav", true},	
+		// タイトルBGM（ループさせる場合true設定）
+		{"Asset/BGM/TitleBGM.wav", true},	
 
-		// サンプルSE（ループしない場合false設定）
-		{"asset/SE/attack01.wav", false},  			
+		// ゲームBGM（ループさせる場合true設定）
+		{"Asset/BGM/TitleBGM.wav", true},
+
+		// ゴールSE（ループさせる場合true設定）
+		{"Asset/SE/StageClear.wav", false},
+
+		// UIクリックSE（ループしない場合false設定）
+		{"asset/SE/Click.wav", false},  	
+
+		// PlayerジャンプSE（ループしない場合false設定）
+		{"asset/SE/Jump.wav", false},
+
+		// PlayerぶっとびSE（ループしない場合false設定）
+		{"asset/SE/RubberJump.wav", false},
+
+		// Player拾うSE（ループしない場合false設定）
+		{"asset/SE/ItemPickup.wav", false},
+
+		// Player捨てるSE（ループしない場合false設定）
+		{"asset/SE/ItemDrop.wav", false},
+
+		// Player死亡SE（ループしない場合false設定）
+		{"asset/SE/PlayerDeadScream.wav", false},
+
+		// Player落下死SE（ループしない場合false設定）
+		{"asset/SE/FallDead.wav", false},
+
+		// Player物倒れるSE（ループしない場合false設定）
+		{"asset/SE/ObjectFallDown.wav", false},
+
+		// PlayerレールSE（ループしない場合false設定）
+		{"asset/SE/Click.wav", false},
+
+		// Playerペンを投げるSE（ループしない場合false設定）
+		{"asset/SE/RubberJump.wav", false},
+
+		// Gimmickペンが刺さる音SE（ループしない場合false設定）
+		{"asset/SE/ArrowHit.wav", false},
 	};
 
 	IXAudio2* m_pXAudio2 = NULL;
