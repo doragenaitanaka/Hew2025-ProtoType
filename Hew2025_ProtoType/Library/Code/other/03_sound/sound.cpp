@@ -17,6 +17,9 @@
 #define fourccDPDS 'sdpd'
 #endif
 
+// 静的メンバ変数
+Sound* Sound::sound = nullptr;
+
 //=============================================================================
 // 初期化
 //=============================================================================
@@ -96,6 +99,43 @@ HRESULT Sound::Init()
 	}
 
 	return hr;
+}
+
+/**	@brief 	サウンドの生成
+*	@date	2024/12/14
+*	@memo	この関数を始めに実行する
+*/
+void	Sound::CreateInstance(void)
+{
+	if (!Sound::sound)
+	{
+		Sound::sound = new	Sound;
+		Sound::sound->Init();
+	}
+}
+
+/**	@brief 	サウンドの削除
+*	@date	2024/12/14
+*/
+void	Sound::DestroyInstance(void)
+{
+	//存在していたら解放
+	if (Sound::sound)
+	{
+		Sound::sound->Uninit();
+		delete	Sound::sound;
+		Sound::sound = nullptr;
+	}
+}
+
+/**	@brief 	サウンドの取得
+*	@return	Sound*
+*	@date	2024/12/14
+*	@memo	この関数を使って各ファイルで生成済シーンマネージャーを取得する
+*/
+Sound* Sound::GetInstance(void)
+{
+	return	Sound::sound;
 }
 
 //=============================================================================
