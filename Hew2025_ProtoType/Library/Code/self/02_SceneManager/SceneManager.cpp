@@ -90,12 +90,12 @@ void	SceneManager::CreateScene(Scene sceneName)
 			this->nowScene = new	StageSelectScene;
 			break;
 
-		////=====================
-		////		ステージ
-		////=====================
-		//case Scene::Stage_1:
-		//	this->nowScene = new	Stage_1;
-		//	break;
+		//=====================
+		//		ステージ
+		//=====================
+		case Scene::Stage_1:
+			this->nowScene = new	Stage_1;
+			break;
 		case Scene::Stage_2:
 			this->nowScene = new	Stage_2;
 			break;

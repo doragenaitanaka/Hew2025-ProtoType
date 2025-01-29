@@ -46,7 +46,7 @@ HRESULT CVertexBuffer::Create(const void* p_SysMem, UINT byteWidth, UINT nothing
         D3D11_SUBRESOURCE_DATA initData = { p_SysMem, 0, 0 };
 
         // 頂点バッファの作成
-        HRESULT hr = device->CreateBuffer(&vbDesc, &initData, &this->p_buffer);
+         HRESULT hr = device->CreateBuffer(&vbDesc, &initData, &this->p_buffer);
         
         if (FAILED(hr))
         {

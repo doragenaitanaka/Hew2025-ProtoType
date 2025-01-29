@@ -7,13 +7,18 @@
 //インクルード
 #include"../../00_BaseScene/BaseScene.h"
 #include"../../../Library/Code/self/02_SceneManager/SceneManager.h"
-#include"../../../Library/Code/self/10_Object/Object.h"
-#include"../../../Library/Code/self/11_Player/Player.h"
 #include"../../../Library/Code/self/imagawa_Input/input.h"
 #include"../../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
+
+#include"../../../Library/Code/self/06_TileMap/TileMap.h"
+#include"../../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
+#include"../../../Library/Code/self/10_Object/Object.h"
+#include"../../../Library/Code/self/11_Player/Player.h"
+#include"../../../Library/Code/self/16_Background/Background.h"
+
 #include <memory> 
 /**	@file	Stage_1.h
 *	@brief	起動時にロゴとか出るシーン
@@ -48,7 +53,6 @@ public:
 	XMFLOAT2 CameraPos2 = { 0.0f, 0.0f };
 	XMFLOAT2 PlayerPos = { 0.0f, -150.0f };
 	XMFLOAT2 PlayerSize = { 120.0f,120.0f };
-	float PlayerAngle = 0.0f;
 
 	XMFLOAT2 PlayerDrawPos = { 0.0f, 40.0f };
 	XMFLOAT2 PlayerDrawSize = { 140.0f,140.0f };
@@ -85,12 +89,12 @@ public:
 
 	XMFLOAT2 BlockDrawPos01 = { 000.0f,-200.0f };
 
-	XMFLOAT2 HookPos01 = { 700.0f,0.0f };
-	XMFLOAT2 HookPos02 = { 1300.0f, 300.0f };
-	XMFLOAT2 HookPos03 = { 2250.0f, 800.0f };
-	XMFLOAT2 HookPos04 = { 1800.0f, 1300.0f };
+	XMFLOAT2 HookPos01 = { 2410.0f,-2940.0f };
+	XMFLOAT2 HookPos02 = { 3330.0f, -2090.0f };
+	XMFLOAT2 HookPos03 = { 5000.0f, -1110.0f };
+	XMFLOAT2 HookPos04 = { 4160.0f, -180.0f };
 
-	XMFLOAT2 GoalPos = { 600.0f, 1400.0f };
+	XMFLOAT2 GoalPos = { 2210.0f, -170.0f };
 
 	//サイズ
 	XMFLOAT2 TestSize = { 100.0f,100.0f };
@@ -108,8 +112,7 @@ public:
 	XMFLOAT2 BlockSize08 = { 800.0f,100.0f };
 
 	XMFLOAT2 HookSize01 = { 100.0f, 100.0f };
-	XMFLOAT2 HookSize02 = { 100.0f, 100.0f };
-	XMFLOAT2 HookSize03 = { 100.0f, 100.0f };
+	XMFLOAT2 HookSize02 = { 150.0f, 220.0f };
 	XMFLOAT2 HookColSize01 = { 80.0f, 80.0f };
 
 	XMFLOAT2 GoalSize = { 200.0f, 200.0f };
@@ -129,6 +132,9 @@ public:
 	XMFLOAT2 IdlePos = { 0.0f,0.0f };
 	XMFLOAT2 IdleSize = { 140.0f,140.0f };
 
+	float PlayerAngle = 0.0f;
+	int idletime = 0;
+	float u = 0.0f;
 	float eyesy = 90.0f;
 	float eyesx = 0.0f;
 	float lefthandx = -62.0f;
@@ -145,7 +151,7 @@ public:
 	float Camera2ydelta = 0.0f;
 	int t3 = 0;
 	int pullstate = 0;
-	int gamemode = 1;
+	float Vx4 = 7.0f;
 	int superjumpstate = 0;
 	float t2 = 0.0f;
 	float a = 90.0f;
@@ -175,39 +181,40 @@ public:
 	int drawnum = 0;
 	int n = 0;
 	int m = 0;
+	int ustate = 0;
 	int BlockNumber = 0;
 	int HookCameraState = 0;
 	int HookNumber = 0;
 	int NewColState = 0;
-	int ColliderState = 0;
+	int StartState = 0;
 	int HookColliderState = -1;
 	bool ScenechangeState = false;
-	std::shared_ptr<Object> blockdraw[768];
-	std::shared_ptr<Object> block[8];
-	std::shared_ptr<Object> hook[4];
+	int ScenechangeState2 = 0;
 private:
-	Input input;
-	Object* background;
-	Object* playercol;
-	Object* playercol2;
-	Object* playercol3;
-	Object* newcol;
+	int gamemode = 1;							// ゲームモード
+	int ColliderState = 0;						// 当たった状態
+
+	TrackingCamera* p_camera;	// カメラ
+	TileMap* p_tileMap;			//タイルマップ
 	Player* player;
-	Player* playerdraw;
-	Object* eyes;
-	Object* lefthand;
-	Object* righthand;
-	Object* leftleg;
-	Object* rightleg;
+	Background* background;
 
-	Object* idle;
-	Object* walking;
-
-	//Object* block[8];
-	////Object* blockdraw[1000];
-	//
-	//Object* hook[4];
-	Object* goal;
+	std::shared_ptr<Object>playercol;
+	std::shared_ptr<Object>playercol2;
+	std::shared_ptr<Object>playercol3;
+	std::shared_ptr<Player>playerdraw;
+	std::shared_ptr<Object>eyes;
+	std::shared_ptr<Object>lefthand;
+	std::shared_ptr<Object>righthand;
+	std::shared_ptr<Object>leftleg;
+	std::shared_ptr<Object>rightleg;
+	std::shared_ptr<Object>idle;
+	std::shared_ptr<Object>walking;
+	std::shared_ptr<Object>walking2;
+	std::shared_ptr<Object>goal;
+	std::shared_ptr<Object>hook[4];
+	std::shared_ptr<Object> hookdraw[4];
+	std::shared_ptr<Object> block[8];
 
 	//--------------------------------------------------------------------------
 	//		描画関連
