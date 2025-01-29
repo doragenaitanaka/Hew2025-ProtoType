@@ -56,6 +56,10 @@ Stage_5::~Stage_5()
 */
 void	Stage_5::Initialize(void)
 {
+    // BGM
+    this->p_sound->Play(SOUND_LABEL::BGM_GAME);
+
+
     if (!this->background) { this->background = new Object; }
     if (!this->player) { this->player = new Player; }
     if (!this->goal) { this->goal = new Object; }
@@ -893,6 +897,9 @@ void	Stage_5::Draw(void)
 */
 void	Stage_5::Finalize(void)
 {
+    // BGM
+    this->p_sound->Stop(SOUND_LABEL::BGM_GAME);
+
     //--------------------------------------------------------------------------
    //		描画関連
    //--------------------------------------------------------------------------	

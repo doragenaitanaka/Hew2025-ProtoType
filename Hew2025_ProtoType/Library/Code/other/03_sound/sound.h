@@ -5,9 +5,11 @@
 // サウンドファイル
 typedef enum
 {
-	BGM_TITLE = 0,		// サンプルBGM
+	// BGM
+	BGM_TITLE = 0,		
 	BGM_GAME,
 
+	// SE
 	SE_GOAL,
 	SE_UI_CLICK,
 	SE_PLAYR_JUMP,
@@ -46,37 +48,37 @@ private:
 		{"Asset/SE/StageClear.wav", false},
 
 		// UIクリックSE（ループしない場合false設定）
-		{"asset/SE/Click.wav", false},  	
+		{"Asset/SE/Click.wav", false},  	
 
 		// PlayerジャンプSE（ループしない場合false設定）
-		{"asset/SE/Jump.wav", false},
+		{"Asset/SE/Jump.wav", false},
 
 		// PlayerぶっとびSE（ループしない場合false設定）
-		{"asset/SE/RubberJump.wav", false},
+		{"Asset/SE/RubberJump.wav", false},
 
 		// Player拾うSE（ループしない場合false設定）
-		{"asset/SE/ItemPickup.wav", false},
+		{"Asset/SE/ItemPickup.wav", false},
 
 		// Player捨てるSE（ループしない場合false設定）
-		{"asset/SE/ItemDrop.wav", false},
+		{"Asset/SE/ItemDrop.wav", false},
 
 		// Player死亡SE（ループしない場合false設定）
-		{"asset/SE/PlayerDeadScream.wav", false},
+		{"Asset/SE/PlayerDeadScream.wav", false},
 
 		// Player落下死SE（ループしない場合false設定）
-		{"asset/SE/FallDead.wav", false},
+		{"Asset/SE/FallDead.wav", false},
 
 		// Player物倒れるSE（ループしない場合false設定）
-		{"asset/SE/ObjectFallDown.wav", false},
+		{"Asset/SE/ObjectFallDown.wav", false},
 
 		// PlayerレールSE（ループしない場合false設定）
-		{"asset/SE/Click.wav", false},
+		{"Asset/SE/Click.wav", false},
 
 		// Playerペンを投げるSE（ループしない場合false設定）
-		{"asset/SE/RubberJump.wav", false},
+		{"Asset/SE/RubberJump.wav", false},
 
 		// Gimmickペンが刺さる音SE（ループしない場合false設定）
-		{"asset/SE/ArrowHit.wav", false},
+		{"Asset/SE/ArrowHit.wav", false},
 	};
 
 	IXAudio2* m_pXAudio2 = NULL;

@@ -39,7 +39,9 @@ Stage_1::~Stage_1()
 /**	@brief 	シーン全体の初期化
 */
 void	Stage_1::Initialize(void)
-{
+{       
+    // BGM
+    this->p_sound->Play(SOUND_LABEL::BGM_GAME);
     // カメラ
     if (!this->p_camera) { this->p_camera = new TrackingCamera; }
 
@@ -600,6 +602,8 @@ void	Stage_1::Draw(void)
 */
 void	Stage_1::Finalize(void)
 {
+    // BGM
+    this->p_sound->Stop(SOUND_LABEL::BGM_GAME);
     SAFE_DELETE(this->p_camera);    // カメラ
     SAFE_DELETE(this->p_tileMap);   // タイルマップ
 

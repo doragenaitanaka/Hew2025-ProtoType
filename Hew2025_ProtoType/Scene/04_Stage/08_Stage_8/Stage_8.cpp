@@ -38,7 +38,10 @@ Stage_8::~Stage_8()
 /**	@brief 	シーン全体の初期化
 */
 void	Stage_8::Initialize(void)
-{
+{    
+    // BGM
+    this->p_sound->Play(SOUND_LABEL::BGM_GAME);
+
     if (!this->background) { this->background = new Object; }
     if (!this->player) { this->player = new Player; }
 
@@ -384,6 +387,9 @@ void	Stage_8::Draw(void)
 */
 void	Stage_8::Finalize(void)
 {
+    // BGM
+    this->p_sound->Stop(SOUND_LABEL::BGM_GAME);
+
     //--------------------------------------------------------------------------
    //		描画関連
    //--------------------------------------------------------------------------	

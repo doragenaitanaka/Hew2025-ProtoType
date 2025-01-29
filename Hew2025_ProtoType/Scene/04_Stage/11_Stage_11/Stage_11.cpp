@@ -45,6 +45,9 @@ Stage_11::~Stage_11()
 */
 void	Stage_11::Initialize(void)
 {
+    // BGM
+    this->p_sound->Play(SOUND_LABEL::BGM_GAME);
+
     // カメラ
     if (!this->p_camera) { this->p_camera = new TrackingCamera; }
 
@@ -768,6 +771,9 @@ void	Stage_11::Draw(void)
 */
 void	Stage_11::Finalize(void)
 {
+    // BGM
+    this->p_sound->Stop(SOUND_LABEL::BGM_GAME);
+
     //--------------------------------------------------------------------------
    //		描画関連
    //--------------------------------------------------------------------------	

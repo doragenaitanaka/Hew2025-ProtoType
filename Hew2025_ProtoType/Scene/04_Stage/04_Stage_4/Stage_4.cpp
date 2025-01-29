@@ -47,7 +47,10 @@ Stage_4::~Stage_4()
 /**	@brief 	シーン全体の初期化
 */
 void	Stage_4::Initialize(void)
-{
+{    
+    // BGM
+    this->p_sound->Play(SOUND_LABEL::BGM_GAME);
+
     // カメラ
     if (!this->p_camera) { this->p_camera = new TrackingCamera; }
 
@@ -652,6 +655,9 @@ void	Stage_4::Draw(void)
 */
 void	Stage_4::Finalize(void)
 {
+    // BGM
+    this->p_sound->Stop(SOUND_LABEL::BGM_GAME);
+
    //--------------------------------------------------------------------------
    //		描画関連
    //--------------------------------------------------------------------------	

@@ -40,6 +40,9 @@ StageSelectScene::~StageSelectScene()
 */
 void	StageSelectScene::Initialize(void)
 {    
+    // BGM
+    this->p_sound->Play(SOUND_LABEL::BGM_TITLE);
+
     // 時刻の設定
     this->lastUpdateTime = std::chrono::steady_clock::now();
 
@@ -238,12 +241,16 @@ void StageSelectScene::Update(void)
     float movePos = 0.0f;
     if (this->p_input->Trigger("L1"))
     {
+        // SE
+        this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
         movePos = this->stageUISize + this->space;
         this->isSelect = true;
         this->isPushL1 = true;
     }
     else if (this->p_input->Trigger("R1"))
     {
+        // SE
+        this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
         movePos = -this->stageUISize - this->space;
         this->isSelect = true;
         this->isPushR1 = true;
@@ -302,6 +309,8 @@ void StageSelectScene::Update(void)
     // 選択中のステージに飛ぶ
     if (this->p_input->Press("SPACE"))
     {
+        // SE
+        this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
         this->SelectStage(this->stageNum);
         return;
     }
@@ -466,6 +475,9 @@ void	StageSelectScene::Draw(void)
 */
 void	StageSelectScene::Finalize(void)
 {
+    // BGM
+    this->p_sound->Stop(SOUND_LABEL::BGM_TITLE);
+
     SAFE_DELETE(this->p_camera);    // カメラ
 
     //--------------------------------------------------------------------------

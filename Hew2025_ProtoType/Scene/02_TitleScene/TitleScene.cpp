@@ -45,6 +45,9 @@ TitleScene::~TitleScene()
 */
 void	TitleScene::Initialize(void)
 {
+    //BGM 
+    this->p_sound->Play(SOUND_LABEL::BGM_TITLE);
+
     // カメラ
     if (!this->p_camera) { this->p_camera = new Camera; }
 
@@ -362,6 +365,9 @@ void	TitleScene::Update(void)
         //選択中の指の動き
     if (this->p_input->Trigger("UP"))
     {
+        // SE
+        this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
+
         switch (SelectState)
         {
         case 0://startに指
@@ -381,7 +387,9 @@ void	TitleScene::Update(void)
         }
     }
     if (this->p_input->Trigger("DOWN"))
-    {
+    {        
+        // SE
+        this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
         switch (SelectState)
         {
         case 0://startに指
@@ -404,6 +412,8 @@ void	TitleScene::Update(void)
     //シーンチェンジ
     if (this->p_input->Trigger("SELECT"))
     {
+        // SE
+        this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
         switch (SelectState)
         {
         case 0://start
@@ -502,6 +512,9 @@ void	TitleScene::Draw(void)
 */
 void	TitleScene::Finalize(void)
 {
+    // BGM
+    this->p_sound->Stop(SOUND_LABEL::BGM_TITLE);
+
     SAFE_DELETE(this->p_camera);    // カメラ
 
     //--------------------------------------------------------------------------

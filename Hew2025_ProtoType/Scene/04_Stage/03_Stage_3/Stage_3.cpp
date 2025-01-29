@@ -40,6 +40,8 @@ Stage_3::~Stage_3()
 */
 void	Stage_3::Initialize(void)
 {
+    // BGM
+    this->p_sound->Play(SOUND_LABEL::BGM_GAME);
     // カメラ
     if (!this->p_camera) { this->p_camera = new TrackingCamera; }
 
@@ -1361,7 +1363,9 @@ void	Stage_3::Draw(void)
 /**	@brief 	シーン全体の終了処理
 */
 void	Stage_3::Finalize(void)
-{
+{    
+    // BGM
+    this->p_sound->Stop(SOUND_LABEL::BGM_GAME);
     SAFE_DELETE(this->p_camera);    // カメラ
     SAFE_DELETE(this->p_tileMap);   // タイルマップ
 

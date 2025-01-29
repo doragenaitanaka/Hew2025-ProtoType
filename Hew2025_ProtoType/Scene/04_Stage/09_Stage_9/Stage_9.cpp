@@ -39,6 +39,9 @@ Stage_9::~Stage_9()
 */
 void	Stage_9::Initialize(void)
 {
+    // BGM
+    this->p_sound->Play(SOUND_LABEL::BGM_GAME);
+
     if (!this->background) { this->background = new Object; }
     if (!this->player) { this->player = new Player; }
 
@@ -384,6 +387,9 @@ void	Stage_9::Draw(void)
 */
 void	Stage_9::Finalize(void)
 {
+    // BGM
+    this->p_sound->Stop(SOUND_LABEL::BGM_GAME);
+
     //--------------------------------------------------------------------------
    //		描画関連
    //--------------------------------------------------------------------------	
