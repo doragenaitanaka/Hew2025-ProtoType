@@ -7,6 +7,7 @@
 #include"../03_Windows/WindowSetup.h"
 #include"../04_DirextX_11/01_Initialize/CD3D11.h"
 #include"../02_SceneManager/SceneManager.h"
+#include"../../other/03_sound/sound.h"
 
 //define定義
 #define	FPS (60)
@@ -51,8 +52,9 @@ private:
 
 	CD3D11* cd3d11;							// d3d11の初期化をまとめたクラス
 	WindowSetup* windowSetup;				// windowsの初期化をまとめたクラス
-	SceneManager* sceneManager;				// シーン管理クラ
-	
+	SceneManager* sceneManager;				// シーン管理クラス
+	Sound* sound;							// サウンド
+
 	bool	isRunning;						// true:ゲームループ実行中
 
 	// FPS計測用変数
