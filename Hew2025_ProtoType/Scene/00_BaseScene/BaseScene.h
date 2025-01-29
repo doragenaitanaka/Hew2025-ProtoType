@@ -9,6 +9,7 @@
 #include"../../Library/Code/self/04_DirextX_11/01_Initialize/CD3D11.h"
 #include"../../Library/Code/self/imagawa_Input/input.h"
 #include"../../Library/Code/self/SafePointers.h"
+#include"../../Library/Code/other/03_sound/sound.h"
 
 // 前方宣言
 class SceneManager;
@@ -54,4 +55,5 @@ protected:
 	SceneManager* p_sceneManager;	// シーンマネージャー
 	CD3D11* p_cd3d11;				// d3d11クラス
 	Input* p_input;					// 入力
+	Sound* p_sound;					// サウンド
 };
