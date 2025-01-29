@@ -66,16 +66,16 @@ public:
 
 	//テスト用の座標変数
 	XMFLOAT2 TestPos = { -200.0f, 0.0f };
-	XMFLOAT2 TestPos2 = { 0.0f, 200.0f };
+	XMFLOAT2 TestPos2 = { 400.0f, 0.0f };
 
 	//サイズ
 	XMFLOAT2 TestSize = { 100.0f,100.0f };
-	XMFLOAT2 TestSize2 = { 100.0f,100.0f };
+	XMFLOAT2 TestSize2 = { 100.0f,600.0f };
 
 private:
 	Input input;
 	Object* p_object;
-    FallObject* p_object2;
+    FallObject* p_fallobject;
 	Ball* ball;
 	Pendulum* pendulum; // 振り子オブジェクト
 	

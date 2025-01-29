@@ -13,7 +13,7 @@
 Test_Ueda::Test_Ueda()
 {
     this->p_object = nullptr;
-	this->p_object2 = nullptr;
+	this->p_fallobject = nullptr;
 
     this->p_vertexShader = nullptr;
     this->p_pixelShader = nullptr;
@@ -37,7 +37,7 @@ Test_Ueda::~Test_Ueda()
 void	Test_Ueda::Initialize(void)
 {
     if (!this->p_object) { this->p_object = new Object; }
-    if (!this->p_object2) { this->p_object2 = new FallObject; }
+    if (!this->p_fallobject) { this->p_fallobject = new FallObject; }
 
     if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
     if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
@@ -153,15 +153,15 @@ void	Test_Ueda::Initialize(void)
 
     // オブジェクト
     this->p_object->Init(L"Asset/block.png");
-    this->p_object2->Init(L"Asset/block.png");
+    this->p_fallobject->Init(L"Asset/block.png");
 
     // オブジェクトの座標を設定
     this->p_object->SetPos(TestPos.x, TestPos.y, 0.0f); //初期座標-200.0f
-    this->p_object2->SetPos(TestPos.x + 500, TestPos.y, 0.0f); //p_objectから400.0f離れた場所に生成
+    this->p_fallobject->SetPos(TestPos2.x , TestPos2.y, 0.0f); //p_objectから400.0f離れた場所に生成
 
     //オブジェクトのサイズを設定
     this->p_object->SetSize(TestSize.x, TestSize.y, 0.0f); // サイズは100.0f×100.0f
-    this->p_object2->SetSize(TestSize2.x + 100, TestSize2.y + 500, 0.0f); // 同上 
+    this->p_fallobject->SetSize(TestSize2.x, TestSize2.y, 0.0f); // 同上 
 }
 
 /**	@brief 	シーン全体の更新
@@ -178,21 +178,15 @@ void	Test_Ueda::Update(void)
 
     // オブジェクトの位置更新
     DirectX::XMFLOAT3 pos = this->p_object->GetPos();
-    DirectX::XMFLOAT3 pos2 = this->p_object2->GetPos();
+    DirectX::XMFLOAT3 pos2 = this->p_fallobject->GetPos();
 
     auto& col1 = p_object->GetCollider();
-    auto& col2 = p_object2->GetCollider();
-     
-
-    p_object2->SetFallObject(10.0f, 0.0f, f_objangle);//倒れるオブジェクトの初期高さ、初期速度、初期角度を設定
-    
+    auto& col2 = p_fallobject->GetCollider();
 	
-
-	// オブジェクトの角度を更新
-	f_objangle += 0.1f;
+    this->p_fallobject->Update(90.0f,2);//倒れるオブジェクトの更新(どこまで倒れるかの角度、右に倒れるか左に倒れるか（１，右、２左）)
 
 
-    
+   
 
     // 入力に応じた位置の更新
     if (input.Press("LEFT")) { pos.x -= 2.0f; input.SetVibration(flame, power); }
@@ -212,7 +206,7 @@ void	Test_Ueda::Update(void)
 
     // オブジェクトの位置を更新
     this->p_object->SetPos(pos.x, pos.y, pos.z);
-    this->p_object2->SetPos(pos2.x, pos2.y, pos2.z);
+    
     if (GetAsyncKeyState(VK_SPACE))
     {
         // シーン遷移
@@ -221,14 +215,15 @@ void	Test_Ueda::Update(void)
     }
 
     // オブジェクトの更新
-    this->p_object->Update();
-	this->p_object2->Update();
+	this->p_object->Update();//オブジェクトの更新
+    
 }
 
 /**	@brief 	シーン全体の描画
 *	@date	2024/05/10
 */
 void	Test_Ueda::Draw(void)
+
 {
 
     //--------------------------------------------------------------------------
@@ -260,7 +255,7 @@ void	Test_Ueda::Draw(void)
     //		オブジェクトの描画
     //--------------------------------------------------------------------------	
     this->p_object->Draw();
-	this->p_object2->Draw();
+	this->p_fallobject->Draw();
 
     //オブジェクトの移動
 
@@ -315,6 +310,6 @@ void	Test_Ueda::Finalize(void)
     //		オブジェクト
     //--------------------------------------------------------------------------	
     SAFE_DELETE(this->p_object);
-    SAFE_DELETE(this->p_object2);
+    SAFE_DELETE(this->p_fallobject);
     
 }
