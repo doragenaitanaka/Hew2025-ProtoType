@@ -7,7 +7,7 @@
 
 //==================最初に実行されるシーン(ここしかいじっちゃダメ！！！！！！)========================
 
-Scene GameManager::startScene = Scene::StageSelectScene;
+Scene GameManager::startScene = Scene::TitleScene;
 
 //====================================================================================================
 GameManager* GameManager::gameManager = nullptr;
@@ -114,7 +114,6 @@ int	GameManager::Run(_In_ HINSTANCE hInstance, _In_ int       nCmdShow)
 			}
 		}
 	}
-	this->sound->DestroyInstance();							// サウンド
 	this->sceneManager->DestroyInstance();					// シーン管理クラスの削除
 	this->cd3d11->DestroyInstance();						// CD3D11クラスの削除
 	this->windowSetup->DestroyInstance(hInstance);			// ウィンドウクラスの削除
@@ -140,10 +139,8 @@ GameManager::GameManager()
 	WindowSetup::CreateInstance();	// windows初期化クラス
 	CD3D11::CrerateIntance();		// D3D11初期化クラス
 	SceneManager::CreateInstance();	// シーン管理クラス
-	Sound::CreateInstance();		// サウンド
 
 	//クラスインスタンスの取得
-	this->sound->Sound::GetInstance();					// サウンド
 	this->windowSetup = WindowSetup::GetInstance();		// windows初期化クラス
 	this->cd3d11 = CD3D11::GetInstance();				// D3D11初期化クラス
 	this->sceneManager = SceneManager::GetInstance();	// シーン管理クラス
