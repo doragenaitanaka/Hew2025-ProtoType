@@ -31,7 +31,7 @@ public:
     /**	@brief 	更新
     * @date 2024/12/27
     */
-    void Update(Object* visualObject,Object*p_Right,Object* p_Left,XMFLOAT3 camerapos);
+    void Update(Object* visualObject,Object*p_Right,Object* p_Left);
 
     /**	@brief 	当たり判定確認
     * @date 2024/12/27

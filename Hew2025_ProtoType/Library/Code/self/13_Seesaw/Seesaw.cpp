@@ -20,7 +20,7 @@ Seesaw::~Seesaw()
 /**	@brief 	更新
 * @date 2024/12/27
 */
-void Seesaw::Update(Object* visualObject,Object* p_Right,Object* p_Left,XMFLOAT3 camerapos)
+void Seesaw::Update(Object* visualObject,Object* p_Right,Object* p_Left)
 {
     if (SeesawMoveFlg)
     {

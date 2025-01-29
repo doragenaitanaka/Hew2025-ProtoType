@@ -25,6 +25,9 @@ Input::Input()
     inputActionMap["L1"] = { {InputType::keyboard, VK_LEFT}, {InputType::gamepad, XINPUT_LEFT_SHOULDER  } };
     inputActionMap["R1"] = { {InputType::keyboard, VK_RIGHT}, {InputType::gamepad, XINPUT_RIGHT_SHOULDER  } };
 
+    // ポーズ
+    inputActionMap["RETRY"] = { {InputType::keyboard, VK_R}, {InputType::gamepad, XINPUT_START  } };
+    inputActionMap["TITLE"] = { {InputType::keyboard, VK_T}, {InputType::gamepad, XINPUT_BACK  } };
 
     /*@brief　入力状態を初期化*/
     for (const auto& mapInfo : inputActionMap)

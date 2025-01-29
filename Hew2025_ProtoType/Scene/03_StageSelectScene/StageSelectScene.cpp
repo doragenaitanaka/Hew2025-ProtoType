@@ -221,6 +221,13 @@ void	StageSelectScene::Initialize(void)
 */
 void StageSelectScene::Update(void)
 {
+    // タイトルに戻る
+    if (this->p_input->Trigger("TITLE"))
+    {
+        this->p_sceneManager->ChangeScene(Scene::TitleScene);
+        return;
+    }
+
     // 経過時間の計測
     auto currentTime = std::chrono::steady_clock::now();
     this->elapsedTime = currentTime - this->lastUpdateTime;

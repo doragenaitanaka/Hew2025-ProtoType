@@ -295,9 +295,18 @@ void	Stage_2::Update(void)
     this->p_input->Update();
     this->p_input->GetLeftAnalogStick();
 
-    //// 画面揺らせる
-    //this->p_camera->Shake(10.0f);
-
+    // リスタート    
+    if (this->p_input->Trigger("RETRY"))
+    {
+        this->p_sceneManager->ChangeScene(Scene::Stage_2);
+        return;
+    }
+    // タイトルに戻る
+    if (this->p_input->Trigger("TITLE"))
+    {
+        this->p_sceneManager->ChangeScene(Scene::TitleScene);
+        return;
+    }
 
     //----------------------------------------------
     // Creative Mode
