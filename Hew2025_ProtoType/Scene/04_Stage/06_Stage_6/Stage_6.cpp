@@ -685,7 +685,7 @@ void	Stage_6::Update(void)
 
     this->seesaw->CheckCollision(grabbox, BallObject,SeesawHead[1],SeesawHead[0]);
     DirectX::XMFLOAT3 pos = DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f);
-    this->seesaw->Update(Connector,SeesawHead[1],SeesawHead[0], pos);  // オフセット(元々cameraPosだった現pos)は値無しで
+    this->seesaw->Update(Connector,SeesawHead[1],SeesawHead[0]);  // オフセット(元々cameraPosだった現pos)は値無しで
 
     for (n = 0; n < 3; n++)//Updateの数
     {
