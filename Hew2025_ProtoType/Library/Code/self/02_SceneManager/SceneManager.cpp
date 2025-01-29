@@ -83,9 +83,9 @@ void	SceneManager::CreateScene(Scene sceneName)
 		//case Scene::SplashScreanScene:
 		//	this->nowScene = new	SplashScreanScene;
 		//	break;
-		//case Scene::TitleScene:
-		//	this->nowScene = new	TitleScene;
-		//	break;
+		case Scene::TitleScene:
+			this->nowScene = new	TitleScene;
+			break;
 		case Scene::StageSelectScene:
 			this->nowScene = new	StageSelectScene;
 			break;
@@ -111,9 +111,9 @@ void	SceneManager::CreateScene(Scene sceneName)
 		case Scene::Stage_6:
 			this->nowScene = new	Stage_6;
 			break;
-		case Scene::Stage_7:
-			this->nowScene = new	Stage_7;
-			break;
+		//case Scene::Stage_7:
+		//	this->nowScene = new	Stage_7;
+		//	break;
 		//case Scene::Stage_8:
 		//	this->nowScene = new	Stage_8;
 		//	break;

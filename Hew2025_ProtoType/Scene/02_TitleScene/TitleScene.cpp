@@ -46,7 +46,7 @@ TitleScene::~TitleScene()
 void	TitleScene::Initialize(void)
 {
     // カメラ
-    if (!this->p_camera) { this->p_camera = new TrackingCamera; }
+    if (!this->p_camera) { this->p_camera = new Camera; }
 
     //--------------------------------------------------------------------------
     //		 オブジェクト
@@ -402,7 +402,7 @@ void	TitleScene::Update(void)
     }
 
     //シーンチェンジ
-    if (this->p_input->Trigger("RIGHT"))
+    if (this->p_input->Trigger("SELECT"))
     {
         switch (SelectState)
         {

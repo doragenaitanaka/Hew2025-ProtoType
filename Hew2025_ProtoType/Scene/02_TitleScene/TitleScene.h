@@ -64,7 +64,7 @@ private:
 	bool UIState = true;//選択肢用のステート
 	bool AFlg = true;//Aボタン用のフラグ
 
-	TrackingCamera* p_camera;	// カメラ
+	Camera* p_camera;	// カメラ
 	Input input;
 	Object* background;//背景
 	Object* logo;//タイトルロゴ
