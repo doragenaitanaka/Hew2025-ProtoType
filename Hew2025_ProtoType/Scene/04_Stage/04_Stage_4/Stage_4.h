@@ -16,6 +16,7 @@
 
 #include"../../../Library/Code/self/06_TileMap/TileMap.h"
 #include"../../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
+#include"../../../Library/Code/self/08_Timer/Timer.h"
 #include"../../../Library/Code/self/10_Object/Object.h"
 #include"../../../Library/Code/self/11_Player/Player.h"
 #include"../../../Library/Code/self/16_Background/Background.h"
@@ -221,6 +222,10 @@ public:
 	int RailNumber = 0;
 	int RailCnt[3] = { 0,0,0 };
 private:
+	// タイマー
+	Timer failedTimer;	// 失敗時
+	bool isFailed;		// true:失敗した
+
 	int gamemode = 1;							// ゲームモード
 	int ColliderState = 0;						// 当たった状態
 	XMFLOAT2 PlayerSize = { 110.0f,110.0f };	// プレイヤーのサイズ
