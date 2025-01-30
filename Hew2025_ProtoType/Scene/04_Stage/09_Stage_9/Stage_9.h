@@ -18,6 +18,7 @@
 #include"../../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
 #include"../../../Library/Code/self/10_Object/Object.h"
 #include"../../../Library/Code/self/11_Player/Player.h"
+#include"../../../Library/Code/self/16_Background/Background.h"
 /**	@file	Stage_9.h
 *	@brief	起動時にロゴとか出るシーン
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している
@@ -70,9 +71,9 @@ public:
 
 	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
 
-	XMFLOAT2 PushObjectSize = { 300.0f,1000.0f };
+	XMFLOAT2 PushObjectSize = { 500.0f,1000.0f };
 	XMFLOAT2 BallSize = { 500.0f,500.0f };
-	XMFLOAT2 HookSize = { 200.0f,200.0f };
+	XMFLOAT2 HookSize = { 150.0f,220.0f };
 
 	XMFLOAT2 SlopeSize00 = { 100.0f,1100.0f }; //坂道左下
 	XMFLOAT2 SlopeSize01 = { 100.0f,1000.0f }; //坂道右下
@@ -80,10 +81,11 @@ public:
 	XMFLOAT2 SlopeSize03 = { 100.0f,3000.0f }; //坂道右上
 
 	XMFLOAT2 PenSize = { 800.0f,50.0f };
+	XMFLOAT2 GoalSize = { 200.0f,200.0f };
 	int gamemode = 0;
 
 	
-	float PushAngle = 90.0f;//ペンホルダーを横に
+	float PushAngle = -90.0f;//ペンホルダーを横に
 	float BallSpeed = 5.0f;
 	float BallAngle = 0.0f;
 	float SlopeAngle[4] = {45.0f,150.0f,45.0f,325.0f};
@@ -97,7 +99,7 @@ public:
 	int ColliderState = 0;
 private:
 	Input input;
-	Object* background;
+	Background* background;
 	Object* Slope[4];
 	Player* player;
 	Object* hook[2];

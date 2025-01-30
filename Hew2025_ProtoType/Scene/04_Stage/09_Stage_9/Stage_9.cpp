@@ -64,8 +64,8 @@ void	Stage_9::Initialize(void)
     }
 
 
-    if (!this->background) { this->background = new Object(this->p_camera); }
-    this->background->Init(L"Asset/back_img_01.png");
+    if (!this->background) { this->background = new Background(this->p_camera); }
+    this->background->Init(L"Asset/background.png");
     this->background->SetSize(1920.0f, 1080.0f, 0.0f);
     this->background->SetPos(0.0f, 0.0f, 0.0f);
 
@@ -75,18 +75,18 @@ void	Stage_9::Initialize(void)
     this->player->SetPos(playerPos.x, playerPos.y, 0.0f);
     
     if (!this->goal) { this->goal = new Object(this->p_camera); }
-    this->goal->Init(L"Asset/block.png");
-    this->goal->SetSize(200.0f, 300.0f, 0.0f);
+    this->goal->Init(L"Asset/Gimmick/goal.png");
+    this->goal->SetSize(GoalSize.x, GoalSize.y, 0.0f);
     this->goal->SetPos(GoalPos.x, GoalPos.y, 0.0f);
 
     if (!this->PushObject) { this->PushObject = new Object(this->p_camera); }
-    this->PushObject->Init(L"Asset/block.png");
+    this->PushObject->Init(L"Asset/Gimmick/pencase.png");
     this->PushObject->SetSize(PushObjectSize.x, PushObjectSize.y, 0.0f);
     this->PushObject->SetPos(PushObjectPos.x, PushObjectPos.y, 0.0f);
     this->PushObject->SetAngle(PushAngle);
 
     if (!this->BallObject) { this->BallObject = new Object(this->p_camera); }
-    this->BallObject->Init(L"Asset/block.png");
+    this->BallObject->Init(L"Asset/Gimmick/ball_03.png");
     this->BallObject->SetSize(BallSize.x, BallSize.y, 0.0f);
     this->BallObject->SetPos(BallPos.x, BallPos.y, 0.0f);
 
@@ -94,14 +94,14 @@ void	Stage_9::Initialize(void)
     for (n = 0; n < 2; n++)
     {
         if (!this->hook[n]) { this->hook[n] = new Object(this->p_camera); }
-        this->hook[n]->Init(L"Asset/block.png");
+        this->hook[n]->Init(L"Asset/Gimmick/hook.png");
         this->hook[n]->SetSize(HookSize.x, HookSize.y, 0.0f);
     }
 
     for (n = 0; n < 2; n++)
     {
         if (!this->Pen[n]) { this->Pen[n] = new Object(this->p_camera); }
-        this->Pen[n]->Init(L"Asset/block.png");
+        this->Pen[n]->Init(L"Asset/Gimmick/pen.png");
         this->Pen[n]->SetSize(PenSize.x, PenSize.y, 0.0f);
     }
 
