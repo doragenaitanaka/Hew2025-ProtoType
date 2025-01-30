@@ -417,7 +417,7 @@ void	TitleScene::Update(void)
         switch (SelectState)
         {
         case 0://start
-            this->p_sceneManager->ChangeScene(Scene::Stage_2);
+            this->p_sceneManager->ChangeScene(Scene::Stage_1);
             // BGM
             this->p_sound->Stop(SOUND_LABEL::BGM_TITLE);
             return;

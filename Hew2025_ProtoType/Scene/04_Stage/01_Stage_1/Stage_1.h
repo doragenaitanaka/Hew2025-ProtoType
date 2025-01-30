@@ -179,8 +179,9 @@ public:
 	XMFLOAT2 HookColSize01 = { 80.0f, 80.0f };
 
 private:
-	Timer timer;	// タイマー
-	bool isFailed;	// true:失敗した
+	// タイマー
+	Timer failedTimer;	// 失敗時
+	bool isFailed;		// true:失敗した
 
 	int gamemode = 1;							// ゲームモード
 	int ColliderState = 0;						// 当たった状態

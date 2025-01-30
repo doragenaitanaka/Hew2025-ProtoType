@@ -12,6 +12,8 @@
 */
 Stage_2::Stage_2()
 {
+    this->isFailed = false;
+
     this->p_camera = nullptr;
     this->p_tileMap = nullptr;
 
@@ -459,8 +461,8 @@ void	Stage_2::Update(void)
 
 
     ////----------------------------------------------
-//// Player Mode
-////----------------------------------------------
+    //// Player Mode
+    ////----------------------------------------------
     if (gamemode == 1)
     {
         DirectX::XMFLOAT3 playerPos = this->player->GetPos();
@@ -469,13 +471,48 @@ void	Stage_2::Update(void)
         PlayerGrabPos.x = 0.0f;
         PlayerGrabPos.y = 0.0f;
 
-
-        if (playerPos.y <= -3100.0f)
+        // ========================================
+        //          失敗時の処理
+        // ========================================
+        // 降下したら死ぬ！！
+        if (playerPos.y <= -3100.0f && (!this->player->GetIsDead()))
         {
-            this->p_sound->Play(SOUND_LABEL::SE_PLAYR_FALLDEAD);
-            this->p_sceneManager->ChangeScene(Scene::Stage_2);
-            return;
+            // ターゲットの解除
+            this->p_camera->ClearTarget();
+
+            // タイマー測り始める
+            this->failedTimer.Reset();
+            this->p_sound->Play(SOUND_LABEL::SE_PLAYR_DEAD);
+
+            // 死んだ
+            this->player->SetIsDead(true);
         }
+
+        // 死んでるとき
+        if (this->player->GetIsDead() && (!this->isFailed))
+        {
+            // 叫びSE終わったらガッシャ―ン！！！
+            if (this->failedTimer.Elapsed() > 2.0f)
+            {
+                // 失敗
+                this->failedTimer.Reset();
+                this->p_sound->Play(SOUND_LABEL::SE_PLAYR_FALLDEAD);
+                this->isFailed = true;
+            }
+        }
+        // 失敗中
+        if (isFailed)
+        {
+            // 失敗SE終わったらリトライ
+            if (this->failedTimer.Elapsed() > 3.0f)
+            {
+                this->p_sceneManager->ChangeScene(Scene::Stage_2);
+                return;
+            }
+        }
+        // ========================================
+
+        // モードの変更
         if (this->p_input->Press("CHANGEMODE0"))
         {
             gamemode = 0;
