@@ -7,8 +7,17 @@
 
 // インクルード
 #include"../00_BaseScene/BaseScene.h"
-#include"../../Library/Code/self/02_SceneManager/SceneManager.h"
+#include"../../Library/Code/self/10_Object/Object.h"
+#include"../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
+#include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
+#include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
+#include"../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
+#include"../../Library/Code/self/imagawa_Input/input.h"
+#include"../../Library/Code/self/14_Ball/Ball.h"
+#include"../../Library/Code/self/15_Pendulum/Pendulum.h"
+#include"../../Library/Code/self/17_FallObject/FallObject.h"
 #include<iostream>
+
 
 /**	@file	Test_Ueda.h
 *	@brief 	植田用のテストシーンクラス
@@ -46,5 +55,39 @@ public:
 	*/
 	void	Finalize(void)override;
 
+	// 変数の定義
+	int flame = 0;
+	float power = 0;
+	float gravity = 0.1f; // 重力の強さ
+	float velocityY = 0.0f; // Y方向の速度（初期速度は0）
+	float maxVelocityY = 10.0f; // 最大速度（任意設定）
+	float f_objangle = 0.0f; // オブジェクトの角度
+	
+
+	//テスト用の座標変数
+	XMFLOAT2 TestPos = { -200.0f, 0.0f };
+	XMFLOAT2 TestPos2 = { 400.0f, 0.0f };
+
+	//サイズ
+	XMFLOAT2 TestSize = { 100.0f,100.0f };
+	XMFLOAT2 TestSize2 = { 100.0f,600.0f };
+
 private:
+	Input input;
+	Object* p_object;
+    FallObject* p_fallobject;
+	Ball* ball;
+	Pendulum* pendulum; // 振り子オブジェクト
+	
+
+	
+
+	//--------------------------------------------------------------------------
+	//		描画関連
+	//--------------------------------------------------------------------------	
+	CInputLayout* p_inputLayout;		//  入力レイアウト
+	CVertexShader* p_vertexShader;		//  頂点シェーダ
+	CPixelShader* p_pixelShader;		//  ピクセルシェーダ
+	CSampler* p_sampler;				// サンプラー
+	ID3D11BlendState* p_brendState;		// アルファブレンディング用ステート
 };
