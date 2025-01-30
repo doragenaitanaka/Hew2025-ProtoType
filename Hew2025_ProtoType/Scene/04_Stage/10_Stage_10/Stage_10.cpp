@@ -67,8 +67,8 @@ void	Stage_10::Initialize(void)
 
     if (!this->player) { this->player = new Player(this->p_camera); }
     this->player->Init(L"Asset/gumbody2.png");
-    this->player->SetSize(100.0f, 100.0f, 0.0f);
-    this->player->SetPos(2500.0f, -4200.0f, 0.0f);
+    this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
+    this->player->SetPos(playerPos.x,playerPos.y, 0.0f);
     DirectX::XMFLOAT3 playerPos = this->player->GetPos();
 
     if (!this->goal) { this->goal = new Object(this->p_camera); }

@@ -53,7 +53,7 @@ public:
 
 	//座標
 
-	XMFLOAT3 playerPos = { 1000.0f, -7700.0f,0.0f };
+	XMFLOAT3 playerPos = { 1000.0f, -7650.0f,0.0f };
 
 	XMFLOAT2 slopePos = { 2425.0f,-2625.0f };//坂道
 
@@ -70,7 +70,7 @@ public:
 	XMFLOAT2 GoalPos = { 1600.0f,-1150.0f }; //ゴール
 	//サイズ
 
-	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
+	XMFLOAT2 PlayerSize = { 200.0f,200.0f };
 
 	XMFLOAT2 slopeSize = { 1000.0f,100.0f };//坂道
 

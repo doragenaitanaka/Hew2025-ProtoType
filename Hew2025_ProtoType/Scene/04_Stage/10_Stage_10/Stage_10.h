@@ -50,7 +50,7 @@ public:
 
 	//座標
 
-	XMFLOAT3 playerPos = { 7400.0f, -1700.0f,0.0f };
+	XMFLOAT3 playerPos = { 7400.0f, -1650.0f,0.0f };
 
 	XMFLOAT2 HookPos00 = { 3000.0f,-550.0f };//フック左から
 	XMFLOAT2 HookPos01 = { 3750.0f,-650.0f };
@@ -71,7 +71,7 @@ public:
 	XMFLOAT2 GoalPos = { 300.0f,-1750.0f }; //ゴール
 
 	//サイズ
-	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
+	XMFLOAT2 PlayerSize = { 200.0f,200.0f };
 
 	XMFLOAT2 HookSize = { 150.0f,220.0f };
 

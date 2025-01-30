@@ -50,7 +50,7 @@ public:
 
 	//座標
 
-	XMFLOAT3 playerPos = { 300.0f,-4700.0f,0.0f };
+	XMFLOAT3 playerPos = { 300.0f,-4650.0f,0.0f };
 
 	XMFLOAT2 PushObjectPos = { 3500.0f,-4400.0f }; //ペンケース
 	XMFLOAT2 BallPos = { 4300.0f, -1400.0f }; //ボールオブジェクト
@@ -69,7 +69,7 @@ public:
 
 	//サイズ
 
-	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
+	XMFLOAT2 PlayerSize = { 200.0f,200.0f };
 
 	XMFLOAT2 PushObjectSize = { 500.0f,1000.0f };
 	XMFLOAT2 BallSize = { 500.0f,500.0f };
