@@ -418,6 +418,8 @@ void	TitleScene::Update(void)
         {
         case 0://start
             this->p_sceneManager->ChangeScene(Scene::Stage_2);
+            // BGM
+            this->p_sound->Stop(SOUND_LABEL::BGM_TITLE);
             return;
             break;
 
@@ -512,9 +514,6 @@ void	TitleScene::Draw(void)
 */
 void	TitleScene::Finalize(void)
 {
-    // BGM
-    this->p_sound->Stop(SOUND_LABEL::BGM_TITLE);
-
     SAFE_DELETE(this->p_camera);    // カメラ
 
     //--------------------------------------------------------------------------
