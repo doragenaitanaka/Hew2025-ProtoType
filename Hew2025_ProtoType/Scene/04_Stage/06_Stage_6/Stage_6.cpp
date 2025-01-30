@@ -22,6 +22,7 @@ Stage_6::Stage_6()
     this->goal = nullptr;
     this->PushObject = nullptr;
     this->seesaw = nullptr;
+    this->SeesawOption = nullptr;
     this->Connector = nullptr;
     this->BallObject = nullptr;
     this->grabbox = nullptr;
@@ -82,7 +83,7 @@ void	Stage_6::Initialize(void)
     // プレイヤー
     if (!this->player) { this->player = new Player(this->p_camera); }
     this->player->Init(L"Asset/gumbody2.png");
-    this->player->SetPos(1680.0f, -4200.0f, 0.0f);
+    this->player->SetPos(this->playerPos.x, this->playerPos.y, 0.0f);
     this->player->SetSize(this->PlayerSize.x, this->PlayerSize.y, 0.0f);
     
     // プレイヤーをターゲットに設定
@@ -90,13 +91,13 @@ void	Stage_6::Initialize(void)
 
     // ゴール
     if (!this->goal) { this->goal = new Object(this->p_camera); }
-    this->goal->Init(L"Asset/goal1.png");
+    this->goal->Init(L"Asset/Gimmick/goal.png");
     this->goal->SetPos(GoalPos.x, GoalPos.y, 0.0f);
     this->goal->SetSize(GoalSize.x, GoalSize.y, 0.0f);
 
     // 
     if (!this->PushObject) { this->PushObject = new Object(this->p_camera); }   
-    this->PushObject->Init(L"Asset/block.png");
+    this->PushObject->Init(L"Asset/Gimmick/pencase.png");
     this->PushObject->SetPos(PushObjectPos00.x, PushObjectPos00.y, 0.0f);
     this->PushObject->SetSize(PushObjectSize00.x, PushObjectSize00.y, 0.0f);
 
@@ -104,22 +105,28 @@ void	Stage_6::Initialize(void)
     if (!this->seesaw) { this->seesaw = new Seesaw(this->p_camera); }
 
     if (!this->Connector) { this->Connector = new Object(this->p_camera); }
-    this->Connector->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
+    this->Connector->Init(L"Asset/Gimmick/seesaw.png");//当たり判定用ブロックのテクスチャ
     this->Connector->SetPos(SeesawConnectPos.x, SeesawConnectPos.y, 0.0f);
     this->Connector->SetSize(SeesawConnectSize.x, SeesawConnectSize.y, 0.0f);
     this->Connector->SetAngle(ConnectorAngle);//シーソーの角度
 
+    //シーソーの支点
+    if (!this->SeesawOption) { this->SeesawOption = new Object(this->p_camera); }
+    this->SeesawOption->Init(L"Asset/Gimmick/seesaw_pedestal.png");//当たり判定用ブロックのテクスチャ
+    this->SeesawOption->SetPos(SeesawConnectPos.x, SeesawConnectPos.y, 0.0f);
+    this->SeesawOption->SetSize(SeesawOptionSize.x, SeesawOptionSize.y, 0.0f);
+
     for (int i = 0; i < 2; i++)
     {
         if (!this->SeesawHead[i]) { this->SeesawHead[i] = new Object(this->p_camera); }
-        this->SeesawHead[i]->Init(L"Asset/block.png");
+        this->SeesawHead[i]->Init(L"Asset/darkwood2.png");
         this->SeesawHead[i]->SetPos(this->SeeSawHeadPos[i].x, this->SeeSawHeadPos[i].y, 0.0f);
-        this->SeesawHead[0]->SetSize(this->SeeSawHeadSize[i].x, this->SeeSawHeadSize[i].y, 0.0f);
+        this->SeesawHead[i]->SetSize(this->SeeSawHeadSize[i].x, this->SeeSawHeadSize[i].y, 0.0f);
     }
 
     // ボール
     if (!this->BallObject) { this->BallObject = new Ball(this->p_camera); }
-    this->BallObject->Init(L"Asset/block.png");//当たり判定用の
+    this->BallObject->Init(L"Asset/Gimmick/ball_03.png");//当たり判定用の
     this->BallObject->SetPos(BallPos.x, BallPos.y, 0.0f);
     this->BallObject->SetSize(BallSize.x, BallSize.y, 0.0f);
     this->BallObject->SetFriction(0.95f); // 摩擦係数
@@ -127,7 +134,7 @@ void	Stage_6::Initialize(void)
 
     // つかむオブジェクト
     if (!this->grabbox) { this->grabbox = new GrabBox(this->p_camera); }
-    this->grabbox->Init(L"Asset/block.png");//当たり判定用のブロックテクスチャ
+    this->grabbox->Init(L"Asset/Gimmick/eraser.png");//当たり判定用のブロックテクスチャ
     this->grabbox->SetPos(GrabboxPos.x, GrabboxPos.y, 0.0f);//当たり判定用ブロックの座標設定
     this->grabbox->SetSize(GrabboxSize.x, GrabboxSize.y, 0.0f);//当たり判定用ブロックの大きさ設定
 
@@ -135,14 +142,14 @@ void	Stage_6::Initialize(void)
     for (int i = 0; i < 3; i++)
     {
         if (!this->hook[i]) { this->hook[i] = new Object(this->p_camera); }
-        this->hook[i]->Init(L"Asset/block.png");
+        this->hook[i]->Init(L"Asset/Gimmick/hook.png");
         this->hook[i]->SetPos(this->HookPos[i].x, this->HookPos[i].y, 0.0f);
-        this->hook[0]->SetSize(this->HookSize[i].x, this->HookSize[i].y, 0.0f);
+        this->hook[i]->SetSize(this->HookSize[i].x, this->HookSize[i].y, 0.0f);
     }
 
     // 坂道
     if (!this->SlopeObject) { this->SlopeObject = new Object(this->p_camera); }
-    this->SlopeObject->Init(L"Asset/block.png");
+    this->SlopeObject->Init(L"Asset/lightwood2.png");
     this->SlopeObject->SetPos(this->slopePos.x, this->slopePos.y, 0.0f);
     this->SlopeObject->SetSize(this->slopeSize.x, this->slopeSize.y, 0.0f);
     this->SlopeObject->SetAngle(slopeAngle);
@@ -261,9 +268,7 @@ void	Stage_6::Update(void)
     this->p_input->Update();
 
     p_input->GetLeftAnalogStick();
-
-    // プレイヤーの座標の取得
-    auto playerPos = this->player->GetPos();
+    this->player->SetPos(playerPos.x, playerPos.y, 0.0f);
     //----------------------------------------------
     // Creative Mode
     //----------------------------------------------
@@ -336,10 +341,14 @@ void	Stage_6::Update(void)
                 }
             }
 
-            if (this->p_input->Press("SPACE") && JumpState == 0)
-            {
-                JumpState = 1;
-            }
+        }
+
+        if (this->p_input->Press("SPACE") && JumpState == 0)
+        {
+            //オブジェクトを離す処理
+            this->grabbox->Release();
+            GrabFlg = false;
+            JumpState = 1;
         }
 
         if (ColliderState == 7)
@@ -372,17 +381,8 @@ void	Stage_6::Update(void)
     }
 
     //-----------------------------------------------------
-    //  座標更新
-    //-----------------------------------------------------
-    //if (this->GrabFlg)
-    //{
-    //    this->CameraPos = this->GrabboxPos;
-    //}
-
-    //-----------------------------------------------------
     if (JumpState == 1)
     {
-        auto playerPos = this->player->GetPos();
         if (cnt != 25)
         {
             playerPos.y += 25.0f;
@@ -407,47 +407,42 @@ void	Stage_6::Update(void)
             JumpState = 3;
         }
     }
-
-    // プレイヤーの座標を更新
-    this->player->SetPos(playerPos.x, playerPos.y, playerPos.z);
-
     //-----------------------------------
     //ボール処理
     //-----------------------------------
-    if (BallState != 3)
+    if (BallState == 0)
     {
-        // ボールの座標、角度の取得
-        auto pos = this->BallObject->GetPos();
-        auto angle = this->BallObject->GetAngle();
-
-        if (BallState == 0)
-        {
-            pos.y -= 10.0f;
-        }
-
-        if (BallState == 2)
-        {
-            pos.y -= 5.0f;
-        }
-
-        if (BallMoveFLG[0])
-        {
-            this->BallObject->SetState(Ball::BallState::ROLL);
-            if (BallMoveFLG[1])
-            {
-                pos.x += BallSpeed;
-                angle--;
-            }
-            else
-            {
-                pos.x -= BallSpeed;
-                angle++;
-            }
-        }
-        // 座標、角度を適用
-        this->BallObject->SetAngle(angle);
-        this->BallObject->SetPos(pos.x, pos.y, pos.z);
+        BallPos.y -= BallSpeed * 2;
     }
+
+    if (BallMoveFLG[0])
+    {
+
+        if (BallState == 2)//右下の坂道
+        {
+            BallPos.y -= BallSpeed;
+            BallMoveFLG[1] = false;
+        }
+        if (BallState == 3)//右に向かう坂道
+        {
+            BallPos.y -= BallSpeed / 2;
+            BallMoveFLG[1] = true;
+        }
+        this->BallObject->SetState(Ball::BallState::ROLL);
+        if (BallMoveFLG[1])
+        {
+            BallPos.x += BallSpeed;
+            BallAngle--;
+        }
+        else
+        {
+            BallPos.x -= BallSpeed;
+            BallAngle++;
+        }
+    }
+    // 座標、角度を適用
+    this->BallObject->SetAngle(BallAngle);
+    this->BallObject->SetPos(BallPos.x, BallPos.y, 0.0f);
 
     //-----------------------------------
 
@@ -456,7 +451,7 @@ void	Stage_6::Update(void)
     {
         if (seesawcnt != 70)
         {
-            GrabboxPos.y += 75.0f;
+            GrabboxPos.y += 100.0f;
             seesawcnt++;
         }
     }
@@ -469,132 +464,121 @@ void	Stage_6::Update(void)
     if (GrabFlg)
     {
         this->grabbox->Move(grabbox->GetPos());
+        playerPos.x = GrabboxPos.x;
+        playerPos.y = GrabboxPos.y;
     }
 
     //-----------------------------------
     //Collider更新
     //-----------------------------------
     this->player->SetColliderSize(DirectX::XMFLOAT3(PlayerSize.x, PlayerSize.y, 0.0f));
-    //this->grabbox->SetColliderSize(DirectX::XMFLOAT3(GrabboxSize.x, GrabboxSize.y, 0.0f));
-    //this->goal->SetColliderSize(DirectX::XMFLOAT3(GoalSize.x, GoalSize.y, 0.0f));
+    this->grabbox->SetColliderSize(DirectX::XMFLOAT3(GrabboxSize.x - 100.0f, GrabboxSize.y, 0.0f));
+    this->goal->SetColliderSize(DirectX::XMFLOAT3(GoalSize.x, GoalSize.y, 0.0f));
 
-    //this->hook[0]->SetColliderSize(DirectX::XMFLOAT3(HookSize01.x, HookSize01.y, 0.0f));
-    //this->hook[1]->SetColliderSize(DirectX::XMFLOAT3(HookSize01.x, HookSize01.y, 0.0f));
-    //this->hook[2]->SetColliderSize(DirectX::XMFLOAT3(HookSize01.x, HookSize01.y, 0.0f));
+    this->hook[0]->SetColliderSize(DirectX::XMFLOAT3(HookSize[0].x, HookSize[0].y, 0.0f));
+    this->hook[1]->SetColliderSize(DirectX::XMFLOAT3(HookSize[0].x, HookSize[0].y, 0.0f));
+    this->hook[2]->SetColliderSize(DirectX::XMFLOAT3(HookSize[0].x, HookSize[0].y, 0.0f));
 
-    //this->SeesawHead[0]->SetColliderSize(DirectX::XMFLOAT3(SeeSawHeadSize00.x, SeeSawHeadSize00.y, 0.0f));
-    //this->SeesawHead[1]->SetColliderSize(DirectX::XMFLOAT3(SeeSawHeadSize01.x, SeeSawHeadSize01.y, 0.0f));
+    this->SeesawHead[0]->SetColliderSize(DirectX::XMFLOAT3(SeeSawHeadSize[0].x, SeeSawHeadSize[0].y, 0.0f));
+    this->SeesawHead[1]->SetColliderSize(DirectX::XMFLOAT3(SeeSawHeadSize[1].x, SeeSawHeadSize[1].y, 0.0f));
     
-    //this->Connector->SetColliderSize(DirectX::XMFLOAT3(SeesawConnectSize.x, SeesawConnectSize.y, 0.0f));
-    //this->BallObject->SetColliderSize(DirectX::XMFLOAT3(BallSize.x, BallSize.y, 0.0f));
-    //this->PushObject->SetColliderSize(DirectX::XMFLOAT3(PushObjectSize00.x, PushObjectSize00.y, 0.0f));
+    this->Connector->SetColliderSize(DirectX::XMFLOAT3(SeesawConnectSize.x, SeesawConnectSize.y, 0.0f));
+    this->BallObject->SetColliderSize(DirectX::XMFLOAT3(BallSize.x, BallSize.y, 0.0f));
+    this->PushObject->SetColliderSize(DirectX::XMFLOAT3(PushObjectSize00.x - 100.0f, PushObjectSize00.y, 0.0f));
+    this->SlopeObject->SetColliderSize(DirectX::XMFLOAT3(slopeSize.x, slopeSize.y, 0.0f));
+
 
     // コライダーの取得
-    auto& col1 = player->GetCollider();
-    auto& colgoal = goal->GetCollider();
-    auto& colpush = PushObject->GetCollider();
-    auto& colball = BallObject->GetCollider();
-    auto& colbox = grabbox->GetCollider();
-    auto& colslope = this->SlopeObject->GetCollider();
+    auto& playerColl = player->GetCollider();
+    auto& goalColl = goal->GetCollider();
+    auto& pushColl = PushObject->GetCollider();
+    auto& ballColl = BallObject->GetCollider();
+    auto& grabColl = grabbox->GetCollider();
+    auto& seesawColl = Connector->GetCollider();
+    auto& slopeColl = this->SlopeObject->GetCollider();
+    auto& tiles = this->p_tileMap->GetTiles();
+
+    auto& HookColl1 = this->hook[0]->GetCollider();
+    auto& HookColl2 = this->hook[1]->GetCollider();
+    auto& HookColl3 = this->hook[2]->GetCollider();
+
+    auto& headColl1 = this->SeesawHead[0]->GetCollider();
+    auto& headColl2 = this->SeesawHead[1]->GetCollider();
 
     // タイルマップとの衝突判定
     this->ColliderState = 0;
-    auto& playerColl = this->player->GetCollider();
-    auto& tiles = this->p_tileMap->GetTiles();
+    StayGround = false;
+    this->BallState = 0;
+    this->grabState = 0;
+
     for (auto& tile : tiles)
     {
         auto& tileColl = tile->GetCollider();
         if (playerColl.CheckCollision(tileColl))
         {
             //std::cout << "当たった" << std::endl;
-            this->ColliderState = 1;
+            this->StayGround = true;
+        }
+        if (ballColl.CheckCollision(tileColl))
+        {
+            //std::cout << "当たった" << std::endl;
+            BallState = 1;
         }
     }
 
-    if (this->gamemode == 0)//Creative Mode
+
+    if (playerColl.CheckCollision(HookColl1) || playerColl.CheckCollision(HookColl2) || playerColl.CheckCollision(HookColl3))
     {
-        if (ColliderState == 1)//if ColliderState == 1 ->赤になる
-        {
-            this->player->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
-        }
-        else
-        {
-            this->player->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
-        }
+        //std::cout << "当たった" << std::endl;
+        ColliderState = 2;
     }
 
-    // フック
-    std::vector<std::reference_wrapper<BaseCollider>> colHook = {//当たり判定を入れる
-         this->hook[0]->GetCollider(),
-         this->hook[1]->GetCollider(),
-         this->hook[2]->GetCollider(),
-    };
-
-    // シーソー
-    std::vector<std::reference_wrapper<BaseCollider>> colSeesaw = {//当たり判定を入れる
-         this->SeesawHead[0]->GetCollider(),
-         this->SeesawHead[1]->GetCollider(),
-    };
-
-    this->ColliderState = 0;
-    this->BallState = 0;
-    this->grabState = 0;
-    this->StayGround = false;
-
-    for (this->HookNumber = 0; this->HookNumber < 3; this->HookNumber++)
-    {
-        if (col1.CheckCollision(colHook[this->HookNumber]))
+        if (playerColl.CheckCollision(headColl1) || playerColl.CheckCollision(headColl2))
         {
-            this->ColliderState = 2;
-        }
-    }
-
-    for (this->HeadNumber = 0; this->HeadNumber < 2; this->HeadNumber++)
-    {
-        if (col1.CheckCollision(colSeesaw[this->HeadNumber]))
-        {
-            ColliderState = 5;
             this->StayGround = true;
         }
 
-        if (colball.CheckCollision(colSeesaw[this->HeadNumber]))
+        if (ballColl.CheckCollision(headColl1) || ballColl.CheckCollision(headColl2))
         {
             this->BallState = 3;
+            BallMoveFLG[0] = false;
+            BallPos = SeeSawHeadPos[0];
+            ConnectorAngle = -15.0f;
         }
 
-        if (colbox.CheckCollision(colSeesaw[this->HeadNumber]))
+        if (grabColl.CheckCollision(headColl1) ||grabColl.CheckCollision(headColl2))
         {
             this->grabState = 1;
         }
-    }
 
-    if (col1.CheckCollision(colpush))
+    if (playerColl.CheckCollision(pushColl))
     {
         this->ColliderState = 3;
     }
 
-    if (col1.CheckCollision(colgoal))
+    if (playerColl.CheckCollision(goalColl))
     {
         this->ColliderState = 4;
     }
 
-    if (col1.CheckCollision(colslope))
+    if (playerColl.CheckCollision(slopeColl))
     {
+        StayGround = true;
         this->ColliderState = 5;
     }
 
-    if (col1.CheckCollision(colball))
+    if (playerColl.CheckCollision(ballColl))
     {
         this->ColliderState = 6;
         this->BallMoveFLG[0] = true;
     }
     
-    if (col1.CheckCollision(colbox))
+    if (playerColl.CheckCollision(grabColl))
     {
         this->ColliderState = 7;
     }
 
-    if (colball.CheckCollision(colslope))
+    if (ballColl.CheckCollision(slopeColl))
     {
         this->BallState = 2;
         this->BallMoveFLG[1] = false;
@@ -682,14 +666,16 @@ void	Stage_6::Update(void)
     this->goal->Update();
     this->PushObject->Update();
     this->Connector->Update();
+    this->SeesawOption->Update();
     this->BallObject->Update();
     this->grabbox->Update();
     this->SlopeObject->Update();
 
-    this->seesaw->CheckCollision(grabbox, BallObject,SeesawHead[1],SeesawHead[0]);
-    DirectX::XMFLOAT3 pos = DirectX::XMFLOAT3(0.0f, 0.0f, 0.0f);
-    this->seesaw->Update(Connector,SeesawHead[1],SeesawHead[0]);  // オフセット(元々cameraPosだった現pos)は値無しで
+    this->Connector->SetAngle(ConnectorAngle);
 
+    this->seesaw->Update(Connector, SeesawHead[1], SeesawHead[0]);  // オフセット(元々cameraPosだった現pos)は値無しで
+    this->seesaw->CheckCollision(grabbox, BallObject,SeesawHead[1],SeesawHead[0]);
+    
     for (n = 0; n < 3; n++)//Updateの数
     {
         this->hook[n]->Update();
@@ -702,6 +688,8 @@ void	Stage_6::Update(void)
 
     // カメラの更新
     this->p_camera->Update();
+
+    this->grabbox->SetPos(GrabboxPos.x, GrabboxPos.y, GrabboxPos.z);
 }
 
 /**	@brief 	シーン全体の描画
@@ -738,14 +726,16 @@ void	Stage_6::Draw(void)
     //		オブジェクトの描画
     //--------------------------------------------------------------------------
     this->background->Draw();
+    this->SlopeObject->Draw();
+
     this->p_tileMap->Draw();
 
     this->goal->Draw();
     this->PushObject->Draw();
     this->Connector->Draw();
+    this->SeesawOption->Draw();
     this->grabbox->Draw();
-    this->SlopeObject->Draw();
-
+    
     for (n = 0; n < 2; n++)//当たり判定用ブロック描画
     {
         this->SeesawHead[n]->Draw();
@@ -790,6 +780,8 @@ void	Stage_6::Finalize(void)
     SAFE_DELETE(this->BallObject);
     SAFE_DELETE(this->grabbox);
     SAFE_DELETE(this->SlopeObject);
+    SAFE_DELETE(this->SeesawOption);
+        ;
 
     for (n = 0; n < 3; n++)
     {

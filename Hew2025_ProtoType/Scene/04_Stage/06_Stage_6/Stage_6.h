@@ -56,89 +56,94 @@ public:
 
 private:
 
-	// オブジェくトの座標
-	std::array<XMFLOAT2, 12> BlockPos = {
-		XMFLOAT2(2700.0f,-350.0f),	//基底床
-		XMFLOAT2(100.0f,950.0f),	//左壁
-		XMFLOAT2(2200.0f,150.0f),	//中間柱
-		XMFLOAT2(4700.0f,-150.0f),	//右床正
-		XMFLOAT2(5400.0f,700.0f),	//右壁
-		XMFLOAT2(3800.0f,1850.0f),	//ゴール床
-		XMFLOAT2(550.0f,1100.0f),	//本棚左
-		XMFLOAT2(950.0f,900.0f),	//本棚右
-		XMFLOAT2(3500.0f,800.0f),	//ボール床
 
-		XMFLOAT2(550.0f,1700.0f),	//本棚左
-		XMFLOAT2(950.0f,1500.0f),	//本棚右
-	};
+	// オブジェくトの座標
+	//std::array<XMFLOAT2, 12> BlockPos = {
+	//	XMFLOAT2(2700.0f,-350.0f),	//基底床
+	//	XMFLOAT2(100.0f,950.0f),	//左壁
+	//	XMFLOAT2(2200.0f,150.0f),	//中間柱
+	//	XMFLOAT2(4700.0f,-150.0f),	//右床正
+	//	XMFLOAT2(5400.0f,700.0f),	//右壁
+	//	XMFLOAT2(3800.0f,1850.0f),	//ゴール床
+	//	XMFLOAT2(550.0f,1100.0f),	//本棚左
+	//	XMFLOAT2(950.0f,900.0f),	//本棚右
+	//	XMFLOAT2(3500.0f,800.0f),	//ボール床
+
+	//	XMFLOAT2(550.0f,1700.0f),	//本棚左
+	//	XMFLOAT2(950.0f,1500.0f),	//本棚右
+	//};
 
 	// オブジェくトのサイズ
-	std::array<XMFLOAT2, 12> BlockSize = {
-		XMFLOAT2(5800.0f,100.0f),//基底床
-		XMFLOAT2(600.0f,2500.0f),//左壁
-		XMFLOAT2(800.0f,900.0f),//中間柱
-		XMFLOAT2(1000.0f,300.0f),//右床正
-		XMFLOAT2(400.0f,2000.0f),//右壁
-		XMFLOAT2(1400.0f,200.0f),//ゴール床
-		XMFLOAT2(300.0f,200.0f),//本棚左
-		XMFLOAT2(300.0f,200.0f),//本棚右
-		XMFLOAT2(1000.0f,200.0f),//ボール床
+	//std::array<XMFLOAT2, 12> BlockSize = {
+	//	XMFLOAT2(5800.0f,100.0f),//基底床
+	//	XMFLOAT2(600.0f,2500.0f),//左壁
+	//	XMFLOAT2(800.0f,900.0f),//中間柱
+	//	XMFLOAT2(1000.0f,300.0f),//右床正
+	//	XMFLOAT2(400.0f,2000.0f),//右壁
+	//	XMFLOAT2(1400.0f,200.0f),//ゴール床
+	//	XMFLOAT2(300.0f,200.0f),//本棚左
+	//	XMFLOAT2(300.0f,200.0f),//本棚右
+	//	XMFLOAT2(1000.0f,200.0f),//ボール床
 
-		XMFLOAT2(300.0f,1000.0f),//本棚左
-		XMFLOAT2(300.0f,1000.0f),//本棚右
-	};
+	//	XMFLOAT2(300.0f,1000.0f),//本棚左
+	//	XMFLOAT2(300.0f,1000.0f),//本棚右
+	//};
 
 	// フックの座標
 	std::array<XMFLOAT2, 3>HookPos = {
-		XMFLOAT2(590.0f,200.0f),	//左フック
-		XMFLOAT2(2500.0f, 1100.0f),	//右フック
-		XMFLOAT2(2800.0f, 2100.0f),	//ゴール横
+		XMFLOAT2(1740.0f,-3840.0f),	//左フック
+		XMFLOAT2(3460.0f,-3120.0f),	//右フック
+		XMFLOAT2(3760.0f,40.0f),	//ゴール横
 	};
 	// フックのサイズ
 	std::array<XMFLOAT2, 3>HookSize = {
-		XMFLOAT2(200.0f,200.0f),
-		XMFLOAT2(200.0f,200.0f),
-		XMFLOAT2(200.0f,200.0f),
+		XMFLOAT2(150.0f,220.0f),
+		XMFLOAT2(150.0f,220.0f),
+		XMFLOAT2(150.0f,220.0f),
 	};
 
 	//倒れるオブジェクト
-	XMFLOAT2 PushObjectPos00 = { 1100.0f, 200.0f }; 
-	XMFLOAT2 PushObjectSize00 = { 300.0f,1000.0f };
+	XMFLOAT2 PushObjectPos00 = { 2100.0f, -3800.0f }; 
+	XMFLOAT2 PushObjectSize00 = { 500.0f,1000.0f };
 
 	//ボールオブジェクト
-	XMFLOAT2 BallPos = { 3200.0f, 1100.0f };		
+	XMFLOAT2 BallPos = { 4600.0f, -2500.0f };		
 	XMFLOAT2 BallSize = { 400.0f,400.0f };
 
 	//ゴール
-	XMFLOAT2 GoalPos = { 3840.0f,100.0f }; 
-	XMFLOAT2 GoalSize = { 200.0f,300.0f };
+	XMFLOAT2 GoalPos = { 4800.0f,-100.0f }; 
+	XMFLOAT2 GoalSize = { 300.0f,300.0f };
 
 	// シーソー
 	std::array<XMFLOAT2, 2>SeeSawHeadPos = {
-		XMFLOAT2(2800.0f,-200.0f),	//左
-		XMFLOAT2(4000.0f,0.0f),		//右
+		XMFLOAT2(5100.0f,-3950.0f),	//右
+		XMFLOAT2(3800.0f,-4150.0f), //左
 	};
 	std::array<XMFLOAT2, 2>SeeSawHeadSize = {
-	XMFLOAT2(300.0f,100.0f),	//左
 	XMFLOAT2(300.0f,100.0f),	//右
+	XMFLOAT2(300.0f,100.0f),	//左
 	};
 
 	//シーソーの繋ぎ部分
-	XMFLOAT2 SeesawConnectPos = { 3350.0f, -150.0f };
-	XMFLOAT2 SeesawConnectSize = { 1400.0f, 100.0f };
+	XMFLOAT2 SeesawConnectPos = {4500.0f, -4050.0f };
+	XMFLOAT2 SeesawConnectSize = { 1600.0f, 700.0f };
 	float ConnectorAngle = 10.0f;
 
+	//シーソーの支点
+	XMFLOAT2 SeesawOptionSize = { 500.0f, 500.0f };
+
 	// プレイヤー
+	XMFLOAT2 playerPos = { 1680.0f, -4200.0f };
 	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
 
 	//消しゴム
 	XMFLOAT2 GrabboxSize = { 300.0f,500.0f };
-	XMFLOAT3 GrabboxPos = { 2800.0f,200.0f,0.0f };
+	XMFLOAT3 GrabboxPos = { 3800.0f,-3700.0f,0.0f };
 
 	// スロープ
-	XMFLOAT2 slopePos{ 400.0f, 1400.0f };
-	XMFLOAT2 slopeSize{ 4800.0f, 350.0f };
-	float slopeAngle = -45.0f;
+	XMFLOAT2 slopePos{ 5870.0f, -3470.0f };
+	XMFLOAT2 slopeSize{ 100.0f, 1400.0f };
+
 
 	int gamemode = 0;
 
@@ -149,13 +154,13 @@ private:
 	// ボール
 	float BallSpeed = 5.0f;
 	float BallAngle = 0.0f;
-
+	float slopeAngle = -45.0f;
+	float seesawangle = -15.0f;
 	bool GrabFlg = false;
 	bool StayGround = false;				//地面に触れているかの判定
 	bool BallMoveFLG[2] = { false,true };	//ボールが動いているかの判定
 	int JumpState = 0;
 	int cnt = 0;
-	int drawnum = 0;	//描画用のブロックの番号
 	int n = 0;			//当たり判定用のブロックの番号
 	int BlockNumber = 0;
 	int HookNumber = 0;
@@ -179,6 +184,7 @@ private:
 	Object* goal;
 	Object* SeesawHead[2];
 	Object* Connector;
+	Object* SeesawOption;
 	Ball* BallObject;	
 	GrabBox* grabbox;
 	Seesaw* seesaw;
