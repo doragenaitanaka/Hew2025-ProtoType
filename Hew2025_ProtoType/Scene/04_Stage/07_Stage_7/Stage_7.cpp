@@ -88,13 +88,13 @@ void	Stage_7::Initialize(void)
     this->goal->SetSize(GoalSize.x, GoalSize.y, 0.0f);
 
     if (!this->claypipe) { this->claypipe = new Object(this->p_camera); }
-    this->claypipe->Init(L"Asset/Gimmick/イラスト16(5).png");
+    this->claypipe->Init(L"Asset/Gimmick/Pipe.png");
     this->claypipe->SetSize(ClaypipeSize.x, ClaypipeSize.y, 0.0f);
     this->claypipe->SetPos(ClaypipePos.x, ClaypipePos.y, 0.0f);
    
     // 
     if (!this->PushObject) { this->PushObject = new Object(this->p_camera); }
-    this->PushObject->Init(L"Asset/Gimmick/イラスト16(6).png");
+    this->PushObject->Init(L"Asset/Gimmick/pencase.png");
     this->PushObject->SetPos(PushObjectPos00.x, PushObjectPos00.y, 0.0f);
     this->PushObject->SetSize(PushObjectSize.x, PushObjectSize.y, 0.0f);
 
