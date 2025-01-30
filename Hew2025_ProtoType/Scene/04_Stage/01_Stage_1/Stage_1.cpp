@@ -12,6 +12,8 @@
 */
 Stage_1::Stage_1()
 {
+    this->isFailed = false;
+
     this->p_camera = nullptr;
     this->p_tileMap = nullptr;
 
@@ -463,8 +465,8 @@ void	Stage_1::Update(void)
 
 
     ////----------------------------------------------
-//// Player Mode
-////----------------------------------------------
+    //// Player Mode
+    ////----------------------------------------------
     if (gamemode == 1)
     {
         DirectX::XMFLOAT3 playerPos = this->player->GetPos();
@@ -473,13 +475,43 @@ void	Stage_1::Update(void)
         PlayerGrabPos.x = 0.0f;
         PlayerGrabPos.y = 0.0f;
 
-
-        if (playerPos.y <= -3900.0f)
+        // 降下したら死ぬ！！
+        if (playerPos.y <= -3600.0f && (!this->player->GetIsDead()))
         {
-            this->p_sound->Play(SOUND_LABEL::SE_PLAYR_FALLDEAD);
-            this->p_sceneManager->ChangeScene(Scene::Stage_1);
-            return;
+            // ターゲットの解除
+            this->p_camera->ClearTarget();
+
+            // タイマー測り始める
+            this->timer.Reset();
+            this->p_sound->Play(SOUND_LABEL::SE_PLAYR_DEAD);
+
+            // 死んだ
+            this->player->SetIsDead(true);
         }
+
+        // 死んでるとき
+        if (this->player->GetIsDead() && (!this->isFailed))
+        {
+            // 叫びSE終わったらガッシャ―ン！！！
+            if (this->timer.Elapsed() > 2.0f)
+            {
+                // 失敗
+                this->timer.Reset();
+                this->p_sound->Play(SOUND_LABEL::SE_PLAYR_FALLDEAD);
+                this->isFailed = true;
+            }
+        }
+        // 失敗中
+        if (isFailed)
+        {
+            // 失敗SE終わったらリトライ
+            if (this->timer.Elapsed() > 3.0f)
+            {
+                this->p_sceneManager->ChangeScene(Scene::Stage_1);
+                return;
+            }
+        }
+
         if (this->p_input->Press("CHANGEMODE0"))
         {
             gamemode = 0;

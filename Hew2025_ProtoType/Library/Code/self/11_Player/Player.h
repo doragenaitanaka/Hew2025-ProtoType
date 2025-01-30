@@ -53,7 +53,11 @@ public:
 *	@date  	2024/05/23
 */
 	void	UnInit()override;
+
+	bool GetIsDead()const;
+	void SetIsDead(const bool _isDead);
+
 	float x3, y3, x4, y4;
 private:
-
+	bool isDead;	// 死んだか
 };

@@ -1,6 +1,6 @@
 ﻿#include"Player.h"
 
-Player::Player(Camera* _p_camera) :Object{_p_camera}, x3{0.0f}, x4{0.0f}, y3{0.0f}, y4{0.0f}
+Player::Player(Camera* _p_camera) :Object{_p_camera}, x3{0.0f}, x4{0.0f}, y3{0.0f}, y4{0.0f}, isDead{false}
 {}
 
 Player::~Player()
@@ -248,4 +248,12 @@ void	Player::Draw()
 */
 void	Player::UnInit()
 {
+}
+bool Player::GetIsDead()const
+{
+	return this->isDead;
+}
+void Player::SetIsDead(const bool _isDead)
+{
+	this->isDead = _isDead;
 }

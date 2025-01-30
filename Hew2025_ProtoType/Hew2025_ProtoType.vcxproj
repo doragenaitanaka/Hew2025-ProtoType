@@ -180,6 +180,7 @@
     </ClCompile>
     <ClCompile Include="Library\Code\self\16_Background\Background.cpp" />
     <ClCompile Include="Library\Code\self\17_FallObject\FallObject.cpp" />
+    <ClCompile Include="Library\Code\self\18_Pen\Pen.cpp" />
     <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp" />
@@ -293,6 +294,7 @@
     <ClInclude Include="Library\Code\self\06_TileMap\TileMap.h" />
     <ClInclude Include="Library\Code\self\07_Camera\01_TrackingCamera\TrackingCamera.h" />
     <ClInclude Include="Library\Code\self\07_Camera\Camera.h" />
+    <ClInclude Include="Library\Code\self\08_Timer\Timer.h" />
     <ClInclude Include="Library\Code\self\10_Object\Object.h" />
     <ClInclude Include="Library\Code\self\11_Player\Player.h" />
     <ClInclude Include="Library\Code\self\12_GrabBox\GrabBox.h" />
@@ -301,6 +303,7 @@
     <ClInclude Include="Library\Code\self\15_Pendulum\Pendulum.h" />
     <ClInclude Include="Library\Code\self\16_Background\Background.h" />
     <ClInclude Include="Library\Code\self\17_FallObject\FallObject.h" />
+    <ClInclude Include="Library\Code\self\18_Pen\Pen.h" />
     <ClInclude Include="Library\Code\self\imagawa_Input\input.h" />
     <ClInclude Include="Library\Code\self\SafePointers.h" />
     <ClInclude Include="main.h" />
