@@ -140,9 +140,9 @@ void	SceneManager::CreateScene(Scene sceneName)
 		//case Scene::TEST_IMAGAWA:
 		//	this->nowScene = new	Test_Imagawa;
 		//	break;
-		//case Scene::TEST_UEDA:
-		//	this->nowScene = new	Test_Ueda;
-		//	break;
+		case Scene::TEST_UEDA:
+			this->nowScene = new	Test_Ueda;
+			break;
 		//case Scene::TEST_URYU:
 		//	this->nowScene = new	Test_Uryu;
 		//	break;

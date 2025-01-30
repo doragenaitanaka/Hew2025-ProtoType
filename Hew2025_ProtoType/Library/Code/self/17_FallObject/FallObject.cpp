@@ -1,7 +1,7 @@
 ﻿#include "FallObject.h"
 
 //コンストラクタ
-FallObject::FallObject() 
+FallObject::FallObject(Camera* _p_camera):Object(_p_camera)
 {
 
 }

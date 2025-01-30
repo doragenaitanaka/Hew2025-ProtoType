@@ -16,6 +16,7 @@
 #include"../../Library/Code/self/14_Ball/Ball.h"
 #include"../../Library/Code/self/15_Pendulum/Pendulum.h"
 #include"../../Library/Code/self/17_FallObject/FallObject.h"
+#include"../../Library/Code/self/07_Camera/Camera.h"
 #include<iostream>
 
 
@@ -79,7 +80,7 @@ private:
 	Ball* ball;
 	Pendulum* pendulum; // 振り子オブジェクト
 	
-
+	Camera* p_camera;
 	
 
 	//--------------------------------------------------------------------------

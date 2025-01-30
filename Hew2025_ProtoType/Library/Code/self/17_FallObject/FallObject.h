@@ -15,7 +15,7 @@ class FallObject:public Object
 {
 public:
 	
-	FallObject();//コンストラクタ
+	FallObject(Camera* _p_camera);//コンストラクタ
 	~FallObject();//デストラクタ
 
 	void Update(float s_Angle,int version);//更新処理

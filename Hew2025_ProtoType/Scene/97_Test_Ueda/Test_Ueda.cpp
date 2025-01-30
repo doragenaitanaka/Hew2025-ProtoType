@@ -14,6 +14,7 @@ Test_Ueda::Test_Ueda()
 {
     this->p_object = nullptr;
 	this->p_fallobject = nullptr;
+    this->p_camera = nullptr;
 
     this->p_vertexShader = nullptr;
     this->p_pixelShader = nullptr;
@@ -36,8 +37,10 @@ Test_Ueda::~Test_Ueda()
 */
 void	Test_Ueda::Initialize(void)
 {
-    if (!this->p_object) { this->p_object = new Object; }
-    if (!this->p_fallobject) { this->p_fallobject = new FallObject; }
+    if (!this->p_camera) { this->p_camera = new Camera; }
+
+    if (!this->p_object) { this->p_object = new Object(this->p_camera); }
+    if (!this->p_fallobject) { this->p_fallobject = new FallObject(this->p_camera); }
 
     if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
     if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
@@ -183,9 +186,12 @@ void	Test_Ueda::Update(void)
     auto& col1 = p_object->GetCollider();
     auto& col2 = p_fallobject->GetCollider();
 	
-    this->p_fallobject->Update(90.0f,2);//倒れるオブジェクトの更新(どこまで倒れるかの角度、右に倒れるか左に倒れるか（１，右、２左）)
 
-
+    static bool isSpace = false;
+    if (input.Trigger("SPACE")) { isSpace = true; }
+    if (isSpace) {
+        this->p_fallobject->Update(90.0f, 1);//倒れるオブジェクトの更新(どこまで倒れるかの角度、右に倒れるか左に倒れるか（１，右、２左）)
+    }
    
 
     // 入力に応じた位置の更新
@@ -217,6 +223,8 @@ void	Test_Ueda::Update(void)
     // オブジェクトの更新
 	this->p_object->Update();//オブジェクトの更新
     
+    // カメラの更新
+    this->p_camera->Update();
 }
 
 /**	@brief 	シーン全体の描画
@@ -311,5 +319,6 @@ void	Test_Ueda::Finalize(void)
     //--------------------------------------------------------------------------	
     SAFE_DELETE(this->p_object);
     SAFE_DELETE(this->p_fallobject);
+    SAFE_DELETE(this->p_camera);
     
 }
