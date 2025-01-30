@@ -18,7 +18,7 @@
 #include"../../../Library/Code/self/10_Object/Object.h"
 #include"../../../Library/Code/self/11_Player/Player.h"
 #include"../../../Library/Code/self/16_Background/Background.h"
-
+#include"../../../Library/Code/other/03_sound/sound.h"
 #include <memory> 
 /**	@file	Stage_1.h
 *	@brief	起動時にロゴとか出るシーン
@@ -49,88 +49,6 @@ public:
 	*/
 	void	Finalize(void)override;
 
-	XMFLOAT2 CameraPos = { -700.0f, -50.0f };
-	XMFLOAT2 CameraPos2 = { 0.0f, 0.0f };
-	XMFLOAT2 PlayerPos = { 0.0f, -150.0f };
-	XMFLOAT2 PlayerSize = { 120.0f,120.0f };
-
-	XMFLOAT2 PlayerDrawPos = { 0.0f, 40.0f };
-	XMFLOAT2 PlayerDrawSize = { 140.0f,140.0f };
-
-
-	XMFLOAT2 EyesPos = { 0.5f, +90.0f };
-	XMFLOAT2 EyesSize = { 120.0f,120.0f };
-
-
-
-	XMFLOAT2 PlayerColPos = { 30.0f, -135.0f };
-	XMFLOAT2 PlayerColSize = { 110.0f,110.0f };
-
-	XMFLOAT2 PlayerColPos3 = { -30.0f, -135.0f };
-	XMFLOAT2 PlayerColSize3 = { 110.0f,110.0f };
-
-	XMFLOAT2 PlayerColPos2 = { 0.0f, -80.0f };
-	XMFLOAT2 PlayerColSize2 = { 120.0f,40.0f };
-
-	XMFLOAT2 PlayerGrabPos = { 0.0f, 0.0f };
-
-	XMFLOAT2 NewColPos = { 0.0f,-150.0f };
-	XMFLOAT2 NewColSize = { 140.0f,20.0f };
-
-
-	XMFLOAT2 BlockPos01 = { 0.0f,-350.0f };
-	XMFLOAT2 BlockPos02 = { 100.0f, -200.0f };
-	XMFLOAT2 BlockPos03 = { 2200.0f, -100.0f };
-	XMFLOAT2 BlockPos04 = { 2600.0f, 300.0f };
-	XMFLOAT2 BlockPos05 = { 2900.0f, 550.0f };
-	XMFLOAT2 BlockPos06 = { 3100.0f, 700.0f };
-	XMFLOAT2 BlockPos07 = { 3400.0f, 1800.0f };
-	XMFLOAT2 BlockPos08 = { 800.0f, 1250.0f };
-
-	XMFLOAT2 BlockDrawPos01 = { 000.0f,-200.0f };
-
-	XMFLOAT2 HookPos01 = { 2410.0f,-2940.0f };
-	XMFLOAT2 HookPos02 = { 3330.0f, -2090.0f };
-	XMFLOAT2 HookPos03 = { 5000.0f, -1110.0f };
-	XMFLOAT2 HookPos04 = { 4160.0f, -180.0f };
-
-	XMFLOAT2 GoalPos = { 2210.0f, -170.0f };
-
-	//サイズ
-	XMFLOAT2 TestSize = { 100.0f,100.0f };
-
-
-
-	XMFLOAT2 BlockDrawSize = { 0.0f,0.0f };
-	XMFLOAT2 BlockSize01 = { 8000.0f,100.0f };
-	XMFLOAT2 BlockSize02 = { 800.0f,200.0f };
-	XMFLOAT2 BlockSize03 = { 2000.0f,400.0f };
-	XMFLOAT2 BlockSize04 = { 2000.0f,400.0f };
-	XMFLOAT2 BlockSize05 = { 1000.0f,100.0f };
-	XMFLOAT2 BlockSize06 = { 1000.0f,200.0f };
-	XMFLOAT2 BlockSize07 = { 1000.0f,2000.0f };
-	XMFLOAT2 BlockSize08 = { 800.0f,100.0f };
-
-	XMFLOAT2 HookSize01 = { 100.0f, 100.0f };
-	XMFLOAT2 HookSize02 = { 150.0f, 220.0f };
-	XMFLOAT2 HookColSize01 = { 80.0f, 80.0f };
-
-	XMFLOAT2 GoalSize = { 200.0f, 200.0f };
-
-	XMFLOAT2 LefthandPos = { -62.0f,14.0f };
-	XMFLOAT2 LefthandSize = { 105.0f,105.0f };
-
-	XMFLOAT2 LeftlegPos = { -39.0f, -29.0f };
-	XMFLOAT2 LeftlegSize = { 125.0f,125.0f };
-
-	XMFLOAT2 RighthandPos = { 66.0f, 15.0f };
-	XMFLOAT2 RighthandSize = { 105.0f,105.0f };
-
-	XMFLOAT2 RightlegPos = { 50.0f, -30.0f };
-	XMFLOAT2 RightlegSize = { 125.0f,125.0f };
-
-	XMFLOAT2 IdlePos = { 0.0f,0.0f };
-	XMFLOAT2 IdleSize = { 140.0f,140.0f };
 
 	float PlayerAngle = 0.0f;
 	int idletime = 0;
@@ -190,15 +108,11 @@ public:
 	int HookColliderState = -1;
 	bool ScenechangeState = false;
 	int ScenechangeState2 = 0;
-private:
-	int gamemode = 1;							// ゲームモード
-	int ColliderState = 0;						// 当たった状態
+	int deathstate = 0;
+	int t5 = 0;
+	int t6 = 0;
 
-	TrackingCamera* p_camera;	// カメラ
-	TileMap* p_tileMap;			//タイルマップ
-	Player* player;
-	Background* background;
-
+	std::shared_ptr<Object>death2;
 	std::shared_ptr<Object>playercol;
 	std::shared_ptr<Object>playercol2;
 	std::shared_ptr<Object>playercol3;
@@ -214,7 +128,71 @@ private:
 	std::shared_ptr<Object>goal;
 	std::shared_ptr<Object>hook[4];
 	std::shared_ptr<Object> hookdraw[4];
-	std::shared_ptr<Object> block[8];
+
+	XMFLOAT2 PlayerGrabPos = { 0.0f, 0.0f };
+
+	XMFLOAT2 HookPos01 = { 2250.0f,-2970.0f };
+	XMFLOAT2 HookPos02 = { 5150.0f, -1200.0f };
+	XMFLOAT2 HookPos03 = { 4300.0f, -600.0f };
+	XMFLOAT2 HookPos04 = { 3250.0f,-2170.0f };
+
+	XMFLOAT2 HookSize01 = { 100.0f, 100.0f };
+	XMFLOAT2 HookSize02 = { 150.0f, 220.0f };
+
+
+	XMFLOAT2 PlayerDrawPos = { 0.0f, 40.0f };
+	XMFLOAT2 PlayerDrawSize = { 140.0f,140.0f };
+
+	XMFLOAT2 EyesPos = { 0.5f, +90.0f };
+	XMFLOAT2 EyesSize = { 120.0f,120.0f };
+
+	XMFLOAT2 LefthandPos = { -62.0f,14.0f };
+	XMFLOAT2 LefthandSize = { 105.0f,105.0f };
+
+	XMFLOAT2 LeftlegPos = { -39.0f, -29.0f };
+	XMFLOAT2 LeftlegSize = { 125.0f,125.0f };
+
+	XMFLOAT2 RighthandPos = { 66.0f, 15.0f };
+	XMFLOAT2 RighthandSize = { 105.0f,105.0f };
+
+	XMFLOAT2 RightlegPos = { 50.0f, -30.0f };
+	XMFLOAT2 RightlegSize = { 125.0f,125.0f };
+
+
+	XMFLOAT2 PlayerColPos = { 25.0f, 25.0f };
+	XMFLOAT2 PlayerColSize = { 110.0f,110.0f };
+
+	XMFLOAT2 PlayerColPos3 = { -25.0f, 25.0f };
+	XMFLOAT2 PlayerColSize3 = { 110.0f,110.0f };
+
+	XMFLOAT2 PlayerColPos2 = { 0.0f, 80.0f };
+	XMFLOAT2 PlayerColSize2 = { 120.0f,40.0f };
+
+
+	XMFLOAT2 GoalPos = { 900.0f, 1000.0f };
+	XMFLOAT2 GoalSize = { 200.0f, 200.0f };
+
+	XMFLOAT2 IdlePos = { 0.0f,0.0f };
+	XMFLOAT2 IdleSize = { 160.0f,160.0f };
+	XMFLOAT2 DeathSize = { 230.0f,230.0f };
+	XMFLOAT2 HookColSize01 = { 80.0f, 80.0f };
+
+private:
+	int gamemode = 1;							// ゲームモード
+	int ColliderState = 0;						// 当たった状態
+	XMFLOAT2 PlayerSize = { 110.0f,110.0f };	// プレイヤーのサイズ
+
+	TrackingCamera* p_camera;	// カメラ
+	TileMap* p_tileMap;			//タイルマップ
+	//Input input;
+
+	//--------------------------------------------------------------------------
+	//		オブジェクト
+	//--------------------------------------------------------------------------
+	Background* background;
+	Player* player;
+	//Object* block[100];
+	//Object* blockdraw[10000];
 
 	//--------------------------------------------------------------------------
 	//		描画関連

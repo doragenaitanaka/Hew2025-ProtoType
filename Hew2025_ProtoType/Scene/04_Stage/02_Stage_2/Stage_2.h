@@ -18,7 +18,7 @@
 #include"../../../Library/Code/self/10_Object/Object.h"
 #include"../../../Library/Code/self/11_Player/Player.h"
 #include"../../../Library/Code/self/16_Background/Background.h"
-
+#include"../../../Library/Code/other/03_sound/sound.h"
 #include <memory> 
 /**	@file	Stage_2.h
 *	@brief	起動時にロゴとか出るシーン
@@ -108,7 +108,9 @@ public:
 	int HookColliderState = -1;
 	bool ScenechangeState = false;
 	int ScenechangeState2 = 0;
-
+	int deathstate = 0;
+	int t5 = 0;
+	std::shared_ptr<Object>death2;
 	std::shared_ptr<Object>playercol;
 	std::shared_ptr<Object>playercol2;
 	std::shared_ptr<Object>playercol3;
@@ -170,7 +172,7 @@ public:
 
 	XMFLOAT2 IdlePos = { 0.0f,0.0f };
 	XMFLOAT2 IdleSize = { 160.0f,160.0f };
-
+	XMFLOAT2 DeathSize = { 230.0f,230.0f };
 	XMFLOAT2 HookColSize01 = { 80.0f, 80.0f };
 
 private:

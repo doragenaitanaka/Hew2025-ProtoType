@@ -42,6 +42,7 @@ void	Stage_3::Initialize(void)
 {
     // BGM
     this->p_sound->Play(SOUND_LABEL::BGM_GAME);
+
     // カメラ
     if (!this->p_camera) { this->p_camera = new TrackingCamera; }
 
@@ -91,7 +92,9 @@ void	Stage_3::Initialize(void)
     if (!this->rightleg) { this->rightleg = std::make_shared<Object>(this->p_camera); }
 
     if (!this->eyes) { this->eyes = std::make_shared<Object>(this->p_camera); }
-
+    if (!this->death2) {
+        this->death2 = std::make_shared<Object>(this->p_camera);
+    }
     if (!this->idle) {
         this->idle = std::make_shared<Object>(this->p_camera);
     }
@@ -110,6 +113,7 @@ void	Stage_3::Initialize(void)
     if (!this->playercol3) {
         this->playercol3 = std::make_shared<Object>(this->p_camera);
     }
+    if (!this->rail) { this->rail = std::make_shared<Object>(this->p_camera); }
     if (!this->goal) { this->goal = std::make_shared<Object>(this->p_camera); }
 
 
@@ -130,8 +134,8 @@ void	Stage_3::Initialize(void)
     this->righthand->Init(L"Asset/right_hand.png");
     this->leftleg->Init(L"Asset/left_leg.png");
     this->rightleg->Init(L"Asset/right_leg.png");
-
-
+    this->rail->Init(L"Asset/Gimmick/rail_02.png");
+    this->death2->Init(L"Asset/death.png", 4, 1);
     this->idle->Init(L"Asset/idle_3.png", 4, 1);
     this->walking->Init(L"Asset/walking_2.png", 4, 1);
     this->walking2->Init(L"Asset/walking_3.png", 4, 1);
@@ -141,7 +145,7 @@ void	Stage_3::Initialize(void)
     this->playercol3->Init(L"Asset/block.png");
 
     this->goal->Init(L"Asset/Gimmick/goal.png");
-
+    this->death2->SetSize(DeathSize.x, DeathSize.y, 0.0f);
     this->playerdraw->SetSize(PlayerDrawSize.x, PlayerDrawSize.y, 0.0f);
     this->eyes->SetSize(EyesSize.x, EyesSize.y, 0.0f);
     this->lefthand->SetSize(LefthandSize.x, LefthandSize.y, 0.0f);
@@ -156,7 +160,7 @@ void	Stage_3::Initialize(void)
     this->playercol3->SetSize(PlayerColSize3.x, PlayerColSize3.y, 0.0f);
 
     this->goal->SetSize(GoalSize.x, GoalSize.y, 0.0f);
-
+    this->rail->SetSize(RailSize.x, RailSize.y, 0.0f);
     this->hook[0]->SetSize(HookSize01.x, HookSize01.y, 0.0f);
     this->hook[1]->SetSize(HookSize01.x, HookSize01.y, 0.0f);
     this->hook[2]->SetSize(HookSize01.x, HookSize01.y, 0.0f);
@@ -300,7 +304,18 @@ void	Stage_3::Update(void)
     //// 画面揺らせる
     //this->p_camera->Shake(10.0f);
 
-
+     // リスタート    
+    if (this->p_input->Trigger("RETRY"))
+    {
+        this->p_sceneManager->ChangeScene(Scene::Stage_2);
+        return;
+    }
+    // タイトルに戻る
+    if (this->p_input->Trigger("TITLE"))
+    {
+        this->p_sceneManager->ChangeScene(Scene::TitleScene);
+        return;
+    }
     //----------------------------------------------
     // Creative Mode
     //----------------------------------------------
@@ -460,6 +475,7 @@ void	Stage_3::Update(void)
 
         if (playerPos.y <= -3100.0f)
         {
+            this->p_sound->Play(SOUND_LABEL::SE_PLAYR_FALLDEAD);
             this->p_sceneManager->ChangeScene(Scene::Stage_3);
             return;
         }
@@ -481,7 +497,7 @@ void	Stage_3::Update(void)
 
         this->player->SetAngle(PlayerAngle);
         this->playerdraw->SetAngle(PlayerAngle);
-
+        this->rail->SetAngle(90.0f);
         this->goal->SetPos(300.0f, -890.0f, playerPos.z);
         this->eyes->SetPos(playerPos.x + EyesPos.x, playerPos.y + EyesPos.y, playerPos.z);
         this->lefthand->SetPos(playerPos.x + LefthandPos.x, playerPos.y + LefthandPos.y, playerPos.z);
@@ -490,14 +506,14 @@ void	Stage_3::Update(void)
         this->rightleg->SetPos(playerPos.x + RightlegPos.x, playerPos.y + RightlegPos.y, playerPos.z);
 
         this->playerdraw->SetPos(playerPos.x + PlayerDrawPos.x, playerPos.y + PlayerDrawPos.y, playerPos.z);
-
+        this->death2->SetPos(playerPos.x + PlayerDrawPos.x, playerPos.y + PlayerDrawPos.y - 20.0f, playerPos.z);
         this->idle->SetPos(playerPos.x + PlayerDrawPos.x, playerPos.y + PlayerDrawPos.y - 20.0f, playerPos.z);
         this->walking->SetPos(playerPos.x + PlayerDrawPos.x, playerPos.y + PlayerDrawPos.y - 20.0f, playerPos.z);
         this->walking2->SetPos(playerPos.x + PlayerDrawPos.x, playerPos.y + PlayerDrawPos.y - 20.0f, playerPos.z);
         this->playercol->SetPos(playerPos.x + PlayerColPos.x, playerPos.y + PlayerColPos.y, playerPos.z);
         this->playercol2->SetPos(playerPos.x + PlayerColPos2.x, playerPos.y + PlayerColPos2.y, playerPos.z);
         this->playercol3->SetPos(playerPos.x + PlayerColPos3.x, playerPos.y + PlayerColPos3.y, playerPos.z);
-
+        this->rail->SetPos(RailPos.x, RailPos.y, playerPos.z);
         this->hook[0]->SetPos(HookPos01.x, HookPos01.y, playerPos.z);
         this->hook[1]->SetPos(HookPos02.x, HookPos02.y, playerPos.z);
         this->hook[2]->SetPos(HookPos03.x, HookPos03.y, playerPos.z);
@@ -525,7 +541,7 @@ void	Stage_3::Update(void)
         this->idle->SetTextureNumU(u);
         this->walking->SetTextureNumU(u);
         this->walking2->SetTextureNumU(u);
-
+        this->death2->SetTextureNumU(3);
 
 
 
@@ -928,8 +944,21 @@ void	Stage_3::Update(void)
 
             if (t2 >= 40)
             {
+                this->p_sound->Play(SOUND_LABEL::SE_PLAYR_DEAD);
+                deathstate = 1;
+
+                //  t2 = 0;
+            }
+            if (deathstate == 1)
+            {
+                t5 += 1;
+            }
+            if (t5 >= 20)
+            {
+
+
                 ScenechangeState = true;
-                t2 = 0;
+                t5 = 0;
             }
         }
 
@@ -980,7 +1009,7 @@ void	Stage_3::Update(void)
 
         if (this->p_input->Press("SPACE") && t == 0 && grabstate == 0 && jumpkeystate == 0)
         {
-
+            this->p_sound->Play(SOUND_LABEL::SE_PLAYR_JUMP);
             Vy = 20.0f;
             jumpkeystate = 1;
             jumpstate = 1;
@@ -988,7 +1017,7 @@ void	Stage_3::Update(void)
 
         if (this->p_input->Press("SUPERJUMP") && t == 0 && grabstate == 1)
         {
-
+            this->p_sound->Play(SOUND_LABEL::SE_PLAYR_LEAP);
             pullstate = 0;
             Vypower = std::pow(std::abs(p_input->GetRightAnalogStick().y * 3000.0f), 0.3f);
 
@@ -1191,6 +1220,7 @@ void	Stage_3::Update(void)
             if (HookColliderState == 1)
             {
                 HookMoveState = 1;
+
             }
             HookColliderState = -1;
 
@@ -1198,7 +1228,7 @@ void	Stage_3::Update(void)
 
         if (HookMoveState == 1)
         {
-
+            this->p_sound->Play(SOUND_LABEL::SE_PLAYR_MOVEHOOK);
             HookPos02.x -= 8.0f;
         }
         if (HookPos02.x <= 2200.0f)
@@ -1207,16 +1237,23 @@ void	Stage_3::Update(void)
         }
         if (HookMoveState == 2)
         {
-
+            this->p_sound->Play(SOUND_LABEL::SE_PLAYR_MOVEHOOK);
             HookPos02.x += 8.0f;
         }
         if (HookPos02.x >= 5000.0f)
         {
             HookMoveState = 1;
         }
-        if (ScenechangeState2 == 1)
+        if (ScenechangeState == 1)
         {
 
+            this->p_sceneManager->ChangeScene(Scene::Stage_3);
+            return;
+        }
+
+        if (ScenechangeState2 == 1)
+        {
+            this->p_sound->Play(SOUND_LABEL::SE_GOAL);
             this->p_sceneManager->ChangeScene(Scene::Stage_4);
             return;
         }
@@ -1241,7 +1278,7 @@ void	Stage_3::Update(void)
     this->playercol3->Update();
 
     this->idle->Update();
-
+    this->death2->Update();
     this->walking->Update();
     this->walking2->Update();
     this->player->Update();
@@ -1251,7 +1288,7 @@ void	Stage_3::Update(void)
     this->righthand->Update();
     this->rightleg->Update();
     this->eyes->Update();
-
+    this->rail->Update();
     this->hook[0]->Update();
     this->hook[1]->Update();
     this->hook[2]->Update();
@@ -1305,7 +1342,7 @@ void	Stage_3::Draw(void)
     this->background->Draw();
     this->goal->Draw();
     this->p_tileMap->Draw();
-
+    this->rail->Draw();
 
     /* this->player->Draw();
      this->playercol->Draw();
@@ -1348,7 +1385,7 @@ void	Stage_3::Draw(void)
 
         this->idle->Draw();
     }
-    if (grabstate != 0)
+    if (grabstate != 0 && deathstate == 0)
     {
         this->playerdraw->Draw();
         this->lefthand->Draw();
@@ -1357,15 +1394,20 @@ void	Stage_3::Draw(void)
         this->rightleg->Draw();
         this->eyes->Draw();
     }
+    else if (deathstate == 1)
+    {
+        this->death2->Draw();
+    }
 
 }
 
 /**	@brief 	シーン全体の終了処理
 */
 void	Stage_3::Finalize(void)
-{    
+{
     // BGM
     this->p_sound->Stop(SOUND_LABEL::BGM_GAME);
+
     SAFE_DELETE(this->p_camera);    // カメラ
     SAFE_DELETE(this->p_tileMap);   // タイルマップ
 
