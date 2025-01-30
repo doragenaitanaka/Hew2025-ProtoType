@@ -42,7 +42,7 @@ private:
 		{"Asset/BGM/TitleBGM.wav", true},	
 
 		// ゲームBGM（ループさせる場合true設定）
-		{"Asset/BGM/TitleBGM.wav", true},
+		{"Asset/BGM/GameBGM.wav", true},
 
 		// ゴールSE（ループさせる場合true設定）
 		{"Asset/SE/StageClear.wav", false},
@@ -72,7 +72,7 @@ private:
 		{"Asset/SE/ObjectFallDown.wav", false},
 
 		// PlayerレールSE（ループしない場合false設定）
-		{"Asset/SE/Click.wav", false},
+		{"Asset/SE/HookRail.wav", false},
 
 		// Playerペンを投げるSE（ループしない場合false設定）
 		{"Asset/SE/RubberJump.wav", false},

@@ -105,21 +105,21 @@ void	SceneManager::CreateScene(Scene sceneName)
 		case Scene::Stage_4:
 			this->nowScene = new	Stage_4;
 			break;
-		//case Scene::Stage_5:
-		//	this->nowScene = new	Stage_5;
-		//	break;
+		case Scene::Stage_5:
+			this->nowScene = new	Stage_5;
+			break;
 		case Scene::Stage_6:
 			this->nowScene = new	Stage_6;
 			break;
-		//case Scene::Stage_7:
-		//	this->nowScene = new	Stage_7;
-		//	break;
-		//case Scene::Stage_8:
-		//	this->nowScene = new	Stage_8;
-		//	break;
-		//case Scene::Stage_9:
-		//	this->nowScene = new	Stage_9;
-		//	break;
+		case Scene::Stage_7:
+			this->nowScene = new	Stage_7;
+			break;
+		case Scene::Stage_8:
+			this->nowScene = new	Stage_8;
+			break;
+		case Scene::Stage_9:
+			this->nowScene = new	Stage_9;
+			break;
 		case Scene::Stage_10:
 			this->nowScene = new	Stage_10;
 			break;
@@ -152,9 +152,9 @@ void	SceneManager::CreateScene(Scene sceneName)
 		//case Scene::TEST_OTANI:
 		//	this->nowScene = new	Test_Otani;
 		//	break;
-		case Scene::TEST_TAKAHASHI:
-			this->nowScene = new	Test_Takahashi;
-			break;
+		//case Scene::TEST_TAKAHASHI:
+		//	this->nowScene = new	Test_Takahashi;
+		//	break;
 		default:
 			break;
 		}

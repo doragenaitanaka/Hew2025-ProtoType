@@ -19,6 +19,7 @@
 #include"../../../Library/Code/self/10_Object/Object.h"
 #include"../../../Library/Code/self/11_Player/Player.h"
 #include"../../../Library/Code/self/16_Background/Background.h"
+#include"../../../Library/Code/other/03_sound/sound.h"
 /**	@file	Stage_3.h
 *	@brief	起動時にロゴとか出るシーン
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している
@@ -29,7 +30,7 @@
 *	@brief	起動時にロゴとか出るシーン
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している
 */
-class Stage_3:public BaseScene
+class Stage_3 :public BaseScene
 {
 public:
 	/**	@brief 	コンストラクタ
@@ -113,7 +114,9 @@ public:
 	int HookColliderState = -1;
 	bool ScenechangeState = false;
 	int ScenechangeState2 = 0;
-
+	int deathstate = 0;
+	int t5 = 0;
+	std::shared_ptr<Object>death2;
 	std::shared_ptr<Object>playercol;
 	std::shared_ptr<Object>playercol2;
 	std::shared_ptr<Object>playercol3;
@@ -129,6 +132,7 @@ public:
 	std::shared_ptr<Object>goal;
 	std::shared_ptr<Object>hook[3];
 	std::shared_ptr<Object> hookdraw[3];
+	std::shared_ptr<Object>rail;
 
 	XMFLOAT2 PlayerGrabPos = { 0.0f, 0.0f };
 
@@ -136,6 +140,8 @@ public:
 	XMFLOAT2 HookPos02 = { 4300.0f, -1150.0f };
 	XMFLOAT2 HookPos03 = { 2200.0f, -1670.0f };
 
+	XMFLOAT2 RailPos = { 3250.0f, -1050.0f };
+	XMFLOAT2 RailSize = { 200.0f, 2400.0f };
 
 	XMFLOAT2 HookSize01 = { 100.0f, 100.0f };
 	XMFLOAT2 HookSize02 = { 150.0f, 220.0f };
@@ -175,6 +181,9 @@ public:
 
 	XMFLOAT2 IdlePos = { 0.0f,0.0f };
 	XMFLOAT2 IdleSize = { 160.0f,160.0f };
+
+	XMFLOAT2 DeathSize = { 230.0f,230.0f };
+
 
 	XMFLOAT2 HookColSize01 = { 80.0f, 80.0f };
 

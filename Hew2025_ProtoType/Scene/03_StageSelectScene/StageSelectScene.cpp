@@ -40,8 +40,6 @@ StageSelectScene::~StageSelectScene()
 */
 void	StageSelectScene::Initialize(void)
 {    
-    // BGM
-    this->p_sound->Play(SOUND_LABEL::BGM_TITLE);
 
     // 時刻の設定
     this->lastUpdateTime = std::chrono::steady_clock::now();
