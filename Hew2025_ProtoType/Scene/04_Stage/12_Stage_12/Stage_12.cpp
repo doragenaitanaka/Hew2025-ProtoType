@@ -98,12 +98,19 @@ void	Stage_12::Initialize(void)
     this->seesaw->Init(L"Asset/Gimmick/seesaw.png");
     this->seesaw->SetSize(SeesawSize.x, SeesawSize.y, 0.0f);
     this->seesaw->SetPos(SeesawPos.x, SeesawPos.y, 0.0f);
+    this->seesaw->SetAngle(seesawangle);
+
 
     for (n = 0; n < 3; n++)
     {
         if (!this->SeesawOption[n]) { this->SeesawOption[n] = new Object(this->p_camera); }
-        this->SeesawOption[n]->Init(L"Asset/Gimmick/seesaw_pedestal.png");
+        //this->SeesawOption[n]->Init(L"Asset/Gimmick/seesaw_pedestal.png");
     }
+
+    this->SeesawOption[0]->Init(L"Asset/lightwood2.png");
+    this->SeesawOption[1]->Init(L"Asset/darkwood2.png");
+    this->SeesawOption[2]->Init(L"Asset/Gimmick/seesaw_pedestal.png");
+
     this->SeesawOption[0]->SetPos(SeesawOpPos00.x, SeesawOpPos00.y, 0.0f);
     this->SeesawOption[1]->SetPos(SeesawOpPos01.x, SeesawOpPos01.y, 0.0f);
     this->SeesawOption[2]->SetPos(SeesawOpPos02.x, SeesawOpPos02.y, 0.0f);
@@ -115,8 +122,11 @@ void	Stage_12::Initialize(void)
     for (n = 0; n < 3; n++)
     {
         if (!this->slope[n]) { this->slope[n] = new Object(this->p_camera); }
-        this->slope[n]->Init(L"Asset/lightwood2.png");
     }
+    this->slope[0]->Init(L"Asset/lightwood2.png");
+    this->slope[1]->Init(L"Asset/darkwood2.png");
+    this->slope[2]->Init(L"Asset/darkwood2.png");
+    
     this->slope[0]->SetPos(SlopePos00.x, SlopePos00.y, 0.0f);
     this->slope[1]->SetPos(SlopePos01.x, SlopePos01.y, 0.0f);
     this->slope[2]->SetPos(SlopePos02.x, SlopePos02.y, 0.0f);
@@ -126,7 +136,7 @@ void	Stage_12::Initialize(void)
 
     this->slope[0]->SetAngle(slopeAngle01);
     this->slope[1]->SetAngle(slopeAngle00);
-    this->slope[2]->SetAngle(slopeAngle01);
+    this->slope[2]->SetAngle(slopeAngle02);
 
 
 
@@ -322,19 +332,19 @@ void	Stage_12::Update(void)
 
         if (this->p_input->Press("LEFT"))
         {
-            playerPos.x -= 20.0f;
+            playerPos.x -= 40.0f;
         }
         if (this->p_input->Press("RIGHT"))
         {
-            playerPos.x += 20.0f;
+            playerPos.x += 40.0f;
         }
         if (this->p_input->Press("UP"))
         {
-            playerPos.y += 20.0f;
+            playerPos.y += 40.0f;
         }
         if (this->p_input->Press("DOWN"))
         {
-            playerPos.y -= 20.0f;
+            playerPos.y -= 40.0f;
         }
 
         if (this->p_input->Press("SPACE"))
@@ -373,16 +383,16 @@ void	Stage_12::Update(void)
         {
             if (this->p_input->Press("LEFT"))
             {
-                playerPos.x -= 10.0f;
+                playerPos.x -= 15.0f;
             }
             if (this->p_input->Press("RIGHT"))
             {
-                playerPos.x += 10.0f;
+                playerPos.x += 15.0f;
             }
 
             if (this->p_input->Press("UP"))
             {
-                if (ColliderState == 5)
+                if (ColliderState == 4)
                 {
                     //掴まる処理
                     this->grabbox->Grab(player);
@@ -419,11 +429,7 @@ void	Stage_12::Update(void)
             gamemode = 0;
         }
 
-        if (ColliderState == 4)
-        {
-            playerPos.x -= 20.0f;
-            playerPos.y -= 20.0f;
-        }
+
     }
 
 
@@ -454,8 +460,81 @@ void	Stage_12::Update(void)
             JumpState = 3;
         }
     }
+    //-----------------------------------------------------
+    if (BallPos.y <= -7500.f)
+    {
+        if (playerPos.y <= -2200.0f)
+        {
+            BallPos = PipePos00;
+            BallMoveFLG[1] = true;
+        }
+        else
+        {
+            BallPos = PipePos01;
+            BallPos.x -= 50.0f;
+            BallMoveFLG[1] = true;
+        }
+        BallMoveFLG[0] = false;
+    }
+
+    if (ballState == 0)
+    {
+        BallPos.y -= BallSpeed * 2;
+    }
+
+        if (BallMoveFLG[0])
+        {
+
+            if (ballState == 2)//右下の坂道
+            {
+                BallPos.y -= BallSpeed;
+                BallMoveFLG[1] = false;
+            }
+            if (ballState == 3)//右に向かう坂道
+            {
+                BallPos.y -= BallSpeed / 2;
+                BallMoveFLG[1] = true;
+            }
+            this->ball->SetState(Ball::BallState::ROLL);
+            if (BallMoveFLG[1])
+            {
+                BallPos.x += BallSpeed;
+                BallAngle--;
+            }
+            else
+            {
+                BallPos.x -= BallSpeed;
+                BallAngle++;
+            }
+        }
+        if (GrabfallFlg)
+        {
+            GrabboxPos.y -= 25.0f;
+        }
+        // 座標、角度を適用
+        this->ball->SetAngle(BallAngle);
+        this->ball->SetPos(BallPos.x,BallPos.y,0.0f);
 
     //-----------------------------------
+    // ジャンプした時
+    if (seesaw->CheckJump())
+    {
+        if (seesawcnt != 70)
+        {
+            GrabboxPos.y += 75.0f;
+            seesawcnt++;
+        }
+    }
+
+    if (grabState != 1)
+    {
+        GrabboxPos.y -= 25.0f;
+    }
+
+    if (GrabFlg)
+    {
+        this->grabbox->Move(grabbox->GetPos());
+    }
     if (GrabFlg)
     {
         this->grabbox->Move(grabbox->GetPos());
@@ -478,9 +557,9 @@ void	Stage_12::Update(void)
     this->hook[3]->SetColliderSize(DirectX::XMFLOAT3(HookSize.x, HookSize.y, 0.0f));
     this->hook[4]->SetColliderSize(DirectX::XMFLOAT3(HookSize.x, HookSize.y, 0.0f));
 
-    this->pen[0]->SetColliderSize(DirectX::XMFLOAT3(PenSize.x, PenSize.y, 0.0f));
-    this->pen[1]->SetColliderSize(DirectX::XMFLOAT3(PenSize.x, PenSize.y, 0.0f));
-    this->pen[2]->SetColliderSize(DirectX::XMFLOAT3(PenSize.x, PenSize.y, 0.0f));
+    this->pen[0]->SetColliderSize(DirectX::XMFLOAT3(PenSize.x - 200.0f, PenSize.y, 0.0f));
+    this->pen[1]->SetColliderSize(DirectX::XMFLOAT3(PenSize.x - 200.0f, PenSize.y, 0.0f));
+    this->pen[2]->SetColliderSize(DirectX::XMFLOAT3(PenSize.x - 200.0f, PenSize.y, 0.0f));
 
     this->slope[0]->SetColliderSize(DirectX::XMFLOAT3(SlopeSize00.x, SlopeSize00.y, 0.0f));
     this->slope[1]->SetColliderSize(DirectX::XMFLOAT3(SlopeSize01.x, SlopeSize01.y, 0.0f));
@@ -502,7 +581,9 @@ void	Stage_12::Update(void)
 
     // タイルマップとの衝突判定
     ColliderState = 0;
+    ballState = 0;
     StayGround = false;
+    GrabfallFlg = true;
     auto& playerColl = this->player->GetCollider();
     auto& goalColl = this->goal->GetCollider();
     auto& grabColl = this->grabbox->GetCollider();
@@ -538,6 +619,12 @@ void	Stage_12::Update(void)
             //std::cout << "当たった" << std::endl;
             StayGround = true;
         }
+
+        if (ballColl.CheckCollision(tileColl))
+        {
+            //std::cout << "当たった" << std::endl;
+            ballState = 1;
+        }
     }
 
     if (playerColl.CheckCollision(HookColl1) || playerColl.CheckCollision(HookColl2) || playerColl.CheckCollision(HookColl3) || playerColl.CheckCollision(HookColl4) || playerColl.CheckCollision(HookColl5))
@@ -559,6 +646,7 @@ void	Stage_12::Update(void)
     if (playerColl.CheckCollision(ballColl))
     {
         ColliderState = 5;
+        this->BallMoveFLG[0] = true;
     }
 
     if (playerColl.CheckCollision(slopeColl1) || playerColl.CheckCollision(slopeColl2) || playerColl.CheckCollision(slopeColl3))
@@ -566,9 +654,33 @@ void	Stage_12::Update(void)
         ColliderState = 6;
     }
 
+    if (ballColl.CheckCollision(slopeColl1))
+    {
+        ballState = 2;
+    }
+
+    if (ballColl.CheckCollision(slopeColl2) || ballColl.CheckCollision(slopeColl3))
+    {
+        ballState = 3;
+        BallMoveFLG[0] = true;
+    }
+
+
+
     if (playerColl.CheckCollision(PenColl1) || playerColl.CheckCollision(PenColl2) || playerColl.CheckCollision(PenColl3))
     {
         ColliderState = 7;
+    }
+
+    if (ballColl.CheckCollision(PenColl1))
+    {
+        BallMoveFLG[0] = true;
+    }
+
+
+    if (ballColl.CheckCollision(PenColl2) || ballColl.CheckCollision(PenColl3))
+    {
+        BallMoveFLG[0] = false;
     }
 
     if (playerColl.CheckCollision(OptionLColl) || playerColl.CheckCollision(OptionRColl))
@@ -576,9 +688,31 @@ void	Stage_12::Update(void)
         ColliderState = 8;
     }
 
+    if (grabColl.CheckCollision(OptionLColl) || grabColl.CheckCollision(OptionRColl))
+    {
+        GrabfallFlg = false;
+    }
+
+    if (ballColl.CheckCollision(OptionLColl))
+    {  
+        ballState = 3;
+        seesawangle = 15.0f;
+    }
+
+    if (ballColl.CheckCollision(OptionRColl))
+    {
+        ballState = 3;
+        seesawangle = -15.0f;
+    }
+
+    if (grabColl.CheckCollision(OptionLColl) || grabColl.CheckCollision(OptionRColl))
+    {
+        grabState = 1;
+    }
+
     if (playerColl.CheckCollision(seesawColl))
     {
-        ColliderState = 9;
+      //  ColliderState = 9;
     }
 
     if (playerColl.CheckCollision(goalColl))
@@ -692,6 +826,10 @@ void	Stage_12::Update(void)
     this->grabbox->Update();
     this->ball->Update();
 
+    this->seesaw->CheckCollision(grabbox, ball, SeesawOption[1], SeesawOption[0]);
+
+
+
     for (n = 0; n < 3; n++)//Updateの数
     {
         this->slope[n]->Update();
@@ -724,11 +862,20 @@ void	Stage_12::Update(void)
 
     if (ColliderState == 10)
     {
-//        p_sceneManager->ChangeScene(Scene::TitleScene);
+        p_sceneManager->ChangeScene(Scene::TitleScene);
+        return;
     }
 
     //updateの後にsetposしないと動きがおかしくなる
     this->grabbox->SetPos(GrabboxPos.x, GrabboxPos.y, 0.0f);
+    //なぜかボールが配置されないのでここでsetposする
+    this->ball->SetPos(BallPos.x, BallPos.y, 0.0f);
+    //同上
+    this->seesaw->SetPos(SeesawPos.x, SeesawPos.y, 0.0f);
+    this->seesaw->SetAngle(seesawangle);
+    //おそらく継承されたオブジェクトはうまく行われていない様子
+
+
 }
 
 /**	@brief 	シーン全体の描画
@@ -767,9 +914,10 @@ void	Stage_12::Draw(void)
     this->background->Draw();
     this->p_tileMap->Draw();
     this->seesaw->Draw();
-    this->goal->Draw();
+   // this->goal->Draw();
     this->grabbox->Draw();
     this->ball->Draw();
+    this->SeesawOption[2]->Draw();
 
     for (n = 0; n < 3; n++)//Drawの数
     {
@@ -796,10 +944,6 @@ void	Stage_12::Draw(void)
         this->pen[n]->Draw();
     }
 
-    for (n = 0; n < 3; n++)//Drawの数
-    {
-        this->SeesawOption[n]->Draw();
-    }
 
     this->player->Draw();
 }

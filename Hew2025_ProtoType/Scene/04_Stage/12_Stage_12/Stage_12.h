@@ -53,74 +53,83 @@ public:
 
 	//座標
 
-	XMFLOAT3 playerPos = { 400.0f, -5800.0f,0.0f };
+	XMFLOAT3 playerPos = { 400.0f, -5750.0f,0.0f };
 
-	XMFLOAT2 HookPos00 = { 3000.0f,-550.0f };//
-	XMFLOAT2 HookPos01 = { 3750.0f,-650.0f };//
-	XMFLOAT2 HookPos02 = { 4450.0f,-1800.0f };//
-	XMFLOAT2 HookPos03 = { 5100.0f,-650.0f };//
-	XMFLOAT2 HookPos04 = { 5850.0f,-1700.0f };//
+	XMFLOAT2 HookPos00 = { 1200.0f,-5500.0f };//スタートすぐ
+	XMFLOAT2 HookPos01 = { 3100.0f,-5700.0f };//ボール左
+	XMFLOAT2 HookPos02 = { 2500.0f,-1800.0f };//シーソー上
+	XMFLOAT2 HookPos03 = { 4900.0f,-1900.0f };//ペン二本のとこ
+	XMFLOAT2 HookPos04 = { 6000.0f,-500.0f };//ゴールすぐ横
 
-	XMFLOAT2 PenPos00 = { 3000.0f,-550.0f };//ペン
-	XMFLOAT2 PenPos01 = { 3000.0f,-550.0f };//ペン
-	XMFLOAT2 PenPos02 = { 3000.0f,-550.0f };//ペン
+	XMFLOAT2 PenPos00 = { 2600.0f,-5800.0f };//ペン スタート右
+	XMFLOAT2 PenPos01 = { 4000.0f,-2125.0f };//ペン 上1
+	XMFLOAT2 PenPos02 = { 4000.0f,-2075.0f };//ペン 上2
 	
-	XMFLOAT2 SlopePos00 = { 3000.0f,-550.0f };//坂道
-	XMFLOAT2 SlopePos01 = { 600.0f,-3700.0f };//坂道
-	XMFLOAT2 SlopePos02 = { 3000.0f,-550.0f };//坂道
+	XMFLOAT2 SlopePos00 = { 5473.0f,-6773.0f };//右下坂道
+	XMFLOAT2 SlopePos01 = { 600.0f,-3700.0f };//シーソー左坂道
+	XMFLOAT2 SlopePos02 = { 4800.0f,-2210.0f };//普通の坂道
 
-	XMFLOAT2 PipePos00 = { 3000.0f,-550.0f };//土管
-	XMFLOAT2 PipePos01 = { 3000.0f,-550.0f };//土管
+	XMFLOAT2 PipePos00 = { 300.0f,-2000.0f };//土管シーソーのほう
+	XMFLOAT2 PipePos01 = { 4750.0f,-350.0f };//土管ゴール横のほう
 
-	XMFLOAT2 SeesawPos = { 3000.0f,-550.0f };//シーソー
+	XMFLOAT2 SeesawPos = { 1950.0f,-4250.0f };//シーソー
 
-	XMFLOAT2 SeesawOpPos00 = { 3000.0f,-550.0f };//左側の当たり判定
-	XMFLOAT2 SeesawOpPos01 = { 3000.0f,-550.0f };//右側の当たり判定
-	XMFLOAT2 SeesawOpPos02 = { 3000.0f,-550.0f };//支点
+	XMFLOAT2 SeesawOpPos00 = { 1200.0f,-4050.0f };//左側の当たり判定
+	XMFLOAT2 SeesawOpPos01 = { 2500.0f,-4400.0f };//右側の当たり判定
+	XMFLOAT2 SeesawOpPos02 = { 1950.0f,-4260.0f };//支点
 
-
-	XMFLOAT2 BallPos = { 3000.0f,-550.0f };//ボール
-	XMFLOAT3 GrabboxPos = { 3000.0f,-550.0f ,0.0f };//消しゴム
+	XMFLOAT2 BallPos = { 4750.0f,-5600.0f };//ボール
+	XMFLOAT3 GrabboxPos = { 2500.0f,-4050.0f ,0.0f };//消しゴム
 
 	XMFLOAT2 PushObjectPos00 = { 2000.0f,-5300.0f };//倒れるオブジェクト
-	XMFLOAT2 PushObjectPos01 = { 1300.0f,-1400.0f };//倒れるオブジェクト
+	XMFLOAT2 PushObjectPos01 = { 3400.0f,-1600.0f };//倒れるオブジェクト
 
-	XMFLOAT2 GoalPos = { 300.0f,-1750.0f }; //ゴール
+	XMFLOAT2 GoalPos = { 7000.0f,-500.0f }; //ゴール
 	//サイズ
 	XMFLOAT2 PlayerSize = { 200.0f,200.0f };
 
 	XMFLOAT2 HookSize = { 150.0f,220.0f };
-	XMFLOAT2 PenSize = { 800.0f,50.0f };
+	XMFLOAT2 PenSize = { 900.0f,100.0f };
 
-	XMFLOAT2 SlopeSize00 = { 800.0f,100.0f };//右下
+	XMFLOAT2 SlopeSize00 = { 1200.0f,100.0f };//右下
 	XMFLOAT2 SlopeSize01 = { 1100.0f,100.0f };//シーソー左
-	XMFLOAT2 SlopeSize02 = { 400.0f,100.0f };//普通の坂道
+	XMFLOAT2 SlopeSize02 = { 500.0f,100.0f };//普通の坂道
 
-	XMFLOAT2 SeesawSize = { 1200.0f,100.0f };
-	XMFLOAT2 PipeSize = { 400.0f,800.0f };
+	XMFLOAT2 SeesawSize = { 1400.0f,800.0f };
+	XMFLOAT2 PipeSize = { 800.0f,1600.0f };
 	XMFLOAT2 BallSize = { 500.0f,500.0f };
 	XMFLOAT2 GrabboxSize = { 400.0f,400.0f };
 
-	XMFLOAT2 SeesawOpSize00 = { 3000.0f,-550.0f };//左側の当たり判定
-	XMFLOAT2 SeesawOpSize01 = { 3000.0f,-550.0f };//右側の当たり判定
-	XMFLOAT2 SeesawOpSize02 = { 3000.0f,-550.0f };//支点
+	XMFLOAT2 SeesawOpSize00 = { 300.0f,100.0f };//左側の当たり判定
+	XMFLOAT2 SeesawOpSize01 = { 300.0f,100.0f };//右側の当たり判定
+	XMFLOAT2 SeesawOpSize02 = { 500.0f,500.0f };//支点
 
 	XMFLOAT2 PushObjectSize = { 900.0f,1200.0f };
 
-	XMFLOAT2 GoalSize = { 200.0f,200.0f };
+	XMFLOAT2 GoalSize = { 200.0f,2000.0f };
 
 	int gamemode = 0;
 
+	// ボール
+	float BallSpeed = 10.0f;
+	float BallAngle = 0.0f;
+
 	float posx = 0.0f;
 	float posy = 0.0f;
-	float slopeAngle00 = -25.0f;//右下
-	float slopeAngle01 = 45.0f;//シーソー左と普通の坂道
+	float slopeAngle00 = -25.0f;//シーソーと左
+	float slopeAngle01 = 45.0f;//右下
+	float slopeAngle02 = -10.0f;//普通の坂道
+	float seesawangle = -15.0f;
+	bool GrabfallFlg = false;
 	bool GrabFlg = false;
 	bool StayGround = false;//地面に触れているかの判定
 	bool BallMoveFLG[2] = { false,true };	//ボールが動いているかの判定
 	bool CheckBall = true;//ボールがステージ内にあるか
 	int JumpState = 0;
+	int ballState = 0;//ボールの動き処理用 //1 = 地面に触れている 2 = 坂道に触れている 3 = シーソーヘッドに触れている
 	int cnt = 0;//ジャンプ等の判定用
+	int seesawcnt = 0;
+	int grabState = 0;
 	int n = 0;	//当たり判定用のブロックの番号
 	int ColliderState = 0;
 private:
