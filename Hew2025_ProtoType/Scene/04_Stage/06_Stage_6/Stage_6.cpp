@@ -690,6 +690,12 @@ void	Stage_6::Update(void)
     this->p_camera->Update();
 
     this->grabbox->SetPos(GrabboxPos.x, GrabboxPos.y, GrabboxPos.z);
+
+    if (ColliderState == 4)
+    {
+        p_sceneManager->ChangeScene(Scene::Stage_7);
+        return;
+    }
 }
 
 /**	@brief 	シーン全体の描画
