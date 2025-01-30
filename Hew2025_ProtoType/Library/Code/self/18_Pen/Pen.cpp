@@ -11,11 +11,10 @@ float Pen::DegToRed(float degrees)
 }
 
 //コンストラクタ
-Pen::Pen() :p_GrabbedObject(nullptr), p_Player(nullptr)
+Pen::Pen(Camera* _p_camera) :Object(_p_camera),p_GrabbedObject(nullptr), p_Player(nullptr)
 {
 
 }
-
 
 //デストラクタ
 Pen::~Pen()

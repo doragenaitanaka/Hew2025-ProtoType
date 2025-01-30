@@ -20,7 +20,7 @@ class Pen : public Object
 {
 public:
 	//コンストラクタ
-	Pen();
+	Pen(Camera* p_camera);
 
 	//デストラクタ
 	~Pen();
