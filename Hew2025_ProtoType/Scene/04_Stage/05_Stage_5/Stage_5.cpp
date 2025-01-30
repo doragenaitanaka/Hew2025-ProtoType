@@ -11,33 +11,29 @@
 */
 Stage_5::Stage_5()
 {
+
+    this->p_camera = nullptr;
+    this->p_tileMap = nullptr;
+
     this->background = nullptr;
     this->player = nullptr;
-    this->goal = nullptr;
-    this->YoyoObject[0] = nullptr;
-    this->YoyoObject[1] = nullptr;
     this->pendulum = nullptr;
-    this->grabbox = nullptr;
-    this->grabbox = nullptr;
+    this->goal = nullptr;
 
-    for (n = 0; n < 100; n++)//当たり判定用ブロックの初期化
-    {
-        this->block[n] = nullptr;
-    }
 
     for (n = 0; n < 7; n++)
     {
         this->hook[n] = nullptr;
     }
 
-    for (n = 0; n < 3; n++)
+    for (n = 0; n < 4; n++)
     {
         this->rail[n] = nullptr;
     }
-    
-    for (drawnum = 0; drawnum < 1000; drawnum++)//描画用ブロックの初期化
+
+    for (n = 0; n < 2; n++)
     {
-        this->blockdraw[drawnum] = nullptr;
+        this->YoyoObject[n] = nullptr;
     }
 
     this->p_vertexShader = nullptr;
@@ -56,72 +52,99 @@ Stage_5::~Stage_5()
 */
 void	Stage_5::Initialize(void)
 {
-    // BGM
-    this->p_sound->Play(SOUND_LABEL::BGM_GAME);
 
-    /*
-    if (!this->background) { this->background = new Object; }
-    if (!this->player) { this->player = new Player; }
-    if (!this->goal) { this->goal = new Object; }
-    if (!this->YoyoObject[0]) { this->YoyoObject[0] = new Object; }//フック用レールの初期化
-    if (!this->YoyoObject[1]) { this->YoyoObject[1] = new Object; }//フック用レールの初期化
-    if (!this->pendulum) { this->pendulum = new Pendulum(500.0f, 0.5f, 0.0f, 250.0f, 300.0f); }// 中心(250, 300), 振り幅500, 振動数0.5
-    if (!this->grabbox) { this->grabbox = new GrabBox; }//倒れるオブジェクトの初期化
+    // カメラ
+    if (!this->p_camera) { this->p_camera = new TrackingCamera; }
 
-    for (n = 0; n < 100; n++)
+
+    // タイルマップの生成
+    if (!this->p_tileMap)
     {
-        if (!this->block[n]) { this->block[n] = new Object; }//当たり判定用ブロックの初期化
+        this->p_tileMap = new TileMap(this->p_camera);
+        this->p_tileMap->GenerateMap("Stage5.csv");
+    }
+
+
+    if (!this->background) { this->background = new Object(this->p_camera); }
+    this->background->Init(L"Asset/back_img_01.png");
+    this->background->SetSize(1920.0f, 1080.0f, 0.0f);
+    this->background->SetPos(0.0f, 0.0f, 0.0f);
+
+    if (!this->player) { this->player = new Player(this->p_camera); }
+    this->player->Init(L"Asset/gumbody2.png");
+    this->player->SetSize(100.0f, 100.0f, 0.0f);
+    this->player->SetPos(2500.0f, -4200.0f, 0.0f);
+
+    if (!this->grabbox) { this->grabbox = new GrabBox(this->p_camera); }
+    this->grabbox->Init(L"Asset/block.png");
+    this->grabbox->SetSize(GrabboxSize.x, GrabboxSize.y, 0.0f);
+
+    if (!this->pendulum) { this->pendulum = new Pendulum(this->p_camera); }
+    this->pendulum->Init(L"Asset/block.png");
+    this->pendulum->SetSize(GrabboxSize.x, GrabboxSize.y, 0.0f);
+    this->pendulum->SetPos(GrabboxPos.x, GrabboxPos.y, 0.0f);
+
+    if (!this->goal) { this->goal = new Object(this->p_camera); }
+    this->goal->Init(L"Asset/block.png");
+    this->goal->SetSize(200.0f, 300.0f, 0.0f);
+    this->goal->SetPos(GoalPos.x, GoalPos.y, 0.0f);
+
+
+    for (n = 0; n < 2; n++)
+    {
+        if (!this->YoyoObject[n]) { this->YoyoObject[n] = new Object(this->p_camera); }
+        this->YoyoObject[n]->Init(L"Asset/block.png");
     }
 
     for (n = 0; n < 7; n++)
     {
-        if (!this->hook[n]) { this->hook[n] = new Object; }//フックの初期化
+        if (!this->hook[n]) { this->hook[n] = new Object(this->p_camera); }
+        this->hook[n]->Init(L"Asset/block.png");
+        this->hook[n]->SetSize(HookSize.x, HookSize.y, 0.0f);
     }
+
+    this->hook[0]->SetPos(HookPos00.x, HookPos00.y, 0.0f);
+    this->hook[1]->SetPos(HookPos01.x, HookPos01.y, 0.0f);
+    this->hook[2]->SetPos(HookPos02.x, HookPos02.y, 0.0f);
+    this->hook[3]->SetPos(HookPos03.x, HookPos03.y, 0.0f);
+    this->hook[4]->SetPos(HookPos04.x, HookPos04.y, 0.0f);
+    this->hook[5]->SetPos(HookPos05.x, HookPos05.y, 0.0f);
+    this->hook[6]->SetPos(HookPos06.x, HookPos06.y, 0.0f);
+
+    this->YoyoObject[0]->SetPos(YoyoPos.x, YoyoPos.y, 0.0f);
+    this->YoyoObject[0]->SetSize(200.0f, 200.0f, 0.0f);
+
+    this->YoyoObject[1]->SetPos(GrabboxPos.x, GrabboxPos.y, 0.0f);
+    this->YoyoObject[1]->SetSize(GrabboxSize.x, GrabboxSize.y, 0.0f);
 
     for (n = 0; n < 3; n++)
     {
-        if (!this->rail[n]) { this->rail[n] = new Object; }//フック用レールの初期化
+        if (!this->rail[n]) { this->rail[n] = new Object(this->p_camera); }
+        this->rail[n]->Init(L"Asset/block.png");
     }
 
-    for (drawnum = 0; drawnum < 1500; drawnum++)
-    {
-        if (!this->blockdraw[drawnum]) { this->blockdraw[drawnum] = new Object; }//描画用ブロックの初期化
-    }
+    this->rail[0]->SetSize(RailSize00.x, RailSize00.y, 0.0f);
+    this->rail[1]->SetSize(RailSize01.x, RailSize01.y, 0.0f);
+    this->rail[2]->SetSize(RailSize02.x, RailSize02.y, 0.0f);
+    this->rail[0]->SetPos(RailPos00.x, RailPos00.y, 0.0f);
+    this->rail[1]->SetPos(RailPos01.x, RailPos01.y, 0.0f);
+    this->rail[2]->SetPos(RailPos02.x, RailPos02.y, 0.0f);
 
 
+    // プレイヤーをターゲットに設定
+    this->p_camera->SetTarget(this->player);
+
+    //--------------------------------------------------------------------------
+    //		描画関連の初期化
+    //--------------------------------------------------------------------------
     if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
     if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
     if (!this->p_inputLayout) { this->p_inputLayout = new CInputLayout; }               // 入力レイアウト
     if (!this->p_sampler) { this->p_sampler = new CSampler; }                           // サンプラー
 
-    //オブジェクト
-    this->background->Init(L"Asset/back_img_01.png");
-    this->player->Init(L"Asset/gumbody2.png");
-    this->goal->Init(L"Asset/block.png");
-    this->YoyoObject[0]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
-    this->YoyoObject[1]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
-    this->pendulum->Init(L"Asset/block.png", 1, 1, 1, 0.0f);
-    this->grabbox->Init(L"Asset/block.png");//当たり判定用のブロックテクスチャ
 
-    for (n = 0; n < 100; n++)
-    {
-        this->block[n]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
-    }
 
-    for (n = 0; n < 7; n++)//フック
-    {
-        this->hook[n]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
-    }
 
-    for (n = 0; n < 3; n++)//フックのレール
-    {
-        this->rail[n]->Init(L"Asset/block.png");//当たり判定用ブロックのテクスチャ
-    }
-
-    for (drawnum = 0; drawnum < 1500; drawnum++)//最大値は3000くらい
-    {
-        this->blockdraw[drawnum]->Init(L"Asset/block.png");//描画用ブロックのテクスチャ
-    }
     //--------------------------------------------------------------------------
     //		描画関連の初期化
     //--------------------------------------------------------------------------	
@@ -223,81 +246,6 @@ void	Stage_5::Initialize(void)
             }
         }
     }
-
-    // オブジェクトの座標を設定
-    this->background->SetPos(0.0f, 0.0f, 0.0f);
-    this->player->SetPos(0.0f, -100.0f, 0.0f);
-
-    this->block[0]->SetPos(BlockPos00.x, BlockPos00.y, 0.0f);//当たり判定用ブロックの座標設定
-    this->block[1]->SetPos(BlockPos01.x, BlockPos01.y, 0.0f);//当たり判定用ブロックの座標設定
-    this->block[2]->SetPos(BlockPos02.x, BlockPos02.y, 0.0f);//当たり判定用ブロックの座標設定
-    this->block[3]->SetPos(BlockPos03.x, BlockPos03.y, 0.0f);//当たり判定用ブロックの座標設定
-    this->block[4]->SetPos(BlockPos04.x, BlockPos04.y, 0.0f);//当たり判定用ブロックの座標設定
-    this->block[5]->SetPos(BlockPos05.x, BlockPos05.y, 0.0f);//当たり判定用ブロックの座標設定
-
-    this->hook[0]->SetPos(HookPos00.x, HookPos00.y, 0.0f);//フックの当たり判定用ブロックの座標設定
-    this->hook[1]->SetPos(HookPos01.x, HookPos01.y, 0.0f);//フックの当たり判定用ブロックの座標設定
-    this->hook[2]->SetPos(HookPos02.x, HookPos02.y, 0.0f);//フックの当たり判定用ブロックの座標設定
-    this->hook[3]->SetPos(HookPos03.x, HookPos03.y, 0.0f);//フックの当たり判定用ブロックの座標設定
-    this->hook[4]->SetPos(HookPos04.x, HookPos04.y, 0.0f);//フックの当たり判定用ブロックの座標設定
-    this->hook[5]->SetPos(HookPos05.x, HookPos05.y, 0.0f);//フックの当たり判定用ブロックの座標設定
-    this->hook[6]->SetPos(HookPos06.x, HookPos06.y, 0.0f);//フックの当たり判定用ブロックの座標設定
-    
-    this->rail[0]->SetPos(RailPos00.x, RailPos00.y, 0.0f);//レール当たり判定用ブロックの座標設定
-    this->rail[1]->SetPos(RailPos01.x, RailPos01.y, 0.0f);//レール当たり判定用ブロックの座標設定
-    this->rail[2]->SetPos(RailPos02.x, RailPos02.y, 0.0f);//レール当たり判定用ブロックの座標設定
-
-    this->YoyoObject[0]->SetPos(YoyoPos00.x, YoyoPos00.y, 0.0f);//ヨーヨーの当たり判定用ブロックの座標設定
-    this->YoyoObject[1]->SetPos(YoyoPos01.x, YoyoPos01.y, 0.0f);//ヨーヨーの当たり判定用ブロックの座標設定
-
-    this->pendulum->SetPos(YoyoPos01.x, YoyoPos01.y, 0.0f); // 振り子の初期位置を設定
-    this->grabbox->SetPos(GrabboxPos.x, GrabboxPos.y, 0.0f);//当たり判定用ブロックの座標設定
-
-    this->goal->SetPos(GoalPos.x, GoalPos.y, 0.0f);//当たり判定用ブロックの座標設定
-
-
-    for (drawnum = 0; drawnum < 1500; drawnum++)
-    {
-        this->blockdraw[drawnum]->SetPos(0.0f, -10000.0f, 0.0f);//描画用ブロックの座標設定
-    }
-
-    //オブジェクトのサイズを設定
-    this->background->SetSize(1920.0f, 1080.0f, 0.0f);
-    this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
-
-    this->block[0]->SetSize(BlockSize00.x, BlockSize00.y, 0.0f);//当たり判定用ブロックの大きさ設定
-    this->block[1]->SetSize(BlockSize01.x, BlockSize01.y, 0.0f);//当たり判定用ブロックの大きさ設定
-    this->block[2]->SetSize(BlockSize02.x, BlockSize02.y, 0.0f);//当たり判定用ブロックの大きさ設定
-    this->block[3]->SetSize(BlockSize03.x, BlockSize03.y, 0.0f);//当たり判定用ブロックの大きさ設定
-    this->block[4]->SetSize(BlockSize04.x, BlockSize04.y, 0.0f);//当たり判定用ブロックの大きさ設定
-    this->block[5]->SetSize(BlockSize05.x, BlockSize05.y, 0.0f);//当たり判定用ブロックの大きさ設定
-
-    this->hook[0]->SetSize(HookSize00.x, HookSize00.y, 0.0f);//フックの当たり判定用ブロックの大きさ設定
-    this->hook[1]->SetSize(HookSize01.x, HookSize01.y, 0.0f);//フックの当たり判定用ブロックの大きさ設定
-    this->hook[2]->SetSize(HookSize02.x, HookSize02.y, 0.0f);//フックの当たり判定用ブロックの大きさ設定
-    this->hook[3]->SetSize(HookSize03.x, HookSize03.y, 0.0f);//フックの当たり判定用ブロックの大きさ設定
-    this->hook[4]->SetSize(HookSize04.x, HookSize04.y, 0.0f);//フックの当たり判定用ブロックの大きさ設定
-    this->hook[5]->SetSize(HookSize05.x, HookSize05.y, 0.0f);//フックの当たり判定用ブロックの大きさ設定
-    this->hook[6]->SetSize(HookSize06.x, HookSize06.y, 0.0f);//フックの当たり判定用ブロックの大きさ設定
-
-    this->rail[0]->SetSize(RailSize00.x, RailSize00.y, 0.0f);//当たり判定用ブロックの大きさ設定
-    this->rail[1]->SetSize(RailSize01.x, RailSize01.y, 0.0f);//当たり判定用ブロックの大きさ設定
-    this->rail[2]->SetSize(RailSize02.x, RailSize02.y, 0.0f);//当たり判定用ブロックの大きさ設定
- 
-    this->YoyoObject[0]->SetSize(YoyoSize00.x, YoyoSize00.y, 0.0f);//当たり判定用ブロックの大きさ設定
-    this->YoyoObject[1]->SetSize(YoyoSize01.x, YoyoSize01.y, 0.0f);//当たり判定用ブロックの大きさ設定
-
-    this->pendulum->SetSize(YoyoSize01.x, YoyoSize01.y, 0.0f);//当たり判定用ブロックの大きさ設定
-    this->grabbox->SetSize(GrabboxSize.x, GrabboxSize.y, 0.0f);//当たり判定用ブロックの大きさ設定
-
-    this->goal->SetSize(GoalSize.x, GoalSize.y, 0.0f);//当たり判定用ブロックの大きさ設定
-
-
-    for (drawnum = 0; drawnum < 1500; drawnum++)
-    {
-        this->blockdraw[drawnum]->SetSize(100.0f, 100.0f, 0.0f);//描画用ブロックの大きさ設定
-    }
-    */
 }
 
 /**	@brief 	シーン全体の更新
@@ -305,46 +253,51 @@ void	Stage_5::Initialize(void)
 void	Stage_5::Update(void)
 {
     this->p_input->Update();
-    p_input->GetLeftAnalogStick();
 
-    /*
+    p_input->GetLeftAnalogStick();
+    this->player->SetPos(playerPos.x, playerPos.y, playerPos.z);
+
     //----------------------------------------------
     // Creative Mode
     //----------------------------------------------
     if (gamemode == 0)
     {
+
         if (p_input->GetLeftAnalogStick().x * 10.0f <= 2.0f && p_input->GetLeftAnalogStick().x * 10.0f >= -2.0f)
         {
-            CameraPos.x += 0.0f;
+            this->player->SetPos(playerPos.x + 0.0f, playerPos.y, playerPos.z);
         }
         else
         {
-            CameraPos.x += p_input->GetLeftAnalogStick().x * 10.0f;
+            float movePosX = this->p_input->GetLeftAnalogStick().x * 10.0f;
+            this->player->SetPos(playerPos.x + movePosX, playerPos.y, playerPos.z);
+
         }
         if (p_input->GetLeftAnalogStick().y * 10.0f <= 2.0f && p_input->GetLeftAnalogStick().y * 10.0f >= -2.0f)
         {
-            CameraPos.y += 0.0f;
+            this->player->SetPos(playerPos.x, playerPos.y + 0.0f, playerPos.z);
         }
         else
         {
-            CameraPos.y += p_input->GetLeftAnalogStick().y * 10.0f;
+            float movePosX = this->p_input->GetLeftAnalogStick().y * 10.0f;
+            this->player->SetPos(playerPos.x, playerPos.y + movePosX, playerPos.z);
         }
 
         if (this->p_input->Press("LEFT"))
         {
-            CameraPos.x -= 20.0f;
+            playerPos.x -= 20.0f;
         }
         if (this->p_input->Press("RIGHT"))
         {
-            CameraPos.x += 20.0f;
+            playerPos.x += 20.0f;
         }
         if (this->p_input->Press("UP"))
         {
-            CameraPos.y += 20.0f;
+            playerPos.y += 20.0f;
         }
         if (this->p_input->Press("DOWN"))
         {
-            CameraPos.y -= 20.0f;
+            playerPos.y -= 20.0f;
         }
 
         if (this->p_input->Press("SPACE"))
@@ -358,154 +311,71 @@ void	Stage_5::Update(void)
     //----------------------------------------------
     if (gamemode == 1)
     {
-        if (GrabFlg == false)
+
+        if (p_input->GetLeftAnalogStick().x * 10.0f <= 2.0f && p_input->GetLeftAnalogStick().x * 10.0f >= -2.0f)
         {
-            if (StayGround == false && JumpState != 2)
-            {
-                CameraPos.y -= 10.0f;
-            }
-
-            if (this->p_input->Press("LEFT"))
-            {
-                CameraPos.x -= 10.0f;
-            }
-
-            if (this->p_input->Press("RIGHT"))
-            {
-                CameraPos.x += 10.0f;
-            }
+            this->player->SetPos(playerPos.x + 0.0f, playerPos.y, playerPos.z);
         }
+        else
+        {
+            float movePosX = this->p_input->GetLeftAnalogStick().x * 10.0f;
+            this->player->SetPos(playerPos.x + movePosX, playerPos.y, playerPos.z);
+
+        }
+        if (p_input->GetLeftAnalogStick().y * 10.0f <= 2.0f && p_input->GetLeftAnalogStick().y * 10.0f >= -2.0f)
+        {
+            this->player->SetPos(playerPos.x, playerPos.y + 0.0f, playerPos.z);
+        }
+        else
+        {
+            float movePosX = this->p_input->GetLeftAnalogStick().y * 10.0f;
+            this->player->SetPos(playerPos.x, playerPos.y + movePosX, playerPos.z);
+        }
+
+        if (this->p_input->Press("LEFT"))
+        {
+            playerPos.x -= 10.0f;
+        }
+        if (this->p_input->Press("RIGHT"))
+        {
+            playerPos.x += 10.0f;
+        }
+
+
         if (this->p_input->Press("SPACE") && JumpState == 0)
         {
             JumpState = 1;
             this->grabbox->Release();
             GrabFlg = false;
         }
-            if (ColliderState == 3)
+        if (ColliderState == 2)
+        {
+            if (this->p_input->Press("UP"))
             {
-                if (this->p_input->Press("UP"))
-                {
-                    //掴まる処理
-                    this->grabbox->Grab(player);
-                    GrabFlg = true;
-                    JumpState = 0;
-                }
-            }
-
-            if (this->p_input->Press("DOWN"))
-            {
-                //オブジェクトを離す処理
-                this->grabbox->Release();
-                GrabFlg = false;
-            }
-            if (this->p_input->Press("SHIFT"))
-            {
-                gamemode = 0;
+                //掴まる処理
+                this->grabbox->Grab(player);
+                GrabFlg = true;
+                JumpState = 0;
             }
         }
 
-
-    //-----------------------------------------------------
-    //  座標更新
-    //-----------------------------------------------------
-    //全てのブロックの座標は(BlockPosXX.x - CameraPos.x, BlockPosXX.y - CameraPos.yが必要です。
-
-    //当たり判定用ブロックの座標更新
-
-    this->block[0]->SetPos(BlockPos00.x - CameraPos.x, BlockPos00.y - CameraPos.y, 0.0f);
-    this->block[1]->SetPos(BlockPos01.x - CameraPos.x, BlockPos01.y - CameraPos.y, 0.0f);
-    this->block[2]->SetPos(BlockPos02.x - CameraPos.x, BlockPos02.y - CameraPos.y, 0.0f);
-    this->block[3]->SetPos(BlockPos03.x - CameraPos.x, BlockPos03.y - CameraPos.y, 0.0f);
-    this->block[4]->SetPos(BlockPos04.x - CameraPos.x, BlockPos04.y - CameraPos.y, 0.0f);
-    this->block[5]->SetPos(BlockPos05.x - CameraPos.x, BlockPos05.y - CameraPos.y, 0.0f);
-
-    this->hook[0]->SetPos(HookPos00.x - CameraPos.x, HookPos00.y - CameraPos.y, 0.0f);
-    this->hook[1]->SetPos(HookPos01.x - CameraPos.x, HookPos01.y - CameraPos.y, 0.0f);
-    this->hook[2]->SetPos(HookPos02.x - CameraPos.x, HookPos02.y - CameraPos.y, 0.0f);
-    this->hook[3]->SetPos(HookPos03.x - CameraPos.x, HookPos03.y - CameraPos.y, 0.0f);
-    this->hook[4]->SetPos(HookPos04.x - CameraPos.x, HookPos04.y - CameraPos.y, 0.0f);
-    this->hook[5]->SetPos(HookPos05.x - CameraPos.x, HookPos05.y - CameraPos.y, 0.0f);
-    this->hook[6]->SetPos(HookPos06.x - CameraPos.x, HookPos06.y - CameraPos.y, 0.0f);
-    
-    this->rail[0]->SetPos(RailPos00.x - CameraPos.x, RailPos00.y - CameraPos.y, 0.0f);
-    this->rail[1]->SetPos(RailPos01.x - CameraPos.x, RailPos01.y - CameraPos.y, 0.0f);
-    this->rail[2]->SetPos(RailPos02.x - CameraPos.x, RailPos02.y - CameraPos.y, 0.0f);
-
-    this->YoyoObject[0]->SetPos(YoyoPos00.x - CameraPos.x, YoyoPos00.y - CameraPos.y, 0.0f);
-    this->YoyoObject[1]->SetPos(YoyoPos01.x - CameraPos.x, YoyoPos01.y - CameraPos.y, 0.0f);
-
-    this->grabbox->SetPos(GrabboxPos.x - CameraPos.x, GrabboxPos.y - CameraPos.y, 0.0f);
-
-    this->goal->SetPos(GoalPos.x - CameraPos.x, GoalPos.y - CameraPos.y, 0.0f);
-
-    if (GrabFlg)
-    {
-        this->CameraPos = this->GrabboxPos;
-    }
-
-    //描画用ブロックの座標更新
-
-    posx = 0.0f;
-    posy = 0.0f;
-    for (drawnum = 0; drawnum < 9; drawnum++)//当たり判定ブロックのblock[0]の範囲で小ブロックを描画
-    {
-        this->blockdraw[drawnum]->SetPos(-1100.0f + posx - CameraPos.x, -350.0f + posy - CameraPos.y, 0.0f);
-        posx += 100.0f;
-    }
-
-    posx = 0.0f;
-    posy = 0.0f;
-    for (drawnum = 9; drawnum < 15; drawnum++)//当たり判定ブロックのblock[0]の範囲で小ブロックを描画
-    {
-        this->blockdraw[drawnum]->SetPos(1450.0f + posx - CameraPos.x, -350.0f + posy - CameraPos.y, 0.0f);
-        posx += 100.0f;
-    }
-
-    posx = 0.0f;
-    posy = 0.0f;
-    for (drawnum = 15; drawnum < 51; drawnum++)//当たり判定ブロックのblock[0]の範囲で小ブロックを描画
-    {
-        if (drawnum == 24 || drawnum == 33 || drawnum == 42)
+        if (this->p_input->Press("DOWN"))
         {
-            posy += 100.0f;
-            posx = 0.0f;
+            //オブジェクトを離す処理
+            this->grabbox->Release();
+            GrabFlg = false;
         }
-        this->blockdraw[drawnum]->SetPos(2050.0f + posx - CameraPos.x, -350.0f + posy - CameraPos.y, 0.0f);
-        posx += 100.0f;
-    }
 
-    posx = 0.0f;
-    posy = 0.0f;
-    for (drawnum = 51; drawnum < 71; drawnum++)//当たり判定ブロックのblock[0]の範囲で小ブロックを描画
-    {
-        if (drawnum == 56 || drawnum == 61 || drawnum == 66)
+        if (this->p_input->Press("SHIFT"))
         {
-            posy += 100.0f;
-            posx = 0.0f;
+            gamemode = 0;
         }
-        this->blockdraw[drawnum]->SetPos(750.0f + posx - CameraPos.x, 1400.0f + posy - CameraPos.y, 0.0f);
-        posx += 100.0f;
-    }
 
-    posx = 0.0f;
-    posy = 0.0f;
-    for (drawnum = 71; drawnum < 77; drawnum++)//当たり判定ブロックのblock[0]の範囲で小ブロックを描画
-    {
-        this->blockdraw[drawnum]->SetPos(1250.0f + posx - CameraPos.x, 1400.0f + posy - CameraPos.y, 0.0f);
-        posx += 100.0f;
-    }
-
-    posx = 0.0f;
-    posy = 0.0f;
-    for (drawnum = 77; drawnum < 99; drawnum++)//当たり判定ブロックのblock[0]の範囲で小ブロックを描画
-    {
-        if (drawnum == 88)
+        if (StayGround == false && JumpState != 2 && !GrabFlg)
         {
-            posy += 100.0f;
-            posx = 0.0f;
+            playerPos.y -= 10.0f;
         }
-        this->blockdraw[drawnum]->SetPos(750.0f + posx - CameraPos.x, 3000.0f + posy - CameraPos.y, 0.0f);
-        posx += 100.0f;
+
     }
 
 
@@ -514,7 +384,7 @@ void	Stage_5::Update(void)
     {
         if (cnt != 25)
         {
-            CameraPos.y += 25.0f;
+            playerPos.y += 25.0f;
             cnt++;
         }
         else
@@ -537,16 +407,17 @@ void	Stage_5::Update(void)
         }
     }
 
+
     //-----------------------------------
     //フックの移動処理
-    if (MoveHookFLG[0])//右フックの移動処理
+    if (MoveHookFLG[0])
     {
         if (TurnBackFLG[0])
         {
             HookPos00.y -= HookMoveSpeed;
             HookCnt[0]++;
 
-            if (HookCnt[0] == 150)
+            if (HookCnt[0] == 125)
             {
                 TurnBackFLG[0] = false;
             }
@@ -562,19 +433,22 @@ void	Stage_5::Update(void)
                 TurnBackFLG[0] = true;
             }
         }
+        this->hook[0]->SetPos(HookPos00.x, HookPos00.y, 0.0f);
     }
 
-    if (MoveHookFLG[1])//空中右フックの移動処理
+    //フックの移動処理
+    if (MoveHookFLG[1])
     {
         if (TurnBackFLG[1])
         {
             HookPos03.x += HookMoveSpeed;
             HookCnt[1]++;
 
-            if (HookCnt[1] == 150)
+            if (HookCnt[1] == 125)
             {
                 TurnBackFLG[1] = false;
             }
+
         }
         else
         {
@@ -586,23 +460,25 @@ void	Stage_5::Update(void)
                 TurnBackFLG[1] = true;
             }
         }
+        this->hook[3]->SetPos(HookPos03.x, HookPos03.y, 0.0f);
     }
 
-    if (MoveHookFLG[2])//空中左フック下の移動処理
+    if (MoveHookFLG[2])
     {
         if (TurnBackFLG[2])
         {
-            HookPos04.y -= HookMoveSpeed;
+            HookPos05.y -= HookMoveSpeed;
             HookCnt[2]++;
 
-            if (HookCnt[2] == 100)
+            if (HookCnt[2] == 125)
             {
                 TurnBackFLG[2] = false;
             }
+
         }
         else
         {
-            HookPos04.y += HookMoveSpeed;
+            HookPos05.y += HookMoveSpeed;
             HookCnt[2]--;
 
             if (HookCnt[2] == 0)
@@ -610,6 +486,7 @@ void	Stage_5::Update(void)
                 TurnBackFLG[2] = true;
             }
         }
+        this->hook[5]->SetPos(HookPos05.x, HookPos05.y, 0.0f);
     }
     //-----------------------------------
     //ヨーヨーの動き処理
@@ -617,9 +494,8 @@ void	Stage_5::Update(void)
     if (YoyoTurnFLG[0])
     {
         GrabboxPos.x -= YoyoMoveSpeed;
-        YoyoPos01.x -= YoyoMoveSpeed;
         YoyoCntX++;
-        if (YoyoCntX == 120)
+        if (YoyoCntX == 250)
         {
             YoyoTurnFLG[0] = false;
         }
@@ -627,7 +503,6 @@ void	Stage_5::Update(void)
     else
     {
         GrabboxPos.x += YoyoMoveSpeed;
-        YoyoPos01.x += YoyoMoveSpeed;
         YoyoCntX--;
         if (YoyoCntX == 0)
         {
@@ -638,18 +513,16 @@ void	Stage_5::Update(void)
     //縦の動き
     if (YoyoTurnFLG[1])
     {
-        GrabboxPos.y -= YoyoMoveSpeed;
-        YoyoPos01.y -= YoyoMoveSpeed;
+        GrabboxPos.y -= YoyoMoveSpeed / 2;
         YoyoCntY++;
-        if (YoyoCntY == 60)
+        if (YoyoCntY == 125)
         {
             YoyoTurnFLG[1] = false;
         }
     }
     else
     {
-        GrabboxPos.y += YoyoMoveSpeed;
-        YoyoPos01.y += YoyoMoveSpeed;
+        GrabboxPos.y += YoyoMoveSpeed / 2;
         YoyoCntY--;
         if (YoyoCntY == 0)
         {
@@ -659,110 +532,94 @@ void	Stage_5::Update(void)
     //-----------------------------------
     if (GrabFlg)
     {
-        this->grabbox->Move(grabbox->GetPos());
+        playerPos = GrabboxPos;
+        this->grabbox->Move(pendulum->GetPos());
     }
 
     //-----------------------------------
     //Collider更新
     //-----------------------------------
     this->player->SetColliderSize(DirectX::XMFLOAT3(PlayerSize.x, PlayerSize.y, 0.0f));
-    
-    this->block[0]->SetColliderSize(DirectX::XMFLOAT3(BlockSize00.x, BlockSize00.y, 0.0f));
-    this->block[1]->SetColliderSize(DirectX::XMFLOAT3(BlockSize01.x, BlockSize01.y, 0.0f));
-    this->block[2]->SetColliderSize(DirectX::XMFLOAT3(BlockSize02.x, BlockSize02.y, 0.0f));
-    this->block[3]->SetColliderSize(DirectX::XMFLOAT3(BlockSize03.x, BlockSize03.y, 0.0f));
-    this->block[4]->SetColliderSize(DirectX::XMFLOAT3(BlockSize04.x, BlockSize04.y, 0.0f));
-    this->block[5]->SetColliderSize(DirectX::XMFLOAT3(BlockSize05.x, BlockSize05.y, 0.0f));
-
-    this->rail[0]->SetColliderSize(DirectX::XMFLOAT3(RailSize00.x, RailSize00.y, 0.0f));
-    this->rail[1]->SetColliderSize(DirectX::XMFLOAT3(RailSize01.x, RailSize01.y, 0.0f));
-    this->rail[2]->SetColliderSize(DirectX::XMFLOAT3(RailSize02.x, RailSize02.y, 0.0f));
-    
-    this->YoyoObject[0]->SetColliderSize(DirectX::XMFLOAT3(YoyoSize00.x, YoyoSize00.y, 0.0f));
-    //this->YoyoObject[1]->SetColliderSize(DirectX::XMFLOAT3(YoyoSize01.x, YoyoSize01.y, 0.0f));
-
-    this->pendulum->SetColliderSize(DirectX::XMFLOAT3(YoyoSize01.x, YoyoSize01.y, 0.0f));
+ 
+    this->pendulum->SetColliderSize(DirectX::XMFLOAT3(GrabboxSize.x, GrabboxSize.y, 0.0f));
 
     this->grabbox->SetColliderSize(DirectX::XMFLOAT3(GrabboxSize.x, GrabboxSize.y, 0.0f));
 
     this->goal->SetColliderSize(DirectX::XMFLOAT3(GoalSize.x, GoalSize.y, 0.0f));
 
-    auto& col1 = player->GetCollider();
-    auto& colgoal = goal->GetCollider();
-    auto& colYoyo = pendulum->GetCollider();
+    for (int n = 0; n < 6; n++)
+    {
+        this->hook[n]->SetColliderSize(DirectX::XMFLOAT3(HookSize.x, HookSize.y, 0.0f));
+    }
 
-    std::vector<std::reference_wrapper<BaseCollider>> colblock = {//当たり判定を入れる
-         block[0]->GetCollider(),
-         block[1]->GetCollider(),
-         block[2]->GetCollider(),
-         block[3]->GetCollider(),
-         block[4]->GetCollider(),
-         block[5]->GetCollider(),
-    };
-
-    std::vector<std::reference_wrapper<BaseCollider>> colHook = {//当たり判定を入れる
-         hook[0]->GetCollider(),
-         hook[1]->GetCollider(),
-         hook[2]->GetCollider(),
-         hook[3]->GetCollider(),
-         hook[4]->GetCollider(),
-         hook[5]->GetCollider(),
-         hook[6]->GetCollider(),
-    };
-
-
+    // タイルマップとの衝突判定
     ColliderState = 0;
     StayGround = false;
-    for (BlockNumber = 0; BlockNumber < 6; BlockNumber++)//当たり判定用ブロックの数
+    auto& playerColl = this->player->GetCollider();
+    auto& goalColl = this->goal->GetCollider();
+    auto& tiles = this->p_tileMap->GetTiles();
+
+    auto& HookColl1 = this->hook[0]->GetCollider();
+    auto& HookColl2 = this->hook[1]->GetCollider();
+    auto& HookColl3 = this->hook[2]->GetCollider();
+    auto& HookColl4 = this->hook[3]->GetCollider();
+    auto& HookColl5 = this->hook[4]->GetCollider();
+    auto& HookColl6 = this->hook[5]->GetCollider();
+    auto& HookColl7 = this->hook[6]->GetCollider();
+
+    auto& pendColl = this->pendulum->GetCollider();
+
+
+    for (auto& tile : tiles)
     {
-        if (col1.CheckCollision(colblock[BlockNumber]))
+        auto& tileColl = tile->GetCollider();
+        if (playerColl.CheckCollision(tileColl))
         {
+            //std::cout << "当たった" << std::endl;
             StayGround = true;
         }
     }
 
-    for (HookNumber = 0; HookNumber < 7; HookNumber++)
+    if (playerColl.CheckCollision(pendColl))
     {
-        if (col1.CheckCollision(colHook[HookNumber]))
+        //std::cout << "当たった" << std::endl;
+        ColliderState = 2;
+    }
+
+    if (playerColl.CheckCollision(HookColl1) || playerColl.CheckCollision(HookColl2) || playerColl.CheckCollision(HookColl3) || playerColl.CheckCollision(HookColl4) || playerColl.CheckCollision(HookColl5) || playerColl.CheckCollision(HookColl6) || playerColl.CheckCollision(HookColl7))
+    {
+        //std::cout << "当たった" << std::endl;
+        ColliderState = 3;
+        if (playerColl.CheckCollision(HookColl1))
         {
-            ColliderState = 2;
-            switch (HookNumber)
-            {
-            case 0:
-                MoveHookFLG[0] = true;
-                break;
-
-            case 3:
-                MoveHookFLG[1] = true;
-                break;
-
-            case 4:
-                MoveHookFLG[2] = true;
-                break;
-            }
+            MoveHookFLG[0] = true;
+        }
+        if (playerColl.CheckCollision(HookColl4))
+        {
+            MoveHookFLG[1] = true;
+        }
+        if (playerColl.CheckCollision(HookColl6))
+        {
+            MoveHookFLG[2] = true;
         }
     }
 
-    if (col1.CheckCollision(colYoyo))
+    if (playerColl.CheckCollision(goalColl))
     {
-        ColliderState = 3;
-    }
-
-    if (col1.CheckCollision(colgoal))
-    {
+        //std::cout << "当たった" << std::endl;
         ColliderState = 4;
     }
 
     if (gamemode == 0)//Creative Mode
     {
-        if (StayGround == true)//if StayGround == true ->赤になる
+        if (StayGround == 1)//if StayGround == true ->赤になる
         {
             player->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
             JumpState = 0;
         }
-        else if (ColliderState == 2)//if ColliderState == 2 ->紫になる
+        else if (ColliderState == 2)//if ColliderState == 2 ->緑になる
         {
-            player->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 1.0f, 1.0f));
+            player->SetColor(DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f));
         }
         else if (ColliderState == 3)//if ColliderState == 3 ->ピンクになる
         {
@@ -779,14 +636,14 @@ void	Stage_5::Update(void)
     }
     if (gamemode == 1)//Player Mode
     {
-        if (StayGround == true)//if ColliderState == 1 ->赤になる
+        if (StayGround == 1)//if StayGround == true ->赤になる
         {
             player->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 0.0f, 1.0f));
             JumpState = 0;
         }
-        else if (ColliderState == 2)//if ColliderState == 2 ->紫になる
+        else if (ColliderState == 2)//if ColliderState == 2 ->緑になる
         {
-            player->SetColor(DirectX::XMFLOAT4(1.0f, 0.0f, 1.0f, 1.0f));
+            player->SetColor(DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f));
         }
         else if (ColliderState == 3)//if ColliderState == 3 ->ピンクになる
         {
@@ -802,19 +659,23 @@ void	Stage_5::Update(void)
         }
     }
     this->background->Update();
+    this->p_tileMap->Update();
     this->player->Update();
     this->goal->Update();
     this->pendulum->Update();
     this->grabbox->Update();
 
-    for (n = 0; n < 6; n++)//Updateの数
-    {
-        this->block[n]->Update();
-    }
+    // カメラの更新
+    this->p_camera->Update();
 
     for (n = 0; n < 7; n++)//Updateの数
     {
         this->hook[n]->Update();
+    }
+
+    for (n = 0; n < 3; n++)//Updateの数
+    {
+        this->rail[n]->Update();
     }
 
     for (n = 0; n < 2; n++)//Updateの数
@@ -822,22 +683,20 @@ void	Stage_5::Update(void)
         this->YoyoObject[n]->Update();
     }
 
-    for (drawnum = 0; drawnum < 100; drawnum++)//Updateの数
-    {
-        this->blockdraw[drawnum]->Update();
+    //振り子の座標更新は振り子のアップデート後に行わないとおかしくなるため移動
+    this->pendulum->SetPos(GrabboxPos.x, GrabboxPos.y, 0.0f);
 
+    if (ColliderState == 4)
+    {
+        p_sceneManager->ChangeScene(Scene::Stage_6);
     }
 
-    //振り子の座標更新は振り子のアップデート後に行わないとプレイヤーに追従するためここへ移動
-    this->pendulum->SetPos(YoyoPos01.x - CameraPos.x, YoyoPos01.y - CameraPos.y, 0.0f);
-    */
 }
 
 /**	@brief 	シーン全体の描画
 */
 void	Stage_5::Draw(void)
 {
-
     //--------------------------------------------------------------------------
     //		描画関連(そんな頻繁に変えることはないと思う)
     //--------------------------------------------------------------------------	
@@ -863,18 +722,14 @@ void	Stage_5::Draw(void)
     // ブレンドステートをセット
     deviceContext->OMSetBlendState(this->p_brendState, NULL, 0xfffffffff);
 
-    /*
     //--------------------------------------------------------------------------
     //		オブジェクトの描画
     //--------------------------------------------------------------------------
     this->background->Draw();
+    this->p_tileMap->Draw();
     this->goal->Draw();
     this->YoyoObject[0]->Draw();
     this->pendulum->Draw();
-    for (n = 0; n < 6; n++)//当たり判定用ブロック描画
-    {
-        this->block[n]->Draw();
-    }
 
     for (n = 0; n < 3; n++)//当たり判定用ブロック描画
     {
@@ -886,23 +741,13 @@ void	Stage_5::Draw(void)
         this->hook[n]->Draw();
     }
 
-
-    for (drawnum = 0; drawnum < 100; drawnum++)//描画用ブロック描画
-    {
-        this->blockdraw[drawnum]->Draw();
-
-    }
-
-    this->player->Draw();*/
+    this->player->Draw();
 }
 
 /**	@brief 	シーン全体の終了処理
 */
 void	Stage_5::Finalize(void)
 {
-    // BGM
-    this->p_sound->Stop(SOUND_LABEL::BGM_GAME);
-
     //--------------------------------------------------------------------------
    //		描画関連
    //--------------------------------------------------------------------------	
@@ -920,12 +765,7 @@ void	Stage_5::Finalize(void)
     SAFE_DELETE(this->pendulum);
     SAFE_DELETE(this->grabbox);//Delete Object
 
-    for (n = 0; n < 100; n++)
-    {
-        SAFE_DELETE(this->block[n]);
-    }
-
-    for (n = 0; n < 5; n++)
+    for (n = 0; n < 7; n++)
     {
         SAFE_DELETE(this->hook[n]);
     }
@@ -940,12 +780,6 @@ void	Stage_5::Finalize(void)
         SAFE_DELETE(this->YoyoObject[n]);
     }
 
-    for (drawnum = 0; drawnum < 1500; drawnum++)
-    {
-        SAFE_DELETE(this->blockdraw[drawnum]);
-
-
-    }
     SAFE_DELETE(this->player);
 
 }
