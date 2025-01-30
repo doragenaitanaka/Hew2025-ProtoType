@@ -20,6 +20,7 @@ typedef enum
 	SE_PLAYR_FALLDEAD,
 	SE_PLAYR_FALLDOWN,
 	SE_PLAYR_MOVEHOOK,
+	SE_PLAYR_STRETCH,
 	SE_PLAYR_VIVRATION,
 	SE_PLAYR_PENSHOT,
 
@@ -75,6 +76,9 @@ private:
 
 		// PlayerレールSE（ループしない場合false設定）
 		{"Asset/SE/HookRail.wav", false},
+
+		// PlayerストレッチSE（ループしない場合false設定）
+		{"Asset/SE/nobiru.wav", false},
 
 		// Player千切れて死にそうな時になるSE（ループしない場合false設定）
 		{"Asset/SE/vibration.wav", false},
