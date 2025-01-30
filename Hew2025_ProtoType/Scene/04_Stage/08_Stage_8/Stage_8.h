@@ -7,13 +7,20 @@
 //インクルード
 #include"../../00_BaseScene/BaseScene.h"
 #include"../../../Library/Code/self/02_SceneManager/SceneManager.h"
+#include"../../../Library/Code/self/imagawa_Input/input.h"
+#include"../../../Library/Code/self/06_TileMap/TileMap.h"
+#include"../../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
+
 #include"../../../Library/Code/self/10_Object/Object.h"
 #include"../../../Library/Code/self/11_Player/Player.h"
-#include"../../../Library/Code/self/imagawa_Input/input.h"
+#include"../../../Library/Code/self/16_Background/Background.h"
+
 #include"../../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
+
+#include<array>
 /**	@file	Stage_8.h
 *	@brief	起動時にロゴとか出るシーン
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している
@@ -43,32 +50,62 @@ public:
 	*/
 	void	Finalize(void)override;
 
-	//座標
+	XMFLOAT2 PlayerSize = { 200.0f,200.0f };//サイズ
 
-	XMFLOAT2 CameraPos = { -700.0f, -150.0f };
+	//ゴール
+	XMFLOAT2 GoalPos = { 100.0f,-120.0f }; 
+	XMFLOAT2 GoalSize = { 200.0f,300.0f };
 
-	XMFLOAT2 BlockPos00 = { 0.0f,-350.0f };
+	// フックの座標
+	std::array<XMFLOAT2, 5>HookPos = {
+		XMFLOAT2(800.0f,-3750.0f),	//左フック
+		XMFLOAT2(3820.0f, -2750.0f),	//右フック
+		XMFLOAT2(4580.0f,-1600.0f),	//ゴール横
+		XMFLOAT2(2150.0f,-1250.0f),	//ゴール横
+		XMFLOAT2(620.0f,-160.0f),	//ゴール横
+	};
+	// フックのサイズ
+	std::array<XMFLOAT2, 5>HookSize = {
+		XMFLOAT2(150.0f, 220.0f),
+		XMFLOAT2(150.0f, 220.0f),
+		XMFLOAT2(150.0f, 220.0f),
+		XMFLOAT2(150.0f, 220.0f),
+		XMFLOAT2(150.0f, 220.0f),
+	};
 
-	//サイズ
-
-	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
-
-	XMFLOAT2 BlockSize00 = { 8000.0f,100.0f };
-
-	int gamemode = 0;
-
-	float posx = 0.0f;
-	float posy = 0.0f;
-	int drawnum = 0;//描画用のブロックの番号
-	int n = 0;	//当たり判定用のブロックの番号
-	int BlockNumber = 0;
-	int ColliderState = 0;
+	// フックの座標
+	std::array<XMFLOAT2, 2>PushObjectPos = {
+		XMFLOAT2(3450.0f,-1120.0f),	
+		XMFLOAT2(1300.0f, -3620.0f),	
+	};
+	
+	// フックのサイズ
+	std::array<XMFLOAT2, 2>PushObjectSize = {
+		XMFLOAT2(500.0f,950.0f),
+		XMFLOAT2(500.0f,950.0f)
+	};
 private:
-	Input input;
+	int gamemode = 0;
+	int n = 0;
+	int ColliderState = 0;
+	int cnt = 0;
+	int HookNumber = 0;
+	int PushNumber = 0;
+	int JumpState = 0;
+	bool StayGround = false;//地面に触れているかの判定
+
+	TrackingCamera* p_camera;	// カメラ
+	TileMap* p_tileMap;			//タイルマップ
+	//Input input;
+
 	Object* background;
 	Player* player;
-	Object* block[100];
-	Object* blockdraw[10000];
+	Object* hook[5];
+	Object* PushObject[2];
+	Object* goal;
+
+	//Object* block[100];
+	//Object* blockdraw[10000];
 
 	//--------------------------------------------------------------------------
 	//		描画関連
