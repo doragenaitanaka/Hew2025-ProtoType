@@ -517,6 +517,7 @@ void	Stage_2::Update(void)
         {
             gamemode = 0;
         }
+
         if (ColliderState == 0)
         {
             grabstate = 0;

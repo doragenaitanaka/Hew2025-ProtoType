@@ -129,10 +129,10 @@ public:
 	std::shared_ptr<Object> hookdraw[3];
 
 	XMFLOAT2 PlayerGrabPos = { 0.0f, 0.0f };
-
+	
 	XMFLOAT2 HookPos01 = { 1650.0f,-2570.0f };
-	XMFLOAT2 HookPos02 = { 2350.0f, -1100.0f };
-	XMFLOAT2 HookPos03 = { 1400.0f, -700.0f };
+	XMFLOAT2 HookPos02 = { 2350.0f, -1450.0f };
+	XMFLOAT2 HookPos03 = { 1700.0f, -700.0f };
 
 
 	XMFLOAT2 HookSize01 = { 100.0f, 100.0f };
