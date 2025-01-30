@@ -307,7 +307,7 @@ void	Stage_3::Update(void)
      // リスタート    
     if (this->p_input->Trigger("RETRY"))
     {
-        this->p_sceneManager->ChangeScene(Scene::Stage_2);
+        this->p_sceneManager->ChangeScene(Scene::Stage_3);
         return;
     }
     // タイトルに戻る
@@ -1206,7 +1206,7 @@ void	Stage_3::Update(void)
             superjumpstate = 4;
         }
 
-
+        // 移動フックについていく処理
         if (HookColliderState != -1 && superjumpstate != 1 && grabstate != 2)
         {
 
@@ -1217,11 +1217,13 @@ void	Stage_3::Update(void)
             Vdown = 0;
             Vy = 0;
             this->player->SetPos(hook[HookColliderState]->GetPos().x, hook[HookColliderState]->GetPos().y, playerPos.z);
-            if (HookColliderState == 1)
-            {
-                HookMoveState = 1;
 
-            }
+            // 絶対左に行ってしまうのでコメントアウト
+            //if (HookColliderState == 1)
+            //{
+            //    HookMoveState = 1;
+
+            //}
             HookColliderState = -1;
 
         }
@@ -1231,7 +1233,7 @@ void	Stage_3::Update(void)
             this->p_sound->Play(SOUND_LABEL::SE_PLAYR_MOVEHOOK);
             HookPos02.x -= 8.0f;
         }
-        if (HookPos02.x <= 2200.0f)
+        if (HookPos02.x <= 2100.0f)
         {
             HookMoveState = 2;
         }
@@ -1240,7 +1242,7 @@ void	Stage_3::Update(void)
             this->p_sound->Play(SOUND_LABEL::SE_PLAYR_MOVEHOOK);
             HookPos02.x += 8.0f;
         }
-        if (HookPos02.x >= 5000.0f)
+        if (HookPos02.x >= 4400.0f)// ココ変更
         {
             HookMoveState = 1;
         }

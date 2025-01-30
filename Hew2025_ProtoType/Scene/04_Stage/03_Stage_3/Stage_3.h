@@ -137,7 +137,7 @@ public:
 	XMFLOAT2 PlayerGrabPos = { 0.0f, 0.0f };
 
 	XMFLOAT2 HookPos01 = { 4800.0f, -1600.0f };
-	XMFLOAT2 HookPos02 = { 4300.0f, -1150.0f };
+	XMFLOAT2 HookPos02 = { 4400.0f, -1150.0f };
 	XMFLOAT2 HookPos03 = { 2200.0f, -1670.0f };
 
 	XMFLOAT2 RailPos = { 3250.0f, -1050.0f };
