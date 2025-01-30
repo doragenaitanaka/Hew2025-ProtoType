@@ -59,7 +59,7 @@ void	Stage_5::Initialize(void)
     // BGM
     this->p_sound->Play(SOUND_LABEL::BGM_GAME);
 
-
+    /*
     if (!this->background) { this->background = new Object; }
     if (!this->player) { this->player = new Player; }
     if (!this->goal) { this->goal = new Object; }
@@ -297,6 +297,7 @@ void	Stage_5::Initialize(void)
     {
         this->blockdraw[drawnum]->SetSize(100.0f, 100.0f, 0.0f);//描画用ブロックの大きさ設定
     }
+    */
 }
 
 /**	@brief 	シーン全体の更新
@@ -304,8 +305,9 @@ void	Stage_5::Initialize(void)
 void	Stage_5::Update(void)
 {
     this->p_input->Update();
-
     p_input->GetLeftAnalogStick();
+
+    /*
     //----------------------------------------------
     // Creative Mode
     //----------------------------------------------
@@ -828,7 +830,7 @@ void	Stage_5::Update(void)
 
     //振り子の座標更新は振り子のアップデート後に行わないとプレイヤーに追従するためここへ移動
     this->pendulum->SetPos(YoyoPos01.x - CameraPos.x, YoyoPos01.y - CameraPos.y, 0.0f);
-
+    */
 }
 
 /**	@brief 	シーン全体の描画
@@ -861,6 +863,7 @@ void	Stage_5::Draw(void)
     // ブレンドステートをセット
     deviceContext->OMSetBlendState(this->p_brendState, NULL, 0xfffffffff);
 
+    /*
     //--------------------------------------------------------------------------
     //		オブジェクトの描画
     //--------------------------------------------------------------------------
@@ -890,7 +893,7 @@ void	Stage_5::Draw(void)
 
     }
 
-    this->player->Draw();
+    this->player->Draw();*/
 }
 
 /**	@brief 	シーン全体の終了処理

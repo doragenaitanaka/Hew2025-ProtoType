@@ -41,7 +41,7 @@ void	Stage_8::Initialize(void)
 {    
     // BGM
     this->p_sound->Play(SOUND_LABEL::BGM_GAME);
-
+    /*
     if (!this->background) { this->background = new Object; }
     if (!this->player) { this->player = new Player; }
 
@@ -199,12 +199,14 @@ void	Stage_8::Initialize(void)
     {
         this->blockdraw[drawnum]->SetSize(100.0f, 100.0f, 0.0f);//描画用ブロックの大きさ設定
     }
+    */
 }
 
 /**	@brief 	シーン全体の更新
 */
 void	Stage_8::Update(void)
 {
+    /*
     this->p_input->Update();
 
     p_input->GetLeftAnalogStick();
@@ -333,6 +335,7 @@ void	Stage_8::Update(void)
         this->blockdraw[drawnum]->Update();
 
     }
+    */
 }
 
 /**	@brief 	シーン全体の描画
@@ -365,6 +368,7 @@ void	Stage_8::Draw(void)
     // ブレンドステートをセット
     deviceContext->OMSetBlendState(this->p_brendState, NULL, 0xfffffffff);
 
+    /*
     //--------------------------------------------------------------------------
     //		オブジェクトの描画
     //--------------------------------------------------------------------------
@@ -380,7 +384,7 @@ void	Stage_8::Draw(void)
 
     }
 
-    this->player->Draw();
+    this->player->Draw();*/
 }
 
 /**	@brief 	シーン全体の終了処理
