@@ -14,6 +14,7 @@
 #include"../../../Library/Code/self/10_Object/Object.h"
 #include"../../../Library/Code/self/11_Player/Player.h"
 #include"../../../Library/Code/self/16_Background/Background.h"
+#include"../../../Library/Code/self/18_Pen/Pen.h"
 
 #include"../../../Library/Code/self/04_DirextX_11/08_InputLayout/CInputLayout.h"
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/01_CVertexShader/CVertexShader.h"
@@ -73,16 +74,28 @@ public:
 		XMFLOAT2(150.0f, 220.0f),
 	};
 
-	// フックの座標
+	// 倒れるオブジェクトの座標
 	std::array<XMFLOAT2, 2>PushObjectPos = {
 		XMFLOAT2(3450.0f,-1120.0f),	
 		XMFLOAT2(1300.0f, -3620.0f),	
 	};
 	
-	// フックのサイズ
+	// 倒れるオブジェトのサイズ
 	std::array<XMFLOAT2, 2>PushObjectSize = {
 		XMFLOAT2(500.0f,950.0f),
 		XMFLOAT2(500.0f,950.0f)
+	};
+
+	// ペンの座標
+	std::array<XMFLOAT2, 2>PenPos = {
+		XMFLOAT2(3000.0f,-1520.0f),
+		XMFLOAT2(1700.0f, -4020.0f),
+	};
+
+	// ペンのサイズ
+	std::array<XMFLOAT2, 2>PenSize = {
+		XMFLOAT2(900.0f,100.0f),
+		XMFLOAT2(900.0f,100.0f)
 	};
 private:
 	int gamemode = 0;
@@ -91,6 +104,7 @@ private:
 	int cnt = 0;
 	int HookNumber = 0;
 	int PushNumber = 0;
+	int PenNumber = 0;
 	int JumpState = 0;
 	bool StayGround = false;//地面に触れているかの判定
 
@@ -102,6 +116,7 @@ private:
 	Player* player;
 	Object* hook[5];
 	Object* PushObject[2];
+	Object* Pen[2];
 	Object* goal;
 
 	//Object* block[100];

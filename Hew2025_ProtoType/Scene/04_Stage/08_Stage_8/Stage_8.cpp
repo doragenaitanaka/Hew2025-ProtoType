@@ -26,6 +26,11 @@ Stage_8::Stage_8()
         this->PushObject[n] = nullptr;
     }
 
+    for (n = 0; n < 2; n++)
+    {
+        this->Pen[n] = nullptr;
+    }
+
     for (n = 0; n < 5; n++)
     {
         this->hook[n] = nullptr;
@@ -49,6 +54,10 @@ Stage_8::~Stage_8()
 */
 void	Stage_8::Initialize(void)
 {
+
+    // BGM
+    this->p_sound->Play(SOUND_LABEL::BGM_GAME);
+
     // カメラ
     if (!this->p_camera) { this->p_camera = new TrackingCamera; }
 
@@ -72,7 +81,7 @@ void	Stage_8::Initialize(void)
     // プレイヤー
     if (!this->player) { this->player = new Player(this->p_camera); }
     this->player->Init(L"Asset/gumbody2.png");
-    this->player->SetPos(200.0f, -4300.0f, 0.0f);
+    this->player->SetPos(200.0f, -4250.0f, 0.0f);
     this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
 
     // プレイヤーをターゲットに設定
@@ -93,13 +102,34 @@ void	Stage_8::Initialize(void)
         this->hook[i]->SetSize(this->HookSize[i].x, this->HookSize[i].y, 0.0f);
     }
 
-    //フックの初期化
+    //倒れるオブジェクトの初期化
     for (int i = 0; i < 2; i++)
     {
         if (!this->PushObject[i]) { this->PushObject[i] = new Object(this->p_camera); }
         this->PushObject[i]->Init(L"Asset/Gimmick/pencase.png");
         this->PushObject[i]->SetPos(this->PushObjectPos[i].x, this->PushObjectPos[i].y, 0.0f);
         this->PushObject[i]->SetSize(this->PushObjectSize[i].x, this->PushObjectSize[i].y, 0.0f);
+    }
+
+    //ペンの初期化
+    for (int i = 0; i < 2; i++)
+    {
+        if (i == 0)
+        {
+            if (!this->Pen[i]) { this->Pen[i] = new Object(this->p_camera); }
+            this->Pen[i]->Init(L"Asset/Gimmick/pen.png");
+            this->Pen[i]->SetPos(this->PenPos[i].x, this->PenPos[i].y, 0.0f);
+            this->Pen[i]->SetSize(this->PenSize[i].x, this->PenSize[i].y, 0.0f);
+            this->Pen[i]->SetAngle(180.0f);
+        }
+        if (i == 1)
+        {
+            if (!this->Pen[i]) { this->Pen[i] = new Object(this->p_camera); }
+            this->Pen[i]->Init(L"Asset/Gimmick/pen.png");
+            this->Pen[i]->SetPos(this->PenPos[i].x, this->PenPos[i].y, 0.0f);
+            this->Pen[i]->SetSize(this->PenSize[i].x, this->PenSize[i].y, 0.0f);
+        }
+
     }
 
     //--------------------------------------------------------------------------
@@ -365,6 +395,11 @@ void	Stage_8::Update(void)
          this->PushObject[1]->GetCollider()
     };
 
+    // フック
+    std::vector<std::reference_wrapper<BaseCollider>> colPen = {//当たり判定を入れる
+         this->Pen[0]->GetCollider(),
+         this->Pen[1]->GetCollider()
+    };
 
     if (this->gamemode == 0)//Creative Mode
     {
@@ -404,12 +439,20 @@ void	Stage_8::Update(void)
         }
     }
 
-    if (playerColl.CheckCollision(goalColl))
+    for (this->PenNumber = 0; this->PenNumber < 2; this->PenNumber++)
     {
-        this->ColliderState = 4;
+        if (playerColl.CheckCollision(colPen[this->PenNumber]))
+        {
+            this->ColliderState = 4;
+        }
     }
 
-    if (ColliderState == 4)
+    if (playerColl.CheckCollision(goalColl))
+    {
+        this->ColliderState = 5;
+    }
+
+    if (ColliderState == 5)
     {
         p_sceneManager->ChangeScene(Scene::Stage_9);
     }
@@ -427,6 +470,10 @@ void	Stage_8::Update(void)
             player->SetColor(DirectX::XMFLOAT4(0.0f, 1.0f, 0.0f, 1.0f));
         }
         else if (ColliderState == 3)//if ColliderState == 3 ->ピンクになる
+        {
+            player->SetColor(DirectX::XMFLOAT4(1.0f, 0.5f, 0.5f, 1.0f));
+        }
+        else if (ColliderState == 4)//if ColliderState == 3 ->ピンクになる
         {
             player->SetColor(DirectX::XMFLOAT4(1.0f, 0.5f, 0.5f, 1.0f));
         }
@@ -455,6 +502,10 @@ void	Stage_8::Update(void)
         this->PushObject[n]->Update();
     }
 
+    for (n = 0; n < 2; n++)//Updateの数
+    {
+        this->Pen[n]->Update();
+    }
     // カメラの更新
     this->p_camera->Update();
 
@@ -507,6 +558,11 @@ void	Stage_8::Draw(void)
         this->PushObject[n]->Draw();
     }
 
+    for (n = 0; n < 2; n++)//当たり判定用ブロック描画
+    {
+        this->Pen[n]->Draw();
+    }
+
     this->player->Draw();
 }
 
@@ -514,8 +570,11 @@ void	Stage_8::Draw(void)
 */
 void	Stage_8::Finalize(void)
 {
+    
+    this->p_sound->Stop(SOUND_LABEL::BGM_GAME);// BGM
     SAFE_DELETE(this->p_camera);    // カメラ
     SAFE_DELETE(this->p_tileMap);   // タイルマップ
+
 
     //--------------------------------------------------------------------------
     //		描画関連
@@ -540,6 +599,10 @@ void	Stage_8::Finalize(void)
     for (n = 0; n < 2; n++)
     {
         SAFE_DELETE(this->PushObject[n]);
+    }
+    for (n = 0; n < 2; n++)
+    {
+        SAFE_DELETE(this->Pen[n]);
     }
 
 }
