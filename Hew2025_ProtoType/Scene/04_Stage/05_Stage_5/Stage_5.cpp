@@ -65,8 +65,8 @@ void	Stage_5::Initialize(void)
     }
 
 
-    if (!this->background) { this->background = new Object(this->p_camera); }
-    this->background->Init(L"Asset/back_img_01.png");
+    if (!this->background) { this->background = new Background(this->p_camera); }
+    this->background->Init(L"Asset/background.png");
     this->background->SetSize(1920.0f, 1080.0f, 0.0f);
     this->background->SetPos(0.0f, 0.0f, 0.0f);
 
@@ -76,16 +76,16 @@ void	Stage_5::Initialize(void)
     this->player->SetPos(2500.0f, -4200.0f, 0.0f);
 
     if (!this->grabbox) { this->grabbox = new GrabBox(this->p_camera); }
-    this->grabbox->Init(L"Asset/block.png");
+    this->grabbox->Init(L"Asset/Gimmick/eraser.png");
     this->grabbox->SetSize(GrabboxSize.x, GrabboxSize.y, 0.0f);
 
     if (!this->pendulum) { this->pendulum = new Pendulum(this->p_camera); }
-    this->pendulum->Init(L"Asset/block.png");
+    this->pendulum->Init(L"Asset/Gimmick/yo-yo.png");
     this->pendulum->SetSize(GrabboxSize.x, GrabboxSize.y, 0.0f);
     this->pendulum->SetPos(GrabboxPos.x, GrabboxPos.y, 0.0f);
 
     if (!this->goal) { this->goal = new Object(this->p_camera); }
-    this->goal->Init(L"Asset/block.png");
+    this->goal->Init(L"Asset/Gimmick/goal.png");
     this->goal->SetSize(200.0f, 300.0f, 0.0f);
     this->goal->SetPos(GoalPos.x, GoalPos.y, 0.0f);
 
@@ -93,13 +93,13 @@ void	Stage_5::Initialize(void)
     for (n = 0; n < 2; n++)
     {
         if (!this->YoyoObject[n]) { this->YoyoObject[n] = new Object(this->p_camera); }
-        this->YoyoObject[n]->Init(L"Asset/block.png");
+        this->YoyoObject[n]->Init(L"Asset/Gimmick/yo-yo.png");
     }
 
     for (n = 0; n < 7; n++)
     {
         if (!this->hook[n]) { this->hook[n] = new Object(this->p_camera); }
-        this->hook[n]->Init(L"Asset/block.png");
+        this->hook[n]->Init(L"Asset/Gimmick/hook.png");
         this->hook[n]->SetSize(HookSize.x, HookSize.y, 0.0f);
     }
 
@@ -120,7 +120,7 @@ void	Stage_5::Initialize(void)
     for (n = 0; n < 3; n++)
     {
         if (!this->rail[n]) { this->rail[n] = new Object(this->p_camera); }
-        this->rail[n]->Init(L"Asset/block.png");
+        this->rail[n]->Init(L"Asset/Gimmick/rail_02.png");
     }
 
     this->rail[0]->SetSize(RailSize00.x, RailSize00.y, 0.0f);

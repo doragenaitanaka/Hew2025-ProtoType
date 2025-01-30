@@ -20,6 +20,7 @@
 #include"../../../Library/Code/self/11_Player/Player.h"
 #include"../../../Library/Code/self/12_GrabBox/GrabBox.h"
 #include"../../../Library/Code/self/15_Pendulum/Pendulum.h"
+#include"../../../Library/Code/self/16_Background/Background.h"
 /**	@file	Stage_5.h
 *	@brief	起動時にロゴとか出るシーン
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している
@@ -72,9 +73,9 @@ public:
 
 	//サイズ
 
-	XMFLOAT2 PlayerSize = { 100.0f,100.0f };
+	XMFLOAT2 PlayerSize = { 200.0f,200.0f };
 
-	XMFLOAT2 HookSize = { 200.0f,200.0f };
+	XMFLOAT2 HookSize = { 220.0f,150.0f };
 
 	XMFLOAT2 RailSize00 = { 100.0f,800.0f };
 	XMFLOAT2 RailSize01 = { 800.0f,100.0f };
@@ -109,8 +110,7 @@ public:
 	int grabState = 0;
 	int ColliderState = 0;
 private:
-	Input input;
-	Object* background;
+	Background* background;
 	Player* player;
 	Object* hook[7];
 	Object* rail[4];

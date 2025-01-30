@@ -135,7 +135,7 @@ public:
 	XMFLOAT2 HookPos03 = { 1700.0f, -700.0f };
 
 
-	XMFLOAT2 HookSize01 = { 100.0f, 100.0f };
+	XMFLOAT2 HookSize01 = { 150.0f, 220.0f };
 	XMFLOAT2 HookSize02 = { 150.0f, 220.0f };
 
 
