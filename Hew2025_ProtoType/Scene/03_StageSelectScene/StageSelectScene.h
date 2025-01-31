@@ -87,6 +87,7 @@ private:
 	bool isPushR1 = false;
 
 	bool isChange = false;	// true: シーン遷移する
+	int changeStageNum = 0;	//遷移するステージ番号
 
 	Timer inputTimer;	//入力待ち用タイマー
 

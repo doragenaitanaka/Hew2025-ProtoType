@@ -387,6 +387,8 @@ void StageSelectScene::Update(void)
         // 選択中のステージに飛ぶ
         if (this->p_input->Trigger("SELECT"))
         {
+            // 飛ぶステージを保持
+            this->changeStageNum = this->stageNum;
             // SE
             this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
             this->isChange = true;
@@ -395,7 +397,7 @@ void StageSelectScene::Update(void)
     // フェードアウト仕切ったらシーン遷移
     if (this->isChange && this->feda->GetAlpha() >= 1.0f)
     {
-        this->SelectStage(this->stageNum);
+        this->SelectStage(this->changeStageNum);
         return;
     }
     // フェードアウト
