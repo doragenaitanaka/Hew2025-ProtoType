@@ -20,8 +20,6 @@
 #include<array>
 #include<chrono>
 
-
-
 /**	@file	StageSelectScene.h
 *	@brief	ステージセレクト
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している

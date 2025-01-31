@@ -432,7 +432,7 @@ void	TitleScene::Update(void)
         {
         case 0://start
             this->p_sound->Stop(SOUND_LABEL::BGM_TITLE);
-            this->p_sceneManager->ChangeScene(Scene::Stage_2);
+            this->p_sceneManager->ChangeScene(Scene::Stage_1);
             return;
             break;
 
