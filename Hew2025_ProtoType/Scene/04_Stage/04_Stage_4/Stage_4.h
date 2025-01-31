@@ -193,7 +193,7 @@ public:
 	XMFLOAT2 HookPos00 = { 6250.0f,-4000.0f };	//地上右フック
 	XMFLOAT2 HookPos01 = { 7800, -1950 };		//空中右フック
 	XMFLOAT2 HookPos02 = { 5300.0f,-1650.0f };	//空中左フック(下)
-	XMFLOAT2 HookPos03 = { 4500.0f,-1050.0f };	//空中左フック(中)
+	XMFLOAT2 HookPos03 = { 4900.0f,-850.0f };	//空中左フック(中)
 	XMFLOAT2 HookPos04 = { 4500.0f,-150.0f };	//空中左フック(上)
 	XMFLOAT2 HookPos05 = { 3000.0f,-3850.0f };	//地上左フック(追加)
 
