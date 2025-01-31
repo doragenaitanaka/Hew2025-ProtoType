@@ -86,6 +86,8 @@ private:
 	bool isPushL1 = false;	
 	bool isPushR1 = false;
 
+	bool isChange = false;	// true: シーン遷移する
+
 	Timer inputTimer;	//入力待ち用タイマー
 
 	// ステージUI

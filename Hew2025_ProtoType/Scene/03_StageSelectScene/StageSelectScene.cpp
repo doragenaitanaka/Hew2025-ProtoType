@@ -297,7 +297,7 @@ void	StageSelectScene::Initialize(void)
 void StageSelectScene::Update(void)
 {
 	//フェードイン
-	this->feda->FedaIn();
+    if (!this->isChange) { this->feda->FedaIn(); }
 
 	// 入力待ち
     if (this->inputTimer.Elapsed() > 0.4f)
@@ -385,13 +385,21 @@ void StageSelectScene::Update(void)
         }
 
         // 選択中のステージに飛ぶ
-        if (this->p_input->Press("SPACE"))
+        if (this->p_input->Trigger("SELECT"))
         {
             // SE
             this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
-            this->SelectStage(this->stageNum);
-            return;
+            this->isChange = true;
         }
+    }
+    // フェードアウト
+    this->feda->FedaOut(this->isChange);
+
+    // フェードアウト仕切ったらシーン遷移
+    if (this->isChange && this->feda->GetAlpha() >= 1.0f)
+    {
+        this->SelectStage(this->stageNum);
+        return;
     }
 
     // アニメーション
