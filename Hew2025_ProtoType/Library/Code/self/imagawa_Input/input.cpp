@@ -19,7 +19,7 @@ Input::Input()
     inputActionMap["CHANGEMODE0"] = { {InputType::keyboard, VK_A},};
     inputActionMap["CHANGEMODE1"] = { {InputType::keyboard, VK_D}, };
     inputActionMap["SUPERJUMP"] = { {InputType::keyboard, VK_CONTROL}, {InputType::gamepad, XINPUT_LEFT_SHOULDER  } };
-
+    inputActionMap["GRAB"] = { {InputType::keyboard, VK_TAB }, {InputType::gamepad, XINPUT_B  } };
     inputActionMap["SELECT"] = { {InputType::keyboard, VK_SPACE}, {InputType::gamepad, XINPUT_A  } };  // 決定ボタン
 
     inputActionMap["L1"] = { {InputType::keyboard, VK_LEFT}, {InputType::gamepad, XINPUT_LEFT_SHOULDER  } };
