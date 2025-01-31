@@ -417,17 +417,19 @@ void	TitleScene::Update(void)
         }
     }
 
+    iflg = true;
+
     //シーンチェンジ
     if (this->p_input->Trigger("SELECT"))
     {
-        iflg = true;
+        
         //フェードアウト
         feda->FedaOut(iflg);
-
+       
 	
         // SE
         this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
-		
+		if(this->feda->SetAlpha(1.0f))
             switch (SelectState)
             {
             case 0://start
