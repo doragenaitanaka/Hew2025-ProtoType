@@ -255,7 +255,7 @@
     <ClCompile Include="Library\Code\other\03_sound\sound.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
-    <ClCompile Include="FedaIn&amp;FedaOut.cpp">
+    <ClCompile Include="Library\Code\self\Ueda_FadeIn&amp;FadeOut\FedaIn&amp;FedaOut.cpp">
       <Filter>ソース ファイル</Filter>
     </ClCompile>
   </ItemGroup>
@@ -443,7 +443,7 @@
     <ClInclude Include="Library\Code\other\03_sound\sound.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
-    <ClInclude Include="FedaIn&amp;FedaOut.h">
+    <ClInclude Include="Library\Code\self\Ueda_FadeIn&amp;FadeOut\FedaIn&amp;FedaOut.h">
       <Filter>ヘッダー ファイル</Filter>
     </ClInclude>
   </ItemGroup>

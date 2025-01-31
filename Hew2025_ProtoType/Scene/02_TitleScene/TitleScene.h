@@ -14,7 +14,7 @@
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
 #include"../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
-#include"FedaIn&FedaOut.h"
+#include"../../Library/Code/self/Ueda_FadeIn&FadeOut/FedaIn&FedaOut.h"
 /**	@file	TitleScene.h
 *	@brief 	タイトル
 *	@date	2024/05/10
@@ -64,6 +64,7 @@ private:
 	bool LogoState = true;//タイトルロゴのステート
 	bool UIState = true;//選択肢用のステート
 	bool AFlg = true;//Aボタン用のフラグ
+	bool iflg = false;//フェードインフラグ
 
 	Camera* p_camera;	// カメラ
 	Input input;

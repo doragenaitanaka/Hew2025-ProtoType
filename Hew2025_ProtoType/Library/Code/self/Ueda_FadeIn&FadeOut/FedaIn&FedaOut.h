@@ -1,5 +1,5 @@
 ﻿#pragma once
-#include"Library/Code/self/10_Object/Object.h"
+#include"../10_Object/Object.h"
 
 class FedaInOut :public Object
 {
@@ -10,11 +10,9 @@ public:
 
 	//デストラクタ
 	~FedaInOut();
-	
-	//初期化
-	void Init(void);
 
-	
+	//更新
+	void Update(void)override;
 
 	//描画
 	void Draw(void)override;
@@ -22,9 +20,10 @@ public:
 	//終了
 	void Finalize(void);
 
-
-	void FedaIn(void);
-	void FedaOut(void);
+	//フェードアウト
+	void FedaOut(bool I_flg=false);
+	//フェードイン
+	void FedaIn();
 
 private:
 	

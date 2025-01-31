@@ -111,10 +111,11 @@ void	TitleScene::Initialize(void)
     this->abutton->SetSize(50.0f, 50.0f, 0.0f);
 
     //フェード
-	if (!this->feda) { this->feda = new Object(this->p_camera); }
+	if (!this->feda) { this->feda = new FedaInOut(this->p_camera); }
 	this->feda->Init(L"Asset/FedaIn&FedaOut.png");
 	this->feda->SetPos(0.0f, 0.0f, 0.0f);
 	this->feda->SetSize(1920.0f, 1080.0f, 0.0f);
+	this->feda->SetAlpha(0.0f);
     //--------------------------------------------------------------------------
     //		描画関連の初期化
     //--------------------------------------------------------------------------	
@@ -419,25 +420,32 @@ void	TitleScene::Update(void)
     //シーンチェンジ
     if (this->p_input->Trigger("SELECT"))
     {
+        iflg = true;
+        //フェードアウト
+        feda->FedaOut(iflg);
+
+	
         // SE
         this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
-        switch (SelectState)
-        {
-        case 0://start
-            this->p_sceneManager->ChangeScene(Scene::Stage_2);
-            return;
-            break;
+		
+            switch (SelectState)
+            {
+            case 0://start
+                this->p_sceneManager->ChangeScene(Scene::Stage_2);
+                return;
+                break;
 
-        case 1://stage select
-            this->p_sceneManager->ChangeScene(Scene::StageSelectScene);
-            return;
-            break;
+            case 1://stage select
+                this->p_sceneManager->ChangeScene(Scene::StageSelectScene);
+                return;
+                break;
 
-        case 2://game end
-            GameManager::GetInstance()->EndGame();
-            return;
-            break;
-        }
+            case 2://game end
+                GameManager::GetInstance()->EndGame();
+                return;
+                break;
+            }
+        
     }
     //-----------------------------------------------------
     //  座標更新
@@ -467,9 +475,20 @@ void	TitleScene::Update(void)
     this->cloud1->Update();
     this->cloud2->Update();
     this->abutton->Update();
+	this->feda->Update();
 
     // カメラの更新
     this->p_camera->Update();
+
+    
+    
+        
+
+
+		
+		
+    
+ 
 }
 
 /**	@brief 	シーン全体の描画
@@ -513,6 +532,7 @@ void	TitleScene::Draw(void)
     this->gameend->Draw();
     this->finger->Draw();
     this->abutton->Draw();
+	this->feda->Draw();
 }
 
 /**	@brief 	シーン全体の終了処理
@@ -546,4 +566,5 @@ void	TitleScene::Finalize(void)
     SAFE_DELETE(this->cloud1);
     SAFE_DELETE(this->cloud2);
     SAFE_DELETE(this->abutton);
+	SAFE_DELETE(this->feda);
 }
