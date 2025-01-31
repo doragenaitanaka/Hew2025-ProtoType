@@ -18,6 +18,16 @@ TileMap::TileMap(Camera* _p_camera) :p_camera{ _p_camera }, tiles{std::vector<Ob
     this->texturePathList[static_cast<int>(TileType::SHELF) - 1] = L"Asset/Tile/dark wood 2.png";
     this->texturePathList[static_cast<int>(TileType::WALL) - 1] = L"Asset/Tile/wall .png";
 
+    // 本
+    this->texturePathList[static_cast<int>(TileType::BOOK_FLAT_LEFT) - 1] = L"Asset/Tile/book left.png";
+    this->texturePathList[static_cast<int>(TileType::BOOK_FLAT_RIGHT) - 1] = L"Asset/Tile/book right.png";
+    this->texturePathList[static_cast<int>(TileType::BOOK_FLAT_TOP) - 1] = L"Asset/Tile/book left.png";
+    this->texturePathList[static_cast<int>(TileType::BOOK_FLAT_BOTTOM) - 1] = L"Asset/Tile/book right.png";
+    //this->texturePathList[static_cast<int>(TileType::BOOK_CORNER_TOP_LEFT) - 1] = L"Asset/Tile/book top corner .png";
+    //this->texturePathList[static_cast<int>(TileType::BOOK_CORNER_TOP_RIGHT) - 1] = L"Asset/Tile/book top corner .png";
+    //this->texturePathList[static_cast<int>(TileType::BOOK_CORNER_BOTTOM_LEFT) - 1] = L"Asset/Tile/book bottom corner .png";
+    //this->texturePathList[static_cast<int>(TileType::BOOK_CORNER_BOTTOM_RIGHT) - 1] = L"Asset/Tile/book bottom corner .png";
+
     // タイルのテクスチャパスの読み込み
     for (int i = 0; i < static_cast<int>(TileType::NUM); i++)
     {
@@ -250,7 +260,58 @@ Object* TileMap::CreateTiles(const int& _tileNum)
         newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::WALL) - 1]);
         newObj->Init();
         this->tiles.push_back(newObj);
+        break;   
+    case TileType::BOOK_FLAT_LEFT:
+        newObj = new Object(this->p_camera);
+        newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::BOOK_FLAT_LEFT) - 1]);
+        newObj->Init();
+        this->tiles.push_back(newObj);
+        break;    
+    case TileType::BOOK_FLAT_RIGHT:
+        newObj = new Object(this->p_camera);
+        newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::BOOK_FLAT_RIGHT) - 1]);
+        newObj->Init();
+        this->tiles.push_back(newObj);
+        break;   
+    case TileType::BOOK_FLAT_TOP:
+        newObj = new Object(this->p_camera);
+        newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::BOOK_FLAT_TOP) - 1]);
+        newObj->Init();
+        newObj->SetAngle(-90.0f);
+        this->tiles.push_back(newObj);
         break;
+    case TileType::BOOK_FLAT_BOTTOM:
+        newObj = new Object(this->p_camera);
+        newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::BOOK_FLAT_BOTTOM) - 1]);
+        newObj->Init();
+        newObj->SetAngle(-90.0f);
+        this->tiles.push_back(newObj);
+        break;
+    //case TileType::BOOK_CORNER_TOP_LEFT:
+    //    newObj = new Object(this->p_camera);
+    //    newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::BOOK_CORNER_TOP_LEFT) - 1]);
+    //    newObj->Init();
+    //    this->tiles.push_back(newObj);
+    //    break;
+    //case TileType::BOOK_CORNER_TOP_RIGHT:
+    //    newObj = new Object(this->p_camera);
+    //    newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::BOOK_CORNER_TOP_RIGHT) - 1]);
+    //    newObj->Init();
+    //    this->tiles.push_back(newObj);
+    //    break;
+    //case TileType::BOOK_CORNER_BOTTOM_LEFT:
+    //    newObj = new Object(this->p_camera);
+    //    newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::BOOK_CORNER_BOTTOM_LEFT) - 1]);
+    //    newObj->Init();
+    //    this->tiles.push_back(newObj);
+    //    break;
+    //case TileType::BOOK_CORNER_BOTTOM_RIGHT:
+    //    newObj = new Object(this->p_camera);
+    //    newObj->SetTexture(this->tilesTextureList[static_cast<int>(TileType::BOOK_CORNER_BOTTOM_RIGHT) - 1]);
+    //    newObj->Init();
+    //    newObj->SetAngle(-90.0f);
+    //    this->tiles.push_back(newObj);
+        //break;
     default:
         break;
     }

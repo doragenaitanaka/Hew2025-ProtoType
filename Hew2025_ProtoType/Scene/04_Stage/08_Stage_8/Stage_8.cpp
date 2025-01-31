@@ -455,6 +455,7 @@ void	Stage_8::Update(void)
     if (ColliderState == 5)
     {
         p_sceneManager->ChangeScene(Scene::Stage_9);
+        return;
     }
 
 

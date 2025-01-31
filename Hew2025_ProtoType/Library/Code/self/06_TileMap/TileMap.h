@@ -25,11 +25,24 @@
 enum class TileType
 {
     EMPTY = 0,
-    FLOOR,
-    SHELF,
-    WALL,
+    FLOOR,      // 1
+    SHELF,      // 2
+    WALL,       // 3
 
-    NUM= WALL,
+    // 本
+    BOOK_FLAT_LEFT,     // 4    左の平らな部分
+    BOOK_FLAT_RIGHT,    // 5    右の平らな部分
+
+    BOOK_FLAT_TOP,      // 6    上の平らな部分
+    BOOK_FLAT_BOTTOM,   // 7    下の平らな部分
+
+    // 角見えないので要らない
+    //BOOK_CORNER_TOP_LEFT,        // 6    左の上部角
+    //BOOK_CORNER_TOP_RIGHT,       // 7    右の上部角
+    //BOOK_CORNER_BOTTOM_LEFT,     // 8    左の下部角
+    //BOOK_CORNER_BOTTOM_RIGHT,    // 9    右の下部角
+
+    NUM= BOOK_FLAT_BOTTOM,
     MAX,
 };
 
