@@ -8,6 +8,8 @@
 */
 StageSelectScene::StageSelectScene()
 {
+    this->isSelect = false;
+
     // カメラ
     this->p_camera = nullptr;
 
@@ -59,40 +61,104 @@ void	StageSelectScene::Initialize(void)
     this->p_background->SetSize(1920.0f*2, 1080.0f*2, 0.0f);
 
     // ステージUI
-	int half = static_cast<int>(Stage::MAX) / 2;
+    bool isOdd = static_cast<int>(Stage::MAX) % 2 != 0;
 
-    // 最初だけ真ん中
-	this->p_stageUI[static_cast<int>(Stage::STAGE_1)] = new Object(this->p_camera);
-    this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->Init(this->stageUIPath[static_cast<int>(Stage::STAGE_1)].c_str());
-	this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->SetPos(0.0f, -50.0f, 0.0f);
-    this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->SetSize(stageUISize, stageUISize, 0.0f);
+    // 奇数の場合
+    if (isOdd) {
+        int half = (static_cast<int>(Stage::MAX) + 1) / 2;
 
-    // 前半（右側）
-	for (int i = static_cast<int>(Stage::STAGE_2); i <= half; ++i)
-	{
-		this->p_stageUI[i] = new Object(this->p_camera);
-        this->p_stageUI[i]->Init(this->stageUIPath[i].c_str());
-		// 均等に配置
-        this->p_stageUI[i]->SetPos(i * (stageUISize + space), -50.0f, 0.0f);
-        this->p_stageUI[i]->SetSize(stageUISize, stageUISize, 0.0f);
-	}
+        // 最初だけ真ん中
+        this->p_stageUI[static_cast<int>(Stage::STAGE_1)] = new Object(this->p_camera);
+        this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->Init(this->stageUIPath[static_cast<int>(Stage::STAGE_1)].c_str());
+        this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->SetPos(0.0f, -50.0f, 0.0f);
+        this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->SetSize(stageUISize, stageUISize, 0.0f);
 
-    // 後半（左側）
-    for (int i = half + 1; i < static_cast<int>(Stage::MAX); ++i)
-    {
-        int index = static_cast<int>(Stage::MAX) - i; // 逆順に配置
-        this->p_stageUI[i] = new Object(this->p_camera);
-        this->p_stageUI[i]->Init(this->stageUIPath[i].c_str());
-        // 均等に配置
-        this->p_stageUI[i]->SetPos(-index * (stageUISize + space), -50.0f, 0.0f);
-        this->p_stageUI[i]->SetSize(stageUISize, stageUISize, 0.0f);
+        // 前半（右側）
+        for (int i = static_cast<int>(Stage::STAGE_2); i <= half; ++i)
+        {
+            this->p_stageUI[i] = new Object(this->p_camera);
+            this->p_stageUI[i]->Init(this->stageUIPath[i].c_str());
+            // 均等に配置
+            this->p_stageUI[i]->SetPos(i * (stageUISize + space), -50.0f, 0.0f);
+            this->p_stageUI[i]->SetSize(stageUISize, stageUISize, 0.0f);
+        }
+
+        // 後半（左側）
+        for (int i = half + 1; i < static_cast<int>(Stage::MAX); ++i)
+        {
+            int index = static_cast<int>(Stage::MAX) - i; // 逆順に配置
+            this->p_stageUI[i] = new Object(this->p_camera);
+            this->p_stageUI[i]->Init(this->stageUIPath[i].c_str());
+            // 均等に配置
+            this->p_stageUI[i]->SetPos(-index * (stageUISize + space), -50.0f, 0.0f);
+            this->p_stageUI[i]->SetSize(stageUISize, stageUISize, 0.0f);
+        }
+
+        // 左端と右端の座標を当たり判定として保持
+        this->leftUIPos = DirectX::XMFLOAT3(-(half - 2) * (stageUISize + space), -50.0f, 0.0f);
+        this->rightUIPos = DirectX::XMFLOAT3((half - 2) * (stageUISize + space), -50.0f, 0.0f);
+        this->p_leftUI = new PointCollider(DirectX::XMFLOAT3(-(half + 1) * (stageUISize + space), -50.0f, 0.0f));
+        this->p_rightUI = new PointCollider(DirectX::XMFLOAT3((half + 1) * (stageUISize + space), -50.0f, 0.0f));
+    }
+    // 偶数の場合
+    else {
+        int half = static_cast<int>(Stage::MAX) / 2;
+
+        // 最初だけ真ん中
+        this->p_stageUI[static_cast<int>(Stage::STAGE_1)] = new Object(this->p_camera);
+        this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->Init(this->stageUIPath[static_cast<int>(Stage::STAGE_1)].c_str());
+        this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->SetPos(0.0f, -50.0f, 0.0f);
+        this->p_stageUI[static_cast<int>(Stage::STAGE_1)]->SetSize(stageUISize, stageUISize, 0.0f);
+
+        // 前半（右側）
+        for (int i = static_cast<int>(Stage::STAGE_2); i <= half; ++i)
+        {
+            this->p_stageUI[i] = new Object(this->p_camera);
+            this->p_stageUI[i]->Init(this->stageUIPath[i].c_str());
+            // 均等に配置
+            this->p_stageUI[i]->SetPos(i * (stageUISize + space), -50.0f, 0.0f);
+            this->p_stageUI[i]->SetSize(stageUISize, stageUISize, 0.0f);
+        }
+        // 後半（左側）
+        for (int i = half + 1; i < static_cast<int>(Stage::MAX); ++i)
+        {
+            int index = static_cast<int>(Stage::MAX) - i; // 逆順に配置
+            this->p_stageUI[i] = new Object(this->p_camera);
+            this->p_stageUI[i]->Init(this->stageUIPath[i].c_str());
+            // 均等に配置
+            this->p_stageUI[i]->SetPos(-index * (stageUISize + space), -50.0f, 0.0f);
+            this->p_stageUI[i]->SetSize(stageUISize, stageUISize, 0.0f);
+        }
+
+        // 左端と右端の座標を当たり判定として保持
+        this->leftUIPos = DirectX::XMFLOAT3(-(half - 1) * (stageUISize + space), -50.0f, 0.0f);
+        this->rightUIPos = DirectX::XMFLOAT3((half - 1) * (stageUISize + space), -50.0f, 0.0f);
+        this->p_leftUI = new PointCollider(DirectX::XMFLOAT3(-(half + 1) * (stageUISize + space), -50.0f, 0.0f));
+        this->p_rightUI = new PointCollider(DirectX::XMFLOAT3((half + 1) * (stageUISize + space), -50.0f, 0.0f));
     }
 
-    // 左端と右端の座標を当たり判定として保持
-    this->leftUIPos = DirectX::XMFLOAT3(-(half - 1) * (stageUISize + space), -50.0f, 0.0f);
-    this->rightUIPos = DirectX::XMFLOAT3((half - 1) * (stageUISize + space), -50.0f, 0.0f);
-    this->p_leftUI = new PointCollider(DirectX::XMFLOAT3(-(half + 1) * (stageUISize + space), -50.0f, 0.0f));
-    this->p_rightUI = new PointCollider(DirectX::XMFLOAT3((half + 1) * (stageUISize + space), -50.0f, 0.0f));
+    // 初期化時に選択中のステージの設定
+    this->stageNum = static_cast<int>(Stage::STAGE_1); // 初期選択ステージ
+    this->isSelect = true; // 初期選択状態に設定
+
+    // 初期選択状態でのサイズ設定
+    for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
+    {
+        if (i == this->stageNum)
+        {
+            this->p_stageUI[i]->SetSize(this->stageUISizeSelect, this->stageUISizeSelect, 0.0f);
+            this->p_stageUI[i]->SetPos(0.0f, (this->stageUISizeSelect - this->stageUISize) / 2.0f - 50.0f, 0.0f);
+        }
+        else
+        {
+            this->p_stageUI[i]->SetSize(this->stageUISize, this->stageUISize, 0.0f);
+            this->p_stageUI[i]->SetPos(this->p_stageUI[i]->GetPos().x, -50.0f, 0.0f);
+        }
+    }
+
+    this->isSelect = false;
+    this->isStretch = false;
+    this->lastUpdateTime = std::chrono::steady_clock::now();
 
     // UI
     for (int i = static_cast<int>(SelectUI::FRAME); i < static_cast<int>(SelectUI::MAX); ++i)
@@ -519,30 +585,30 @@ void StageSelectScene::SelectStage(int& _stageNum)
     case StageSelectScene::Stage::STAGE_4:
         this->p_sceneManager->ChangeScene(Scene::Stage_4);
         break;
-    case StageSelectScene::Stage::STAGE_5:
-        this->p_sceneManager->ChangeScene(Scene::Stage_5);
-        break;
-    case StageSelectScene::Stage::STAGE_6:
-        this->p_sceneManager->ChangeScene(Scene::Stage_6);
-        break;
-    case StageSelectScene::Stage::STAGE_7:
-        this->p_sceneManager->ChangeScene(Scene::Stage_7);
-        break;
-    case StageSelectScene::Stage::STAGE_8:
-        this->p_sceneManager->ChangeScene(Scene::Stage_8);
-        break;
-    case StageSelectScene::Stage::STAGE_9:
-        this->p_sceneManager->ChangeScene(Scene::Stage_9);
-        break;
-    case StageSelectScene::Stage::STAGE_10:
-        this->p_sceneManager->ChangeScene(Scene::Stage_10);
-        break;
-    case StageSelectScene::Stage::STAGE_11:
-        this->p_sceneManager->ChangeScene(Scene::Stage_11);
-        break;
-    case StageSelectScene::Stage::STAGE_12:
-        this->p_sceneManager->ChangeScene(Scene::Stage_12);
-        break;
+    //case StageSelectScene::Stage::STAGE_5:
+    //    this->p_sceneManager->ChangeScene(Scene::Stage_5);
+    //    break;
+    //case StageSelectScene::Stage::STAGE_6:
+    //    this->p_sceneManager->ChangeScene(Scene::Stage_6);
+    //    break;
+    //case StageSelectScene::Stage::STAGE_7:
+    //    this->p_sceneManager->ChangeScene(Scene::Stage_7);
+    //    break;
+    //case StageSelectScene::Stage::STAGE_8:
+    //    this->p_sceneManager->ChangeScene(Scene::Stage_8);
+    //    break;
+    //case StageSelectScene::Stage::STAGE_9:
+    //    this->p_sceneManager->ChangeScene(Scene::Stage_9);
+    //    break;
+    //case StageSelectScene::Stage::STAGE_10:
+    //    this->p_sceneManager->ChangeScene(Scene::Stage_10);
+    //    break;
+    //case StageSelectScene::Stage::STAGE_11:
+    //    this->p_sceneManager->ChangeScene(Scene::Stage_11);
+    //    break;
+    //case StageSelectScene::Stage::STAGE_12:
+    //    this->p_sceneManager->ChangeScene(Scene::Stage_12);
+    //    break;
     default:
         break;
     }

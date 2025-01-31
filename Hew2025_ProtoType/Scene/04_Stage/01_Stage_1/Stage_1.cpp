@@ -506,7 +506,7 @@ void	Stage_1::Update(void)
         if (this->player->GetIsDead() && (!this->isFailed))
         {
             // 叫びSE終わったらガッシャ―ン！！！
-            if (this->failedTimer.Elapsed() > 2.0f)
+            if (this->failedTimer.Elapsed() > 1.0f)
             {
                 // 失敗
                 this->failedTimer.Reset();
@@ -518,7 +518,7 @@ void	Stage_1::Update(void)
         if (isFailed)
         {
             // 失敗SE終わったらリトライ
-            if (this->failedTimer.Elapsed() > 3.0f)
+            if (this->failedTimer.Elapsed() > 4.0f)
             {
                 this->p_sceneManager->ChangeScene(Scene::Stage_1);
                 return;

@@ -96,16 +96,16 @@ private:
 		STAGE_2,
 		STAGE_3,
 		STAGE_4,
-		STAGE_5,
-		STAGE_6,
-		STAGE_7,
-		STAGE_8,
-		STAGE_9,
-		STAGE_10,
-		STAGE_11,
-		STAGE_12,
+		//STAGE_5,
+		//STAGE_6,
+		//STAGE_7,
+		//STAGE_8,
+		//STAGE_9,
+		//STAGE_10,
+		//STAGE_11,
+		//STAGE_12,
 
-		NUM = STAGE_12,
+		NUM = STAGE_4,
 		MAX,
 	};
 	
@@ -140,14 +140,14 @@ private:
 		L"Asset/UI/bangou2.png",
 		L"Asset/UI/bangou3.png",
 		L"Asset/UI/bangou4.png",
-		L"Asset/UI/bangou5.png",
-		L"Asset/UI/bangou6.png",
-		L"Asset/UI/bangou7.png",
-		L"Asset/UI/bangou8.png",
-		L"Asset/UI/bangou9.png",
-		L"Asset/UI/bangou10.png",
-		L"Asset/UI/bangou11.png",
-		L"Asset/UI/bangou12.png"
+		//L"Asset/UI/bangou5.png",
+		//L"Asset/UI/bangou6.png",
+		//L"Asset/UI/bangou7.png",
+		//L"Asset/UI/bangou8.png",
+		//L"Asset/UI/bangou9.png",
+		//L"Asset/UI/bangou10.png",
+		//L"Asset/UI/bangou11.png",
+		//L"Asset/UI/bangou12.png"
 	};
 	
 	// ステージセレクトUIのファイルパス
