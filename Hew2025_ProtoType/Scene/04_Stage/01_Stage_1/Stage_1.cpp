@@ -991,6 +991,7 @@ void	Stage_1::Update(void)
             {
              
                 this->p_input->SetVibration(2, 5);
+                this->p_sound->Play(SOUND_LABEL::SE_PLAYR_VIVRATION);
 
             }
             if (player->y3 <= -2.5f)
