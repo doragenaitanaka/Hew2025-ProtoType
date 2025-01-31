@@ -1189,6 +1189,7 @@ void	Stage_10::Update(void)
             if (t2 >= 40)
             {
                 this->p_sound->Play(SOUND_LABEL::SE_PLAYR_DEAD);
+                this->p_sound->Play(SOUND_LABEL::SE_PLAYR_VIVRATION);
                 deathstate = 1;
 
                 //  t2 = 0;
