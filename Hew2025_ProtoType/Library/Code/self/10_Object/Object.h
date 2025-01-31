@@ -183,6 +183,12 @@ public:
 	*/
 	void	SetAlpha(float	_color);
 
+	/**	@brief 	映すテクスチャの透明度を取得
+	*	@param	float	_color	透明度（アルファ値）
+	*	@date	2024/06/12
+	*/
+	float 	GetAlpha();
+
 	/**	@brief 	テクスチャの読み込み関数
 	*	@param	const wchar_t* fileName ファイルパス
 	*	@return	ID3D11ShaderResourceView*	テクスチャ
