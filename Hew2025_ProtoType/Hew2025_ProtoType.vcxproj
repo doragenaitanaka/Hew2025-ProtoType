@@ -135,6 +135,7 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="FedaIn&amp;FedaOut.cpp" />
     <ClCompile Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.cpp" />
     <ClCompile Include="Library\Code\other\03_sound\sound.cpp" />
     <ClCompile Include="Library\Code\self\01_GameManager\GameManager.cpp" />
@@ -251,6 +252,7 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="FedaIn&amp;FedaOut.h" />
     <ClInclude Include="Library\Code\other\01_WICTextureLoader\WICTextureLoader.h" />
     <ClInclude Include="Library\Code\other\03_sound\sound.h" />
     <ClInclude Include="Library\Code\self\01_GameManager\GameManager.h" />

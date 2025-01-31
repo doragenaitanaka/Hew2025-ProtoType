@@ -25,6 +25,7 @@ TitleScene::TitleScene()
     this->cloud1 = nullptr;
     this->cloud2 = nullptr;
     this->abutton = nullptr;
+	this->feda = nullptr;
 
     //--------------------------------------------------------------------------
     //		描画関連
@@ -108,6 +109,12 @@ void	TitleScene::Initialize(void)
     this->abutton->Init(L"Asset/title/title scene_a.png");
     this->abutton->SetPos(FingerPos.x + 75.0f, FingerPos.y - 50.0f, 0.0f);
     this->abutton->SetSize(50.0f, 50.0f, 0.0f);
+
+    //フェード
+	if (!this->feda) { this->feda = new Object(this->p_camera); }
+	this->feda->Init(L"Asset/FedaIn&FedaOut.png");
+	this->feda->SetPos(0.0f, 0.0f, 0.0f);
+	this->feda->SetSize(1920.0f, 1080.0f, 0.0f);
     //--------------------------------------------------------------------------
     //		描画関連の初期化
     //--------------------------------------------------------------------------	

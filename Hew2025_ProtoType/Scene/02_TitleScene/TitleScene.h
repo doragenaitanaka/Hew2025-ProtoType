@@ -14,6 +14,7 @@
 #include"../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
 #include"../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
+#include"FedaIn&FedaOut.h"
 /**	@file	TitleScene.h
 *	@brief 	タイトル
 *	@date	2024/05/10
@@ -75,6 +76,7 @@ private:
 	Object* cloud1;//雲(小)
 	Object* cloud2;//雲(大)
 	Object* abutton;//Aボタン
+	FedaInOut* feda;//フェード
 	//--------------------------------------------------------------------------
 	//		描画関連
 	//--------------------------------------------------------------------------	
