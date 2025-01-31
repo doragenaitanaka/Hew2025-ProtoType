@@ -976,6 +976,7 @@ void	Stage_3::Update(void)
               {*/
               //p_input->GetRightAnalogStick().x / z;
                //}
+
             if (player->y3 <= -1.0f)
             {
 
@@ -985,10 +986,16 @@ void	Stage_3::Update(void)
             {
                 pullstate = 0;
             }
+            if (player->y3 <= -2.3f)
+            {
+
+                this->p_input->SetVibration(2, 5);
+
+            }
             if (player->y3 <= -2.5f)
             {
                 t2 += 1;
-
+       
 
             }
             else

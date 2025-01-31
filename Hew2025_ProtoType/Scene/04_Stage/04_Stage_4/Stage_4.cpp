@@ -1123,11 +1123,17 @@ void	Stage_4::Update(void)
             {
                 pullstate = 0;
             }
+            if (player->y3 <= -2.3f)
+            {
+
+                this->p_input->SetVibration(2, 5);
+
+            }
             if (player->y3 <= -2.5f)
             {
                 t2 += 1;
 
-
+               
             }
             else
             {
