@@ -1307,6 +1307,7 @@ void	Stage_2::Update(void)
     //--------------------------------------------------------------------------	
     this->background->Update();
     this->p_tileMap->Update();
+    this->keyConfigUI->Update();
 
     this->goal->Update();
     this->playercol->Update();
@@ -1434,6 +1435,8 @@ void	Stage_2::Draw(void)
     {
         this->death2->Draw();
     }
+    // キーコンフィグUI
+    this->keyConfigUI->Draw();
 }
 
 /**	@brief 	シーン全体の終了処理
