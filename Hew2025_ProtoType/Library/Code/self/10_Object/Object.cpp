@@ -74,12 +74,6 @@ HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 	this->moveUPos = _moveUPos;
 
 	HRESULT hr;
-	// 定数バッファの作成
-	if (!this->p_constantBuffer)
-	{
-		this->p_constantBuffer = new	CConstantBuffer;
-		hr = this->p_constantBuffer->Create(NULL, sizeof(ConstBuffer));
-	}
 
 	// 頂点バッファの作成
 	if (!this->p_vertexBuffer)
@@ -94,6 +88,13 @@ HRESULT	Object::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 			delete this->p_vertexBuffer;
 			this->p_vertexBuffer = nullptr;
 		}
+	}
+
+	// 定数バッファの作成
+	if (!this->p_constantBuffer)
+	{
+		this->p_constantBuffer = new	CConstantBuffer;
+		hr = this->p_constantBuffer->Create(NULL, sizeof(ConstBuffer));
 	}
 
 	// テクスチャ読み込み

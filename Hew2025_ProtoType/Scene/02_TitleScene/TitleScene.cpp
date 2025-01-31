@@ -424,16 +424,15 @@ void	TitleScene::Update(void)
         //フェードアウト
         feda->FedaOut(iflg);
 
-	
         // SE
         this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
 		
             switch (SelectState)
             {
             case 0://start
-                this->p_sceneManager->ChangeScene(Scene::Stage_1);
                 // BGM
                 this->p_sound->Stop(SOUND_LABEL::BGM_TITLE);
+                this->p_sceneManager->ChangeScene(Scene::Stage_1);
                 return;
                 break;
 
