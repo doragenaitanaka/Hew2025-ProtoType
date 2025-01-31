@@ -177,6 +177,9 @@ public:
 	XMFLOAT2 HookColSize01 = { 80.0f, 80.0f };
 
 private:
+	// テクスチャ
+	std::array<ID3D11ShaderResourceView*, 2> textureList;
+
 	// タイマー
 	Timer failedTimer;	// 失敗時
 	bool isFailed;		// true:失敗した

@@ -37,7 +37,7 @@ public:
 	*	@return	HRESULT
 	*	@date	2024/12/20
 	*/
-	HRESULT	Init(const wchar_t* _p_fileName, int	_splitX = 1, int	_splitY = 1, int	_changeFrame = 1, float	_moveUPos = 0.0f)override;
+	HRESULT	Init(const wchar_t* _p_fileName = nullptr, int	_splitX = 1, int	_splitY = 1, int	_changeFrame = 1, float	_moveUPos = 0.0f)override;
 
 	/**	@brief 	オブジェクトの更新
 	*	@date	2024/12/20

@@ -17,6 +17,10 @@ Stage_1::Stage_1()
     this->p_camera = nullptr;
     this->p_tileMap = nullptr;
 
+    // テクスチャの読み込み
+    this->textureList[0] = Object::LoadTexture(L"Asset/block.png");         // ブロック
+    this->textureList[1] = Object::LoadTexture(L"Asset/Gimmick/hook.png");  // フック
+
     //--------------------------------------------------------------------------
     //		 オブジェクト
     //--------------------------------------------------------------------------	
@@ -67,7 +71,8 @@ void	Stage_1::Initialize(void)
 
     // プレイヤー
     if (!this->player) { this->player = new Player(this->p_camera); }
-    this->player->Init(L"Asset/block.png");
+    this->player->SetTexture(this->textureList[0]);
+    this->player->Init();
     this->player->SetPos(0.0f, -100.0f, 100.0f);
     this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
 
@@ -126,8 +131,10 @@ void	Stage_1::Initialize(void)
 
     for (m = 0; m < 4; m++)
     {
-        this->hook[m]->Init(L"Asset/Gimmick/hook.png");
-        this->hookdraw[m]->Init(L"Asset/Gimmick/hook.png");
+        this->hook[m]->SetTexture(this->textureList[1]);
+        this->hookdraw[m]->SetTexture(this->textureList[1]);
+        this->hook[m]->Init();
+        this->hookdraw[m]->Init();
     }
 
 
@@ -143,9 +150,12 @@ void	Stage_1::Initialize(void)
     this->walking->Init(L"Asset/walking_2.png", 4, 1);
     this->walking2->Init(L"Asset/walking_3.png", 4, 1);
 
-    this->playercol->Init(L"Asset/block.png");
-    this->playercol2->Init(L"Asset/block.png");
-    this->playercol3->Init(L"Asset/block.png");
+    this->playercol->SetTexture(this->textureList[0]);
+    this->playercol2->SetTexture(this->textureList[0]);
+    this->playercol3->SetTexture(this->textureList[0]);
+    this->playercol->Init();
+    this->playercol2->Init();
+    this->playercol3->Init();
 
     this->goal->Init(L"Asset/Gimmick/goal.png");
 
@@ -1448,4 +1458,10 @@ void	Stage_1::Finalize(void)
     //--------------------------------------------------------------------------
     SAFE_DELETE(this->background);
     SAFE_DELETE(this->player);
+
+    //テクスチャ
+    for (int i = 0; i < 2; i++)
+    {
+        SAFE_RELEASE(this->textureList[i]);
+    }
 }

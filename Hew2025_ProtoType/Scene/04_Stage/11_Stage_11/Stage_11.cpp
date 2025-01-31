@@ -698,9 +698,11 @@ void	Stage_11::Update(void)
         this->hook[n]->Update();
     }
 
-    if (ColliderState == 6)
+    // ゴールしたとき
+    if (ColliderState == 3)
     {
         p_sceneManager->ChangeScene(Scene::Stage_12);
+        return;
     }
 
     //updateの後にsetposしないと動きがおかしくなる

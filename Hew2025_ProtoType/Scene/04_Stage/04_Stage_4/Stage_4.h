@@ -222,6 +222,9 @@ public:
 	int RailNumber = 0;
 	int RailCnt[3] = { 0,0,0 };
 private:
+	// テクスチャ
+	std::array<ID3D11ShaderResourceView*, 2> textureList;
+
 	// タイマー
 	Timer failedTimer;	// 失敗時
 	bool isFailed;		// true:失敗した
