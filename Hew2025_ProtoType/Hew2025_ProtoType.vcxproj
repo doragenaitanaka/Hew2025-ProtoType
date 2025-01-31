@@ -182,6 +182,7 @@
     <ClCompile Include="Library\Code\self\17_FallObject\FallObject.cpp" />
     <ClCompile Include="Library\Code\self\18_Pen\Pen.cpp" />
     <ClCompile Include="Library\Code\self\imagawa_Input\input.cpp" />
+    <ClCompile Include="Library\Code\self\Ueda_FadeIn&amp;FadeOut\FedaIn&amp;FedaOut.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Scene\00_BaseScene\BaseScene.cpp" />
     <ClCompile Include="Scene\01_SplashScreanScene\SplashScreanScene.cpp">
@@ -306,6 +307,7 @@
     <ClInclude Include="Library\Code\self\18_Pen\Pen.h" />
     <ClInclude Include="Library\Code\self\imagawa_Input\input.h" />
     <ClInclude Include="Library\Code\self\SafePointers.h" />
+    <ClInclude Include="Library\Code\self\Ueda_FadeIn&amp;FadeOut\FedaIn&amp;FedaOut.h" />
     <ClInclude Include="main.h" />
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h" />
     <ClInclude Include="Scene\01_SplashScreanScene\SplashScreanScene.h">
