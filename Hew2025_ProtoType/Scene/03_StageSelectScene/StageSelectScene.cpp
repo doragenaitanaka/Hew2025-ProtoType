@@ -20,6 +20,7 @@ StageSelectScene::StageSelectScene()
     this->p_point = nullptr;
     this->p_leftUI = nullptr;
     this->p_rightUI = nullptr;
+	this->feda = nullptr;
 
     //--------------------------------------------------------------------------
     //		描画関連
@@ -59,6 +60,13 @@ void	StageSelectScene::Initialize(void)
     this->p_background->Init(L"Asset/background.png");
     this->p_background->SetPos(-200.0f, 0.0f, 0.0f);
     this->p_background->SetSize(1920.0f*2, 1080.0f*2, 0.0f);
+
+    //フェード
+	if (!this->feda) { this->feda = new FedaInOut(this->p_camera); }
+	this->feda->Init(L"Asset/FedaIn&FedaOut.png");
+	this->feda->SetPos(0.0f, 0.0f, 0.0f);
+	this->feda->SetSize(1920.0f, 1080.0f, 0.0f);
+    this->feda->SetAlpha(1.0f);
 
     // ステージUI
     bool isOdd = static_cast<int>(Stage::MAX) % 2 != 0;
@@ -288,6 +296,10 @@ void	StageSelectScene::Initialize(void)
 */
 void StageSelectScene::Update(void)
 {
+	//フェードイン
+	this->feda->FedaIn();
+
+	// 入力待ち
     if (this->inputTimer.Elapsed() > 0.4f)
     {
         // タイトルに戻る
@@ -400,6 +412,7 @@ void StageSelectScene::Update(void)
 
     // カメラの更新
     this->p_camera->Update();
+    this->feda->Update();
 }
 
 /** @brief UIのアニメーション処理 
@@ -536,6 +549,7 @@ void	StageSelectScene::Draw(void)
     {
         this->p_UI[i]->Draw();
     }
+	this->feda->Draw();
 }
 
 /**	@brief 	シーン全体の終了処理
@@ -554,6 +568,7 @@ void	StageSelectScene::Finalize(void)
     for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++) { SAFE_DELETE(this->p_stageUI[i]); }
     for (int i = static_cast<int>(SelectUI::LEFT_ARROW); i < static_cast<int>(SelectUI::MAX); ++i) { SAFE_DELETE(this->p_UI[i]); }
     SAFE_DELETE(this->p_point);
+	SAFE_DELETE(this->feda);
 
     //--------------------------------------------------------------------------
     //		描画関連

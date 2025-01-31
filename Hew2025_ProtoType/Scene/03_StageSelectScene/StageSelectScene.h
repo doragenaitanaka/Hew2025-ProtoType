@@ -14,6 +14,7 @@
 #include"../../Library/Code/self/07_Camera/Camera.h"
 #include"../../Library/Code/self/05_Collider/03_PointCollider/PointCollider.h"
 #include"../../Library/Code/self/08_Timer/Timer.h"
+#include"../../Library/Code/self/Ueda_FadeIn&FadeOut/FedaIn&FedaOut.h"
 
 #include<string>
 #include<array>
@@ -133,6 +134,7 @@ private:
 	Object* p_background;								// 背景
 	Object* p_stageUI[static_cast<int>(Stage::MAX)];	// ステージUI
 	Object* p_UI[static_cast<int>(SelectUI::MAX)];		// セレクト画面のUI
+	FedaInOut* feda;//フェード
 
 	// ステージUIファイルパス
 	std::wstring stageUIPath[static_cast<int>(Stage::MAX)] = {

@@ -417,9 +417,19 @@ void	TitleScene::Update(void)
         }
     }
 
+    //フェードアウト
+    feda->FedaOut(iflg);
     //シーンチェンジ
     if (this->p_input->Trigger("SELECT"))
     {
+<<<<<<< HEAD
+		
+		iflg = true;
+        // SE
+        this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
+		
+	}
+=======
         iflg = true;
         //フェードアウト
         feda->FedaOut(iflg);
@@ -435,19 +445,36 @@ void	TitleScene::Update(void)
                 this->p_sceneManager->ChangeScene(Scene::Stage_1);
                 return;
                 break;
+>>>>>>> 9d2219cf31caa967feab862ad56e64b8cd85375b
 
-            case 1://stage select
-                this->p_sceneManager->ChangeScene(Scene::StageSelectScene);
-                return;
-                break;
+    if (this->feda->GetAlpha() >= 1.0f)
+    {
+        switch (SelectState)
+        {
+        case 0://start
 
-            case 2://game end
-                GameManager::GetInstance()->EndGame();
-                return;
-                break;
-            }
-        
+            this->p_sceneManager->ChangeScene(Scene::Stage_2);
+            return;
+            break;
+
+
+        case 1://stage select
+
+            this->p_sceneManager->ChangeScene(Scene::StageSelectScene);
+            return;
+            break;
+
+
+        case 2://game end
+
+            GameManager::GetInstance()->EndGame();
+            return;
+            break;
+
+        }
     }
+        
+    
     //-----------------------------------------------------
     //  座標更新
     //-----------------------------------------------------
