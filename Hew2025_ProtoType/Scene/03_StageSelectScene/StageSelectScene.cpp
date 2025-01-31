@@ -222,95 +222,98 @@ void	StageSelectScene::Initialize(void)
 */
 void StageSelectScene::Update(void)
 {
-    // タイトルに戻る
-    if (this->p_input->Trigger("TITLE"))
+    if (this->inputTimer.Elapsed() > 0.4f)
     {
-        this->p_sceneManager->ChangeScene(Scene::TitleScene);
-        return;
-    }
-
-    // 経過時間の計測
-    auto currentTime = std::chrono::steady_clock::now();
-    this->elapsedTime = currentTime - this->lastUpdateTime;
-
-    this->p_input->Update();
-
-    // ステージUIの移動
-    float movePos = 0.0f;
-    if (this->p_input->Trigger("L1"))
-    {
-        // SE
-        this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
-        movePos = this->stageUISize + this->space;
-        this->isSelect = true;
-        this->isPushL1 = true;
-    }
-    else if (this->p_input->Trigger("R1"))
-    {
-        // SE
-        this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
-        movePos = -this->stageUISize - this->space;
-        this->isSelect = true;
-        this->isPushR1 = true;
-    }
-    this->ButtonUpdate();
-
-    // ステージがループするように処理
-    for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
-    {
-        auto pos = this->p_stageUI[i]->GetPos();
-        this->p_stageUI[i]->SetPos(pos.x + movePos, pos.y, pos.z);
-
-        auto& coll = this->p_stageUI[i]->GetCollider();
-        // 左端なら右端に
-        if (coll.CheckCollision(*this->p_leftUI))
+        // タイトルに戻る
+        if (this->p_input->Trigger("TITLE"))
         {
-            this->p_stageUI[i]->SetPos(rightUIPos.x, rightUIPos.y, rightUIPos.z);
+            this->p_sceneManager->ChangeScene(Scene::TitleScene);
+            return;
         }
-        // 右端なら左端に
-        else if (coll.CheckCollision(*this->p_rightUI))
-        {
-            this->p_stageUI[i]->SetPos(leftUIPos.x, leftUIPos.y, leftUIPos.z);
-        }
-    }
 
-    // 選択中のステージを保持
-    if (this->isSelect)
-    {
+        // 経過時間の計測
+        auto currentTime = std::chrono::steady_clock::now();
+        this->elapsedTime = currentTime - this->lastUpdateTime;
+
+        this->p_input->Update();
+
+        // ステージUIの移動
+        float movePos = 0.0f;
+        if (this->p_input->Trigger("L1"))
+        {
+            // SE
+            this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
+            movePos = this->stageUISize + this->space;
+            this->isSelect = true;
+            this->isPushL1 = true;
+        }
+        else if (this->p_input->Trigger("R1"))
+        {
+            // SE
+            this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
+            movePos = -this->stageUISize - this->space;
+            this->isSelect = true;
+            this->isPushR1 = true;
+        }
+        this->ButtonUpdate();
+
+        // ステージがループするように処理
         for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
         {
-            auto& coll = this->p_stageUI[i]->GetCollider();
+            auto pos = this->p_stageUI[i]->GetPos();
+            this->p_stageUI[i]->SetPos(pos.x + movePos, pos.y, pos.z);
 
-            if (this->p_point->CheckCollision(coll))
+            auto& coll = this->p_stageUI[i]->GetCollider();
+            // 左端なら右端に
+            if (coll.CheckCollision(*this->p_leftUI))
             {
-                // 選択中のステージを大きくする
-                this->p_stageUI[i]->SetSize(this->stageUISizeSelect, this->stageUISizeSelect, 0.0f);
-                this->p_stageUI[i]->SetPos(0.0f, (this->stageUISizeSelect - this->stageUISize) / 2.0f - 50.0f, 0.0f);
-                this->stageNum = i;
+                this->p_stageUI[i]->SetPos(rightUIPos.x, rightUIPos.y, rightUIPos.z);
             }
-            // サイズリセット
-            else
+            // 右端なら左端に
+            else if (coll.CheckCollision(*this->p_rightUI))
             {
-                this->p_stageUI[i]->SetSize(this->stageUISize, this->stageUISize, 0.0f);
-                this->p_stageUI[i]->SetPos(this->p_stageUI[i]->GetPos().x, -50.0f, 0.0f);
+                this->p_stageUI[i]->SetPos(leftUIPos.x, leftUIPos.y, leftUIPos.z);
             }
         }
-        this->isSelect = false;
-        this->isStretch = false;
-        this->lastUpdateTime = std::chrono::steady_clock::now();
 
-        // ビヨンド君のリサイズ
-        auto sizeBiyond = this->UISize[static_cast<int>(SelectUI::BIYOND)];
-        this->p_UI[static_cast<int>(SelectUI::BIYOND)]->SetSize(sizeBiyond.x, sizeBiyond.y, sizeBiyond.z);
-    }
+        // 選択中のステージを保持
+        if (this->isSelect)
+        {
+            for (int i = static_cast<int>(Stage::STAGE_1); i < static_cast<int>(Stage::MAX); i++)
+            {
+                auto& coll = this->p_stageUI[i]->GetCollider();
 
-    // 選択中のステージに飛ぶ
-    if (this->p_input->Press("SPACE"))
-    {
-        // SE
-        this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
-        this->SelectStage(this->stageNum);
-        return;
+                if (this->p_point->CheckCollision(coll))
+                {
+                    // 選択中のステージを大きくする
+                    this->p_stageUI[i]->SetSize(this->stageUISizeSelect, this->stageUISizeSelect, 0.0f);
+                    this->p_stageUI[i]->SetPos(0.0f, (this->stageUISizeSelect - this->stageUISize) / 2.0f - 50.0f, 0.0f);
+                    this->stageNum = i;
+                }
+                // サイズリセット
+                else
+                {
+                    this->p_stageUI[i]->SetSize(this->stageUISize, this->stageUISize, 0.0f);
+                    this->p_stageUI[i]->SetPos(this->p_stageUI[i]->GetPos().x, -50.0f, 0.0f);
+                }
+            }
+            this->isSelect = false;
+            this->isStretch = false;
+            this->lastUpdateTime = std::chrono::steady_clock::now();
+
+            // ビヨンド君のリサイズ
+            auto sizeBiyond = this->UISize[static_cast<int>(SelectUI::BIYOND)];
+            this->p_UI[static_cast<int>(SelectUI::BIYOND)]->SetSize(sizeBiyond.x, sizeBiyond.y, sizeBiyond.z);
+        }
+
+        // 選択中のステージに飛ぶ
+        if (this->p_input->Press("SPACE"))
+        {
+            // SE
+            this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
+            this->SelectStage(this->stageNum);
+            return;
+        }
     }
 
     // アニメーション
