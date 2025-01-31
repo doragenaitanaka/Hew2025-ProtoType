@@ -76,19 +76,18 @@ HRESULT	Player::Init(const wchar_t* _p_fileName, int	_splitX, int	_splitY, int	_
 	this->moveUPos = _moveUPos;
 
 	HRESULT hr;
-	// 定数バッファの作成
-	if (!this->p_constantBuffer)
-	{
-		this->p_constantBuffer = new	CConstantBuffer;
-		hr = this->p_constantBuffer->Create(NULL, sizeof(ConstBuffer));
-	}
-
 	// 頂点バッファの作成
 	if (!this->p_vertexBuffer)
 	{
 		this->p_vertexBuffer = new  CVertexBuffer;
 		//																									↓ 動的に書き換え可能にしている
-		hr = this->p_vertexBuffer->Create(this->playerVertexList, sizeof(this->playerVertexList) * 9, NULL, D3D11_USAGE_DYNAMIC, D3D11_CPU_ACCESS_WRITE);
+		hr = this->p_vertexBuffer->Create(this->playerVertexList, sizeof(this->playerVertexList), NULL, D3D11_USAGE_DYNAMIC, D3D11_CPU_ACCESS_WRITE);
+	}
+	// 定数バッファの作成
+	if (!this->p_constantBuffer)
+	{
+		this->p_constantBuffer = new	CConstantBuffer;
+		hr = this->p_constantBuffer->Create(NULL, sizeof(ConstBuffer));
 	}
 
 	// テクスチャ読み込み
