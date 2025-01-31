@@ -102,6 +102,7 @@ public:
 	int m = 0;
 	int ustate = 0;
 	int BlockNumber = 0;
+	int deadstate = 0;
 	int HookCameraState = 0;
 	int HookNumber = 0;
 	int NewColState = 0;

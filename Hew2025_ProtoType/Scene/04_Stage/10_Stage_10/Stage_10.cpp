@@ -1260,7 +1260,7 @@ void	Stage_10::Update(void)
             jumpstate = 1;
         }
 
-        if (this->p_input->Press("SUPERJUMP") && t == 0 && grabstate == 1)
+        if (this->p_input->Press("SUPERJUMP") && t == 0 && grabstate == 1 && deathstate != 1)
         {
             this->p_sound->Play(SOUND_LABEL::SE_PLAYR_LEAP);
             pullstate = 0;
