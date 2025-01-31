@@ -26,7 +26,7 @@ Stage_1::Stage_1()
     //--------------------------------------------------------------------------	
     this->background = nullptr;
     this->player = nullptr;
-    this->keyConfig = nullptr;
+    this->keyConfigUI = nullptr;
 
     //--------------------------------------------------------------------------
     //		描画関連
@@ -77,12 +77,12 @@ void	Stage_1::Initialize(void)
     this->player->SetPos(0.0f, -100.0f, 100.0f);
     this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
 
-    //キーコンフィグ
-    if (!this->keyConfig) { this->keyConfig = new Object(this->p_camera); }
-    this->keyConfig->Init(L"Asset/UI/KeyConfig.png");
-    this->keyConfig->SetPos(0.0f, 0.0f, 0.0f);
-    this->keyConfig->SetSize(1920.0f * 0.7f, 1080.0f * 0.7f, 0.0f);
-    this->keyConfig->SetIsActive(true);
+    //キーコンフィグUI
+    if (!this->keyConfigUI) { this->keyConfigUI = new Background(this->p_camera); }
+    this->keyConfigUI->Init(L"Asset/UI/KeyConfig.png");
+    this->keyConfigUI->SetPos(0.0f, 0.0f, 0.0f);
+    this->keyConfigUI->SetSize(1920.0f * 0.7f, 1080.0f * 0.7f, 0.0f);
+    this->keyConfigUI->SetIsActive(true);
 
     for (m = 0; m < 4; m++)
     {
@@ -339,15 +339,7 @@ void	Stage_1::Update(void)
     if (this->p_input->Trigger("KEYCONFIG"))
     {
         //KeyConfigの表示切替
-        if (this->keyConfig->GetIsActive() == true)
-        {
-            this->keyConfig->SetIsActive(false);
-        }
-        else
-        {
-            this->keyConfig->SetIsActive(true);
-        }
-        return;
+        this->keyConfigUI->SetIsActive(!this->keyConfigUI->GetIsActive());
     }
 
     //----------------------------------------------
@@ -1323,7 +1315,7 @@ void	Stage_1::Update(void)
     //--------------------------------------------------------------------------	
     this->background->Update();
     this->p_tileMap->Update();
-    this->keyConfig->Update();
+    this->keyConfigUI->Update();
 
 
 
@@ -1397,7 +1389,6 @@ void	Stage_1::Draw(void)
     this->background->Draw();
     this->goal->Draw();
     this->p_tileMap->Draw();
-    this->keyConfig->Draw();
 
 
     /* this->player->Draw();
@@ -1455,6 +1446,9 @@ void	Stage_1::Draw(void)
     {
         this->death2->Draw();
     }
+
+    // キーコンフィグUI
+    this->keyConfigUI->Draw();
 }
 
 /**	@brief 	シーン全体の終了処理
@@ -1482,6 +1476,7 @@ void	Stage_1::Finalize(void)
     //--------------------------------------------------------------------------
     SAFE_DELETE(this->background);
     SAFE_DELETE(this->player);
+    SAFE_DELETE(this->keyConfigUI);
 
     //テクスチャ
     for (int i = 0; i < 2; i++)

@@ -26,6 +26,7 @@ Stage_3::Stage_3()
     //--------------------------------------------------------------------------	
     this->background = nullptr;
     this->player = nullptr;
+    this->keyConfigUI = nullptr;
 
     //--------------------------------------------------------------------------
     //		描画関連
@@ -74,6 +75,13 @@ void	Stage_3::Initialize(void)
     this->player->Init(L"Asset/block.png");
     this->player->SetPos(0.0f, -100.0f, 100.0f);
     this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
+
+    //キーコンフィグUI
+    if (!this->keyConfigUI) { this->keyConfigUI = new Background(this->p_camera); }
+    this->keyConfigUI->Init(L"Asset/UI/KeyConfig.png");
+    this->keyConfigUI->SetPos(0.0f, 0.0f, 0.0f);
+    this->keyConfigUI->SetSize(1920.0f * 0.7f, 1080.0f * 0.7f, 0.0f);
+    this->keyConfigUI->SetIsActive(false);
 
     for (m = 0; m < 3; m++)
     {
@@ -326,6 +334,13 @@ void	Stage_3::Update(void)
         this->p_sceneManager->ChangeScene(Scene::TitleScene);
         return;
     }
+    // キーコンフィグを確認
+    if (this->p_input->Trigger("KEYCONFIG"))
+    {
+        //KeyConfigの表示切替
+        this->keyConfigUI->SetIsActive(!this->keyConfigUI->GetIsActive());
+    }
+
     //----------------------------------------------
     // Creative Mode
     //----------------------------------------------
@@ -1474,6 +1489,7 @@ void	Stage_3::Finalize(void)
     //--------------------------------------------------------------------------
     SAFE_DELETE(this->background);
     SAFE_DELETE(this->player);
+    SAFE_DELETE(this->keyConfigUI);
 
     //テクスチャ
     for (int i = 0; i < 2; i++)

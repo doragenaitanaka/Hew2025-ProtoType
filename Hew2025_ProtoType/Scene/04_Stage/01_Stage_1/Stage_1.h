@@ -199,9 +199,7 @@ private:
 	//--------------------------------------------------------------------------
 	Background* background;
 	Player* player;
-	//Object* block[100];
-	//Object* blockdraw[10000];
-	Object* keyConfig;
+	Background* keyConfigUI;
 
 	//--------------------------------------------------------------------------
 	//		描画関連
