@@ -32,14 +32,14 @@ Test_Otani::~Test_Otani()
 *	@date	2024/05/10
 */
 void	Test_Otani::Initialize(void)
-{
-    if (!this->p_TestObject) { this->p_TestObject = new Object; }
-    if (!this->p_TestObject2) { this->p_TestObject2 = new Object; }
-
-    if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
-    if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
-    if (!this->p_inputLayout) { this->p_inputLayout = new CInputLayout; }               // 入力レイアウト
-    if (!this->p_sampler) { this->p_sampler = new CSampler; }                           // サンプラー
+//{
+//    if (!this->p_TestObject) { this->p_TestObject = new Object; }
+//    if (!this->p_TestObject2) { this->p_TestObject2 = new Object; }
+//
+//    if (!this->p_vertexShader) { this->p_vertexShader = new CVertexShader; }            // 頂点シェーダ
+//    if (!this->p_pixelShader) { this->p_pixelShader = new CPixelShader; }               // ピクセルシェーダ
+//    if (!this->p_inputLayout) { this->p_inputLayout = new CInputLayout; }               // 入力レイアウト
+//    if (!this->p_sampler) { this->p_sampler = new CSampler; }                           // サンプラー
 
     // オブジェクト
     this->p_TestObject->Init(L"Asset/block.png");
