@@ -401,6 +401,11 @@ void	Stage_10::Update(void)
         {
             this->player->SetPos(playerPos.x, playerPos.y - 10.0f, playerPos.z);
         }
+        if (this->p_input->Trigger("SPACE"))
+        {
+            std::cout << "x:" << playerPos.x << " y:" << playerPos.y << std::endl;
+        }
+
     }
     //-----------------------------------
    //フックの移動処理
@@ -669,7 +674,7 @@ void	Stage_10::Update(void)
         //          失敗時の処理
         // ========================================
         // 降下したら死ぬ！！
-        if (playerPos.y <= -2900.0f && (!this->player->GetIsDead()))
+        if (playerPos.y <= -3000.0f && (!this->player->GetIsDead()))
         {
             // ターゲットの解除
             this->p_camera->ClearTarget();

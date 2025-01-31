@@ -139,9 +139,9 @@ public:
 
 	XMFLOAT2 RailPos00 = { 2500.0f,-1700.0f };//レール左から順に
 	XMFLOAT2 RailPos01 = { 3300.0f,-1700.0f };
-	XMFLOAT2 RailPos02 = { 4100.0f,-1700.0f };
+	XMFLOAT2 RailPos02 = { 4100.0f,-1750.0f };
 	XMFLOAT2 RailPos03 = { 4900.0f,-1700.0f };
-	XMFLOAT2 RailPos04 = { 5800.0f,-1700.0f };
+	XMFLOAT2 RailPos04 = { 5800.0f,-1750.0f };
 	XMFLOAT2 RailPos05 = { 6500.0f,-1700.0f };
 
 	XMFLOAT2 HookSize01 = { 150.0f, 220.0f };
