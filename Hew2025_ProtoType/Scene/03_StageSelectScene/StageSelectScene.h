@@ -13,10 +13,13 @@
 #include"../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
 #include"../../Library/Code/self/07_Camera/Camera.h"
 #include"../../Library/Code/self/05_Collider/03_PointCollider/PointCollider.h"
+#include"../../Library/Code/self/08_Timer/Timer.h"
 
 #include<string>
 #include<array>
 #include<chrono>
+
+
 
 /**	@file	StageSelectScene.h
 *	@brief	ステージセレクト
@@ -60,6 +63,8 @@ private:
 	/**	@brief 	ボタンを押したときの処理
 	*/
 	void ButtonUpdate();
+
+
 private:
 	std::chrono::time_point<std::chrono::steady_clock> lastUpdateTime;
 	std::chrono::milliseconds interval{ 500 };			// 時間間隔
@@ -81,6 +86,8 @@ private:
 
 	bool isPushL1 = false;	
 	bool isPushR1 = false;
+
+	Timer inputTimer;	//入力待ち用タイマー
 
 	// ステージUI
 	enum class Stage
