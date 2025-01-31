@@ -421,49 +421,25 @@ void	TitleScene::Update(void)
     feda->FedaOut(iflg);
     //シーンチェンジ
     if (this->p_input->Trigger("SELECT"))
-    {
-<<<<<<< HEAD
-		
+    {		
 		iflg = true;
         // SE
         this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
-		
 	}
-=======
-        iflg = true;
-        //フェードアウト
-        feda->FedaOut(iflg);
-
-        // SE
-        this->p_sound->Play(SOUND_LABEL::SE_UI_CLICK);
-		
-            switch (SelectState)
-            {
-            case 0://start
-                // BGM
-                this->p_sound->Stop(SOUND_LABEL::BGM_TITLE);
-                this->p_sceneManager->ChangeScene(Scene::Stage_1);
-                return;
-                break;
->>>>>>> 9d2219cf31caa967feab862ad56e64b8cd85375b
-
     if (this->feda->GetAlpha() >= 1.0f)
     {
         switch (SelectState)
         {
         case 0://start
-
+            this->p_sound->Stop(SOUND_LABEL::BGM_TITLE);
             this->p_sceneManager->ChangeScene(Scene::Stage_2);
             return;
             break;
 
-
         case 1://stage select
-
             this->p_sceneManager->ChangeScene(Scene::StageSelectScene);
             return;
             break;
-
 
         case 2://game end
 
