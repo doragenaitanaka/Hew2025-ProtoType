@@ -209,6 +209,8 @@ void	Stage_4::Initialize(void)
     this->PushObject[0]->SetPos(PushObjectPos00.x, PushObjectPos00.y, 0.0f);
     this->PushObject[1]->SetSize(PushObjectSize.x, PushObjectSize.y, 0.0f);
     this->PushObject[1]->SetPos(PushObjectPos01.x, PushObjectPos01.y, 0.0f);
+    this->PushObject[0]->SetIsActive(false);
+    this->PushObject[1]->SetIsActive(false);
 
     this->hookdraw[0]->SetSize(HookSize02.x, HookSize02.y, 0.0f);
     this->hookdraw[1]->SetSize(HookSize02.x, HookSize02.y, 0.0f);
