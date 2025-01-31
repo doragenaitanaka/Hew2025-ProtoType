@@ -198,6 +198,9 @@ private:
 	Timer failedTimer;	// 失敗時
 	bool isFailed;		// true:失敗した
 
+	Timer clearTimer;	// 成功時
+	bool isClear;		// true:成功した
+
 	int gamemode = 1;							// ゲームモード
 	int ColliderState = 0;						// 当たった状態
 	XMFLOAT2 PlayerSize = { 110.0f,110.0f };	// プレイヤーのサイズ

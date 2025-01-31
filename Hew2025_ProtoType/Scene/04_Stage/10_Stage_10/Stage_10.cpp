@@ -13,6 +13,7 @@
 Stage_10::Stage_10()
 {
     this->isFailed = false;
+    this->isClear = false;
 
     this->p_camera = nullptr;
     this->p_tileMap = nullptr;
@@ -1475,18 +1476,25 @@ void	Stage_10::Update(void)
 
         if (ScenechangeState2 == 1)
         {
-            this->p_sound->Play(SOUND_LABEL::SE_GOAL);
-            this->p_sceneManager->ChangeScene(Scene::TitleScene);
-            return;
+            if (!this->isClear)
+            {
+                // タイマーリセット
+                this->clearTimer.Reset();
+                this->p_sound->Play(SOUND_LABEL::SE_GOAL);
+                this->isClear = true;
+            }
+            else
+            {
+                // SE鳴り終えたら遷移
+                if (this->clearTimer.Elapsed() > 2.0f)
+                {
+                    this->p_sceneManager->ChangeScene(Scene::TitleScene);
+                    return;
+                }
+            }
         }
 
-
-
     }
-
-
-
-
 
     //--------------------------------------------------------------------------
     //		オブジェクトの更新

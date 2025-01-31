@@ -601,11 +601,11 @@ void StageSelectScene::SelectStage(int& _stageNum)
         this->p_sceneManager->ChangeScene(Scene::Stage_4);
         break;
     case StageSelectScene::Stage::STAGE_5:
-    this->p_sceneManager->ChangeScene(Scene::Stage_5); 
+    this->p_sceneManager->ChangeScene(Scene::Stage_10); // Stage5に10をあてがう
     break;
-    case StageSelectScene::Stage::STAGE_6:
-        this->p_sceneManager->ChangeScene(Scene::Stage_10);// Stage6に10をあてがう
-        break;
+    //case StageSelectScene::Stage::STAGE_6:
+    //    this->p_sceneManager->ChangeScene(Scene::Stage_10);// Stage6に10をあてがう
+    //    break;
     //case StageSelectScene::Stage::STAGE_6:
     //    this->p_sceneManager->ChangeScene(Scene::Stage_6);
     //    break;
