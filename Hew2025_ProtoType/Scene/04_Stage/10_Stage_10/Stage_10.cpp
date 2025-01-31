@@ -18,14 +18,16 @@ Stage_10::Stage_10()
     this->p_tileMap = nullptr;
 
     // テクスチャの読み込み
-    this->textureList[0] = Object::LoadTexture(L"Asset/block.png");         // ブロック
-    this->textureList[1] = Object::LoadTexture(L"Asset/Gimmick/hook.png");  // フック
+    this->textureList[0] = Object::LoadTexture(L"Asset/block.png");             // ブロック
+    this->textureList[1] = Object::LoadTexture(L"Asset/Gimmick/hook.png");      // フック
+    this->textureList[2] = Object::LoadTexture(L"Asset/Gimmick/rail_02.png");   // レール
 
     //--------------------------------------------------------------------------
     //		 オブジェクト
     //--------------------------------------------------------------------------	
     this->background = nullptr;
     this->player = nullptr;
+    this->keyConfigUI = nullptr;
 
     //--------------------------------------------------------------------------
     //		描画関連
@@ -76,6 +78,13 @@ void	Stage_10::Initialize(void)
     this->player->SetPos(0.0f, -100.0f, 100.0f);
     this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
 
+    //キーコンフィグUI
+    if (!this->keyConfigUI) { this->keyConfigUI = new Background(this->p_camera); }
+    this->keyConfigUI->Init(L"Asset/UI/KeyConfig.png");
+    this->keyConfigUI->SetPos(0.0f, 0.0f, 0.0f);
+    this->keyConfigUI->SetSize(1920.0f * 0.7f, 1080.0f * 0.7f, 0.0f);
+    this->keyConfigUI->SetIsActive(false);
+
     for (m = 0; m < 6; m++)
     {
         if (!this->hook[m]) {
@@ -87,14 +96,14 @@ void	Stage_10::Initialize(void)
         }
 
         this->hook[m]->SetSize(HookSize01.x, HookSize01.y, 0.0f);
-
         this->hookdraw[m]->SetSize(HookSize02.x, HookSize02.y, 0.0f);
     }
 
     for (n = 0; n < 6; n++)
     {
         this->rail[n] = std::make_shared<Object>(this->p_camera);
-        this->rail[n]->Init(L"Asset/Gimmick/rail_02.png");
+        this->rail[n]->SetTexture(this->textureList[2]);
+        this->rail[n]->Init();
         this->rail[n]->SetSize(RailSize.x, RailSize.y, 0.0f);
     }
     if (!this->playerdraw) { this->playerdraw = std::make_shared<Player>(this->p_camera); }
@@ -337,6 +346,12 @@ void	Stage_10::Update(void)
     {
         this->p_sceneManager->ChangeScene(Scene::TitleScene);
         return;
+    }
+    // キーコンフィグを確認
+    if (this->p_input->Trigger("KEYCONFIG"))
+    {
+        //KeyConfigの表示切替
+        this->keyConfigUI->SetIsActive(!this->keyConfigUI->GetIsActive());
     }
 
     //----------------------------------------------
@@ -654,7 +669,7 @@ void	Stage_10::Update(void)
         //          失敗時の処理
         // ========================================
         // 降下したら死ぬ！！
-        if (playerPos.y <= -3300.0f && (!this->player->GetIsDead()))
+        if (playerPos.y <= -2900.0f && (!this->player->GetIsDead()))
         {
             // ターゲットの解除
             this->p_camera->ClearTarget();
@@ -1493,6 +1508,7 @@ void	Stage_10::Update(void)
     {
         this->rail[n]->Update();
     }
+    this->keyConfigUI->Update();
 
 
     //this->playercol->Draw();
@@ -1603,6 +1619,7 @@ void	Stage_10::Draw(void)
     {
         this->death2->Draw();
     }
+    this->keyConfigUI->Draw();
 }
 
 /**	@brief 	シーン全体の終了処理
@@ -1629,9 +1646,10 @@ void	Stage_10::Finalize(void)
     //--------------------------------------------------------------------------
     SAFE_DELETE(this->background);
     SAFE_DELETE(this->player);
+    SAFE_DELETE(this->keyConfigUI);
 
     //テクスチャ
-    for (int i = 0; i < 2; i++)
+    for (int i = 0; i < 3; i++)
     {
         SAFE_RELEASE(this->textureList[i]);
     }

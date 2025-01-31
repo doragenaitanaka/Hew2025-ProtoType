@@ -192,7 +192,7 @@ public:
 	int HookCnt[6] = { 0,0,100,0,100,100 }; //右から順
 private:
 	// テクスチャ
-	std::array<ID3D11ShaderResourceView*, 2> textureList;
+	std::array<ID3D11ShaderResourceView*, 3> textureList;
 
 	// タイマー
 	Timer failedTimer;	// 失敗時
@@ -211,8 +211,7 @@ private:
 	//--------------------------------------------------------------------------
 	Background* background;
 	Player* player;
-	//Object* block[100];
-	//Object* blockdraw[10000];
+	Background* keyConfigUI;
 
 	//--------------------------------------------------------------------------
 	//		描画関連

@@ -96,7 +96,7 @@ private:
 		STAGE_2,
 		STAGE_3,
 		STAGE_4,
-		//STAGE_5,
+		STAGE_5,
 		//STAGE_6,
 		//STAGE_7,
 		//STAGE_8,
@@ -105,7 +105,7 @@ private:
 		//STAGE_11,
 		//STAGE_12,
 
-		NUM = STAGE_4,
+		NUM = STAGE_5,
 		MAX,
 	};
 	
@@ -140,7 +140,7 @@ private:
 		L"Asset/UI/bangou2.png",
 		L"Asset/UI/bangou3.png",
 		L"Asset/UI/bangou4.png",
-		//L"Asset/UI/bangou5.png",
+		L"Asset/UI/bangou5.png",
 		//L"Asset/UI/bangou6.png",
 		//L"Asset/UI/bangou7.png",
 		//L"Asset/UI/bangou8.png",
