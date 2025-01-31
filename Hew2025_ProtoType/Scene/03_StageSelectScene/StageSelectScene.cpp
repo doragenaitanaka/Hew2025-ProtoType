@@ -392,15 +392,16 @@ void StageSelectScene::Update(void)
             this->isChange = true;
         }
     }
-    // フェードアウト
-    this->feda->FedaOut(this->isChange);
-
     // フェードアウト仕切ったらシーン遷移
     if (this->isChange && this->feda->GetAlpha() >= 1.0f)
     {
         this->SelectStage(this->stageNum);
         return;
     }
+    // フェードアウト
+    this->feda->FedaOut(this->isChange);
+
+
 
     // アニメーション
     this->AnimateUI();

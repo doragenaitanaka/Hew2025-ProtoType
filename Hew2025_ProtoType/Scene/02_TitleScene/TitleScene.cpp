@@ -417,8 +417,7 @@ void	TitleScene::Update(void)
         }
     }
 
-    //フェードアウト
-    feda->FedaOut(iflg);
+
     //シーンチェンジ
     if (this->p_input->Trigger("SELECT"))
     {		
@@ -449,7 +448,8 @@ void	TitleScene::Update(void)
 
         }
     }
-        
+    //フェードアウト
+    feda->FedaOut(iflg);
     
     //-----------------------------------------------------
     //  座標更新
