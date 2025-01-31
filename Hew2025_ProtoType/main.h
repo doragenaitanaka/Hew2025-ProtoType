@@ -1,6 +1,6 @@
 ﻿#pragma once
 // デバッグ用コンソールウィンドウを表示
-#define	DEBUG
+//#define	DEBUG
 
 #ifdef DEBUG
 #include <cstdlib> // system関数を使用するために必要

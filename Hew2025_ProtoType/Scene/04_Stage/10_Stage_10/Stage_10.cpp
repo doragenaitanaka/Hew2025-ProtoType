@@ -1469,7 +1469,7 @@ void	Stage_10::Update(void)
         if (ScenechangeState2 == 1)
         {
             this->p_sound->Play(SOUND_LABEL::SE_GOAL);
-            this->p_sceneManager->ChangeScene(Scene::Stage_11);
+            this->p_sceneManager->ChangeScene(Scene::TitleScene);
             return;
         }
 

@@ -1432,12 +1432,9 @@ void	Stage_4::Update(void)
         if (ScenechangeState2 == 1)
         {
             this->p_sound->Play(SOUND_LABEL::SE_GOAL);
-            this->p_sceneManager->ChangeScene(Scene::TitleScene);
+            this->p_sceneManager->ChangeScene(Scene::Stage_10); // ！！！ステージ10に遷移！！！
             return;
         }
-
-
-
     }
 
 
