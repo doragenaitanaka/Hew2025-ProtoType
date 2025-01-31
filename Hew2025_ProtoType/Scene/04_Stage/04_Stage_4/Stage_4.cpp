@@ -418,6 +418,11 @@ void	Stage_4::Update(void)
         {
             this->player->SetPos(playerPos.x, playerPos.y - 10.0f, playerPos.z);
         }
+        if (this->p_input->Trigger("SPACE"))
+        {
+            std::cout << "x:" << playerPos.x << " y:" << playerPos.y << std::endl;
+        }
+
     }
     //-----------------------------------
     //フックの移動処理
