@@ -201,6 +201,7 @@ private:
 	Player* player;
 	//Object* block[100];
 	//Object* blockdraw[10000];
+	Object* keyConfig;
 
 	//--------------------------------------------------------------------------
 	//		描画関連
