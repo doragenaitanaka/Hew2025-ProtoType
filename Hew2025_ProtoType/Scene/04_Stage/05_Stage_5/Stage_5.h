@@ -52,7 +52,7 @@ public:
 	*/
 	void	Finalize(void)override;
 
-
+	int playerstate = 0;
 	float PlayerAngle = 0.0f;
 	int idletime = 0;
 	float u = 0.0f;
@@ -137,11 +137,11 @@ public:
 
 	XMFLOAT2 PlayerGrabPos = { 0.0f, 0.0f };
 
-	XMFLOAT2 HookPos00 = { 5850.0f,-4850.0f };//右フック下
-	XMFLOAT2 HookPos01 = { 115850.0f,-4650.0f };//右フック上
-	XMFLOAT2 HookPos02 = { 115850.0f,-2500.0f };//空中右フック左
-	XMFLOAT2 HookPos03 = { 5920.0f,-2500.0f };//空中右フック右
-	XMFLOAT2 HookPos04 = { 112150.0f,-2350.0f };//空中左フック上
+	XMFLOAT2 HookPos00 = { 5850.0f,-4840.0f };//右フック下
+	XMFLOAT2 HookPos01 = { 5850.0f,-4640.0f };//右フック上
+	XMFLOAT2 HookPos02 = { 5850.0f,-2500.0f };//空中右フック左
+	XMFLOAT2 HookPos03 = { 6070.0f,-2500.0f };//空中右フック右
+	XMFLOAT2 HookPos04 = { 2150.0f,-2350.0f };//空中左フック上
 	XMFLOAT2 HookPos05 = { 2150.0f,-2550.0f };//空中左フック下
 	XMFLOAT2 HookPos06 = { 2150.0f,-200.0f };//空中ゴール左フック
 
@@ -177,8 +177,8 @@ public:
 	XMFLOAT2 PlayerColPos2 = { 0.0f, 80.0f };
 	XMFLOAT2 PlayerColSize2 = { 120.0f,40.0f };
 
-	XMFLOAT2 RailPos00 = { 5850,-5135.0f };//右フック下
-	XMFLOAT2 RailPos01 = { 6250.0f,-2420.0f };//空中右フック右
+	XMFLOAT2 RailPos00 = { 5850,-5125.0f };//右フック下
+	XMFLOAT2 RailPos01 = { 6400.0f,-2420.0f };//空中右フック右
 	XMFLOAT2 RailPos02 = { 2150.0f,-2835.0f };//空中左フック下
 	XMFLOAT2 RailSize00 = { 100.0f,700.0f };
 	XMFLOAT2 RailSize01 = { 100.0f,700.0f };
@@ -195,6 +195,11 @@ public:
 	XMFLOAT2 IdleSize = { 160.0f,160.0f };
 	XMFLOAT2 DeathSize = { 230.0f,230.0f };
 	XMFLOAT2 HookColSize01 = { 80.0f, 80.0f };
+	int nogstate2 = 0;
+	int nogt2 = 0;
+	int nogt = 0;
+	int nogstate = 0;
+	int grabstate2 = 0;
 	int YoyoNumber = 0;
 	int HookCnt[4] = { 0,0,0,0 };
 	int YoyoCntX = 0;
