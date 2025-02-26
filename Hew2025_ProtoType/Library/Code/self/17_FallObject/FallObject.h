@@ -26,6 +26,7 @@ public:
 
 	
 
+	bool FallFlg = true;//倒れるフラグ（trueで倒れる、falseで通常）
 
 
 	
@@ -34,7 +35,6 @@ public:
 
 private:
 
-	bool FallFlg=true;//倒れるフラグ（trueで倒れる、falseで通常）
 	float Height=10.0f;//物体の高さ(m)
 	float Angle;//物体の倒れる角度(度)
 	float x_Velocity=10.0f;//xの各速度(度/s)
