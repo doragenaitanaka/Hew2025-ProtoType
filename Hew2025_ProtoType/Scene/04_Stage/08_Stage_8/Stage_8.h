@@ -179,11 +179,11 @@ public:
 
 	XMFLOAT2 PlayerGrabPos = { 0.0f, 0.0f };
 
-	XMFLOAT2 HookPos01 = { 800.0f,-3750.0f };
-	XMFLOAT2 HookPos02 = { 3820.0f, -2750.0f };
-	XMFLOAT2 HookPos03 = { 4580.0f,-1600.0f };
+	XMFLOAT2 HookPos01 = { 80000.0f,-37500.0f };
+	XMFLOAT2 HookPos02 = { 3820.0f, -3050.0f };
+	XMFLOAT2 HookPos03 = { 4580.0f,-2200.0f };
 	XMFLOAT2 HookPos04 = { 2150.0f,-1250.0f };
-	XMFLOAT2 HookPos05 = { 790.0f,-190.0f };
+	XMFLOAT2 HookPos05 = { 1290.0f,-160.0f };
 	XMFLOAT2 HookPos06 = { 112150.0f,-1250.0f };
 	XMFLOAT2 HookPos07 = { 11640.0f,-200.0f };
 
@@ -221,7 +221,7 @@ public:
 	XMFLOAT2 PlayerColSize2 = { 120.0f,40.0f };
 
 
-	XMFLOAT2 GoalPos = { 100.0f,-160.0f };
+	XMFLOAT2 GoalPos = { 100.0f,140.0f };
 	XMFLOAT2 GoalSize = { 200.0f, 200.0f };
 
 	XMFLOAT2 IdlePos = { 0.0f,0.0f };
