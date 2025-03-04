@@ -65,25 +65,25 @@ void	TitleScene::Initialize(void)
     // ロゴ
     if (!this->logo) { this->logo = new Object(this->p_camera); }
     this->logo->Init(L"Asset/title/beyond 1.png");
-    this->logo->SetPos(0.0f, 300.0f, 0.0f);
+    this->logo->SetPos(LogoPos.x, LogoPos.y, 0.0f);
     this->logo->SetSize(LogoSize.x, LogoSize.y, 0.0f);
 
     // ゲームスタート
     if (!this->start) { this->start = new Object(this->p_camera); }
     this->start->Init(L"Asset/title/title scene_sutrt.png");
-    this->start->SetPos(-200.0f, -20.0f, 0.0f);
+    this->start->SetPos(StartPos.x, StartPos.y, 0.0f);
     this->start->SetSize(StartSize.x, StartSize.y, 0.0f);
 
     // ステージセレクト
     if (!this->select) { this->select = new Object(this->p_camera); }
     this->select->Init(L"Asset/title/title scene_stageselect.png");
-    this->select->SetPos(110.0f, -220.0f, 0.0f);
+    this->select->SetPos(SelectPos.x, SelectPos.y, 0.0f);
     this->select->SetSize(SelectSize.x,SelectSize.y, 0.0f);
 
     // ゲーム終了
     if (!this->gameend) { this->gameend = new Object(this->p_camera); }
     this->gameend->Init(L"Asset/title/title scene_gameend.png");
-    this->gameend->SetPos(-50.0f, -420.0f, 0.0f);
+    this->gameend->SetPos(GameendPos.x, GameendPos.y, 0.0f);
     this->gameend->SetSize(GameendSize.x,GameendSize.y, 0.0f);
 
     // 指
@@ -284,27 +284,27 @@ void	TitleScene::Update(void)
                 switch (SelectState)
                 {
                 case 0:
-                    StartSize.x+=1.1;
-                    StartSize.y+=1.1;
+                    StartSize.x++;
+                    StartSize.y++;
 
-                    SelectSize = { 1120.0f,160.0f };//サイズを初期化
-                    GameendSize = { 800.0f,160.0f };//サイズを初期化
+                    SelectSize = { 907.2f,129.6f };//サイズを初期化
+                    GameendSize = { 648.0f,129.6f };//サイズを初期化
                     break;
 
                 case 1:
-                    SelectSize.x+= 1.1;
-                    SelectSize.y+= 1.1;
+                    SelectSize.x++;
+                    SelectSize.y++;
 
-                    StartSize = { 640.0f,160.0f };//サイズを初期化
-                    GameendSize = { 800.0f,160.0f };//サイズを初期化
+                    StartSize = { 518.0f,129.6f };//サイズを初期化
+                    GameendSize = { 648.0f,129.6f };//サイズを初期化
                     break;
 
                 case 2:
-                    GameendSize.x+= 1.1;
-                    GameendSize.y+= 1.1;
+                    GameendSize.x++;
+                    GameendSize.y++;
                        
-                    StartSize = { 640.0f,160.0f };//サイズを初期化
-                    SelectSize = { 1120.0f,160.0f };//サイズを初期化
+                    StartSize = { 518.4f,129.6f };//サイズを初期化
+                    SelectSize = { 907.2f,129.6f };//サイズを初期化
                     break;
                 }
             }
@@ -328,11 +328,11 @@ void	TitleScene::Update(void)
                     break;
                 }
             }
-            if (UIcnt <= 25)
+            if (UIcnt < 25)
             {
                 UIState = true;
             }
-            if (UIcnt >= 25)
+            if (UIcnt > 25)
             {
                 UIState = false;
             }
@@ -342,25 +342,27 @@ void	TitleScene::Update(void)
             UIcnt = 0;
         }
 
+        if(LogoSize.x )
+
         //タイトルロゴの動き
         if (Logocnt != 80)
         {
             Logocnt++;
             if (LogoState)
             {
-                    LogoSize.x+=1.1;
-                    LogoSize.y+=1.1;
+                    LogoSize.x++;
+                    LogoSize.y++;
             }
             else
             {
                     LogoSize.x--;
                     LogoSize.y--;
             }
-            if (Logocnt <= 40)
+            if (Logocnt < 40)
             {
                 LogoState = true;
             }
-            if (Logocnt >= 40)
+            if (Logocnt > 40)
             {
                 LogoState = false;
             }
@@ -379,17 +381,17 @@ void	TitleScene::Update(void)
         switch (SelectState)
         {
         case 0://startに指
-            FingerPos.y = -450.0f;
+            FingerPos.y = -470.0f;
             SelectState = 2;
             break;
 
         case 1://ステージセレクトに指
-            FingerPos.y = -50.0f;
+            FingerPos.y = -160.0f;
             SelectState = 0;
             break;
 
         case 2://ゲーム終了に指
-            FingerPos.y = -250.0f;
+            FingerPos.y = -300.0f;
             SelectState = 1;
             break;
         }
@@ -401,17 +403,17 @@ void	TitleScene::Update(void)
         switch (SelectState)
         {
         case 0://startに指
-            FingerPos.y = -250.0f;
+            FingerPos.y = -300.0f;
             SelectState = 1;
             break;
 
         case 1://ステージセレクトに指
-            FingerPos.y = -450.0f;
+            FingerPos.y = -470.0f;
             SelectState = 2;
             break;
 
         case 2://ゲーム終了に指
-            FingerPos.y = -50.0f;
+            FingerPos.y = -160.0f;
             SelectState = 0;
             break;
         }
@@ -455,7 +457,7 @@ void	TitleScene::Update(void)
     //  座標更新
     //-----------------------------------------------------
     this->finger->SetPos(FingerPos.x,FingerPos.y,0.0f);
-    this->abutton->SetPos(FingerPos.x + 75.0f, FingerPos.y - 50.0f, 0.0f);
+    this->abutton->SetPos(FingerPos.x + 75.0f, FingerPos.y - 30.0f, 0.0f);
     this->cloud1->SetPos(cloudPos00.x,cloudPos00.y, 0.0f);
     this->cloud2->SetPos(cloudPos01.x, cloudPos01.y , 0.0f);
 
