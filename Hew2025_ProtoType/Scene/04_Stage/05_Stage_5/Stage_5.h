@@ -137,13 +137,13 @@ public:
 
 	XMFLOAT2 PlayerGrabPos = { 0.0f, 0.0f };
 
-	XMFLOAT2 HookPos00 = { 5850.0f,-4840.0f };//右フック下
-	XMFLOAT2 HookPos01 = { 5850.0f,-4640.0f };//右フック上
-	XMFLOAT2 HookPos02 = { 5850.0f,-2500.0f };//空中右フック左
-	XMFLOAT2 HookPos03 = { 6070.0f,-2500.0f };//空中右フック右
-	XMFLOAT2 HookPos04 = { 2150.0f,-2350.0f };//空中左フック上
-	XMFLOAT2 HookPos05 = { 2150.0f,-2550.0f };//空中左フック下
-	XMFLOAT2 HookPos06 = { 2150.0f,-200.0f };//空中ゴール左フック
+	XMFLOAT2 HookPos00 = { 6800.0f,-4840.0f };//右フック下
+	XMFLOAT2 HookPos01 = { 6800.0f,-4640.0f };//右フック上
+	XMFLOAT2 HookPos02 = { 6800.0f,-2500.0f };//空中右フック左
+	XMFLOAT2 HookPos03 = { 6970.0f,-2500.0f };//空中右フック右
+	XMFLOAT2 HookPos04 = { 3050.0f,-2350.0f };//空中左フック上
+	XMFLOAT2 HookPos05 = { 3050.0f,-2550.0f };//空中左フック下
+	XMFLOAT2 HookPos06 = { 3050.0f,-200.0f };//空中ゴール左フック
 
 	XMFLOAT2 HookSize01 = { 220.0f, 220.0f };
 	XMFLOAT2 HookSize02 = { 150.0f, 220.0f };
@@ -177,18 +177,18 @@ public:
 	XMFLOAT2 PlayerColPos2 = { 0.0f, 80.0f };
 	XMFLOAT2 PlayerColSize2 = { 120.0f,40.0f };
 
-	XMFLOAT2 RailPos00 = { 5850,-5125.0f };//右フック下
-	XMFLOAT2 RailPos01 = { 6400.0f,-2420.0f };//空中右フック右
-	XMFLOAT2 RailPos02 = { 2150.0f,-2835.0f };//空中左フック下
+	XMFLOAT2 RailPos00 = { 6800,-5125.0f };//右フック下
+	XMFLOAT2 RailPos01 = { 7300.0f,-2420.0f };//空中右フック右
+	XMFLOAT2 RailPos02 = { 3050.0f,-2835.0f };//空中左フック下
 	XMFLOAT2 RailSize00 = { 100.0f,700.0f };
 	XMFLOAT2 RailSize01 = { 100.0f,700.0f };
 	XMFLOAT2 RailSize02 = { 100.0f,700.0f };
 
-	XMFLOAT2 YoyoPos = { 2600.0f,-3400.0f };//ヨーヨーの支点
+	XMFLOAT2 YoyoPos = { 3500.0f,-3400.0f };//ヨーヨーの支点
 
 	XMFLOAT2 GrabboxSize = { 400.0f,400.0f };
-	XMFLOAT3 GrabboxPos = { 4500.0f,-4800.0f,0.0f };//振り子の当たり判定用
-	XMFLOAT2 GoalPos = { 3000.0f,-100.0f };
+	XMFLOAT3 GrabboxPos = { 5400.0f,-4800.0f,0.0f };//振り子の当たり判定用
+	XMFLOAT2 GoalPos = { 3900.0f,-150.0f };
 	XMFLOAT2 GoalSize = { 200.0f, 200.0f };
 
 	XMFLOAT2 IdlePos = { 0.0f,0.0f };
