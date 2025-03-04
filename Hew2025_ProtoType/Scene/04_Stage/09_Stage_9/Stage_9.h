@@ -14,11 +14,23 @@
 #include"../../../Library/Code/self/04_DirextX_11/09_Shader/02_PixelShader/CPixelShader.h"
 #include"../../../Library/Code/self/04_DirextX_11/10_Sampler/CSampler.h"
 
+#include"../../../Library/Code/self/12_GrabBox/GrabBox.h"
+#include"../../../Library/Code/self/13_Seesaw/Seesaw.h"
+#include"../../../Library/Code/self/14_Ball/Ball.h"
+#include"../../../Library/Code/self/17_FallObject/FallObject.h"
+#include"../../../Library/Code/self/15_Pendulum/Pendulum.h"
+#include"../../../Library/Code/self/18_Pen/Pen.h"
+
 #include"../../../Library/Code/self/06_TileMap/TileMap.h"
 #include"../../../Library/Code/self/07_Camera/01_TrackingCamera/TrackingCamera.h"
+#include"../../../Library/Code/self/08_Timer/Timer.h"
 #include"../../../Library/Code/self/10_Object/Object.h"
 #include"../../../Library/Code/self/11_Player/Player.h"
 #include"../../../Library/Code/self/16_Background/Background.h"
+#include"../../../Library/Code/other/03_sound/sound.h"
+#include <memory> 
+
+#include<array>
 /**	@file	Stage_9.h
 *	@brief	起動時にロゴとか出るシーン
 *	@memo	基底クラスの純粋仮想関数を継承している裏付け(誤った継承動作を防ぐため)に継承したメンバ関数にoverride指定子を使用している
@@ -48,68 +60,225 @@ public:
 	*/
 	void	Finalize(void)override;
 
-	//座標
 
-	XMFLOAT3 playerPos = { 300.0f,-4650.0f,0.0f };
+	float PlayerAngle = 0.0f;
+	int idletime = 0;
+	float u = 0.0f;
+	float eyesy = 90.0f;
+	float eyesx = 0.0f;
+	float lefthandx = -62.0f;
+	float lefthandy = 14.0f;
+	float leftlegx = -39.0f;
+	float leftlegy = -29.0f;
+	float righthandx = 66.0f;
+	float righthandy = 15.0f;
+	float rightlegx = 50.0f;
+	float rightlegy = -30.0f;
+	int jumpkeystate = 0;
+	float Vx2 = 0.0f;
+	float Camera2xdelta = 0.0f;
+	float Camera2ydelta = 0.0f;
+	int t3 = 0;
+	int pullstate = 0;
+	float Vx4 = 7.0f;
+	int superjumpstate = 0;
+	float t2 = 0.0f;
+	float a = 90.0f;
+	float Vypower = 0.0f;
+	float Vxpower = 0.0f;
+	double radians = 0.0f;
+	int powerstate = 0;
+	float g = 5.2f;
+	float power = -0.1f;
+	float z = 0.0f;
+	int movestate = 0;
+	int movestate2 = 0;
+	int PlayerColState = 0;
+	int PlayerColState3 = 0;
+	int PlayerColState2 = 1;
+	int grabstate = 0;
+	int jumpstate = 0;
+	float Vdown = 0.0f;
+	float Vdown2 = 0.0f;
+	float Vnew = 0;
+	float Vdelta = 0;
+	float Vx = 0.0f;
+	float Vy = 0.0f;
+	float t = 0;
+	float posx = 0.0f;
+	float posy = 0.0f;
+	int drawnum = 0;
+	int n = 0;
+	int m = 0;
+	int ustate = 0;
+	int BlockNumber = 0;
+	int HookCameraState = 0;
+	int HookNumber = 0;
+	int NewColState = 0;
+	int StartState = 0;
+	int HookColliderState = -1;
+	bool ScenechangeState = false;
+	int ScenechangeState2 = 0;
+	int deathstate = 0;
+	int t5 = 0;
+	int  TestPenState2 = 0;
+	int  TestPenState3 = 0;
+	int  TestPen2State = 0;
+	int superkeystate = 0;
+	int  TestPen2State2 = 0;
+	int  TestPen2State3 = 0;
+	int PenColState = 0;
+	int PenColState2 = 0;
+	int  PenCol2State = 0;
+	int TestPenState = 0;
+	int PenNumber = 0;
+	std::shared_ptr<Object>death2;
+	std::shared_ptr<Object>playercol;
+	std::shared_ptr<Object>playercol2;
+	std::shared_ptr<Object>playercol3;
+	std::shared_ptr<Player>playerdraw;
+	std::shared_ptr<Object>eyes;
+	std::shared_ptr<Object>lefthand;
+	std::shared_ptr<Object>righthand;
+	std::shared_ptr<Object>leftleg;
+	std::shared_ptr<Object>rightleg;
+	std::shared_ptr<Object>idle;
+	std::shared_ptr<Object>walking;
+	std::shared_ptr<Object>walking2;
+	std::shared_ptr<Object>goal;
+	std::shared_ptr<Object>hook[7];
+	std::shared_ptr<Object> hookdraw[3];
+	std::shared_ptr<Object>PenCol[2];
 
-	XMFLOAT2 PushObjectPos = { 3500.0f,-4400.0f }; //ペンケース
-	XMFLOAT2 BallPos = { 4300.0f, -1400.0f }; //ボールオブジェクト
-	XMFLOAT2 HookPos00 = { 1500.0f,-5200.0f }; //地上フック
-	XMFLOAT2 HookPos01 = { 5200, -1400.0f }; //空中フック
-
-	XMFLOAT2 SlopePos00 = {955.0f,-5095.0f }; //坂道左下
-	XMFLOAT2 SlopePos01 = {2050.0f,-4955.0f }; //坂道右下
-	XMFLOAT2 SlopePos02 = { 1425.0f,-3800.0f }; //坂道左上
-	XMFLOAT2 SlopePos03 = { 2910.0f,-2900.0f }; //坂道右上
-
-	XMFLOAT2 PenPos00 = { 4000.0f,-4525.0f }; //ペン1
-	XMFLOAT2 PenPos01 = { 4100.0f, -4475.0f }; //ペン2
-
-	XMFLOAT2 GoalPos = { 400,-3500.0f }; //ゴール
-
-	//サイズ
-
-	XMFLOAT2 PlayerSize = { 200.0f,200.0f };
-
-	XMFLOAT2 PushObjectSize = { 500.0f,1000.0f };
-	XMFLOAT2 BallSize = { 500.0f,500.0f };
-	XMFLOAT2 HookSize = { 150.0f,220.0f };
-
-	XMFLOAT2 SlopeSize00 = { 100.0f,1100.0f }; //坂道左下
-	XMFLOAT2 SlopeSize01 = { 100.0f,1000.0f }; //坂道右下
-	XMFLOAT2 SlopeSize02 = { 100.0f,400.0f }; //坂道左上
-	XMFLOAT2 SlopeSize03 = { 100.0f,3000.0f }; //坂道右上
-
-	XMFLOAT2 PenSize = { 800.0f,50.0f };
-	XMFLOAT2 GoalSize = { 200.0f,200.0f };
-	int gamemode = 0;
-
-	
+	int StopState = 0;
 	float PushAngle = -90.0f;//ペンホルダーを横に
 	float BallSpeed = 5.0f;
 	float BallAngle = 0.0f;
-	float SlopeAngle[4] = {45.0f,150.0f,45.0f,325.0f};
+	float SlopeAngle[4] = { 45.0f,150.0f,45.0f,325.0f };
 	bool SlopeState = true;//trueは登れる坂でfalseは登れない坂
 	bool StayGround = false;//地面に触れているかの判定
 	bool BallMoveFLG = false;//ボールが動いているかの判定
 	int JumpState = 0;
 	int BallState = 0;
+	int PenAngle0 = 0;
+	int PenAngle1 = 0;
+	float movex = 0;
+	float movey = 0;
 	int cnt = 0;
-	int n = 0;	//当たり判定用のブロックの番号
-	int ColliderState = 0;
+	int SlopeState1 = 0;
+	int SlopeState2 = 0;
+	int SlopeState3 = 0;
+	int SlopeState4 = 0;
+	int superpressstate = 0;
+	XMFLOAT2 PenColSize = { 60.0f,60.0f };
+
+	XMFLOAT2 PushObjectPos = { 3400.0f,-4425.0f }; //ペンケース
+	XMFLOAT2 BallPos = { 4300.0f, -1400.0f }; //ボールオブジェクト\
+
+	XMFLOAT2 SlopePos00 = { 924.0f,-5103.0f }; //坂道左下
+	XMFLOAT2 SlopePos01 = { 2020.0f,-4998.0f }; //坂道右下
+	XMFLOAT2 SlopePos02 = { 1425.0f,-3801.0f }; //坂道左上
+	XMFLOAT2 SlopePos03 = { 2910.0f,-2920.0f }; //坂道右上
+
+	std::array<XMFLOAT2, 2>PenPos = {
+	XMFLOAT2(4000.0f,-4520.0f),
+	XMFLOAT2(4100.0f, -4470.0f),//1700.0f, -2475.0f		XMFLOAT2(2800.0f,-1520.0f),
+	};
+
+	//XMFLOAT2 PenPos00 = {  }; //ペン1
+	//XMFLOAT2 PenPos01 = {  }; //ペン2
+
+	XMFLOAT2 PushObjectSize = { 500.0f,950.0f };
+	XMFLOAT2 BallSize = { 500.0f,500.0f };
+
+	XMFLOAT2 SlopeSize00 = { 107.0f,850.0f }; //坂道左下
+	XMFLOAT2 SlopeSize01 = { 113.0f,930.0f }; //坂道右下
+	XMFLOAT2 SlopeSize02 = { 103.0f,300.0f }; //坂道左上
+	XMFLOAT2 SlopeSize03 = { 100.0f,3000.0f }; //坂道右上
+	std::array<XMFLOAT2, 2>PenSize = {
+			XMFLOAT2(800.0f,100.0f),
+			XMFLOAT2(800.0f,100.0f)
+	};
+
+	//XMFLOAT2 PenColSize = { 50.0f,50.0f };
+
+	XMFLOAT2 PlayerGrabPos = { 0.0f, 0.0f };
+
+	XMFLOAT2 HookPos01 = { 1500.0f,-5200.0f };
+	XMFLOAT2 HookPos02 = { 5200, -1500.0f };
+	XMFLOAT2 HookPos03 = { 111700.0f, -700.0f };
+	XMFLOAT2 HookPos04 = { 112150.0f,-1250.0f };
+	XMFLOAT2 HookPos05 = { 111790.0f,-190.0f };
+	XMFLOAT2 HookPos06 = { 112150.0f,-1250.0f };
+	XMFLOAT2 HookPos07 = { 112150.0f,-1250.0f };
+	//	XMFLOAT2 HookPos05 = { 790.0f,-190.0f };
+	XMFLOAT2 HookSize01 = { 150.0f, 220.0f };
+	XMFLOAT2 HookSize02 = { 150.0f, 220.0f };
+
+
+	XMFLOAT2 PlayerDrawPos = { 0.0f, 40.0f };
+	XMFLOAT2 PlayerDrawSize = { 140.0f,140.0f };
+
+	XMFLOAT2 EyesPos = { 0.5f, +90.0f };
+	XMFLOAT2 EyesSize = { 120.0f,120.0f };
+
+	XMFLOAT2 LefthandPos = { -62.0f,14.0f };
+	XMFLOAT2 LefthandSize = { 105.0f,105.0f };
+
+	XMFLOAT2 LeftlegPos = { -39.0f, -29.0f };
+	XMFLOAT2 LeftlegSize = { 125.0f,125.0f };
+
+	XMFLOAT2 RighthandPos = { 66.0f, 15.0f };
+	XMFLOAT2 RighthandSize = { 105.0f,105.0f };
+
+	XMFLOAT2 RightlegPos = { 50.0f, -30.0f };
+	XMFLOAT2 RightlegSize = { 125.0f,125.0f };
+
+
+	XMFLOAT2 PlayerColPos = { 25.0f, 25.0f };
+	XMFLOAT2 PlayerColSize = { 110.0f,110.0f };
+
+	XMFLOAT2 PlayerColPos3 = { -25.0f, 25.0f };
+	XMFLOAT2 PlayerColSize3 = { 110.0f,110.0f };
+
+	XMFLOAT2 PlayerColPos2 = { 0.0f, 80.0f };
+	XMFLOAT2 PlayerColSize2 = { 120.0f,40.0f };
+
+
+	XMFLOAT2 GoalPos = { 400,-3570.0f };
+	XMFLOAT2 GoalSize = { 200.0f, 200.0f };
+
+	XMFLOAT2 IdlePos = { 0.0f,0.0f };
+	XMFLOAT2 IdleSize = { 160.0f,160.0f };
+	XMFLOAT2 DeathSize = { 230.0f,230.0f };
+	XMFLOAT2 HookColSize01 = { 80.0f, 80.0f };
+
 private:
-	Input input;
-	Background* background;
-	Object* Slope[4];
-	Player* player;
-	Object* hook[2];
-	Object* PushObject;
-	Object* BallObject;
-	Object* Pen[2];
-	Object* goal;
+	// テクスチャ
+	std::array<ID3D11ShaderResourceView*, 2> textureList;
+
+	// タイマー
+	Timer failedTimer;	// 失敗時
+	bool isFailed;		// true:失敗した
+
+	int gamemode = 1;							// ゲームモード
+	int ColliderState = 0;						// 当たった状態
+	XMFLOAT2 PlayerSize = { 110.0f,110.0f };	// プレイヤーのサイズ
 
 	TrackingCamera* p_camera;	// カメラ
 	TileMap* p_tileMap;			//タイルマップ
+	//Input input;
+
+	//--------------------------------------------------------------------------
+	//		オブジェクト
+	//--------------------------------------------------------------------------
+	Background* background;
+	Player* player;
+	Background* keyConfigUI;
+	Object* PushObject;
+	Object* BallObject;
+	Pen* pen[2];
+	Object* Slope[4];
 
 
 	//--------------------------------------------------------------------------
