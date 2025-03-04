@@ -221,7 +221,7 @@ public:
 	XMFLOAT2 PlayerColSize2 = { 120.0f,40.0f };
 
 
-	XMFLOAT2 GoalPos = { 100.0f,160.0f };
+	XMFLOAT2 GoalPos = { 100.0f,140.0f };
 	XMFLOAT2 GoalSize = { 200.0f, 200.0f };
 
 	XMFLOAT2 IdlePos = { 0.0f,0.0f };
