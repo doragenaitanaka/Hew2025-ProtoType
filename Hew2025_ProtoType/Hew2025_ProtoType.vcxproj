@@ -309,6 +309,7 @@
     <ClInclude Include="Library\Code\self\SafePointers.h" />
     <ClInclude Include="Library\Code\self\Ueda_FadeIn&amp;FadeOut\FedaIn&amp;FedaOut.h" />
     <ClInclude Include="main.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Scene\00_BaseScene\BaseScene.h" />
     <ClInclude Include="Scene\01_SplashScreanScene\SplashScreanScene.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -388,6 +389,12 @@
       <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
       <ShaderModel Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">5.0</ShaderModel>
     </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Hew2025_ProtoType.rc" />
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Asset\Icon\gum-body-2.ico" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

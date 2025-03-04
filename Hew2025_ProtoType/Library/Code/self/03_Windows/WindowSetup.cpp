@@ -1,5 +1,6 @@
 ﻿#include"WindowSetup.h"
 #include"../SafePointers.h"
+#include"../../../../resource.h"
 //	public (static)----------------------------------------------------------------------------------------------
 
 /**	@brief 	windowsクラスの生成
@@ -75,39 +76,41 @@ WindowSetup::WindowSetup()
 */
 WindowSetup::~WindowSetup()
 {}
-/**	@brief 	ウィンドウクラスの登録関数
-*	@param	_In_ HINSTANCE	hInstance		現在のアプリケーションインスタンスへのハンドル
-*	@param	BackColorBrush      backColor	ウィンドウの背景色
-*	@return
-*	@date 2024/03/29
-*	@memo	ウィンドウクラスの定義、登録を行う
-*/
-int	WindowSetup::RegisterWindowClass(_In_ HINSTANCE hInstance)
+
+int WindowSetup::RegisterWindowClass(_In_ HINSTANCE hInstance)
 {
+	// アイコンを読み込む
+	HICON hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_ICON1));
+
 	//ウィンドウクラス
-	this->wcex.cbSize = sizeof(WNDCLASSEX);		//構造体のサイズ
-	this->wcex.style = CS_CLASSDC;				//クラススタイル
-	this->wcex.lpfnWndProc = WndProc;			//ウィンドウプロシージャへのポインター
-	this->wcex.cbClsExtra = 0L;					//クラスデータ構造体の後に割り当てる追加のバイト数
-	this->wcex.cbWndExtra = 0L;					//ウィンドウインスタンスの後に割り当てる追加のバイト数
-	this->wcex.hInstance = hInstance;			//アプリケーションインスタンスのハンドル
-	this->wcex.hIcon = NULL;					//ウィンドウクラスのアイコンへのハンドル
-	this->wcex.hCursor = NULL;					//ウィンドウクラスのカーソルへのハンドル
-	this->wcex.hbrBackground = (HBRUSH)GetStockObject(BackColorBrush::DKGRAY);	// ウィンドウの背景ブラシへのハンドル
-	this->wcex.lpszMenuName = NULL;				//メニューリソースの名前
-	this->wcex.lpszClassName = CLASS_NAME;		//ウィンドウクラスの名前
-	this->wcex.hIconSm = NULL;					//小さいアイコンへのハンドル
+	this->wcex.cbSize = sizeof(WNDCLASSEX);  //構造体のサイズ
+	this->wcex.style = CS_CLASSDC;           //クラススタイル
+	this->wcex.lpfnWndProc = WndProc;        //ウィンドウプロシージャへのポインター
+	this->wcex.cbClsExtra = 0L;              //クラスデータ構造体の後に割り当てる追加のバイト数
+	this->wcex.cbWndExtra = 0L;              //ウィンドウインスタンスの後に割り当てる追加のバイト数
+	this->wcex.hInstance = hInstance;        //アプリケーションインスタンスのハンドル
+	this->wcex.hIcon = hIcon;                //ウィンドウクラスのアイコンへのハンドル
+	this->wcex.hIconSm = hIcon;              //小さいアイコンへのハンドル
+	//this->wcex.hIcon = NULL;                //ウィンドウクラスのアイコンへのハンドル
+	//this->wcex.hIconSm = NULL;              //小さいアイコンへのハンドル
+
+	this->wcex.hCursor = LoadCursor(NULL, IDC_ARROW);  //ウィンドウクラスのカーソルへのハンドル
+	this->wcex.hbrBackground = (HBRUSH)GetStockObject(BackColorBrush::DKGRAY); // ウィンドウの背景ブラシへのハンドル
+	this->wcex.lpszMenuName = NULL;          //メニューリソースの名前
+	this->wcex.lpszClassName = CLASS_NAME;   //ウィンドウクラスの名前
 
 	//RegisterClassEx関数に渡せたかチェック
 	if (!RegisterClassEx(&this->wcex))
 	{
-		return	E_FAIL;
+		return E_FAIL;
 	}
+
 	//初期化した
 	isInit = true;
 
-	return	S_OK;
+	return S_OK;
 }
+
 /**	@brief 	ウィンドウクラスの登録を解除する関数
 *	@param	_In_ HINSTANCE	hInstance		現在のアプリケーションインスタンスへのハンドル
 *	@return

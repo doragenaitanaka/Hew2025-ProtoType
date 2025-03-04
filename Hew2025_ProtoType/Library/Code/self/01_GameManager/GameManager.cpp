@@ -103,10 +103,10 @@ int	GameManager::Run(_In_ HINSTANCE hInstance, _In_ int       nCmdShow)
 			this->nowTick = GetTickCount64();	// 現在時間を取得		
 			if (this->nowTick >= this->oldTick + 1000)
 			{
-				// FPSを表示
-				char	str[32];
-				wsprintfA(str, "FPS=%d", this->fpsCounter);				// 数値を文字列に変換
-				SetWindowTextA(this->windowSetup->GetHWnd(), str);		// ウィンドウタイトルに表示
+				//// FPSを表示
+				//char	str[32];
+				//wsprintfA(str, "FPS=%d", this->fpsCounter);				// 数値を文字列に変換
+				//SetWindowTextA(this->windowSetup->GetHWnd(), str);		// ウィンドウタイトルに表示
 
 				// カウンターリセット
 				this->fpsCounter = 0;

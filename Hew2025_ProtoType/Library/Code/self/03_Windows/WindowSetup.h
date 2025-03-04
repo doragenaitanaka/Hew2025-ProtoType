@@ -1,8 +1,8 @@
 ﻿#pragma once
 #include <windows.h>	
 
-#define CLASS_NAME   L"DirectX11 Template"	// ウインドウクラスの名前
-#define WINDOW_NAME  L"windows create test"	// ウィンドウの名前
+#define CLASS_NAME   L"HEW_2025"	// ウインドウクラスの名前
+#define WINDOW_NAME  L"Beyond RuBBeRecTH"	// ウィンドウの名前
 
 #define	SCREEN_WIDTH	(1920)
 #define	SCREEN_HEIGHT	(1080)
