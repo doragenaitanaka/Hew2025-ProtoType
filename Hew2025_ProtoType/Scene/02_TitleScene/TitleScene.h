@@ -46,15 +46,20 @@ public:
 	*/
 	void	Finalize(void)override;
 
-	XMFLOAT2 FingerPos = { -450.0f,-50.0f };//指
-	XMFLOAT2 AbuttonPos = { FingerPos.x + 75.0f,FingerPos.y - 50.0f };//Aボタン
+	XMFLOAT2 FingerPos = { -480.0f,-160.0f };//指
+	XMFLOAT2 AbuttonPos = { FingerPos.x + 75.0f,FingerPos.y - 30.0f };//Aボタン
 	XMFLOAT2 cloudPos00 = { -700.0f,-250.0f };//雲(小)
 	XMFLOAT2 cloudPos01 = { 600.0f,250.0f };//雲(大)
 
-	XMFLOAT2 LogoSize = {960.0f,540.0f};//タイトルロゴのサイズ
-	XMFLOAT2 StartSize = { 640.0f,160.0f };//選択肢のサイズ
-	XMFLOAT2 SelectSize = { 1120.0f,160.0f };//選択肢のサイズ
-	XMFLOAT2 GameendSize = { 800.0f,160.0f };//選択肢のサイズ
+	XMFLOAT2 LogoPos = { 0.0f,275.0f };//タイトルロゴの座標
+	XMFLOAT2 StartPos = { -175.0f,-120.0f };//選択肢の座標
+	XMFLOAT2 SelectPos = { 75.0f,-270.0f };//選択肢の座標
+	XMFLOAT2 GameendPos = { -50.0f,-420.0f };//選択肢の座標
+
+	XMFLOAT2 LogoSize = {1280.0f,720.0f};//タイトルロゴのサイズ
+	XMFLOAT2 StartSize = { 518.4f,129.6f };//選択肢のサイズ
+	XMFLOAT2 SelectSize = { 907.2f,129.6f };//選択肢のサイズ
+	XMFLOAT2 GameendSize = { 648.0f,129.6f };//選択肢のサイズ
 private:
 	float CloudMoveSpeed = 2.5f;//雲の移動速度
 	int SelectState = 0;//選択のステート
