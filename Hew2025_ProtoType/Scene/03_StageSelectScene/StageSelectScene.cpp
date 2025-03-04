@@ -629,9 +629,9 @@ void StageSelectScene::SelectStage(int& _stageNum)
     case StageSelectScene::Stage::STAGE_10:
         this->p_sceneManager->ChangeScene(Scene::Stage_10);
         break;
-    case StageSelectScene::Stage::STAGE_11:
-        this->p_sceneManager->ChangeScene(Scene::Stage_11);
-        break;
+    //case StageSelectScene::Stage::STAGE_11:
+    //    this->p_sceneManager->ChangeScene(Scene::Stage_11);
+    //    break;
     //case StageSelectScene::Stage::STAGE_12:
     //    this->p_sceneManager->ChangeScene(Scene::Stage_12);
     //    break;

@@ -913,61 +913,6 @@ void	Stage_8::Update(void)
         this->walking2->SetTextureNumU(u);
         this->death2->SetTextureNumU(3);
 
-
-
-        if (this->p_input->Press("LEFT"))
-        {
-            idletime += 1;
-            if (idletime % 5 == 0)
-            {
-                u += 1;
-            }
-            if (PlayerColState != 1)
-            {
-                movestate2 = 1;
-            }
-
-            if (movestate2 == 1 && PlayerColState == 1 && grabstate == 0)
-            {
-                movestate = 1;
-
-            }
-            else
-            {
-                movestate = 0;
-            }
-            if (movestate != 1)
-            {
-                this->player->SetPos(playerPos.x - 7.0f, playerPos.y, playerPos.z);
-            }
-
-
-        }
-        if (this->p_input->Press("RIGHT"))
-        {
-            idletime += 1;
-            if (idletime % 5 == 0)
-            {
-                u += 1;
-            }
-            if (PlayerColState != 1)
-            {
-                movestate2 = 2;
-            }
-            if (movestate2 == 2 && PlayerColState == 1 && grabstate == 0)
-            {
-                movestate = 2;
-
-            }
-            else
-            {
-                movestate = 0;
-            }
-            if (movestate != 2)
-            {
-                this->player->SetPos(playerPos.x + 7.0f, playerPos.y, playerPos.z);
-            }
-        }
         //DirectX::XMFLOAT2 rightStick = this->p_input->GetRightAnalogStick();
 
         if (grabstate == 0)
@@ -1885,7 +1830,7 @@ void	Stage_8::Update(void)
 
         if (t6 >= 10)
         {
-            this->p_sceneManager->ChangeScene(Scene::Stage_9);
+            this->p_sceneManager->ChangeScene(Scene::Stage_10);// Stage10に遷移!!!!!!!!
             return;
         }
 

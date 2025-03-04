@@ -885,62 +885,6 @@ void	Stage_6::Update(void)
         this->walking2->SetTextureNumU(u);
         this->death2->SetTextureNumU(3);
 
-
-
-        if (this->p_input->Press("LEFT"))
-        {
-            idletime += 1;
-            if (idletime % 5 == 0)
-            {
-                u += 1;
-            }
-            if (PlayerColState != 1)
-            {
-                movestate2 = 1;
-            }
-
-            if (movestate2 == 1 && PlayerColState == 1 && grabstate == 0)
-            {
-                movestate = 1;
-
-            }
-            else
-            {
-                movestate = 0;
-            }
-            if (movestate != 1)
-            {
-                this->player->SetPos(playerPos.x - 7.0f, playerPos.y, playerPos.z);
-            }
-
-
-        }
-        if (this->p_input->Press("RIGHT"))
-        {
-            idletime += 1;
-            if (idletime % 5 == 0)
-            {
-                u += 1;
-            }
-            if (PlayerColState != 1)
-            {
-                movestate2 = 2;
-            }
-            if (movestate2 == 2 && PlayerColState == 1 && grabstate == 0)
-            {
-                movestate = 2;
-
-            }
-            else
-            {
-                movestate = 0;
-            }
-            if (movestate != 2)
-            {
-                this->player->SetPos(playerPos.x + 7.0f, playerPos.y, playerPos.z);
-            }
-        }
-
         if (grabstate == 0)
         {
             if (p_input->GetLeftAnalogStick().x * 10.0f <= 2.0f && p_input->GetLeftAnalogStick().x * 10.0f >= -2.0f)
@@ -1711,7 +1655,7 @@ void	Stage_6::Update(void)
         if (ScenechangeState2 == 1)
         {
             this->p_sound->Play(SOUND_LABEL::SE_GOAL);
-            this->p_sceneManager->ChangeScene(Scene::Stage_7);
+            this->p_sceneManager->ChangeScene(Scene::Stage_8);// Stage8に遷移!!!!!!
             return;
         }
 
