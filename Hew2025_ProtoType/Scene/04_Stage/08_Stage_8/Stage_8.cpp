@@ -245,7 +245,7 @@ void	Stage_8::Initialize(void)
 
     this->goal->SetSize(GoalSize.x, GoalSize.y, 0.0f);
 
-    this->hook[0]->SetSize(HookSize01.x, HookSize01.y, 0.0f);
+    //this->hook[0]->SetSize(HookSize01.x, HookSize01.y, 0.0f);
     this->hook[1]->SetSize(HookSize01.x, HookSize01.y, 0.0f);
     this->hook[2]->SetSize(HookSize01.x, HookSize01.y, 0.0f);
     this->hook[3]->SetSize(HookSize01.x, HookSize01.y, 0.0f);
@@ -469,7 +469,7 @@ void	Stage_8::Update(void)
     this->playercol3->SetColliderSize(DirectX::XMFLOAT3(PlayerColSize3.x, PlayerColSize3.y, 0.0f));
     this->PushObject[0]->SetColliderSize(DirectX::XMFLOAT3(350.0f, 850.0f, 0.0f));
     this->PushObject[1]->SetColliderSize(DirectX::XMFLOAT3(350.0f, 850.0f, 0.0f));
-    this->hook[0]->SetColliderSize(DirectX::XMFLOAT3(HookColSize01.x, HookColSize01.y, 0.0f));
+    //this->hook[0]->SetColliderSize(DirectX::XMFLOAT3(HookColSize01.x, HookColSize01.y, 0.0f));
     this->hook[1]->SetColliderSize(DirectX::XMFLOAT3(HookColSize01.x, HookColSize01.y, 0.0f));
     this->hook[2]->SetColliderSize(DirectX::XMFLOAT3(HookColSize01.x, HookColSize01.y, 0.0f));
     this->hook[3]->SetColliderSize(DirectX::XMFLOAT3(HookColSize01.x, HookColSize01.y, 0.0f));
@@ -1944,7 +1944,7 @@ void	Stage_8::Update(void)
     {
         this->PenCol[n]->Update();
     }
-    this->hook[0]->Update();
+    //this->hook[0]->Update();
     this->hook[1]->Update();
     this->hook[2]->Update();
     this->hook[3]->Update();
@@ -2027,7 +2027,7 @@ void	Stage_8::Draw(void)
     //this->hook[0]->Draw();
 
 
-    this->hookdraw[0]->Draw();
+    //this->hookdraw[0]->Draw();
     this->hookdraw[1]->Draw();
     this->hookdraw[2]->Draw();
     this->hookdraw[3]->Draw();
