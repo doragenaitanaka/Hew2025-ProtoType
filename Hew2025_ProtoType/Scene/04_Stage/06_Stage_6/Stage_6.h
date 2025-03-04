@@ -167,6 +167,7 @@ public:
 	int seesawcnt = 0;
 	int BallState = 0;
 	int grabState = 0;
+	int    superkeystate = 0;
 	//倒れるオブジェクト
 	XMFLOAT2 PushObjectPos00 = { 2470.0f, -3850.0f };
 	XMFLOAT2 PushObjectSize00 = { 500.0f,900.0f };

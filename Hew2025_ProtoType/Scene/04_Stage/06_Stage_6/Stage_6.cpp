@@ -838,8 +838,8 @@ void	Stage_6::Update(void)
 
         if (pushstate == 1)
         {
-            playerPos.x -= 112.0f;
-            playerPos.y += 10.0f;
+            playerPos.x -= 132.0f;
+            playerPos.y += 15.0f;
             pushstate = 2;
         }
 
@@ -1132,178 +1132,267 @@ void	Stage_6::Update(void)
 
 
 
-
-        if (grabstate == 1)
+        if (superkeystate != 1)
         {
-            a = 90.0f;
-            z = std::sqrt(p_input->GetRightAnalogStick().x * p_input->GetRightAnalogStick().x + p_input->GetRightAnalogStick().y * p_input->GetRightAnalogStick().y);
-
-            if (p_input->GetRightAnalogStick().x != 0)
+            if (grabstate == 1)
             {
-                radians = std::atan2(p_input->GetRightAnalogStick().y, p_input->GetRightAnalogStick().x);
+                a = 90.0f;
+                z = std::sqrt(p_input->GetRightAnalogStick().x * p_input->GetRightAnalogStick().x + p_input->GetRightAnalogStick().y * p_input->GetRightAnalogStick().y);
+
+                if (p_input->GetRightAnalogStick().x != 0)
+                {
+                    radians = std::atan2(p_input->GetRightAnalogStick().y, p_input->GetRightAnalogStick().x);
+                }
+                //if (p_input->GetRightAnalogStick().x * 10.0f <= 2.0f && p_input->GetRightAnalogStick().x * 10.0f >= -2.0f)
+                //{
+                //    //CameraPos.x += 0.0f;
+                //}
+                //else
+                //{
+                //    
+                //}
+
+
+
+
+
+
+                if (p_input->GetRightAnalogStick().y * 10.0f <= 1.2f && p_input->GetRightAnalogStick().y * 10.0f >= -1.2f && p_input->GetRightAnalogStick().x * 10.0f <= 1.2f && p_input->GetRightAnalogStick().x * 10.0f >= -1.2f)
+                {
+                    //powerstate = 0;//CameraPos.y += 0.0f;
+                    this->player->y3 = 0.0f;
+                    this->playerdraw->y3 = 0.0f;
+                    PlayerAngle = 0.0f;
+                    PlayerGrabPos.x = 0;
+                    PlayerGrabPos.y = 25.0f;
+                    eyesy = 90.0f;
+                    eyesx = 0.0f;
+                    lefthandx = -62.0f;
+                    lefthandy = 14.0f;
+                    leftlegx = -39.0f;
+                    leftlegy = -29.0f;
+                    righthandx = 66.0f;
+                    righthandy = 15.0f;
+                    rightlegx = 50.0f;
+                    rightlegy = -30.0f;
+                }
+                else
+                {
+                    PlayerGrabPos.x = -35.0f * p_input->GetRightAnalogStick().x / z;
+                    PlayerGrabPos.y = -35.0f * p_input->GetRightAnalogStick().y / z - 5.0f;
+
+
+
+
+
+
+
+
+
+
+
+                    if (player->y3 != z * -2.8f)
+                    {
+                        this->player->y3 += (z * -2.8f - player->y3) / 20;
+                        this->playerdraw->y3 += (z * -2.8f - playerdraw->y3) / 20;
+                    }
+                    PlayerAngle = radians * 180.0f / 3.1415926 + a;
+
+
+                    if (PlayerAngle >= 90 && PlayerAngle < 180.0f)
+                    {
+                        eyesy = 90.0f - this->player->y3 * 80 * std::pow(sin(radians), 1.9f);
+                        eyesx = 0.0f - this->player->y3 * 48 * std::pow(std::abs(cos(radians)), 0.8f);//4角度
+
+                        lefthandy = 14.0f - this->player->y3 * 65 * std::pow(std::abs(sin(radians)), 3.50f);
+                        lefthandx = -62.0f - this->player->y3 * 40 * std::pow(std::abs(cos(radians)), 0.67f) - this->player->y3 * 30 * -std::pow(std::abs(cos(radians)), 2.0f);
+
+                        righthandy = 15.0f - this->player->y3 * 68 * std::pow(std::abs(sin(radians)), 0.65f);
+                        righthandx = 66.0f - this->player->y3 * 87 * std::pow(std::abs(cos(radians)), 1.40f);
+
+                        leftlegy = -34.0f - this->player->y3 * 20 * std::pow(std::abs(sin(radians)), 0.65f) - this->player->y3 * 6 * -std::pow(std::abs(sin(radians)), 3.0f);
+                        leftlegx = -29.0f - this->player->y3 * 20 * std::pow(std::abs(cos(radians)), 3.7f);
+
+                        rightlegy = -33.0f - this->player->y3 * 35 * std::pow(std::abs(sin(radians)), 0.55f) - this->player->y3 * 20 * -std::pow(std::abs(sin(radians)), 4.0f);
+                        rightlegx = 44.0f - this->player->y3 * 66 * std::pow(std::abs(cos(radians)), 5.5f) - this->player->y3 * 7 * std::pow(std::abs(cos(radians)), 0.6f);
+                        //rightlegy = -36.0f - this->player->y3 * 25 * std::pow(std::abs(sin(radians)), 0.65f) - this->player->y3 * 11 * -std::pow(std::abs(sin(radians)), 3.0f);
+
+                        /*leftlegx = -39.0f - this->player->y3 * 80 * std::pow(sin(radians), 2.0f);
+                        leftlegy = -29.0f - this->player->y3 * 48 * std::pow(std::abs(cos(radians)), 0.8f);
+                        righthandx = 66.0f - this->player->y3 * 80 * std::pow(sin(radians), 2.0f);
+                        righthandy = 15.0f - this->player->y3 * 48 * std::pow(std::abs(cos(radians)), 0.8f);
+                        rightlegx = 50.0f - this->player->y3 * 80 * std::pow(sin(radians), 2.0f);
+                        rightlegy = -30.0f - this->player->y3 * 48 * std::pow(std::abs(cos(radians)), 0.8f);*/
+                        //*std::abs(sin(PlayerAngle));
+
+                    }
+                    else if (PlayerAngle >= 180 && PlayerAngle < 270.0f)
+                    {
+                        eyesy = 90.0f - this->player->y3 * 80 * std::pow(sin(radians), 2.0f);
+                        eyesx = 0.0f - this->player->y3 * 48 * -std::pow(std::abs(cos(radians)), 0.8f);//8角度
+
+                        lefthandy = 14.0f - this->player->y3 * 63 * std::pow(std::abs(sin(radians)), 0.65f);
+                        lefthandx = -62.0f - this->player->y3 * 88 * -std::pow(std::abs(cos(radians)), 1.25f);
+
+                        righthandy = 15.0f - this->player->y3 * 60 * std::pow(std::abs(sin(radians)), 3.50f);
+                        righthandx = 66.0f - this->player->y3 * 44.5f * -std::pow(std::abs(cos(radians)), 0.75f) - this->player->y3 * 30 * +std::pow(std::abs(cos(radians)), 2.0f);
+
+                        leftlegy = -39.0f - this->player->y3 * 35 * std::pow(std::abs(sin(radians)), 0.45f) - this->player->y3 * 20 * -std::pow(std::abs(sin(radians)), 4.0f);
+                        leftlegx = -29.0f - this->player->y3 * 71 * -std::pow(std::abs(cos(radians)), 3.7f);
+
+                        rightlegy = -35.0f - this->player->y3 * 20 * std::pow(std::abs(sin(radians)), 0.65f) - this->player->y3 * 6 * -std::pow(std::abs(sin(radians)), 3.0f);
+                        rightlegx = 44.0f - this->player->y3 * 20 * -std::pow(std::abs(cos(radians)), 3.7f);
+                        //*std::abs(sin(PlayerAngle));
+
+                    }
+                    else if (PlayerAngle >= -90 && PlayerAngle < 0.0f)
+                    {
+                        eyesy = 90.0f - this->player->y3 * 25 * -std::pow(std::abs(sin(radians)), 0.8f) - this->player->y3 * 10 * std::pow(std::abs(sin(radians)), 1.5f);
+                        eyesx = 0.0f - this->player->y3 * 45 * -std::pow(std::abs(cos(radians)), 3.8f);//8角度
+
+                        lefthandy = 14.0f - this->player->y3 * 24 * -std::pow(std::abs(sin(radians)), 0.17f) - this->player->y3 * 5 * -std::pow(std::abs(sin(radians)), 0.9f);
+                        lefthandx = -65.0f - this->player->y3 * 90 * -std::pow(std::abs(cos(radians)), 2.4f) - this->player->y3 * 12 * std::pow(std::abs(cos(radians)), 1.10f) - this->player->y3 * 3 * -std::pow(std::abs(cos(radians)), 0.2f);
+
+
+                        righthandy = 15.0f - this->player->y3 * 30 * -std::pow(std::abs(sin(radians)), 3.50f);
+                        righthandx = 66.0f - this->player->y3 * 26 * -std::pow(std::abs(cos(radians)), 0.75f) - this->player->y3 * 12 * std::pow(std::abs(cos(radians)), 2.0f);
+
+                        leftlegy = -39.0f - this->player->y3 * 95 * -std::pow(std::abs(sin(radians)), 1.4f) - this->player->y3 * 20 * std::pow(std::abs(sin(radians)), 4.0f) - this->player->y3 * 4 * -std::pow(std::abs(sin(radians)), 7.0f);
+                        leftlegx = -26.0f - this->player->y3 * 70 * -std::pow(std::abs(cos(radians)), 0.68f);
+
+
+                        rightlegy = -35.0f - this->player->y3 * 100 * -std::pow(std::abs(sin(radians)), 10.8f) - this->player->y3 * 36 * std::pow(std::abs(sin(radians)), 8.7f) - this->player->y3 * 20 * -std::pow(std::abs(sin(radians)), 1.0f) - this->player->y3 * 2 * std::pow(std::abs(sin(radians)), 0.1f);
+                        rightlegx = 44.0f - this->player->y3 * 19 * -std::pow(std::abs(cos(radians)), 0.5f) - this->player->y3 * 2 * -std::pow(std::abs(cos(radians)), 0.1f);
+                        /*rightlegy = -35.0f - this->player->y3 * 87 * -std::pow(std::abs(sin(radians)), 3.1f) - this->player->y3 * 21 * std::pow(std::abs(sin(radians)), 2.5f);
+                        rightlegx = 44.0f - this->player->y3 * 19 * -std::pow(std::abs(cos(radians)), 0.5f) - this->player->y3 * 2 * std::pow(std::abs(cos(radians)), 0.01f);*/
+                        /* lefthandy = 14.0f - this->player->y3 * 60 * -std::pow(std::abs(sin(radians)), 1.0);
+                         lefthandx = -62.0f - this->player->y3 * 88 *-std::pow(std::abs(cos(radians)), 1.25f);*/
+                         //*std::abs(sin(PlayerAngle));
+
+                    }
+                    else if (PlayerAngle >= 0 && PlayerAngle < 90.0f)
+                    {
+                        eyesy = 90.0f - this->player->y3 * 25 * -std::pow(std::abs(sin(radians)), 0.8f) - this->player->y3 * 10 * std::pow(std::abs(sin(radians)), 1.5f);
+                        eyesx = 0.0f - this->player->y3 * 45 * std::pow(std::abs(cos(radians)), 3.8f);//8角度
+
+                        lefthandy = 11.0f - this->player->y3 * 25 * -std::pow(std::abs(sin(radians)), 3.50f);
+                        lefthandx = -62.0f - this->player->y3 * 30 * std::pow(std::abs(cos(radians)), 0.75f) - this->player->y3 * 20 * -std::pow(std::abs(cos(radians)), 2.0f);
+
+                        /* righthandy = 15.0f - this->player->y3 * 18 * -std::pow(std::abs(sin(radians)), 0.48f);
+                         righthandx = 66.0f - this->player->y3 * 87 * std::pow(std::abs(cos(radians)), 1.54f);*/
+
+                        righthandy = 15.0f - this->player->y3 * 24 * -std::pow(std::abs(sin(radians)), 0.17f) - this->player->y3 * 4 * -std::pow(std::abs(sin(radians)), 0.7f);
+                        righthandx = 66.0f - this->player->y3 * 90 * std::pow(std::abs(cos(radians)), 2.60f) - this->player->y3 * 10 * -std::pow(std::abs(cos(radians)), 1.30f) - this->player->y3 * 3 * std::pow(std::abs(cos(radians)), 0.2f);
+                        // leftlegy = -39.0f - this->player->y3 * 25 * -std::pow(std::abs(sin(radians)), 0.65f) - this->player->y3 * 11 * std::pow(std::abs(sin(radians)), 3.0f);
+                         //leftlegx = -29.0f - this->player->y3 * 28 * std::pow(std::abs(cos(radians)), 3.7f);
+
+                        leftlegy = -30.0f - this->player->y3 * 100 * -std::pow(std::abs(sin(radians)), 10.8f) - this->player->y3 * 36 * std::pow(std::abs(sin(radians)), 8.7f) - this->player->y3 * 20 * -std::pow(std::abs(sin(radians)), 1.0f);
+                        leftlegx = -27.0f - this->player->y3 * 19 * std::pow(std::abs(cos(radians)), 0.5f) - this->player->y3 * 2 * -std::pow(std::abs(cos(radians)), 0.01f);
+
+                        rightlegy = -35.0f - this->player->y3 * 95 * -std::pow(std::abs(sin(radians)), 1.3f) - this->player->y3 * 20 * std::pow(std::abs(sin(radians)), 4.0f) - this->player->y3 * 4 * -std::pow(std::abs(sin(radians)), 7.0f);
+                        rightlegx = 44.0f - this->player->y3 * 70 * std::pow(std::abs(cos(radians)), 0.75f) - this->player->y3 * 2 * -std::pow(std::abs(cos(radians)), 0.05f);
+                        /*rightlegy = -35.0f - this->player->y3 * 95 * -std::pow(std::abs(sin(radians)), 1.4f) - this->player->y3 * 20 * std::pow(std::abs(sin(radians)), 4.0f);
+                        rightlegx = 44.0f - this->player->y3 * 70 * std::pow(std::abs(cos(radians)), 0.58f);*/
+
+                        //lefthandy = 14.0f - this->player->y3 * 53 * -std::pow(std::abs(sin(radians)), 0.48f);
+                        //lefthandx = -62.0f - this->player->y3 * 88 * std::pow(std::abs(cos(radians)), 1.54f);
+                        //*std::abs(sin(PlayerAngle));
+
+                    }
+
+                    /*else if (player->y3 != z * -2.5f && p_input->GetRightAnalogStick().y > 0)
+                    {
+                        this->player->y3 += (z * -2.5f - player->y3) / 50;
+                    }*/
+                }
+                EyesPos.x = eyesx;
+                EyesPos.y = eyesy;
+                LefthandPos.x = lefthandx;
+                LefthandPos.y = lefthandy;
+                LeftlegPos.x = leftlegx;
+                LeftlegPos.y = leftlegy;
+                RighthandPos.x = righthandx;
+                RighthandPos.y = righthandy;
+                RightlegPos.x = rightlegx;
+                RightlegPos.y = rightlegy;
+
+                /*  if (p_input->GetRightAnalogStick().y >= 0)
+                  {*/
+                  //p_input->GetRightAnalogStick().x / z;
+                   //}
+                if (player->y3 <= -1.0f)
+                {
+
+                    pullstate = 2;
+                }
+                else
+                {
+                    pullstate = 0;
+                }
+                if (player->y3 <= -2.3f)
+                {
+
+                    this->p_input->SetVibration(2, 5);
+                    this->p_sound->Play(SOUND_LABEL::SE_PLAYR_VIVRATION);
+
+                }
+                if (player->y3 <= -2.5f)
+                {
+
+                    t2 += 1;
+
+
+                }
+                else
+                {
+                    if (t2 > 0)
+                    {
+                        t2 -= 1;
+                    }
+                    else
+                    {
+                        t2 = 0;
+                    }
+                }
+
+                if (t2 >= 40)
+                {
+                    this->p_sound->Play(SOUND_LABEL::SE_PLAYR_DEAD);
+                    deathstate = 1;
+
+                    //  t2 = 0;
+                }
+                if (deathstate == 1)
+                {
+                    t5 += 1;
+
+                }
+                if (t5 >= 20)
+                {
+
+
+                    ScenechangeState = true;
+                    t5 = 0;
+                }
             }
-            //if (p_input->GetRightAnalogStick().x * 10.0f <= 2.0f && p_input->GetRightAnalogStick().x * 10.0f >= -2.0f)
-            //{
-            //    //CameraPos.x += 0.0f;
-            //}
-            //else
-            //{
-            //    
-            //}
-
-
-
-
-
-
-            if (p_input->GetRightAnalogStick().y * 10.0f <= 1.2f && p_input->GetRightAnalogStick().y * 10.0f >= -1.2f && p_input->GetRightAnalogStick().x * 10.0f <= 1.2f && p_input->GetRightAnalogStick().x * 10.0f >= -1.2f)
-            {
-                //powerstate = 0;//CameraPos.y += 0.0f;
-                this->player->y3 = 0.0f;
-                this->playerdraw->y3 = 0.0f;
-                PlayerAngle = 0.0f;
-                PlayerGrabPos.x = 0;
-                PlayerGrabPos.y = 25.0f;
-                eyesy = 90.0f;
-                eyesx = 0.0f;
-                lefthandx = -62.0f;
-                lefthandy = 14.0f;
-                leftlegx = -39.0f;
-                leftlegy = -29.0f;
-                righthandx = 66.0f;
-                righthandy = 15.0f;
-                rightlegx = 50.0f;
-                rightlegy = -30.0f;
-            }
-            else
-            {
-                PlayerGrabPos.x = -35.0f * p_input->GetRightAnalogStick().x / z;
-                PlayerGrabPos.y = -35.0f * p_input->GetRightAnalogStick().y / z - 5.0f;
-
-
-
-
-
-
-
-
-
-
-
-                if (player->y3 != z * -2.8f)
-                {
-                    this->player->y3 += (z * -2.8f - player->y3) / 20;
-                    this->playerdraw->y3 += (z * -2.8f - playerdraw->y3) / 20;
-                }
-                PlayerAngle = radians * 180.0f / 3.1415926 + a;
-
-
-                if (PlayerAngle >= 90 && PlayerAngle < 180.0f)
-                {
-                    eyesy = 90.0f - this->player->y3 * 80 * std::pow(sin(radians), 1.9f);
-                    eyesx = 0.0f - this->player->y3 * 48 * std::pow(std::abs(cos(radians)), 0.8f);//4角度
-
-                    lefthandy = 14.0f - this->player->y3 * 65 * std::pow(std::abs(sin(radians)), 3.50f);
-                    lefthandx = -62.0f - this->player->y3 * 40 * std::pow(std::abs(cos(radians)), 0.67f) - this->player->y3 * 30 * -std::pow(std::abs(cos(radians)), 2.0f);
-
-                    righthandy = 15.0f - this->player->y3 * 68 * std::pow(std::abs(sin(radians)), 0.65f);
-                    righthandx = 66.0f - this->player->y3 * 87 * std::pow(std::abs(cos(radians)), 1.40f);
-
-                    leftlegy = -34.0f - this->player->y3 * 20 * std::pow(std::abs(sin(radians)), 0.65f) - this->player->y3 * 6 * -std::pow(std::abs(sin(radians)), 3.0f);
-                    leftlegx = -29.0f - this->player->y3 * 20 * std::pow(std::abs(cos(radians)), 3.7f);
-
-                    rightlegy = -33.0f - this->player->y3 * 35 * std::pow(std::abs(sin(radians)), 0.55f) - this->player->y3 * 20 * -std::pow(std::abs(sin(radians)), 4.0f);
-                    rightlegx = 44.0f - this->player->y3 * 66 * std::pow(std::abs(cos(radians)), 5.5f) - this->player->y3 * 7 * std::pow(std::abs(cos(radians)), 0.6f);
-                    //rightlegy = -36.0f - this->player->y3 * 25 * std::pow(std::abs(sin(radians)), 0.65f) - this->player->y3 * 11 * -std::pow(std::abs(sin(radians)), 3.0f);
-
-                    /*leftlegx = -39.0f - this->player->y3 * 80 * std::pow(sin(radians), 2.0f);
-                    leftlegy = -29.0f - this->player->y3 * 48 * std::pow(std::abs(cos(radians)), 0.8f);
-                    righthandx = 66.0f - this->player->y3 * 80 * std::pow(sin(radians), 2.0f);
-                    righthandy = 15.0f - this->player->y3 * 48 * std::pow(std::abs(cos(radians)), 0.8f);
-                    rightlegx = 50.0f - this->player->y3 * 80 * std::pow(sin(radians), 2.0f);
-                    rightlegy = -30.0f - this->player->y3 * 48 * std::pow(std::abs(cos(radians)), 0.8f);*/
-                    //*std::abs(sin(PlayerAngle));
-
-                }
-                else if (PlayerAngle >= 180 && PlayerAngle < 270.0f)
-                {
-                    eyesy = 90.0f - this->player->y3 * 80 * std::pow(sin(radians), 2.0f);
-                    eyesx = 0.0f - this->player->y3 * 48 * -std::pow(std::abs(cos(radians)), 0.8f);//8角度
-
-                    lefthandy = 14.0f - this->player->y3 * 63 * std::pow(std::abs(sin(radians)), 0.65f);
-                    lefthandx = -62.0f - this->player->y3 * 88 * -std::pow(std::abs(cos(radians)), 1.25f);
-
-                    righthandy = 15.0f - this->player->y3 * 60 * std::pow(std::abs(sin(radians)), 3.50f);
-                    righthandx = 66.0f - this->player->y3 * 44.5f * -std::pow(std::abs(cos(radians)), 0.75f) - this->player->y3 * 30 * +std::pow(std::abs(cos(radians)), 2.0f);
-
-                    leftlegy = -39.0f - this->player->y3 * 35 * std::pow(std::abs(sin(radians)), 0.45f) - this->player->y3 * 20 * -std::pow(std::abs(sin(radians)), 4.0f);
-                    leftlegx = -29.0f - this->player->y3 * 71 * -std::pow(std::abs(cos(radians)), 3.7f);
-
-                    rightlegy = -35.0f - this->player->y3 * 20 * std::pow(std::abs(sin(radians)), 0.65f) - this->player->y3 * 6 * -std::pow(std::abs(sin(radians)), 3.0f);
-                    rightlegx = 44.0f - this->player->y3 * 20 * -std::pow(std::abs(cos(radians)), 3.7f);
-                    //*std::abs(sin(PlayerAngle));
-
-                }
-                else if (PlayerAngle >= -90 && PlayerAngle < 0.0f)
-                {
-                    eyesy = 90.0f - this->player->y3 * 25 * -std::pow(std::abs(sin(radians)), 0.8f) - this->player->y3 * 10 * std::pow(std::abs(sin(radians)), 1.5f);
-                    eyesx = 0.0f - this->player->y3 * 45 * -std::pow(std::abs(cos(radians)), 3.8f);//8角度
-
-                    lefthandy = 14.0f - this->player->y3 * 24 * -std::pow(std::abs(sin(radians)), 0.17f) - this->player->y3 * 5 * -std::pow(std::abs(sin(radians)), 0.9f);
-                    lefthandx = -65.0f - this->player->y3 * 90 * -std::pow(std::abs(cos(radians)), 2.4f) - this->player->y3 * 12 * std::pow(std::abs(cos(radians)), 1.10f) - this->player->y3 * 3 * -std::pow(std::abs(cos(radians)), 0.2f);
-
-
-                    righthandy = 15.0f - this->player->y3 * 30 * -std::pow(std::abs(sin(radians)), 3.50f);
-                    righthandx = 66.0f - this->player->y3 * 26 * -std::pow(std::abs(cos(radians)), 0.75f) - this->player->y3 * 12 * std::pow(std::abs(cos(radians)), 2.0f);
-
-                    leftlegy = -39.0f - this->player->y3 * 95 * -std::pow(std::abs(sin(radians)), 1.4f) - this->player->y3 * 20 * std::pow(std::abs(sin(radians)), 4.0f) - this->player->y3 * 4 * -std::pow(std::abs(sin(radians)), 7.0f);
-                    leftlegx = -26.0f - this->player->y3 * 70 * -std::pow(std::abs(cos(radians)), 0.68f);
-
-
-                    rightlegy = -35.0f - this->player->y3 * 100 * -std::pow(std::abs(sin(radians)), 10.8f) - this->player->y3 * 36 * std::pow(std::abs(sin(radians)), 8.7f) - this->player->y3 * 20 * -std::pow(std::abs(sin(radians)), 1.0f) - this->player->y3 * 2 * std::pow(std::abs(sin(radians)), 0.1f);
-                    rightlegx = 44.0f - this->player->y3 * 19 * -std::pow(std::abs(cos(radians)), 0.5f) - this->player->y3 * 2 * -std::pow(std::abs(cos(radians)), 0.1f);
-                    /*rightlegy = -35.0f - this->player->y3 * 87 * -std::pow(std::abs(sin(radians)), 3.1f) - this->player->y3 * 21 * std::pow(std::abs(sin(radians)), 2.5f);
-                    rightlegx = 44.0f - this->player->y3 * 19 * -std::pow(std::abs(cos(radians)), 0.5f) - this->player->y3 * 2 * std::pow(std::abs(cos(radians)), 0.01f);*/
-                    /* lefthandy = 14.0f - this->player->y3 * 60 * -std::pow(std::abs(sin(radians)), 1.0);
-                     lefthandx = -62.0f - this->player->y3 * 88 *-std::pow(std::abs(cos(radians)), 1.25f);*/
-                     //*std::abs(sin(PlayerAngle));
-
-                }
-                else if (PlayerAngle >= 0 && PlayerAngle < 90.0f)
-                {
-                    eyesy = 90.0f - this->player->y3 * 25 * -std::pow(std::abs(sin(radians)), 0.8f) - this->player->y3 * 10 * std::pow(std::abs(sin(radians)), 1.5f);
-                    eyesx = 0.0f - this->player->y3 * 45 * std::pow(std::abs(cos(radians)), 3.8f);//8角度
-
-                    lefthandy = 11.0f - this->player->y3 * 25 * -std::pow(std::abs(sin(radians)), 3.50f);
-                    lefthandx = -62.0f - this->player->y3 * 30 * std::pow(std::abs(cos(radians)), 0.75f) - this->player->y3 * 20 * -std::pow(std::abs(cos(radians)), 2.0f);
-
-                    /* righthandy = 15.0f - this->player->y3 * 18 * -std::pow(std::abs(sin(radians)), 0.48f);
-                     righthandx = 66.0f - this->player->y3 * 87 * std::pow(std::abs(cos(radians)), 1.54f);*/
-
-                    righthandy = 15.0f - this->player->y3 * 24 * -std::pow(std::abs(sin(radians)), 0.17f) - this->player->y3 * 4 * -std::pow(std::abs(sin(radians)), 0.7f);
-                    righthandx = 66.0f - this->player->y3 * 90 * std::pow(std::abs(cos(radians)), 2.60f) - this->player->y3 * 10 * -std::pow(std::abs(cos(radians)), 1.30f) - this->player->y3 * 3 * std::pow(std::abs(cos(radians)), 0.2f);
-                    // leftlegy = -39.0f - this->player->y3 * 25 * -std::pow(std::abs(sin(radians)), 0.65f) - this->player->y3 * 11 * std::pow(std::abs(sin(radians)), 3.0f);
-                     //leftlegx = -29.0f - this->player->y3 * 28 * std::pow(std::abs(cos(radians)), 3.7f);
-
-                    leftlegy = -30.0f - this->player->y3 * 100 * -std::pow(std::abs(sin(radians)), 10.8f) - this->player->y3 * 36 * std::pow(std::abs(sin(radians)), 8.7f) - this->player->y3 * 20 * -std::pow(std::abs(sin(radians)), 1.0f);
-                    leftlegx = -27.0f - this->player->y3 * 19 * std::pow(std::abs(cos(radians)), 0.5f) - this->player->y3 * 2 * -std::pow(std::abs(cos(radians)), 0.01f);
-
-                    rightlegy = -35.0f - this->player->y3 * 95 * -std::pow(std::abs(sin(radians)), 1.3f) - this->player->y3 * 20 * std::pow(std::abs(sin(radians)), 4.0f) - this->player->y3 * 4 * -std::pow(std::abs(sin(radians)), 7.0f);
-                    rightlegx = 44.0f - this->player->y3 * 70 * std::pow(std::abs(cos(radians)), 0.75f) - this->player->y3 * 2 * -std::pow(std::abs(cos(radians)), 0.05f);
-                    /*rightlegy = -35.0f - this->player->y3 * 95 * -std::pow(std::abs(sin(radians)), 1.4f) - this->player->y3 * 20 * std::pow(std::abs(sin(radians)), 4.0f);
-                    rightlegx = 44.0f - this->player->y3 * 70 * std::pow(std::abs(cos(radians)), 0.58f);*/
-
-                    //lefthandy = 14.0f - this->player->y3 * 53 * -std::pow(std::abs(sin(radians)), 0.48f);
-                    //lefthandx = -62.0f - this->player->y3 * 88 * std::pow(std::abs(cos(radians)), 1.54f);
-                    //*std::abs(sin(PlayerAngle));
-
-                }
-
-                /*else if (player->y3 != z * -2.5f && p_input->GetRightAnalogStick().y > 0)
-                {
-                    this->player->y3 += (z * -2.5f - player->y3) / 50;
-                }*/
-            }
+        }
+        if (superkeystate == 1)
+        {
+            this->player->y3 = 0.0f;
+            this->playerdraw->y3 = 0.0f;
+            PlayerAngle = 0.0f;
+            radians = 0.0f;
+            a = 0;
+            eyesy = 90.0f;
+            eyesx = 0.0f;
+            lefthandx = -62.0f;
+            lefthandy = 14.0f;
+            leftlegx = -39.0f;
+            leftlegy = -29.0f;
+            righthandx = 66.0f;
+            righthandy = 15.0f;
+            rightlegx = 50.0f;
+            rightlegy = -30.0f;
             EyesPos.x = eyesx;
             EyesPos.y = eyesy;
             LefthandPos.x = lefthandx;
@@ -1314,67 +1403,7 @@ void	Stage_6::Update(void)
             RighthandPos.y = righthandy;
             RightlegPos.x = rightlegx;
             RightlegPos.y = rightlegy;
-
-            /*  if (p_input->GetRightAnalogStick().y >= 0)
-              {*/
-              //p_input->GetRightAnalogStick().x / z;
-               //}
-            if (player->y3 <= -1.0f)
-            {
-
-                pullstate = 2;
-            }
-            else
-            {
-                pullstate = 0;
-            }
-            if (player->y3 <= -2.3f)
-            {
-
-                this->p_input->SetVibration(2, 5);
-                this->p_sound->Play(SOUND_LABEL::SE_PLAYR_VIVRATION);
-
-            }
-            if (player->y3 <= -2.5f)
-            {
-
-                t2 += 1;
-
-
-            }
-            else
-            {
-                if (t2 > 0)
-                {
-                    t2 -= 1;
-                }
-                else
-                {
-                    t2 = 0;
-                }
-            }
-
-            if (t2 >= 40)
-            {
-                this->p_sound->Play(SOUND_LABEL::SE_PLAYR_DEAD);
-                deathstate = 1;
-
-                //  t2 = 0;
-            }
-            if (deathstate == 1)
-            {
-                t5 += 1;
-
-            }
-            if (t5 >= 20)
-            {
-
-
-                ScenechangeState = true;
-                t5 = 0;
-            }
         }
-
         if (ColliderState == 0)
         {
             grabstate = 0;
@@ -1418,7 +1447,14 @@ void	Stage_6::Update(void)
 
 
 
-
+        if (player->GetPos().x == hook[HookColliderState]->GetPos().x && player->GetPos().y == hook[HookColliderState]->GetPos().y)
+        {
+            superkeystate = 0;
+        } 
+        else
+        {
+            superkeystate = 1;
+        }
        /* if (PlayerColState == 6 && playerPos.y <= -4000.0f || PlayerColState3 == 6 && playerPos.y <= -4000.0f)
         {
 
@@ -1440,6 +1476,7 @@ void	Stage_6::Update(void)
         if (this->p_input->Press("SUPERJUMP") && t == 0 && grabstate == 1 && deathstate != 1)
         {
             this->p_sound->Play(SOUND_LABEL::SE_PLAYR_LEAP);
+            superkeystate = 1;
             pullstate = 0;
             Vypower = std::pow(std::abs(p_input->GetRightAnalogStick().y * 3000.0f), 0.3f);
 
