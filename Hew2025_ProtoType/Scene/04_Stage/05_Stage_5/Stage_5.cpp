@@ -74,7 +74,7 @@ void	Stage_5::Initialize(void)
     if (!this->player) { this->player = new Player(this->p_camera); }
     this->player->SetTexture(this->textureList[0]);
     this->player->Init();
-    this->player->SetPos(0.0f, -100.0f, 100.0f);
+    this->player->SetPos(400.0f, -100.0f, 100.0f);
     this->player->SetSize(PlayerSize.x, PlayerSize.y, 0.0f);
 
     //キーコンフィグUI
@@ -219,7 +219,7 @@ void	Stage_5::Initialize(void)
     this->rail[0]->SetPos(RailPos00.x, RailPos00.y, 0.0f);
     this->rail[1]->SetPos(RailPos01.x, RailPos01.y, 0.0f);
     this->rail[2]->SetPos(RailPos02.x, RailPos02.y, 0.0f);
-    player->SetPos(300.0f, -4970.0f, 0.0f);
+    player->SetPos(1200.0f, -5000.0f, 0.0f);
     //player->SetPos(5850.0f,-2500.0f , 0.0f);
 
     Vx = 0.0f;
@@ -750,7 +750,7 @@ void	Stage_5::Update(void)
         this->player->SetAngle(PlayerAngle);
         this->playerdraw->SetAngle(PlayerAngle);
 
-        this->goal->SetPos(3000.0f, -170.0f, playerPos.z);
+        this->goal->SetPos(GoalPos.x, GoalPos.y, playerPos.z);
         this->eyes->SetPos(playerPos.x + EyesPos.x, playerPos.y + EyesPos.y, playerPos.z);
         this->lefthand->SetPos(playerPos.x + LefthandPos.x, playerPos.y + LefthandPos.y, playerPos.z);
         this->leftleg->SetPos(playerPos.x + LeftlegPos.x, playerPos.y + LeftlegPos.y, playerPos.z);
@@ -1358,11 +1358,11 @@ void	Stage_5::Update(void)
             HookCnt[0] = 0;
             HookCnt[1] = 0;
             HookCnt[2] = 0;
-            HookPos00 = { 5850.0f,-4840.0f };//右フック下
+            HookPos00 = { 6800.0f,-4840.0f };//右フック下
 
-            HookPos03 = { 6070.0f,-2500.0f };//空中右フック右
+            HookPos03 = { 6970.0f,-2500.0f };//空中右フック右
 
-            HookPos05 = { 2150.0f,-2550.0f };//空中左フック下
+            HookPos05 = { 3050.0f,-2550.0f };//空中左フック下
             grabstate2 = 0;
             YoyoStage = 0;
             grabstate = 0;
@@ -1819,11 +1819,6 @@ void	Stage_5::Update(void)
     {
         this->rail[n]->Update();
     }
-
-    for (n = 0; n < 2; n++)//Updateの数
-    {
-        this->YoyoObject[n]->Update();
-    }
     //振り子の座標更新は振り子のアップデート後に行わないとおかしくなるため移動
     this->pendulum->SetPos(GrabboxPos.x, GrabboxPos.y, 0.0f);
 
@@ -1882,7 +1877,7 @@ void	Stage_5::Draw(void)
     //this->hook[0]->Draw();
     //this->hook[1]->Draw();
     //this->hook[2]->Draw();
-    this->YoyoObject[0]->Draw();
+    //this->YoyoObject[0]->Draw();
     this->pendulum->Draw();
 
     for (n = 0; n < 3; n++)//当たり判定用ブロック描画
