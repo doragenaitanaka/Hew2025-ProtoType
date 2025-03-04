@@ -186,6 +186,11 @@ void	Stage_6::Initialize(void)
     this->BallObject->SetFriction(0.95f); // 摩擦係数
     this->BallObject->SetState(Ball::STOP);
 
+    if (!this->Block) { this->Block = std::make_shared<Object>(this->p_camera); }
+    this->Block->Init(L"Asset/block.png");
+    this->Block->SetPos(BlockPos.x, BlockPos.y, 0.0f);
+    this->Block->SetSize(BlockSize.x, BlockSize.y, 0.0f);
+
     // つかむオブジェクト
     if (!this->grabbox) { this->grabbox = new GrabBox(this->p_camera); }
     this->grabbox->Init(L"Asset/Gimmick/eraser.png");//当たり判定用のブロックテクスチャ
@@ -474,8 +479,10 @@ void	Stage_6::Update(void)
 
     this->Connector->SetColliderSize(DirectX::XMFLOAT3(SeesawConnectSize.x, SeesawConnectSize.y, 0.0f));
     this->BallObject->SetColliderSize(DirectX::XMFLOAT3(BallSize.x, BallSize.y, 0.0f));
-    this->PushObject->SetColliderSize(DirectX::XMFLOAT3(400.0f, 880.0f, 0.0f));
+    this->PushObject->SetColliderSize(DirectX::XMFLOAT3(400.0f, 850.0f, 0.0f));
     this->SlopeObject->SetColliderSize(DirectX::XMFLOAT3(slopeSize.x, slopeSize.y, 0.0f));
+
+    this->Block->SetColliderSize(DirectX::XMFLOAT3(BlockSize.x, BlockSize.y, 0.0f));
 
     this->hook[0]->SetColliderSize(DirectX::XMFLOAT3(HookColSize01.x, HookColSize01.y, 0.0f));
     this->hook[1]->SetColliderSize(DirectX::XMFLOAT3(HookColSize01.x, HookColSize01.y, 0.0f));
@@ -492,7 +499,7 @@ void	Stage_6::Update(void)
     auto& headColl2 = this->SeesawHead[1]->GetCollider();
     auto& ballColl = BallObject->GetCollider();
 
-
+    auto& block0 = Block->GetCollider();
     auto& col2 = playercol->GetCollider();
     auto& col4 = playercol2->GetCollider();
     auto& col5 = playercol3->GetCollider();
@@ -512,6 +519,7 @@ void	Stage_6::Update(void)
     BallState = 0;
     HookColliderState = -1;
     grabState = 0;
+    SlopeState = 0;
     auto& tiles = this->p_tileMap->GetTiles();
     for (auto& tile : tiles)
     {
@@ -592,27 +600,32 @@ void	Stage_6::Update(void)
             }
         }
     }
-    if (col2.CheckCollision(pushColl))
+    if (this->PushObject->FallFlg == false)
     {
-        if (Vx <= 0 && pushstate == 0)
+        if (col2.CheckCollision(pushColl))
         {
-            PlayerColState = 1;
-        }
-        else if (Vx > 0)
-        {
-            PlayerColState = 6;//block collider
-            if (pushstate == 0)
+            /*if (Vx <= 0 && pushstate == 0)
+              {
+                  PlayerColState = 1;*/
+                  //}
+            if (Vx > 0)
             {
-                this->PushObject->FallFlg = true;
-                this->PushObject->SetAngle(204);
-                pushstate = 1;
+                PlayerColState = 6;//block collider
+                if (pushstate == 0)
+                {
+                    this->PushObject->FallFlg = true;
+                    this->PushObject->SetAngle(204);
+                    pushstate = 1;
+                }
+                //}
+                //else if (pushstate != 0)
+                //{
+                //    PlayerColState = 6;
+                //}
             }
         }
-        else if (pushstate != 0)
-        {
-            PlayerColState = 6;
-        }
     }
+   
     if (col5.CheckCollision(pushColl))
     {
         if (Vx <= 0 && pushstate == 0)
@@ -621,7 +634,7 @@ void	Stage_6::Update(void)
         }
         else if (Vx > 0)
         {
-            PlayerColState3 = 6;//block collider
+            //PlayerColState3 = 6;//block collider
             if (pushstate == 0)
             {
                 this->PushObject->FallFlg = true;
@@ -631,7 +644,7 @@ void	Stage_6::Update(void)
         }
         else if (pushstate != 0)
         {
-            PlayerColState = 6;
+            //PlayerColState = 6;
         }
     }
     if (playerColl.CheckCollision(grabColl))
@@ -665,7 +678,27 @@ void	Stage_6::Update(void)
             ColliderState = 2;
         }
     }
+    if (pushstate == 2)
+    {
+        if (col2.CheckCollision(block0))
+        {
+            PlayerColState = 1;
 
+        }
+        if (col5.CheckCollision(block0))
+        {
+            PlayerColState3 = 1;//block collider
+
+        }
+        if (playerColl.CheckCollision(block0))
+        {
+            ColliderState = 1;
+
+
+        }
+    }
+
+   
     if (playerColl.CheckCollision(colgoal))
     {
         //animetion-> t++ -> scene+1
@@ -673,7 +706,42 @@ void	Stage_6::Update(void)
         //ColliderState = 3;//goal collider
 
     }
-
+    if (pushstate == 2)
+    {
+        if (col5.CheckCollision(pushColl))
+        {
+            PlayerColState3 = 1;
+            //   SlopeState = 1;
+        }
+        if (col2.CheckCollision(pushColl))
+        {
+            PlayerColState = 1;
+            //  SlopeState = 1;
+        }
+        if (playerColl.CheckCollision(pushColl))
+        {
+            ColliderState = 1;
+            SlopeState = 1;
+        }
+    }
+    else
+    {
+        if (col5.CheckCollision(pushColl))
+        {
+            PlayerColState3 = 1;
+            //   SlopeState = 1;
+        }
+        if (col2.CheckCollision(pushColl))
+        {
+            PlayerColState = 1;
+            //  SlopeState = 1;
+        }
+        if (playerColl.CheckCollision(pushColl))
+        {
+            ColliderState = 1;
+            // SlopeState = 1;
+        }
+    }
 
     if (gamemode == 0)//Creative Mode
     {
@@ -921,6 +989,18 @@ void	Stage_6::Update(void)
             else if (p_input->GetLeftAnalogStick().x * 10.0f < -2.0f && superjumpstate == 0)
             {
                 Vx4 = -7;
+                if (SlopeState == 1)
+                {
+                    if (playerPos.x > 2550)
+                    {
+                        this->player->SetPos(playerPos.x + Vx4 , playerPos.y , playerPos.z);
+                    }
+                    else
+                    {
+                        this->player->SetPos(playerPos.x + Vx4 * 0.6, playerPos.y + Vx4 * 0.77, playerPos.z);
+                    }
+                    
+                }
                 ustate = 0;
                 Vx2 = -1;
                 idletime += 1;
@@ -947,7 +1027,14 @@ void	Stage_6::Update(void)
                 }
                 if (movestate != 1)
                 {
-                    this->player->SetPos(playerPos.x + Vx4, playerPos.y, playerPos.z);
+                    if (SlopeState == 1)
+                    {
+
+                    }
+                    else
+                    {
+                        this->player->SetPos(playerPos.x + Vx4, playerPos.y, playerPos.z);
+                    }
                 }
 
 
@@ -984,15 +1071,25 @@ void	Stage_6::Update(void)
             }
             else if (p_input->GetLeftAnalogStick().x * 10.0f > 2.0f && superjumpstate == 0)
             {
-                if (playerPos.y <= -4160.0f && PlayerColState == 6 || playerPos.y <= -4160.0f && PlayerColState3 == 6 || playerPos.y <= -4160.0f && PlayerColState2 == 6)
+               /* if (playerPos.y <= -4160.0f && PlayerColState == 6 || playerPos.y <= -4160.0f && PlayerColState3 == 6 || playerPos.y <= -4160.0f && PlayerColState2 == 6)
                 {
                     Vx4 = 0;
                 }
                 else
                 {
-                    Vx4 = 7;
+                    
+                }*/
+                Vx4 = 7;
+                if (SlopeState == 1)
+                {
+                    if (playerPos.x > 2670)
+                    {
+                    }               
+                    else
+                    {
+                        this->player->SetPos(playerPos.x + Vx4 * 0.6, playerPos.y + Vx4 * 0.89, playerPos.z);
+                    }
                 }
-
                 ustate = 0;
                 Vx2 = 1;
                 idletime += 1;
@@ -1020,7 +1117,14 @@ void	Stage_6::Update(void)
 
                 if (movestate != 2)
                 {
-                    this->player->SetPos(playerPos.x + Vx4, playerPos.y, playerPos.z);
+                    if (SlopeState == 1)
+                    {
+
+                    }
+                    else
+                    {
+                        this->player->SetPos(playerPos.x + Vx4, playerPos.y, playerPos.z);
+                    }
                 }
 
             }
@@ -1315,24 +1419,24 @@ void	Stage_6::Update(void)
 
 
 
-        if (PlayerColState == 6 && playerPos.y <= -4000.0f || PlayerColState3 == 6 && playerPos.y <= -4000.0f)
+       /* if (PlayerColState == 6 && playerPos.y <= -4000.0f || PlayerColState3 == 6 && playerPos.y <= -4000.0f)
         {
 
         }
         else
-        {
+        {*/
             if (this->p_input->Press("SPACE") && t == 0 && grabstate == 0 && jumpkeystate == 0)
             {
 
                 this->p_sound->Play(SOUND_LABEL::SE_PLAYR_JUMP);
 
-                Vy = 20.0f;
+                Vy = 21.0f;
 
                 jumpkeystate = 1;
                 jumpstate = 1;
 
             }
-        }
+        
         if (this->p_input->Press("SUPERJUMP") && t == 0 && grabstate == 1 && deathstate != 1)
         {
             this->p_sound->Play(SOUND_LABEL::SE_PLAYR_LEAP);
@@ -1346,7 +1450,7 @@ void	Stage_6::Update(void)
 
             if (p_input->GetRightAnalogStick().y > 0)
             {
-                Vy = Vypower * -0.65f;
+                Vy = Vypower * -0.15f;
             }
             else if (p_input->GetRightAnalogStick().y < 0)
             {
@@ -1360,11 +1464,18 @@ void	Stage_6::Update(void)
 
             if (p_input->GetRightAnalogStick().x > 0)
             {
-                Vx = Vxpower * -1.2f;
+                if (HookColliderState == 0)
+                {
+                    Vx = Vxpower * -0.4f;
+                }
+                else
+                {
+                    Vx = Vxpower * -1.1f;
+                }
             }
             else if (p_input->GetRightAnalogStick().x < 0)
             {
-                Vx = Vxpower * 1.2f;
+                Vx = Vxpower * 1.1f;
             }
             else if (p_input->GetRightAnalogStick().x == 0)
             {
@@ -1503,10 +1614,9 @@ void	Stage_6::Update(void)
             if (PlayerColState2 == 1)
             {
 
-                if (Vdelta > 0)
-                {
+              
                     Vy = 0;
-                }
+                
 
             }
 
@@ -1532,17 +1642,21 @@ void	Stage_6::Update(void)
 
             if (ColliderState2 == 1 && Vy > 0)
             {
-                if (this->p_input->Press("SPACE") == false)
+                if (this->p_input->Press("SPACE") == false )
                 {
-                    Vy = 0;
-
+                    if (Vdelta <= 10)
+                    {
+                        Vy = 0;
+                    }
 
                 }
                 //Vy = 25;
             }
             else
             {
-                Vy = 0;
+               
+                    Vy = 0;
+                
                 jumpstate = 0;
                 t = 0;
                 Vdown = 0;
@@ -1554,7 +1668,7 @@ void	Stage_6::Update(void)
 
 
         }
-        if (ColliderState == 6 || PlayerColState == 6 || PlayerColState3 == 6)
+       /* if (ColliderState == 6 || PlayerColState == 6 || PlayerColState3 == 6)
         {
             if (this->p_input->Press("SPACE"))
             {
@@ -1601,7 +1715,7 @@ void	Stage_6::Update(void)
                 PushVx = 0.0f;
                 PushVy = 0.0f;
             }
-        }
+        }*/
         if (ColliderState == 7)
         {
             t = 0.0f;
@@ -1645,6 +1759,15 @@ void	Stage_6::Update(void)
 
         }
 
+       /* if (this->p_input->Press("SPACE") && t == 0 && grabstate == 0 && jumpkeystate == 0)
+        {
+
+            if (SlopeState == 1)
+            {
+
+                Vy = 20.0f;
+            }
+        }*/
         if (ScenechangeState == 1)
         {
 
@@ -1707,8 +1830,8 @@ void	Stage_6::Update(void)
 
     this->seesaw->Update(Connector, SeesawHead[1], SeesawHead[0]);  // オフセット(元々cameraPosだった現pos)は値無しで
     this->seesaw->CheckCollision(grabbox, BallObject, SeesawHead[1], SeesawHead[0]);
-
-
+    this->Block->Update();
+    this->hook[2]->Update();
     this->hook[0]->Update();
     this->hook[1]->Update();
     this->hook[2]->Update();
@@ -1763,7 +1886,7 @@ void	Stage_6::Draw(void)
     this->goal->Draw();
     this->p_tileMap->Draw();
     this->SlopeObject->Draw();
-
+  
     this->Connector->Draw();
     this->SeesawOption->Draw();
     this->grabbox->Draw();
@@ -1793,6 +1916,7 @@ void	Stage_6::Draw(void)
     {
         this->pushdraw->Draw();
     }
+    //this->Block->Draw();
     if (p_input->GetLeftAnalogStick().x * 10.0f < -2.0f && superjumpstate == 0 && grabstate == 0 && jumpstate == 0)
     {
         if (YoyoStage != 1)

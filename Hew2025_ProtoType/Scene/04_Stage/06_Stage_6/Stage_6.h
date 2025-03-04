@@ -144,13 +144,15 @@ public:
 	std::shared_ptr<Object> hookdraw[3];
 	std::shared_ptr<Object>pushdraw;
 	std::shared_ptr<Seesaw>seesaw;
-
+	std::shared_ptr<Object>Block;
 	std::shared_ptr<FallObject>PushObject;
 
 	std::shared_ptr<Object>SlopeObject;
 
 	std::shared_ptr<Object>SeesawOption;
 
+	XMFLOAT2 BlockPos = { 2220.0f, -4170.0f };
+	XMFLOAT2 BlockSize = { 140.0f,140.0f };
 	// ボール
 	float BallSpeed = 5.0f;
 	float BallAngle = 0.0f;
@@ -166,7 +168,7 @@ public:
 	int BallState = 0;
 	int grabState = 0;
 	//倒れるオブジェクト
-	XMFLOAT2 PushObjectPos00 = { 2460.0f, -3850.0f };
+	XMFLOAT2 PushObjectPos00 = { 2470.0f, -3850.0f };
 	XMFLOAT2 PushObjectSize00 = { 500.0f,900.0f };
 
 	//ボールオブジェクト
@@ -190,7 +192,7 @@ public:
 
 	//シーソーの支点
 	XMFLOAT2 SeesawOptionSize = { 500.0f, 500.0f };
-
+	int SlopeState = 0;
 
 	//消しゴム
 	XMFLOAT2 GrabboxSize = { 300.0f,500.0f };
