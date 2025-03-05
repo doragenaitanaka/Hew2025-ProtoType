@@ -173,7 +173,7 @@ public:
 	XMFLOAT2 PushObjectSize00 = { 500.0f,900.0f };
 
 	//ボールオブジェクト
-	XMFLOAT2 BallPos = { 4600.0f, -2500.0f };
+	XMFLOAT2 BallPos = { 4200.0f, -2500.0f };
 	XMFLOAT2 BallSize = { 400.0f,400.0f };
 
 	// シーソー
