@@ -663,6 +663,9 @@ void	Stage_8::Update(void)
             //  pen[0]->have(pen[0]);
             PenColState = 0;
             PenNumber = 0;
+
+            // ペンを持った時の音
+            this->p_sound->Play(SOUND_LABEL::SE_PLAYR_PICK);
         }
         //else if (this->p_input->Press("GRAB") && TestPenState == 1)//ペンを持っている状態でWキーを押すとペンを離す
         //{
@@ -683,6 +686,9 @@ void	Stage_8::Update(void)
             PenColState2 = 0;
             PenNumber = 1;
             PenCol2State = 1;
+
+            // ペンを持った時の音
+            this->p_sound->Play(SOUND_LABEL::SE_PLAYR_PICK);
         }
     }
     for (HookNumber = 0; HookNumber < 7; HookNumber++)
@@ -691,7 +697,7 @@ void	Stage_8::Update(void)
         {
             HookColliderState = HookNumber;//;hook collider
             ColliderState = 2;
-        }
+        }  
     }
 
     if (playerColl.CheckCollision(colgoal))
