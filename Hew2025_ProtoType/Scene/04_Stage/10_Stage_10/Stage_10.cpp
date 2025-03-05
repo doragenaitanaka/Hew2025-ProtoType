@@ -1437,7 +1437,7 @@ void	Stage_10::Update(void)
 				// SE鳴り終えたら遷移
 				if (this->clearTimer.Elapsed() > 2.0f)
 				{
-					this->p_sceneManager->ChangeScene(Scene::Stage_6);
+					this->p_sceneManager->ChangeScene(Scene::TitleScene);
 					return;
 				}
 			}
