@@ -52,7 +52,7 @@ void	SplashScreanScene::Initialize(void)
     if (!this->p_background) { this->p_background = new Object(this->p_camera); }
     this->p_background->Init(L"Asset/UI/background.png");
     this->p_background->SetPos(0.0f, 0.0f, 0.0f);
-    this->p_background->SetColor(DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f));
+    this->p_background->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
     this->p_background->SetSize(1920.0f, 1080.0f, 0.0f);
     
     // ロゴ
@@ -66,7 +66,7 @@ void	SplashScreanScene::Initialize(void)
     this->feda->Init(L"Asset/FedaIn&FedaOut.png");
     this->feda->SetPos(0.0f, 0.0f, 0.0f);
     this->feda->SetSize(1920.0f, 1080.0f, 0.0f);
-    this->feda->SetColor(DirectX::XMFLOAT4(0.0f, 0.0f, 0.0f, 1.0f));
+    this->feda->SetColor(DirectX::XMFLOAT4(1.0f, 1.0f, 1.0f, 1.0f));
     this->feda->SetFadaInDecrease(0.02f);
     this->feda->SetFadaOutDecrease(0.02f);
 

@@ -115,7 +115,7 @@ void	TitleScene::Initialize(void)
 	this->feda->Init(L"Asset/FedaIn&FedaOut.png");
 	this->feda->SetPos(0.0f, 0.0f, 0.0f);
 	this->feda->SetSize(1920.0f, 1080.0f, 0.0f);
-	this->feda->SetAlpha(0.0f);
+	this->feda->SetAlpha(1.0f);
     //--------------------------------------------------------------------------
     //		描画関連の初期化
     //--------------------------------------------------------------------------	
@@ -228,6 +228,9 @@ void	TitleScene::Initialize(void)
 */
 void	TitleScene::Update(void)
 {
+    // フェードイン
+    if (!this->iflg) { this->feda->FedaIn(); }
+
     // 入力更新
     this->p_input->Update();
     this->p_input->GetLeftAnalogStick();
