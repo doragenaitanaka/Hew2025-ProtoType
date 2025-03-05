@@ -2,12 +2,11 @@
 
 
 //コンストラクタ
-FedaInOut::FedaInOut(Camera* _p_camera) :Object(_p_camera)
+FedaInOut::FedaInOut(Camera* _p_camera)
+	:Object(_p_camera),
+	fadaInDecrease(0.04f), fadaOutDecrease(0.04f)
 {
 }
-
-
-
 
 FedaInOut::~FedaInOut()
 {
@@ -25,7 +24,7 @@ void FedaInOut::FedaOut(bool I_flg)
 	{
 		if (this->color.w < 1.0f)
 		{
-			this->SetAlpha(color.w += 0.04f);
+			this->SetAlpha(color.w += this->fadaOutDecrease);
 		     
 		}
 		else
@@ -40,15 +39,20 @@ void FedaInOut::FedaOut(bool I_flg)
 
 void FedaInOut::FedaIn()
 {
-	
-	
-		if (this->color.w >= 0.0f)
-		{
-			this->SetAlpha(color.w -= 0.04f);
-		}
-		
-	
+	if (this->color.w >= 0.0f)
+	{
+		this->SetAlpha(color.w -= this->fadaInDecrease);
+	}
+}
 
+void FedaInOut::SetFadaInDecrease(const float _fadaInDecrease)
+{
+	this->fadaInDecrease = _fadaInDecrease;
+}
+
+void FedaInOut::SetFadaOutDecrease(const float _fadaOutDecrease)
+{
+	this->fadaOutDecrease = _fadaOutDecrease;
 }
 
 

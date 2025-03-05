@@ -80,9 +80,9 @@ void	SceneManager::CreateScene(Scene sceneName)
 		//引数に合わせてシーンを生成する
 		switch (sceneName)
 		{
-		//case Scene::SplashScreanScene:
-		//	this->nowScene = new	SplashScreanScene;
-		//	break;
+		case Scene::SplashScreanScene:
+			this->nowScene = new	SplashScreanScene;
+			break;
 		case Scene::TitleScene:
 			this->nowScene = new	TitleScene;
 			break;

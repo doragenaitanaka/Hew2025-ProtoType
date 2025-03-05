@@ -25,8 +25,14 @@ public:
 	//フェードイン
 	void FedaIn();
 
+	// 減らしていく透明度を設定する
+	void SetFadaInDecrease(const float _fadaInDecrease);
+	void SetFadaOutDecrease(const float _fadaOutDecrease);
+
 private:
-	
+	// 減らしていく透明度
+	float fadaInDecrease;	
+	float fadaOutDecrease;	
 };
 
 
